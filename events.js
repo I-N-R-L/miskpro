@@ -14,7 +14,7 @@ const fs = require("fs");
 const path = require("path");
 var Commands = [];
 const config = require("./lib/config");
-var json = JSON.parse(fs.readFileSync("./database/json/db/EN.json"));
+var json = JSON.parse(fs.readFileSync("./lib/database/json/db/EN.json"));
 const getString = (file) => { return json["STRINGS"][file];};
 const reactArry = async (text = "INFO" || "SUCCESS" || "ERROR") => {
   const reactArry = getString("react");
