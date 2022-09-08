@@ -75,11 +75,3 @@ module.exports = {
     ACR_A: "ff489a0160188cf5f0750eaf486eee74",
     ACR_S: "ytu3AdkCu7fkRVuENhXxs9jsOW4YJtDXimAWMpJp"
     };
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
