@@ -1,5 +1,3 @@
-
-
 const ezio = require('../events');
 const axios = require('axios');
 const Config = require('../config');
@@ -96,7 +94,7 @@ if (Config.WORKTYPE == 'private') {
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
   }
-);
+
 else if (Config.WORKTYPE == 'public') {
 
     Asena.addCommand({pattern: 'anime', fromMe: false, desc:'random anime image '}, (async (message, client) => {
@@ -189,7 +187,7 @@ else if (Config.WORKTYPE == 'public') {
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
   }
-);
+
  Asena = require('../events');
 const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
 const axios = require('axios');
@@ -287,7 +285,7 @@ if (Config.WORKTYPE == 'private') {
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
   }
-);
+
 else if (Config.WORKTYPE == 'public') {
 
     Asena.addCommand({pattern: 'anime', fromMe: false, desc:'random anime image '}, (async (message, client) => {
@@ -380,4 +378,3 @@ else if (Config.WORKTYPE == 'public') {
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
   }
-);
