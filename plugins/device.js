@@ -3,7 +3,6 @@ const {MessageType} = require("Wa-Web");
 const axios = require ('axios')
 const LOAD_ING = "*Searching details*"
 const Config = require('../config');
-const Lang = Language.getString('scrapers');
 
 if (Config.WORKTYPE == 'private') {
 MyPnky.addCommand({pattern: 'device ?(.*)', fromMe: true, desc: 'get deatil of requested device' , dontAddCommandList: true }, async (message, match) => {
