@@ -5,7 +5,7 @@ const LOAD_ING = "*Searching details*"
 const Config = require('../config');
 
 if (Config.WORKTYPE == 'private') {
-MyPnky.addCommand({pattern: 'device ?(.*)', fromMe: true, desc: 'get deatil of requested device' , dontAddCommandList: true }, async (message, match) => {
+MyPnky.addCommand({pattern: 'device ?(.*)', fromMe: true, desc: 'get deatil of requested device' , dontAddCommandList: true }, async (message, client) => {
     
 const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
 const { status, result } = data
@@ -30,7 +30,7 @@ msg += '```'
 });
 }
 else if (Config.WORKTYPE == 'public') {
-    MyPnky.addCommand({pattern: 'device ?(.*)', fromMe: false, desc: 'get deatil of requested device' , dontAddCommandList: true }, async (message, match) => {
+    MyPnky.addCommand({pattern: 'device ?(.*)', fromMe: false, desc: 'get deatil of requested device' , dontAddCommandList: true }, async (message, client) => {
     
         const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
         const { status, result } = data
