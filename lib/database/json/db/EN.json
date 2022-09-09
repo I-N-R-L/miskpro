@@ -296,6 +296,8 @@
             "LOCATION": "Location",
             "TEMP": "Temperature",
             "DESC": "Description",
+            "HMODD_DESC": "Finds Mod App from happymod",
+            "NEED_APPNAME": "please enter an app name",
             "HUMI": "Humidity",
             "WIND": "Wind Speed",
             "CLOUD": "Cloud",
