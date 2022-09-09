@@ -92,6 +92,7 @@ if (Config.WORKTYPE == 'private') {
     };
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
+});
   }
 
 else if (Config.WORKTYPE == 'public') {
@@ -186,5 +187,6 @@ else if (Config.WORKTYPE == 'public') {
     };
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
+});
   }
 
