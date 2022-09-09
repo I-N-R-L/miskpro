@@ -1,10 +1,10 @@
-const Asena = require('../events');
+const whatsbixby = require('../events');
 const {MessageType} = require("Wa-Web");
 const got = require('got');
 const Config = require('../config');
-const lang = Asena.getString("weather");
+const lang = whatsbixby.getString("weather");
 
-Asena.addCommand({pattern: 'happymod ?(.*)', fromMe: false, desc: Lang.HMODD_DESC, dontAddCommandList: true }, async (message, client) => {
+whatsbixby.addCommand({pattern: 'happymod ?(.*)', fromMe: false, desc: Lang.HMODD_DESC, dontAddCommandList: true }, async (message, client) => {
 	if (match[1] === '') return await message.reply(Lang.NEED_APPNAME);
 	const url = `https://api.zeks.xyz/api/happymod?apikey=&q=${match[1]}&apikey=1hroZ3ju94h0PBjCNKsfhYaSuLs`;
 	try {
