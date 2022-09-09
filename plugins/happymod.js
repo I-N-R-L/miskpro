@@ -2,9 +2,10 @@ const whatsbixby = require('../events');
 const {MessageType} = require("Wa-Web");
 const got = require('got');
 const Config = require('../config');
-const lang = whatsbixby.getString("weather");
+const lang = whatsbixby.getString("weather")
 
-whatsbixby.addCommand({pattern: 'happymod ?(.*)', fromMe: false, desc: lang.HMODD_DESC, dontAddCommandList: true }, async (message, client) => {
+ezio.addCommand( { pattern: ["happymod"],desc: lang.HMODD_DESC, sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
+
 	if (client[1] === '') return await client.reply(Lang.NEED_APPNAME);
 	const url = `https://api.zeks.xyz/api/happymod?apikey=&q=${match[1]}&apikey=1hroZ3ju94h0PBjCNKsfhYaSuLs`;
 	try {
