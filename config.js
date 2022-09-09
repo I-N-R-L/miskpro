@@ -12,7 +12,7 @@ module.exports = {
     U_STATUS: process.env.U_STATUS || 'true',
     MENTION: process.env.MENTION || 'on',
     WORKTYPE: process.env.WORKTYPE || 'public',
-    OWNER : ["917025099154"],
+    OWNER : ["919446072492"],
     BRANCH: 'master',
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     HEROKU: {
@@ -21,9 +21,9 @@ module.exports = {
         APP_NAME: process.env.HEROKU_APP_NAME || ''
     },
     profile: {
-    ownerName: "ɪɴʀʟ-ʙᴏᴛ", 
-    ownerNumb: "917025099154", 
-    botName: "ɪɴʀʟ-ʙᴏᴛ-ᴍᴅ", 
+    ownerName: "Ziyan", 
+    ownerNumb: "919446072492", 
+    botName: "WhatsBixby-MD", 
   },
     reply: {
     notFound: "This Command not created. it was creating",
@@ -69,7 +69,7 @@ module.exports = {
     CAPTION : process.env.CAPTION || "*WhatsBixby-MD*",
     DATABASE: DATABASE_URL === './bot.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
     NO_ONLINE: process.env.NO_ONLINE === undefined ? true : convertToBool(process.env.NO_ONLINE),
-    SUDO: process.env.SUDO || '917593919575',
+    SUDO: process.env.SUDO || '919446072492',
     WAGRP : process.env.WAGRP || 'https://tinyurl.com/dbtjh2vu',
     DEBUG: DEBUG,
     ACR_A: "ff489a0160188cf5f0750eaf486eee74",
