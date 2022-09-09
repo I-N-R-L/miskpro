@@ -2,7 +2,7 @@ const Asena = require('../events');
 const {MessageType} = require("Wa-Web");
 const got = require('got');
 const Config = require('../config');
-const Lang = Language.getString('weather');
+const lang = Asena.getString("weather");
 
 Asena.addCommand({pattern: 'happymod ?(.*)', fromMe: false, desc: Lang.HMODD_DESC, dontAddCommandList: true }, async (message, client) => {
 	if (match[1] === '') return await message.reply(Lang.NEED_APPNAME);
