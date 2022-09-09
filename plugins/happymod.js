@@ -1,9 +1,7 @@
 const Asena = require('../events');
-const {MessageType} = require('@adiwajshing/baileys');
+const {MessageType} = require("Wa-Web");
 const got = require('got');
 const Config = require('../config');
-
-const Language = require('../language');
 const Lang = Language.getString('weather');
 
 Asena.addCommand({pattern: 'happymod ?(.*)', fromMe: false, desc: Lang.HMODD_DESC, dontAddCommandList: true }, async (message, match) => {
