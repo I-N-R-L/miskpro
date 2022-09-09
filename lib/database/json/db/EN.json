@@ -298,6 +298,7 @@
             "DESC": "Description",
             "HMODD_DESC": "Finds Mod App from happymod",
             "NEED_APPNAME": "please enter an app name",
+            "NOT_FOUNDMD": "App not found",
             "HUMI": "Humidity",
             "WIND": "Wind Speed",
             "CLOUD": "Cloud",
