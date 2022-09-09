@@ -105,7 +105,7 @@ if (Config.WORKTYPE == 'private') {
 }
 else if (Config.WORKTYPE == 'public') {
 
-    Asena.addCommand({pattern: 'anime', fromMe: false, desc:'random anime image '}, (async (message, match) => {
+    Asena.addCommand({pattern: 'anime', fromMe: false, desc:'random anime image '}, (async (message, client) => {
 
     var r_text = new Array ();
 
