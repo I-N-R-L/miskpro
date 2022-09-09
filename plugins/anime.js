@@ -1,4 +1,4 @@
-const WhatsBixby = require("../events");
+const whatsbixby = require("../events");
 const axios = require("axios");
 // const lang = ezio.getString("github");
 
