@@ -93,7 +93,6 @@ if (Config.WORKTYPE == 'private') {
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
   }
-);
 
 if (Config.WORKTYPE == 'public') {
 
