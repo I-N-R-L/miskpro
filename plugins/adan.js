@@ -4,7 +4,7 @@ Semoga Berfaedah dan Berkah :)
 */
 
 const Asena = require('../events');
-const {MessageType} = require('@adiwajshing/baileys');
+const {MessageType} = require("Wa-Web");
 const got = require('got');
 const Config = require('../config');
 
