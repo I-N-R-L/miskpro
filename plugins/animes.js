@@ -1,5 +1,4 @@
 const ezio = require('../events');
-const axios = require('axios');
 const Config = require('../config');
 
 if (Config.WORKTYPE == 'private') {
