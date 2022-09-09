@@ -95,7 +95,7 @@ if (Config.WORKTYPE == 'private') {
 });
   }
 
-else if (Config.WORKTYPE == 'public') {
+if (Config.WORKTYPE == 'public') {
 
     ezio.addCommand( {pattern: ["anime"],desc: lang.WP,sucReact: "💘",category: ["all", "create"],}, (async (message, client) => {
 
