@@ -18,8 +18,8 @@ const renek = "```Not found the city!```"
 
         Asena.addCommand({pattern: 'prayer ?(.*)', desc: adzan, usage: usage, fromMe: false}, async (message, client) => {
 
-	    if (match[1] === '') return await message.reply(butuh);
-	    const url = `https://api.pray.zone/v2/times/today.json?city=${match[1]}`;
+	    if (!message.client.text) return await message.reply(butuh);
+	    const url = `https://api.pray.zone/v2/times/today.json?city=${message.client.text}`;
 	    try {
 		    const response = await got(url);
 		    const json = JSON.parse(response.body);
