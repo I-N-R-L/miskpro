@@ -5,7 +5,6 @@
 */
 
 const Asena = require('../events');
-const {MessageType, MessageOptions, Mimetype} = require('Wa-Web;
 const axios = require('axios');
 const Config = require('../config');
 
