@@ -95,14 +95,13 @@ if (Config.WORKTYPE == 'private') {
     r_text[77] = "https://i.ibb.co/T0KbLFN/IMG-20210410-WA0318.jpg";
     r_text[78] = "https://i.ibb.co/wgQWTKy/IMG-20210410-WA0319.jpg";
 
-    var i = Math.floor(79*Math.random())
-
-    var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
-
-    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: 'Made by PLK'})
-
-    }));
-}
+    var i = Math.floor(r_text.length * Math.random());
+    const Message = { image: { url: r_text[i] }, caption: ezio.config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+  }
+);
 else if (Config.WORKTYPE == 'public') {
 
     Asena.addCommand({pattern: 'anime', fromMe: false, desc:'random anime image '}, (async (message, client) => {
@@ -189,14 +188,13 @@ else if (Config.WORKTYPE == 'public') {
     r_text[77] = "https://i.ibb.co/T0KbLFN/IMG-20210410-WA0318.jpg";
     r_text[78] = "https://i.ibb.co/wgQWTKy/IMG-20210410-WA0319.jpg";
 
-    var i = Math.floor(79*Math.random())
-
-    var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
-
-    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {quoted: message.data , mimetype: Mimetype.jpg, caption: Config.CAPTION})
-
-    }));
-}
+    var i = Math.floor(r_text.length * Math.random());
+    const Message = { image: { url: r_text[i] }, caption: ezio.config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+  }
+);
  Asena = require('../events');
 const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
 const axios = require('axios');
@@ -288,14 +286,13 @@ if (Config.WORKTYPE == 'private') {
     r_text[77] = "https://i.ibb.co/T0KbLFN/IMG-20210410-WA0318.jpg";
     r_text[78] = "https://i.ibb.co/wgQWTKy/IMG-20210410-WA0319.jpg";
 
-    var i = Math.floor(79*Math.random())
-
-    var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
-
-    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: 'Made by PLK'})
-
-    }));
-}
+    var i = Math.floor(r_text.length * Math.random());
+    const Message = { image: { url: r_text[i] }, caption: ezio.config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+  }
+);
 else if (Config.WORKTYPE == 'public') {
 
     Asena.addCommand({pattern: 'anime', fromMe: false, desc:'random anime image '}, (async (message, client) => {
