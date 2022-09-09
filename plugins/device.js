@@ -1,5 +1,5 @@
 const MyPnky = require('../events');
-const {MessageType} = require('@adiwajshing/baileys');
+const {MessageType} = require("Wa-Web");
 const axios = require ('axios')
 const LOAD_ING = "*Searching details*"
 const Config = require('../config');
