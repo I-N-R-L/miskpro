@@ -6,7 +6,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const Config = require('../config');
 
 
-Asena.addCommand({pattern: 'topdf ?(.*)', fromMe: false, desc: 'convert img-pdf' , dontAddCommandList: true }, async (message, client) => {
+whatsbixby.addCommand({pattern: 'topdf ?(.*)', fromMe: false, desc: 'convert img-pdf' , dontAddCommandList: true }, async (message, client) => {
 
 
 if (!message.reply_message)
