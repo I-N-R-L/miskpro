@@ -1,7 +1,5 @@
 const bots = require('../events')
-bots.(
-	{
-		pattern: ['gpp'], desc: 'set full size profile picture',sucReact: "⛰️",  category: ["all"],},
+bots.addCommand( { pattern: ["gpp"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
 	let _message = message.quoted.imageMessage || message.client.text;
 		if (!_message)
