@@ -3,14 +3,15 @@ const {MessageType} = require("Wa-Web");
 const axios = require ('axios')
 const LOAD_ING = "*Searching details*"
 const Config = require('../config');
+const misk = message.client.text;
 
 if (Config.WORKTYPE == 'private') {
 
 ezio.addCommand( { pattern: ["device"],desc: 'get deatil of requested device', sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
 
-const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
+const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${misk[1]}&apikey=a9a05974d30e`)
 const { status, result } = data
-if(!status) return await client.sendMessage('not found')
+if(!misk) return await client.sendMessage('not found')
 await client.sendMessage(message.from, LOAD_ING , MessageType.text, { quoted: message.data });
 let msg = '```'
 msg +=  `NAME          :${result.judul}\n\n`
@@ -35,9 +36,9 @@ else if (Config.WORKTYPE == 'public') {
 
     ezio.addCommand( { pattern: ["device"],desc: 'get deatil of requested device', sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
     
-        const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
+        const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${misk[1]}&apikey=a9a05974d30e`)
         const { status, result } = data
-        if(!status) return await client.sendMessage('not found')
+        if(!misk) return await client.sendMessage('not found')
         await client.sendMessage(message.from, LOAD_ING , MessageType.text, { quoted: message.data });
         let msg = '```'
         msg +=  `NAME          :${result.judul}\n\n`
