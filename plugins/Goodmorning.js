@@ -1,8 +1,10 @@
 const whatsbixby = require("../events");
 const GDM = "it sends good morning message";
 const GDN = "it sends Night message";
-whatsbixby( { pattern: ["gm","GoodMornig","gdmornig"], desc: GDM, sucReact: "💖", category: ["chat", "all"] },
-  async (message, client) => {
+const GDE = "it sends Good Evening Message";
+
+whatsbixby.addCommand( { pattern: ["gm","GoodMornig","gdmornig"], desc: GDM, sucReact: "💖",  category: ["all", "chat"], }, async (message, client) => {
+
     var r_text = new Array();
     r_text[0] = "❀🍃Good❀ ❀morning❀🥰❀ ";
     r_text[1] = "☘️𝐺𝑜𝑜𝑑 🌅𝑚𝑜𝑟𝑛𝑖𝑛𝑔 💐 ";
@@ -17,9 +19,9 @@ whatsbixby( { pattern: ["gm","GoodMornig","gdmornig"], desc: GDM, sucReact: "�
   }
 );
 
-whatsbixby( { pattern: ["ge", "good evening", "evening"], desc: "good evening", sucReact: "💖", category: ["chat", "all"] },
-  async (message, client) => {
-    var r_text = new Array();
+whatsbixby.addCommand( { pattern: ["ge", "good evening", "evening"], desc: GDE, sucReact: "💖",  category: ["all", "chat"], }, async (message, client) => {
+    
+ var r_text = new Array();
 r_text[0] = "😻ɢᴏᴏᴅ 💗ᴇᴠᴇɴɪɴɢ",
 r_text[1] = "❣️𝐺𝛩𝛩𝐷 💓𝛯𝛻𝛯𝛮𝛪𝛮𝐺",
 r_text[2] = "🥰ｇｏｏｄ 💞ｅｖｅｎｉｎｇ",
@@ -33,8 +35,8 @@ const i = Math.floor(7 * Math.random());
   }
 );
 
-whatsbixby( { pattern: ["gn", "gdnight", "goodnight","gd8","gdn8"], desc: GDN, sucReact: "💖", category: ["chat", "all"] },
-  async (message, client) => {
+whatsbixby.addCommand( { pattern: ["gn", "gdnight", "goodnight","gd8","gdn8"], desc: GDN, sucReact: "💖",  category: ["all", "chat"], }, async (message, client) => {
+
     var r_text = new Array();
     r_text[0] = "😘𝙂𝙤𝙤𝙙 🙈𝙣𝙞𝙜𝙝𝙩 💫✨";
     r_text[1] = "🤗𝓖𝓸𝓸𝓭 🧚‍♀𝓷𝓲𝓰𝓱𝓽 ❄️✨";
