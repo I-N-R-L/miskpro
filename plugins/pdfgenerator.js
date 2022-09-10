@@ -1,6 +1,6 @@
 const toPDF = require("custom-soffice-to-pdf");
 const whatsbixby = require('../events');
-const { MessageType, Mimetype } = require(Wa-Web);
+const { MessageType, Mimetype } = require("Wa-Web");
 const got = require('got');
 const ffmpeg = require('fluent-ffmpeg');
 const Config = require('../config');
