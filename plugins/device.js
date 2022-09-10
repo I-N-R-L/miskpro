@@ -1,12 +1,13 @@
-const MyPnky = require('../events');
+const ezio = require('../events');
 const {MessageType} = require("Wa-Web");
 const axios = require ('axios')
 const LOAD_ING = "*Searching details*"
 const Config = require('../config');
 
 if (Config.WORKTYPE == 'private') {
-MyPnky.addCommand({pattern: 'device ?(.*)', fromMe: true, desc: 'get deatil of requested device' , dontAddCommandList: true }, async (message, client) => {
-    
+
+ezio.addCommand( { pattern: ["device"],desc:get deatil of requested device, sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
+
 const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
 const { status, result } = data
 if(!status) return await client.sendMessage('not found')
@@ -29,8 +30,10 @@ msg += '```'
  return await client.sendMessage(message.jid, msg, MessageType.text, { quoted: message.data });
 });
 }
+
 else if (Config.WORKTYPE == 'public') {
-    MyPnky.addCommand({pattern: 'device ?(.*)', fromMe: false, desc: 'get deatil of requested device' , dontAddCommandList: true }, async (message, client) => {
+
+    ezio.addCommand( { pattern: ["device"],desc: get deatil of requested device, sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
     
         const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
         const { status, result } = data
