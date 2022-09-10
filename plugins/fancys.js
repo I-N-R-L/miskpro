@@ -4,7 +4,7 @@ const { Fancy } = require('abu-bot')
 Jsl.addCommand(
 	   {
 		pattern: ['fancy'],
-		desc: 'To check fancy',;
+		desc: 'To check ping',
                 sucReact: "🥵💯",
                 category: ["system", "all"],
 	   },
