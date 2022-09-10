@@ -1,27 +1,3 @@
-/* ═══════════════════════════════════════════════════════ //
-=> If you want to recode, reupload,
-=> or copy the codes/script,
-=> pls give credit,
-=> no credit? i will take action immediately.
-==> Copyright (C) 2022 Dark_Ezio.
-==> Licensed under the  MIT License;
-===> you may not use this file except in compliance with the License.
-=> Thank you to Lord Buddha, Family and Myself.
-=> Whats Bot - Dark_Ezio.
-// ════════════════════════════ */
-
-const ezio = require("../events");
-const maker = require("mumaker");
-let N_T = "Need Text."
-let T_L = "Text is too long."
-let T_L_1 = "First text is too long."
-let T_L_2 = "Secand text is too long."
-let T_W = "Can use two words"
-
-// ##############################################
-// ################## Test ######################
-// ##############################################
-
 ezio.addCommand( { pattern: ["tp-blackpink"], sucReact: "🖼", category: ['logo'], usage: '<word>', }, async (message, client) => {
   if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: ezio.errorMessage(N_T) }, { quoted: message } ); };
   if (message.client.text.length >= 12) { global.catchError = true; return await client.sendMessage( message.from, { text: ezio.errorMessage(T_L) }, { quoted: message } ); };
