@@ -6,7 +6,7 @@ const Config = require('../config');
 
 if (Config.WORKTYPE == 'private') {
 
-ezio.addCommand( { pattern: ["device"],desc:get deatil of requested device, sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
+ezio.addCommand( { pattern: ["device"],desc: 'get deatil of requested device', sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
 
 const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
 const { status, result } = data
@@ -33,7 +33,7 @@ msg += '```'
 
 else if (Config.WORKTYPE == 'public') {
 
-    ezio.addCommand( { pattern: ["device"],desc: get deatil of requested device, sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
+    ezio.addCommand( { pattern: ["device"],desc: 'get deatil of requested device', sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
     
         const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
         const { status, result } = data
