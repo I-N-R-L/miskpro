@@ -11,7 +11,7 @@ ezio.addCommand( { pattern: ["device"],desc: 'get deatil of requested device', s
 const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
 const { status, result } = data
 if(!status) return await client.sendMessage('not found')
-await client.sendMessage(message.jid, LOAD_ING , MessageType.text, { quoted: message.data });
+await client.sendMessage(message.from, LOAD_ING , MessageType.text, { quoted: message.data });
 let msg = '```'
 msg +=  `NAME          :${result.judul}\n\n`
 msg +=  `DATE          :${result.rilis}\n\n`
@@ -27,7 +27,7 @@ msg += `VIDEO MP       :${result.videoPixel}\n\n`
 msg += `PIC            :${result.thumb}\n\n`
 msg += `BATTERY BRAND  :${result.pixel}\n\n`
 msg += '```'
- return await client.sendMessage(message.jid, msg, MessageType.text, { quoted: message.data });
+ return await client.sendMessage(message.from, msg, MessageType.text, { quoted: message.data });
 });
 }
 
@@ -38,7 +38,7 @@ else if (Config.WORKTYPE == 'public') {
         const {data} = await axios(`https://zenzapi.xyz/api/gsmarena?query=${match[1]}&apikey=a9a05974d30e`)
         const { status, result } = data
         if(!status) return await client.sendMessage('not found')
-        await client.sendMessage(message.jid, LOAD_ING , MessageType.text, { quoted: message.data });
+        await client.sendMessage(message.from, LOAD_ING , MessageType.text, { quoted: message.data });
         let msg = '```'
         msg +=  `NAME          :${result.judul}\n\n`
         msg +=  `DATE          :${result.rilis}\n\n`
@@ -54,6 +54,6 @@ else if (Config.WORKTYPE == 'public') {
         msg += `PIC            :${result.thumb}\n\n`
         msg += `BATTERY BRAND  :${result.pixel}\n\n`
         msg += '```'
-         return await client.sendMessage(message.jid, msg, MessageType.text, { quoted: message.data });
+         return await client.sendMessage(message.from, msg, MessageType.text, { quoted: message.data });
         });
     }
