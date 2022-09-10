@@ -1,14 +1,8 @@
-/* Codded by @mrclfd // rapiUp
-Telegram: t.me/mrclfd
-Semoga Berfaedah dan Berkah :)
-*/
-
 const Asena = require('../events');
 const {MessageType} = require("Wa-Web");
 const got = require('got');
 const Config = require('../config');
 
-// CMD_HELP
 const adzan = "Finds prayer time."
 const usage = ".prayer <city>"
 
