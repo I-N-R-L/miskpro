@@ -1,3 +1,4 @@
+const whatsbixby =
 const GDM = "it sends good morning message";
 const GDN = "it sends Night message";
 bot( { pattern: ["gm","GoodMornig","gdmornig"], desc: GDM, sucReact: "💖", category: ["chat", "all"] },
