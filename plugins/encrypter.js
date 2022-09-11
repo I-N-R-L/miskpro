@@ -7,10 +7,9 @@ const Config = require('../config');
 // NO NEED CREDIT
 const b64 = "Text encryption using base64."
 const usage = ".b64en <text>"
-
 const encypt = "```Enter the text which you need to encrypt!```"
 
-whatsbixby.addCommand({ pattern: 'b64en ?(.*)', fromMe: false, desc: b64, usage: usage }, async (message, client) => {
+whatsbixby.addCommand( { pattern: ["b64en"],desc: b64, sucReact: "😁",  category: ["all", "create"], }, async (message, client) => {
 
         const Wtb = client[1]
         
