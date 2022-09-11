@@ -1,5 +1,5 @@
 const whatsbixby = require('../events');
-const {MessageType} = require("Wa-web");
+const {MessageType} = require("Wa-Web");
 const axios = require('axios');
 const Config = require('../config');
 
