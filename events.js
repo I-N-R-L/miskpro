@@ -13,7 +13,7 @@ const successfullMessage = (msg) => { return " *Successful*:-  ```" + msg + "```
 const errorMessage = (msg) => { return " *Error*:-  ```" + msg + "```"; };
 const infoMessage = (msg) => { return " *Info*:- ```" + msg + "```"; };
 const categories = ["search", "all", "downloade", "chat", "system", 'fun', '18+', 'owner', 'create', 'group', "logo" ];
-function bot(info, func) {
+function inrl(info, func) {
   var types = ["photo", "image", "text", "message"];
   var infos = {
     category: info["category"] === null || undefined ? ["all"] : info["category"],
@@ -35,4 +35,4 @@ function bot(info, func) {
   Commands.push(infos);
   return infos;
 }
-module.exports = { bot, getString, reactArry, successfullMessage, infoMessage, errorMessage, categories, config, commands: Commands,};
+module.exports = { inrl, getString, reactArry, successfullMessage, infoMessage, errorMessage, categories, config, commands: Commands,};
