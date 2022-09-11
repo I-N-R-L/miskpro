@@ -1,15 +1,3 @@
-/* ═══════════════════════════════════════════════════════ //
-=> If you want to recode, reupload,
-=> or copy the codes/script,
-=> pls give credit,
-=> no credit? i will take action immediately.
-==> Copyright (C) 2022 Dark_Ezio.
-==> Licensed under the  MIT License;
-===> you may not use this file except in compliance with the License.
-=> Thank you to Lord Buddha, Family and Myself.
-=> Whats Bot - Dark_Ezio.
-// ════════════════════════════ */
-
 const fs = require("fs");
 const path = require("path");
 var Commands = [];
@@ -21,11 +9,11 @@ const reactArry = async (text = "INFO" || "SUCCESS" || "ERROR") => {
   const react = reactArry[text];
   return (react[Math.floor(Math.random() * react.length)])
 };
-const successfullMessage = (msg) => { return "👩‍🦰 *Successful*:-  ```" + msg + "```"; };
-const errorMessage = (msg) => { return "🚀 *Error*:-  ```" + msg + "```"; };
-const infoMessage = (msg) => { return "🤖 *Info*:- ```" + msg + "```"; };
+const successfullMessage = (msg) => { return " *Successful*:-  ```" + msg + "```"; };
+const errorMessage = (msg) => { return " *Error*:-  ```" + msg + "```"; };
+const infoMessage = (msg) => { return " *Info*:- ```" + msg + "```"; };
 const categories = ["search", "all", "downloade", "chat", "system", 'fun', '18+', 'owner', 'create', 'group', "logo" ];
-function addCommand(info, func) {
+function bot(info, func) {
   var types = ["photo", "image", "text", "message"];
   var infos = {
     category: info["category"] === null || undefined ? ["all"] : info["category"],
@@ -47,4 +35,4 @@ function addCommand(info, func) {
   Commands.push(infos);
   return infos;
 }
-module.exports = { addCommand, getString, reactArry, successfullMessage, infoMessage, errorMessage, categories, config, commands: Commands,};
+module.exports = { bot, getString, reactArry, successfullMessage, infoMessage, errorMessage, categories, config, commands: Commands,};
