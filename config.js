@@ -1,11 +1,8 @@
 const fs = require('fs');
-const { Sequelize } = require('sequelize');
 if (fs.existsSync('config.env')) require('dotenv').config({ path: './config.env' });
 function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
-DATABASE_URL = process.env.DATABASE_URL === undefined ? './bot.db' : process.env.DATABASE_URL;
-DEBUG = process.env.DEBUG === undefined ? false : convertToBool(process.env.DEBUG);
 module.exports = {
     VERSION: 'V 1.0.0',
     SESSION_ID: process.env.SESSION_ID || '',
@@ -60,18 +57,14 @@ module.exports = {
     },
     read: false, // Boolean | ===== It not created now ======
   },
-    DATABASE_URL: DATABASE_URL,
     FOOTER : process.env.FOOTER || "ɪɴʀʟ-ᴍᴅ",
     PACKNAME : process.env.PACKNAME || "ɪɴʀʟ-ʙᴏᴛ",
     GIT : process.env.GIT || "https://tinyurl.com/3ex3e48e",
     WEB : process.env.WEB || "https://tinyurl.com/ycks3s8p",
     YT : process.env.YT || "https://www.youtube.com/channel/null",
-    CAPTION : process.env.CAPTION || "*WhatsBixby-MD*",
-    DATABASE: DATABASE_URL === './bot.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
-    NO_ONLINE: process.env.NO_ONLINE === undefined ? true : convertToBool(process.env.NO_ONLINE),
+    CAPTION : process.env.CAPTION || "*inrlbotmd*",
     SUDO: process.env.SUDO || '919446072492',
     WAGRP : process.env.WAGRP || 'https://tinyurl.com/dbtjh2vu',
-    DEBUG: DEBUG,
     ACR_A: "ff489a0160188cf5f0750eaf486eee74",
     ACR_S: "ytu3AdkCu7fkRVuENhXxs9jsOW4YJtDXimAWMpJp"
     };
