@@ -1,4 +1,4 @@
-const  { inrl }= require('../lib')
+const  { inrl }= require('../lib/perfix')
 
 inrl(
 	   {
