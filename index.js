@@ -1,6 +1,24 @@
 require("./global");
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("inrl");
 const fs = require("fs");
+var aes256 = require('aes256');
+let PastebinAPI = require('pastebin-js'),
+    pastebin = new PastebinAPI({
+      'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
+const mddc=(Config.SESSION_ID)
+//const mddc= ('inrl~c771a40a74b71f134142d0893799f7e7:5a51754332536255626d3854362b6351)
+var m = (mddc);
+let mdm = m.replaceAll("inrl~", "");
+var key = 'k!t';
+var plaintext = (mdm);
+var decryptedPlainText = aes256.decrypt(key, plaintext);
+
+pastebin
+  .getPaste(decryptedPlainText)
+  .then(function (data) {
+   fs.writeFileSync("./session.json" , data);
+   return;
+  });
 const chalk = require("chalk");
 const pino = require("pino");
 const path = require("path");
@@ -16,12 +34,12 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
-const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
+const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
   let connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
