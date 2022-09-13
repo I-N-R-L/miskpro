@@ -3,8 +3,13 @@
   "description": "whatsapp md bot build with nodejs",
   "repository": "https://github.com/AiDarkEzio/WhatsBot-V2.git",
   "logo": "https://raw.githubusercontent.com/AiDarkEzio/Whats-Bot/master/GojoMedia/D_E-DPC.jpg",
-  "keywords": [ "nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"
-  ],
+  "keywords": [ "nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
+         "env": {
+             "SESSION_ID": {
+             "description": "The session ID you Recieved",
+             "required": true
+          },
+},
   "buildpacks": [
     {
       "url": "heroku/nodejs"
