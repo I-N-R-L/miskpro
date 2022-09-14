@@ -1,21 +1,24 @@
 {
-  "name": "inrl-bot-md",
-  "description": "inrl-bot - Simple WhatsApp Multi Device Bot",
-  "keywords": ["whatsapp-bot", "multi-device"],
-  "repository": "https://github.com/inrlinrlfazfaz-inrl-faz-inrl-faz-3333/miskpro",
-  "stack": "container",
-  "env": {
-             "HEROKU_APP_NAME": {
-             "description": "Heroku app name, same as above entered",
-             "required": true
-          },
-             "HEROKU_API_KEY": {
-             "description": "Heroku account api key, https://dashboard.heroku.com/account",
-             "required": true
-         },
-             "SESSION_ID": {
-             "description": "The session ID you Recieved",
-             "required": true
-          },
-    },
-}
+    "name": "inrl-bot-md",
+    "description": "Multi device bot.",
+    "keywords": ["wabot, md"],
+    "repository": "fixedbotteastingbyinrl/miskpro",
+    "stack": "container",
+    "env": {
+        "SESSION_ID": {
+            "description": "Session u received",
+            "required": true
+        },
+
+        "HEROKU_API_KEY": {
+            "description": "Heroku API Key.",
+            "required": true
+        },
+
+        "HEROKU_APP_NAME": {
+            "description": "Heroku APP Name.",
+            "required": true  
+              }
+        },
+       
+  }
