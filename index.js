@@ -9,6 +9,7 @@ let PastebinAPI = require('pastebin-js'),
 const mddc=(Config.SESSION_ID);
 if(!fs.existsSync('./session.json')){
 //const mddc= ('inrl~c771a40a74b71f134142d0893799f7e7:5a51754332536255626d3854362b6351)
+function inrlBot(){
 var m = (mddc);
 let mdm = m.replaceAll("inrl~", "");
 var key = 'k!t';
@@ -20,6 +21,7 @@ pastebin
    fs.writeFileSync("./session.json" , data);
    return;
   });
+ }
 };
 //const session = require('./lib/session');
 const chalk = require("chalk");
@@ -43,6 +45,10 @@ setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
+if('./session.json'!== true ){
+console.log('crrating session file');
+inrlBot();
+};
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
   let connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
