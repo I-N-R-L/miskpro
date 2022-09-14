@@ -9,7 +9,7 @@ let PastebinAPI = require('pastebin-js'),
 const mddc=(Config.SESSION_ID);
 if(!fs.existsSync('./session.json')){
 //const mddc= ('inrl~c771a40a74b71f134142d0893799f7e7:5a51754332536255626d3854362b6351)
-function inrlBot(){
+async function inrlBot(){
 var m = (mddc);
 let mdm = m.replaceAll("inrl~", "");
 var key = 'k!t';
@@ -19,7 +19,9 @@ pastebin
   .getPaste(decryptedPlainText)
   .then(function (data) {
    fs.writeFileSync("./session.json" , data);
-   return;
+let data =('./session.json');
+return await console.log('file creted successfully☑️');
+   return data;
   });
  }
 };
