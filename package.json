@@ -67,16 +67,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AiDarkEzio/WhatsBot-V2.git"
+    "url": "git+https://github.com/inrl-official/inrl-bot-md.git"
   },
   "keywords": [
     "multi-devices",
     "whatsapp-bot"
   ],
-  "author": "AiDarkEzio",
+  "author": "inrl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AiDarkEzio/WhatsBot-V2/issues"
+    "url": "https://github.com/inrl-official/inrl-bot-md/issues"
   },
   "homepage": "https://zeqanpx.github.io/WhatsBot_V2"
 }
