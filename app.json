@@ -3,6 +3,7 @@
   "description": "whatsapp md bot build with nodejs",
   "repository": "https://github.com/inrlinrlfazfaz-inrl-faz-inrl-faz-3333/miskpro.git",
   "keywords": [ "nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
+"stack": "container",
          "env": {
              "SESSION_ID": {
              "description": "The session ID you Recieved",
