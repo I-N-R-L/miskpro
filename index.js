@@ -43,6 +43,7 @@ global.isInCmd = false;
 global.catchError = false;
 setTimeout(() => {
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
+}, 1000 * 6);
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
@@ -118,4 +119,3 @@ const WhatsBotConnect = async () => {
 };
 
 WhatsBotConnect();
-}, 1000 * 10);
