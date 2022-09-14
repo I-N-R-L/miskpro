@@ -41,13 +41,13 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
+setTimeout(() => {
+const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
-const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
-setTimeout(() => { 
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
 };
