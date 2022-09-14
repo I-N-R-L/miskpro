@@ -2,7 +2,7 @@ require("./global");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("inrl");
 const fs = require("fs");
-varconst fs = require("fs");
+//varconst fs = require("fs");
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
@@ -23,7 +23,6 @@ pastebin
 let datta =('./session.json');
 return await console.log('file creted successfully☑️');
    return data;
-    
   });
  };
 //const session = require('./lib/session');
@@ -49,8 +48,7 @@ fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCas
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 if('./session.json'!== true ){
-console.log('crrating session file');
-inrlBot();
+console.log(' session file cretion failed ');
 };
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
