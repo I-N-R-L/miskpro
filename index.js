@@ -18,7 +18,7 @@ var plaintext = (mdm);
 var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
-  .then(async function(data) {
+  .then(async function inrlBot(data) {
    fs.writeFileSync("./session.json" , data);
 let datta =('./session.json');
 return await console.log('file creted successfully☑️');
@@ -49,6 +49,7 @@ global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConf
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
+inrlBot()
 };
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
