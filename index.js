@@ -1,6 +1,7 @@
 require("./global");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("inrl");
+setTimeout(() => { 
 const fs = require("fs");
 //varconst fs = require("fs");
 var aes256 = require('aes256');
@@ -49,7 +50,6 @@ global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConf
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
-inrlBot();
 };
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
@@ -118,3 +118,4 @@ const WhatsBotConnect = async () => {
 };
 
 WhatsBotConnect();
+}, 1000 * 10);
