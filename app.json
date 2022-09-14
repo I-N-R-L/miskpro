@@ -1,10 +1,10 @@
 {
   "name": "inrl-bot-md",
-  "description": "whatsapp md bot build with nodejs",
-  "repository": "https://github.com/inrlinrlfazfaz-inrl-faz-inrl-faz-3333/miskpro.git",
-  "keywords": [ "nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
+  "description": "inrl-bot - Simple WhatsApp Multi Device Bot",
+  "keywords": ["whatsapp-bot", "multi-device"],
+  "repository": "https://github.com/inrlinrlfazfaz-inrl-faz-inrl-faz-3333/miskpro",
   "stack": "container",
-         "env": {
+  "env": {
              "HEROKU_APP_NAME": {
              "description": "Heroku app name, same as above entered",
              "required": true
