@@ -43,7 +43,6 @@ global.isInCmd = false;
 global.catchError = false;
 setTimeout(() => {
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
-}, 1000 * 6);
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
@@ -82,6 +81,7 @@ const WhatsBotConnect = async () => {
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("👩 Connection...", update);
   });
+}, 1000 * 6);
   conn.ev.on("group-participants.update", async (m) => { if (ezio.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
   conn.ev.on("messages.upsert", async (chatUpdate) => {
     global.isInCmd = false;
