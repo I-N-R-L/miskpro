@@ -81,7 +81,6 @@ const WhatsBotConnect = async () => {
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("👩 Connection...", update);
   });
-}, 1000 * 6);
   conn.ev.on("group-participants.update", async (m) => { if (ezio.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
   conn.ev.on("messages.upsert", async (chatUpdate) => {
     global.isInCmd = false;
@@ -117,5 +116,5 @@ const WhatsBotConnect = async () => {
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 };
-
+}, 1000 * 6);
 WhatsBotConnect();
