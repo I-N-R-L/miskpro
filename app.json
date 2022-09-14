@@ -5,10 +5,6 @@
   "keywords": [ "nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
   "stack": "container",
          "env": {
-             "SESSION_ID": {
-             "description": "The session ID you Recieved",
-             "required": true
-          },
              "HEROKU_APP_NAME": {
              "description": "Heroku app name, same as above entered",
              "required": true
@@ -17,10 +13,9 @@
              "description": "Heroku account api key, https://dashboard.heroku.com/account",
              "required": true
          },
+             "SESSION_ID": {
+             "description": "The session ID you Recieved",
+             "required": true
+          },
     },
-      "addons": [
-    {
-      "plan": "heroku-postgresql"
-    }
-                ]
 }
