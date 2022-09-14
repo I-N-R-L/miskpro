@@ -1,7 +1,6 @@
 require("./global");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("inrl");
-setTimeout(() => { 
 const fs = require("fs");
 //varconst fs = require("fs");
 var aes256 = require('aes256');
@@ -48,6 +47,7 @@ setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
+setTimeout(() => { 
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
 };
