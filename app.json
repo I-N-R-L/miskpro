@@ -16,6 +16,11 @@
              "HEROKU_API_KEY": {
              "description": "Heroku account api key, https://dashboard.heroku.com/account",
              "required": true
+         },
     },
-     },
+      "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+                ]
 }
