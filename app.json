@@ -1,24 +1,42 @@
 {
-    "name": "inrl-bot-md",
-    "description": "Multi device bot.",
-    "keywords": ["wabot, md"],
-    "repository": "fixedbotteastingbyinrl/miskpro",
-    "stack": "container",
-    "env": {
-        "SESSION_ID": {
-            "description": "Session u received",
-            "required": true
+	"name": "inrl-bot-md",
+	"description": " Whatsapp bot.",
+	"keywords": [
+		"whatsapp",
+		"bot",
+                "multi-divice"
+	],
+	"repository": "https://github.com/inrl-official/inrl-bot-md",
+	"stack": "container",
+	"env": {
+       "SESSION_ID": {
+            "description": "Your session id",
+            "required": true       
         },
-
-        "HEROKU_API_KEY": {
-            "description": "Heroku API Key.",
-            "required": true
+       "HEROKU_API_KEY": {
+            "description": "For updating bot and setting vars remotely",
+            "required": true,
+            "value":""
         },
-
+        "U_STATUS": {
+            "description": "For updating  profileStatus by using bot",
+            "required": false,
+            "value":"true"
+        },
+        "WORKTYPE": {
+            "description": "bot mode",
+            "required": false,
+            "value":"public"
+        },
         "HEROKU_APP_NAME": {
-            "description": "Heroku APP Name.",
-            "required": true  
-              }
-        },
-       
-  }
+            "description": "Exact name which you gave at the top",
+            "required": true,
+            "value":""
+        }
+	},
+	"addons": [
+		{
+			"plan": "heroku-postgresql"
+		}
+                ]
+}
