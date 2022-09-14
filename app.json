@@ -6,7 +6,7 @@
 		"bot",
                 "multi-divice"
 	],
-	"repository": "https://github.com/fixedbotteastingbyinrl/miskpro",
+	"repository": "https://github.com/inrl-official/inrl-bot-md",
 	"stack": "container",
 	"env": {
        "SESSION_ID": {
@@ -33,5 +33,10 @@
             "required": true,
             "value":""
         }
-    },
+	},
+	"addons": [
+		{
+			"plan": "heroku-postgresql"
+		}
+                ]
 }
