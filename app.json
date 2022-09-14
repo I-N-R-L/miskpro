@@ -1,8 +1,7 @@
 {
-  "name": "WhatsBot_V2",
+  "name": "inrl-bot-md",
   "description": "whatsapp md bot build with nodejs",
-  "repository": "https://github.com/AiDarkEzio/WhatsBot-V2.git",
-  "logo": "https://raw.githubusercontent.com/AiDarkEzio/Whats-Bot/master/GojoMedia/D_E-DPC.jpg",
+  "repository": "https://github.com/inrlinrlfazfaz-inrl-faz-inrl-faz-3333/miskpro.git",
   "keywords": [ "nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
          "env": {
              "SESSION_ID": {
