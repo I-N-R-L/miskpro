@@ -2,14 +2,15 @@ require("./global");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("inrl");
 const fs = require("fs");
+varconst fs = require("fs");
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
-const mddc=(Config.SESSION_ID);
+const mddc=('inrl~WicUt/JgyIBIunq4PDGuYkQxCrXSnqwX');
 if(!fs.existsSync('./session.json')){
 //const mddc= ('inrl~c771a40a74b71f134142d0893799f7e7:5a51754332536255626d3854362b6351)
-async function inrlBot(){
+//function inrlBot(){
 var m = (mddc);
 let mdm = m.replaceAll("inrl~", "");
 var key = 'k!t';
@@ -17,14 +18,14 @@ var plaintext = (mdm);
 var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
-  .then(function (data) {
+  .then(async function(data) {
    fs.writeFileSync("./session.json" , data);
-let data =('./session.json');
+let datta =('./session.json');
 return await console.log('file creted successfully☑️');
    return data;
+    
   });
- }
-};
+ };
 //const session = require('./lib/session');
 const chalk = require("chalk");
 const pino = require("pino");
