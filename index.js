@@ -49,7 +49,7 @@ global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConf
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
-inrlBot()
+inrlBot();
 };
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
