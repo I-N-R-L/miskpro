@@ -67,7 +67,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/inrl-official/inrl-bot-md.git"
+    "url": "git+https://github.com/fixedbotteastingbyinrl/miskpro.git"
   },
   "keywords": [
     "multi-devices",
@@ -76,7 +76,7 @@
   "author": "inrl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/inrl-official/inrl-bot-md/issues"
+    "url": "https://github.com/fixedbotteastingbyinrl/miskpro/issues"
   },
   "homepage": "https://zeqanpx.github.io/WhatsBot_V2"
 }
