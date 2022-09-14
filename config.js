@@ -49,6 +49,7 @@ module.exports = {
     CAPTION : process.env.CAPTION || "*inrlbotmd*",
     SUDO: process.env.SUDO || '919446072492',
     WAGRP : process.env.WAGRP || 'https://tinyurl.com/dbtjh2vu',
+DATABASE: DATABASE_URL === './database.db' ? new Sequelize({ dialect: 'sqlite', storage: DATABASE_URL, logging: false }) : new Sequelize(DATABASE_URL, {dialect: 'postgres', ssl: true, protocol: 'postgres', dialectOptions: { native: true, ssl: { require: true, rejectUnauthorized: false },}, logging: false }),
     ACR_A: "ff489a0160188cf5f0750eaf486eee74",
     ACR_S: "ytu3AdkCu7fkRVuENhXxs9jsOW4YJtDXimAWMpJp"
     };
