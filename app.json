@@ -6,7 +6,7 @@
 		"bot",
                 "multi-divice"
 	],
-	"repository": "https://github.com/inrl-official/inrl-bot-md",
+	"repository": "https://github.com/fixedbotteastingbyinrl/miskpro",
 	"stack": "container",
 	"env": {
        "SESSION_ID": {
