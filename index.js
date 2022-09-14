@@ -7,7 +7,7 @@ var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
-const mddc=('inrl~WicUt/JgyIBIunq4PDGuYkQxCrXSnqwX');
+const mddc=(Config.SESSION_ID);
 if(!fs.existsSync('./session.json')){
 //const mddc= ('inrl~c771a40a74b71f134142d0893799f7e7:5a51754332536255626d3854362b6351)
 //function inrlBot(){
