@@ -1,6 +1,21 @@
 require("./global");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
+const chalk = require("chalk");
+const pino = require("pino");
+const path = require("path");
+const { Boom } = require("@hapi/boom");
+const { Simple, upsert, eziofunc } = require("./lib");
+const Welcome = require("./lib/Welcome");
+const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
+const ezio = require("./lib/perfix");
+const { chatting } = eziofunc;
+const { serialize, WAConnection } = Simple;
+global.mydb = {};
+global.mydb.users = new Array();
+global.mydb.hits = new Number();
+global.isInCmd = false;
+global.catchError = false;
 const fs = require("fs");
 //varconst fs = require("fs");
 var aes256 = require('aes256');
@@ -23,31 +38,8 @@ pastebin
 let datta =('./session.json');
 return await console.log('file creted successfully☑️');
    return data;
-  });
- };
 //const session = require('./lib/session');
-const chalk = require("chalk");
-const pino = require("pino");
-const path = require("path");
-const { Boom } = require("@hapi/boom");
-const { Simple, upsert, eziofunc } = require("./lib");
-const Welcome = require("./lib/Welcome");
-const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
-const ezio = require("./lib/perfix");
-const { chatting } = eziofunc;
-const { serialize, WAConnection } = Simple;
-global.mydb = {};
-global.mydb.users = new Array();
-global.mydb.hits = new Number();
-global.isInCmd = false;
-global.catchError = false;
-setTimeout(() => {
-function inrlBotMd(){
-console.log('connecting to database');
-}
-inrlBotMd()
-}, 1000 * 2);
-const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
+await const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
@@ -55,6 +47,8 @@ fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCas
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
+         };
+    });
 };
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
