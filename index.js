@@ -26,7 +26,7 @@ return await console.log('file creted successfully☑️');
   });
  };
 
-const r_text[0] =
+const r_text[1110] =
       "https://images.wallpaperscraft.com/image/single/trees_pines_lake_198439_4480x6720.jpg";
     const r_text[0] =
       "https://images.wallpaperscraft.com/image/single/trees_pines_lake_198439_4480x6720.jpg";
