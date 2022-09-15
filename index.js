@@ -48,7 +48,7 @@ console.log('inrl-bot-md conected to database');
 console.log('uploading session file to tge database');
 console.log('checking server issues ');
 const session = require('./lib/session');
-await const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
+const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }));
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
