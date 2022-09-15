@@ -102,7 +102,7 @@ if(Config.U_STATUS =='true'){
     await conn.updateProfileStatus(biography);
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
+                 };
          });
      };
- };
 WhatsBotConnect();
