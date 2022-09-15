@@ -1,5 +1,6 @@
 require("./global");
 const Config = require('./config');
+const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const fs = require("fs");
 //varconst fs = require("fs");
 var aes256 = require('aes256');
@@ -21,58 +22,10 @@ pastebin
    fs.writeFileSync("./session.json" , data);
 let datta =('./session.json');
 return await console.log('file creted successfully☑️');
-   return datta;
-   });
-};
-function InRgl(){
-consol.log('inrl');
-};
-function Inllb(){
-consol.log('inrl');
-};
-function Inttbb(){
-consol.log('inrl');
-};
-function Inttb(){
-consol.log('inrl');
-};
-function Intt(){
-consol.log('inrl');
-};
-function IbotmDbY(){
-consol.log('inrl');
-};
-function INRL(){
-consol.log('inrl');
-};
-function IBotv(){
-consol.log('inrl');
-};
-function IBotNew(){
-consol.log('inrl');
-};
-function IBotMd(){
-consol.log('inrl');
-};
-function IBotmd(){
-consol.log('inrl');
-};
-function IBot(){
-consol.log('inrl');
-};
-function INrlL(){
-consol.log('inrl');
-};
-function InRlL(){
-consol.log('inrl');
-};
-function InRL(){
-consol.log('inrl');
-};
-function InRll(){
-consol.log('inrl');
-};
-const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
+   return data;
+  });
+ };
+//const session = require('./lib/session');
 const chalk = require("chalk");
 const pino = require("pino");
 const path = require("path");
@@ -88,30 +41,24 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
+fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
-const text = require('./lib/text');
-const inrl = require('./lib/perfix');
-const serverDown = require('./lib/Data');
-const inrlBotWhatsapp = require('./lib/Scraper');
-console.log('inrl-bot-md connecting to database');
-console.log('inrl-bot-md conected to database');
-console.log('uploading session file to tge database');
-console.log('checking server issues ');
-const session = require('./lib/session');
-const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }));
+const WhatsBotConnect = async () => {
+setTimeout(() => {
+const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
-fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
 };
-const WhatsBotConnect = async () => {
-  let { version, isLatest } = await fetchLatestBaileysVersion();
+  let { version, isLatest } = fetchLatestBaileysVersion();
   let connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
   let conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
+return conn;
+}, 1000 * 2);
   conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
@@ -171,5 +118,4 @@ const WhatsBotConnect = async () => {
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 };
-
 WhatsBotConnect();
