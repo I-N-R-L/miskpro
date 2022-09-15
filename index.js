@@ -73,7 +73,6 @@ console.log(' session file cretion failed ');
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
    });
-});
   conn.ev.on("group-participants.update", async (m) => { if (ezio.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
   conn.ev.on("messages.upsert", async (chatUpdate) => {
     global.isInCmd = false;
@@ -95,6 +94,7 @@ console.log(' session file cretion failed ');
         }
       });
   });
+});
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
