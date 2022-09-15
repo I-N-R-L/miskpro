@@ -21,7 +21,10 @@ pastebin
    fs.writeFileSync("./session.json" , data);
 let datta =('./session.json');
 return await console.log('file creted successfully☑️');
-   return data;
+   return datta;
+   });
+};
+const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
 const path = require("path");
@@ -37,7 +40,6 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
-const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 const text = require('./lib/text');
 const inrl = require('./lib/perfix');
@@ -55,8 +57,6 @@ setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
-         };
-    });
 };
 const WhatsBotConnect = async () => {
   let { version, isLatest } = await fetchLatestBaileysVersion();
