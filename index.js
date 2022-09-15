@@ -2,7 +2,6 @@ require("./global");
 const fs = require("fs");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
-const session = require('./lib/session');
 const chalk = require("chalk");
 const pino = require("pino");
 const path = require("path");
@@ -24,6 +23,7 @@ let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
 const WhatsBotConnect = async () => {
+if(!fs.existsSync('./session.json')){
 const mddc=(Config.SESSION_ID);
 var m = (mddc);
 let mdm = m.replaceAll("inrl~", "");
@@ -35,12 +35,14 @@ pastebin
   .then(async function inrlBot(data) {
    fs.writeFileSync("./session.json" , data);
 await console.log('file creted successfully☑️');
-const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
+});
+await const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
+};
 if('./session.json'!== true ){
 console.log(' session file cretion failed ');
 };
@@ -81,7 +83,8 @@ console.log(' session file cretion failed ');
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);
     await chatting(m, conn);
-      ezio.commands.map(async (command) => {
+    try {
+     ezio.commands.map(async (command) => {
         for (let i in command.pattern) {
           if (command.pattern[i] == m.client.command || command.on == "text") {
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
@@ -93,6 +96,10 @@ console.log(' session file cretion failed ');
           }
         }
       });
+      } catch (e) {
+      console.log(e);
+      sendErrorMessage(m.from,e,m.key,m,[],false);
+    }
   });
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
@@ -102,7 +109,6 @@ if(Config.U_STATUS =='true'){
     await conn.updateProfileStatus(biography);
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
-                 };
-         });
+           };
      };
 WhatsBotConnect();
