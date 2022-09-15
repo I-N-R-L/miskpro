@@ -42,6 +42,11 @@ global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
 setTimeout(() => {
+function inrlBotMd(){
+console.log('connecting to database');
+}
+inrlBotMd()
+}, 1000 * 2);
 const { state, saveState } = useSingleFileAuthState( "./session.json", pino({ level: "silent" }) );
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
@@ -118,4 +123,3 @@ const WhatsBotConnect = async () => {
 };
 
 WhatsBotConnect();
-}, 1000 * 6);
