@@ -1,4 +1,5 @@
 require("./global");
+const fs = require("fs");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const session = require('./lib/session');
@@ -17,7 +18,6 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
-const fs = require("fs");
 //varconst fs = require("fs");
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
