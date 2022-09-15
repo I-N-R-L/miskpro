@@ -24,6 +24,54 @@ return await console.log('file creted successfully☑️');
    return datta;
    });
 };
+function InRgl(){
+consol.log('inrl');
+};
+function Inllb(){
+consol.log('inrl');
+};
+function Inttbb(){
+consol.log('inrl');
+};
+function Inttb(){
+consol.log('inrl');
+};
+function Intt(){
+consol.log('inrl');
+};
+function IbotmDbY(){
+consol.log('inrl');
+};
+function INRL(){
+consol.log('inrl');
+};
+function IBotv(){
+consol.log('inrl');
+};
+function IBotNew(){
+consol.log('inrl');
+};
+function IBotMd(){
+consol.log('inrl');
+};
+function IBotmd(){
+consol.log('inrl');
+};
+function IBot(){
+consol.log('inrl');
+};
+function INrlL(){
+consol.log('inrl');
+};
+function InRlL(){
+consol.log('inrl');
+};
+function InRL(){
+consol.log('inrl');
+};
+function InRll(){
+consol.log('inrl');
+};
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
