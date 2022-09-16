@@ -23,7 +23,6 @@ let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
 const WhatsBotConnect = async () => {
-if(!fs.existsSync('./session.json')){
 const mddc=(Config.SESSION_ID);
 var m = (mddc);
 let mdm = m.replaceAll("inrl~", "");
@@ -33,7 +32,10 @@ var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
   .then(async function inrlBot(data) {
+    if(!fs.existsSync('./session.json')){
    fs.writeFileSync("./session.json" , data);
+    };
+  });
 await console.log('file creted successfully☑️');
 await console.log('successfuly connected to the server');
 const { state, saveState } = useSingleFileAuthState("./session.json")
@@ -108,8 +110,6 @@ if(Config.U_STATUS =='true'){
     await conn.updateProfileStatus(biography);
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
-});
-};
            };
      };
 WhatsBotConnect();
