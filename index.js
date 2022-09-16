@@ -17,6 +17,7 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
+var { state, saveState } = "";
 //varconst fs = require("fs");
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
@@ -35,8 +36,7 @@ pastebin
     if(!fs.existsSync('./session.json')){
    fs.writeFileSync("./session.json" , data);
 await console.log('file creted successfully☑️');
-const { state, saveState } = useSingleFileAuthState("./session.json")
-return { state, saveState };
+{ state, saveState } = useSingleFileAuthState("./session.json")
      };
 });
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
