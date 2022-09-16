@@ -9,7 +9,7 @@ bots.inrl(
   },
   async (message, client) => {
 const Message = {
-      image: { url: inrl.config.image.url.D_E_TMB },
+      image: { url: bots.config.image.url.D_E_TMB },
       caption:`╭───────────────────
 ┃☞︎︎︎│ *ɪᴀᴍ ᴀʟɪᴠᴇ ʙʀᴏ*
 ┃∞│ ─━━━━━━━━━━━━━─
