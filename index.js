@@ -100,8 +100,6 @@ console.log(' session file cretion failed ');
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
-});
-};
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
@@ -110,6 +108,8 @@ if(Config.U_STATUS =='true'){
     await conn.updateProfileStatus(biography);
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
+});
+};
            };
      };
 WhatsBotConnect();
