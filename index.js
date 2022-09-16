@@ -1,5 +1,6 @@
 require("./global");
 const fs = require("fs");
+var PORT = prosess.env.PORT || 3000;
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
