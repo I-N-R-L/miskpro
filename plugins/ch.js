@@ -8,7 +8,6 @@ inrl-md
 */
 
 const bots = require('../events');
-const got = require('got');
 const Config = require('../config');
 
 
@@ -16,7 +15,5 @@ const Config = require('../config');
            const text = message.client.text;
 	 //if (!text) return await client.sendMessage( message.from, { text: 'Enter A location'}, { quoted: message });
 	    const url = `https://api.simsimi.net/v2/?text=${text}&lc=ml`;
-const response = await got(url);
-		    const json = JSON.parse(response.body);
-		    if (response.statusCode === 200) return await client.sendMessage( message.from,{ text: json.success }, { quoted: message });
+ await client.sendMessage( message.from,{ text: url.success }, { quoted: message });
     });
