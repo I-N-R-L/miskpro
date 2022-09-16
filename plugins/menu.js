@@ -1,26 +1,38 @@
-const { inrl } = require("../lib/perfix");
-//const Lang = inrl.getString("_whats");
+/* ═══════════════════════════════════════════════════════ //
+=> If you want to recode, reupload,
+=> or copy the codes/script,
+=> pls give credit,
+=> no credit? i will take action immediately.
+==> Copyright (C) 2022 Dark_Ezio.
+==> Licensed under the  MIT License;
+===> you may not use this file except in compliance with the License.
+=> Thank you to Lord Buddha, Family and Myself.
+=> Whats Bot - Dark_Ezio.
+// ════════════════════════════ */
+
+const ezio = require("../lib/perfix");
+const Lang = ezio.getString("_whats");
 // const fs = require("fs");
 // const path = require("path");
-let cTitle = { "search": "Search",  "all": 'All', "downloade": "Downloade", "chat": "Chat", "system": "System", 'fun': "Fun", '18+': "18+", 'owner': "Owner",'ff':"Ff",'apk':"Apk", 'create': "Create", 'group': "Group", "logo": "Logo", }
+let cTitle = { "search": "Search",  "all": 'All', "downloade": "Downloade", "chat": "Chat", "system": "System", 'fun': "Fun", '18+': "18+", 'owner': "Owner", 'create': "Create", 'group': "Group", "logo": "Logo", }
 
-inrl({ pattern: ["menu", 'help','list'], desc: "to viwe datas", sucReact: "📰", category: ["all", "system"] }, async (message, client) => {
+ezio.inrl({ pattern: ["menu", 'help'], desc: Lang.DESCC, sucReact: "📰", category: ["all", "system"] }, async (message, client) => {
   try {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
     let CMD_HELP = `
 ◉═════════════◉
-  ☯︎ɪɴʀʟ-ʙᴏᴛ- ᴍᴅ ᴄᴏᴍᴍᴀɴᴛs☯︎
+  💎 Whats-Bot Commands 💎
 ◉═════════════◉
-┌─(ᴀʟʟ ᴄᴏᴍᴍᴀɴᴛs)
+┌─(⚜ All Commands)
 │
 `;
-    inrl.commands.map((command) => {
+    ezio.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
-      if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += "│ *➪* ```" + prefix + cmd + ' ' + command.usage + "```\n")}
+      if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += "│ *🎀 :-* ```" + prefix + cmd + ' ' + command.usage + "```\n")}
     }); 
-    CMD_HELP += "│\n│✰ ɪɴʀʟ-ʙᴏᴛ-ᴍᴅ ✰\n└─────────◉";
-    await client.sendMessage( message.from,{ image: { url: inrl.config.image.url.D_E_DP_ }, caption: CMD_HELP, }, { quoted: message });
+    CMD_HELP += "│\n│ 💓 Created By Whats_Bot-MD\n└─────────◉";
+    await client.sendMessage( message.from,{ image: { url: ezio.config.image.url.D_E_DP_ }, caption: CMD_HELP, }, { quoted: message });
     global.catchError = false;
   } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
 });
@@ -29,34 +41,34 @@ inrl({ pattern: ["menu", 'help','list'], desc: "to viwe datas", sucReact: "📰"
 // ###### MAPPING MENU ############
 // ################################
 
-inrl.categories.map(category => {
+ezio.categories.map(category => {
   if (category == 'all') return;
-  inrl.addCommand({ pattern: [`${category}-menu`], sucReact: "📰", category: ["all", "system"] }, async (message, client) => {
+  ezio.inrl({ pattern: [`${category}-menu`], sucReact: "📰", category: ["all", "system"] }, async (message, client) => {
   try {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
     let CMD_HELP = `
 ◉═════════════◉
-✪  ɪɴʀʟ-ʙᴏᴛ ᴄᴏᴍᴀɴᴛs ✪
+  💎 Whats-Bot Commands 💎
 ◉═════════════◉
-┌─(𖠌 ${cTitle[category]} Commands)
+┌─(⚜ ${cTitle[category]} Commands)
 │
 `;
-    inrl.commands.map((command) => {
+    ezio.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
-      if (command.category.includes(category)) { command.pattern.map((cmd) => CMD_HELP += "│ *☞︎︎︎* ```" + prefix + cmd + ' ' + command.usage + "```\n")}
+      if (command.category.includes(category)) { command.pattern.map((cmd) => CMD_HELP += "│ *🎀 :-* ```" + prefix + cmd + ' ' + command.usage + "```\n")}
     }); 
-    CMD_HELP += "│\n│ ᴄʀᴇᴀᴛᴇᴅ ʙʏ ɪɴʀʟ ʙᴏᴛ\n└─────────◉";
-    await client.sendMessage( message.from,{ image: { url: inrl.config.image.url.D_E_DP_ }, caption: CMD_HELP, }, { quoted: message });
+    CMD_HELP += "│\n│ 💓 Created By Whats_Bot-MD\n└─────────◉";
+    await client.sendMessage( message.from,{ image: { url: ezio.config.image.url.D_E_DP_ }, caption: CMD_HELP, }, { quoted: message });
     global.catchError = false;
   } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
   });
 })
 
 
-inrl.addCommand({ pattern: [`cmds-count`], sucReact: "🆗", category: ["all", "system"] }, async (message, client) => {
+ezio.inrl({ pattern: [`cmds-count`], sucReact: "🆗", category: ["all", "system"] }, async (message, client) => {
   try {
-    await client.sendMessage( message.from, { text: inrl.infoMessage('Counting commands 💯') }, { quoted: inrl.config.quoted.product });
+    await client.sendMessage( message.from, { text: ezio.infoMessage('Counting commands 💯') }, { quoted: ezio.config.quoted.product });
     let all_cmd = 0;
     let visible_cmd = 0;
     let invisible_cmd = 0;
@@ -71,7 +83,7 @@ inrl.addCommand({ pattern: [`cmds-count`], sucReact: "🆗", category: ["all", "
     let group_cmd = 0;
     let logo_cmd = 0;
     let countcmdOfCmd = 0;
-    inrl.commands.map(command => {
+    ezio.commands.map(command => {
       if (command.category.includes("all")) all_cmd += command.pattern.length;
       if (!command.dontAddCommandList) visible_cmd += command.pattern.length;
       if (command.dontAddCommandList) invisible_cmd += command.pattern.length;
@@ -89,30 +101,30 @@ inrl.addCommand({ pattern: [`cmds-count`], sucReact: "🆗", category: ["all", "
     });
     let text = `------- Command Count -------
 
-𖠌 All Commands: ${all_cmd.toString()}
-𖠌 Visible Commands: ${visible_cmd.toString()}
-𖠌 Invisible Commands: ${invisible_cmd.toString()}
-𖠌 Search Commands: ${system_cmd.toString()}
-𖠌 Downloade Commands: ${downloade_cmd.toString()}
-𖠌 Chat Commands: ${chat_cmd.toString()}
-𖠌 System Commands: ${system_cmd.toString()}
-𖠌 Fun Commands: ${fun_cmd.toString()}
-𖠌 Adult Commands: ${eighteenplus_cmd.toString()}
-𖠌 Owner Commands: ${owner_cmd.toString()}
-𖠌 Create Commands: ${create_cmd.toString()}
-𖠌 Group Commands: ${group_cmd.toString()}
-𖠌 Logo Commands: ${logo_cmd.toString()}
+⚜ All Commands: ${all_cmd.toString()}
+⚜ Visible Commands: ${visible_cmd.toString()}
+⚜ Invisible Commands: ${invisible_cmd.toString()}
+⚜ Search Commands: ${system_cmd.toString()}
+⚜ Downloade Commands: ${downloade_cmd.toString()}
+⚜ Chat Commands: ${chat_cmd.toString()}
+⚜ System Commands: ${system_cmd.toString()}
+⚜ Fun Commands: ${fun_cmd.toString()}
+⚜ Adult Commands: ${eighteenplus_cmd.toString()}
+⚜ Owner Commands: ${owner_cmd.toString()}
+⚜ Create Commands: ${create_cmd.toString()}
+⚜ Group Commands: ${group_cmd.toString()}
+⚜ Logo Commands: ${logo_cmd.toString()}
 
 💢 Count Of All Commands: ${countcmdOfCmd.toString()}
 `;
     const buttons = [
-      { buttonId: ".extra_urls", buttonText: { displayText: "ᴜʀʟs" }, type: 1, },
-      { buttonId: ".system-menu", buttonText: { displayText: "ɢɪᴛʜᴜʙ" }, type: 1, },
+      { buttonId: ".extra_urls", buttonText: { displayText: "🔗 Extra Urls 🔗" }, type: 1, },
+      { buttonId: ".system-menu", buttonText: { displayText: "📠 System menu 📠" }, type: 1, },
     ];
     const Message = {
-      image: { url: inrl.config.image.url.D_E_DP_ },
+      image: { url: ezio.config.image.url.D_E_DP_ },
       caption: text,
-      footer: inrl.config.exif.footer,
+      footer: ezio.config.exif.footer,
       buttons,
     };
     await client.sendMessage( message.from, Message, { quoted: message })
@@ -120,10 +132,10 @@ inrl.addCommand({ pattern: [`cmds-count`], sucReact: "🆗", category: ["all", "
   } catch (error) { 
     global.catchError = true; 
     let countcmdOfCmd = 0;
-    inrl.commands.map((command) => { countcmdOfCmd += command.pattern.length });
+    ezio.commands.map((command) => { countcmdOfCmd += command.pattern.length });
     await client.sendMessage(message.from, {text: countcmdOfCmd.toString()}, { quoted: message });
     return await client.sendErrorMessage( message.from, error, message.key, message);
   }
 });
 
-// inrl.commands.length.toString()
+// ezio.commands.length.toString()
