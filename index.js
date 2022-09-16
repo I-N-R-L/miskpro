@@ -34,11 +34,11 @@ pastebin
   .then(async function inrlBot(data) {
     if(!fs.existsSync('./session.json')){
    fs.writeFileSync("./session.json" , data);
-    };
-  });
 await console.log('file creted successfully☑️');
-await console.log('successfuly connected to the server');
 const { state, saveState } = useSingleFileAuthState("./session.json")
+return { state, saveState };
+     };
+});
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
