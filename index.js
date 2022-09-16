@@ -35,7 +35,6 @@ pastebin
   .then(async function inrlBot(data) {
    fs.writeFileSync("./session.json" , data);
 await console.log('file creted successfully☑️');
-  };
 await console.log('successfuly connected to the server');
 const { state, saveState } = useSingleFileAuthState("./session.json")
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
@@ -102,6 +101,7 @@ console.log(' session file cretion failed ');
     }
   });
 });
+};
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
