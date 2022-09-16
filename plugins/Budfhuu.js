@@ -12,7 +12,7 @@ const got = require('got');
 const Config = require('../config');
 
 
-    inrl({pattern: ['ml'], desc: "to check whether", sucReact: "💔", category: ['all'], usage: '<word>',},   async (message, client) => {
+    inrl({on: 'text', desc: "to check whether", sucReact: "💔", category: ['all'], usage: '<word>',},   async (message, client) => {
            const text = message.client.text;
 	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A location'}, { quoted: message });
 	    const url = `https://api.simsimi.net/v2/?text=${text}&lc=ml`;
