@@ -17,7 +17,7 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
-var { state, saveState } = "";
+//var { state, saveState } = "";
 //varconst fs = require("fs");
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
@@ -36,9 +36,8 @@ pastebin
     if(!fs.existsSync('./session.json')){
    fs.writeFileSync("./session.json" , data);
 await console.log('file creted successfully☑️');
-{ state, saveState } = useSingleFileAuthState("./session.json")
+const { state, saveState } = useSingleFileAuthState("./session.json")
      };
-});
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
@@ -110,6 +109,7 @@ if(Config.U_STATUS =='true'){
     await conn.updateProfileStatus(biography);
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
+                 })
            };
      };
 WhatsBotConnect();
