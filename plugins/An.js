@@ -7,7 +7,7 @@ bots.inrl(
     pattern: ["anime"],
     desc: "to get randome anime",
     sucReact: "",
-    category: ["all", "create"],
+    category: ["all"],
   },
   async (message, client) => {
     var r_text = new Array();
