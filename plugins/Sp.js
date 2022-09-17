@@ -1,4 +1,5 @@
 const bots = require("../lib/perfix");
+const got = require("got");
 const Config = require('../config');
 bots.inrl( { pattern: ["sp"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
