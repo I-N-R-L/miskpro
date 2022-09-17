@@ -12,9 +12,7 @@ const got = require('got');
 const Config = require('../config');
 
 
-    bots.inrl({pattern: ['sp'], desc: "to check whether", sucReact: "💔", category: ['all'], usage: '<word>',},   async (message, client) => {
-           const text = message.client.text;
-	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A location'}, { quoted: message });
+    bots.inrl({pattern: ['sp'], desc: "to check whether", sucReact: "💔", category: ['all'],},   async (message, client) => {
 	    const url = `https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=🥵_🥲`;
 	    try {
 		    const response = await got(url);
