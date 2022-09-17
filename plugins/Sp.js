@@ -19,7 +19,7 @@ const Config = require('../config');
 	    try {
 		    const response = await got(url);
 		    const json = JSON.parse(response.body);
-		    if (response.statusCode === 200) return await client.sendMessage( message.from, { image: { url:  json.url }, caption: bots.config.exif.cap,  };
+		    if (response.statusCode === 200) return await client.sendMessage( message.from, { image: { url:  json.url }, caption: bots.config.exif.cap,},{ quoted: message });
 	    } catch {
 		    return await client.sendMessage( message.from, { text : "no data found on this location"},{ quoted: message });
 	    }
