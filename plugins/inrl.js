@@ -1,4 +1,4 @@
-const { inrl } = require('../lib/perfix');
+const bots = require('../lib/perfix');
 const Config = require('../config');
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'VERSION:3.0\n' 
