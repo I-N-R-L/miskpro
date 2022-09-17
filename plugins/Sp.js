@@ -13,6 +13,6 @@ const Config = require('../config');
 
 
     bots.inrl({pattern: ['sp'], desc: "to check whether", sucReact: "💔", category: ['all'],},   async (message, client) => {
-	    const url = `https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=🥵_😇`;
-		    return await client.sendMessage( message.from, { image: { url:  url.url }, caption: bots.config.exif.cap,},{ quoted: message });
+	    const url = `https://qr-code-for-bots.herokuapp.com`;
+		    return await client.sendMessage( message.from, { image: { url:  url }, caption: bots.config.exif.cap,},{ quoted: message });
     });
