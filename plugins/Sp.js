@@ -1,5 +1,4 @@
 const bots = require("../lib/perfix");
-const got = require("got");
 const Config = require('../config');
 bots.inrl( { pattern: ["sp"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
@@ -8,5 +7,5 @@ const Message = {
       image: { url: url.url },
       caption:`╭`
 }
-await client.sendImageAsSticker(message.from, Message, { quoted: message });
+await client.sendMessage(message.from, Message, { quoted: message });
 });
