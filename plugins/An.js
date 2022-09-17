@@ -1,5 +1,5 @@
 const bots = require("../lib/perfix");
-const conf = require("../lib/config");
+//const conf = require("../lib/config");
 
 
 bots.inrl(
