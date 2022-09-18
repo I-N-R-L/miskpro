@@ -11,9 +11,9 @@ bots.inrl(
   async (message, client) => {
 var ttinullimage = `https://api.waifu.pics/sfw/slap`;
    const aMsg = {
-                                video: { url: ttinullimage },
+                                video: { url: await ttinullimage },
                                 caption: "hello!",
-                                gifPlayback: true
+                            
 }
 await client.sendMessage( message.from, aMsg,{ quoted: message })
 });
