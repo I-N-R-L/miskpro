@@ -1,4 +1,4 @@
-
+/*
 const bots = require("../lib/perfix");
 
 bots.inrl(
@@ -17,3 +17,4 @@ var ttinullimage = `https://api.waifu.pics/sfw/slap`;
 }
 await client.sendMessage( message.from, aMsg,{ quoted: message })
 });
+*/
