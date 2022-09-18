@@ -7,7 +7,7 @@ bots.inrl(
     desc: "bts",
     sucReact: "",
     category: ["all", "create"],
-  };
+  }
   async (message, client) => {
 var ttinullimage = `https://api.waifu.pics/sfw/slap`;
    const aMsg = {
