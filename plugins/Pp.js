@@ -3,7 +3,7 @@ const bots = require("../lib/perfix");
 
 bots.inrl(
   {
-    pattern: ["@"],
+    pattern: ["7025099154"],
     desc: "bts",
     sucReact: "😄",
     category: ["all", "create"],
