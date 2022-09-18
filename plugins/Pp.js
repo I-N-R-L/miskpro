@@ -9,11 +9,13 @@ bots.inrl(
     category: ["all", "create"],
   },
   async (message, client) => {
-var ttinullimage = `https://api.waifu.pics/sfw/slap`;
-   const aMsg = {
-                                video: { url: await ttinullimage },
+var ttinullgif = `https://api.waifu.pics/sfw/slap`;
+ let str = ttinullgif;
+let newStr = str.replace('.gif','.mp4');
+ const aMsg = {
+                                video: { url: newStr },
                                 caption: "hello!",
-                            
+                                gifPlayback: true
 }
 await client.sendMessage( message.from, aMsg,{ quoted: message })
 });
