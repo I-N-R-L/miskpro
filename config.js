@@ -10,6 +10,7 @@ module.exports = {
     MENTION: process.env.MENTION || 'on',
     WORKTYPE: process.env.WORKTYPE || 'public',
     OWNER : ["919446072492"],
+    BGMBOT : process.env.BGMBOT || 'on',
     BRANCH: 'master',
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     HEROKU: {
