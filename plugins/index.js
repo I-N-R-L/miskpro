@@ -16,5 +16,5 @@ const Config = require('../config');
            const text = message.client.text;
 	    const url = `https://api.simsimi.net/v2/?text=${text}&lc=ml`;
           const json = JSON.parse(response.body);
-		    if (response.statusCode === '') return await client.sendMessage( message.from, { text: 'Q :'+text+'\n\nA:'+JSON.success},{ quoted: message });
+		    if (response.statusCode === 200) return await client.sendMessage( message.from, { text: 'Q :'+text+'\n\nA:'+JSON.success},{ quoted: message });
     });
