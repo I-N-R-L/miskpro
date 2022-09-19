@@ -1,7 +1,7 @@
 const bots = require("../lib/prefix");
 const fs = require('fs');
 const path = require('path');
-
+/*
 bots.inrl(
   {
     pattern: ["mendan"],
@@ -50,3 +50,4 @@ bots.inrl(
     global.catchError = false;
   }
 );
+*/
