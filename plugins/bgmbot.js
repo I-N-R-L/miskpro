@@ -8,7 +8,7 @@ bots.inrl({ pattern: ['bgm'], desc: "lyfe",sucReact: "ðŸ˜¹",  category: ["bg
 await client.sendMessage( message.from, { audio: { url: Ibot.bgm }, mimetype: "audio/mp4"}, { quoted: message } );
 });
 bots.inrl({ pattern: ['poda'], desc: "lyfe",sucReact: "ðŸ˜¹",  category: ["bgm"]}, async (message, client) => {
-await client.sendMessage( message.from, { audio: { url: Ibot.poda }, mimetype: "audio/mp3", }, { quoted: message } );
+await client.sendMessage( message.from, { audio: { url: Ibot.poda }, mimetype: "audio/mp4", ptt: true}, { quoted: message } );
 });
 bots.inrl({ pattern: ['lyfe'], desc: "lyfe",sucReact: "ðŸ˜¹",  category: ["bgm"]}, async (message, client) => {
 await client.sendMessage( message.from, { audio: { url: Ibot.lyfe }, mimetype: "audio/mp4", fileName: `${Config.profile.ownerName}.mp3`, }, { quoted: message } );
