@@ -1,3 +1,4 @@
+/*
 const bots= require('../lib/perfix');
 //const Config = require('../config');
 const linkPreview = require("link-preview-js");
@@ -8,3 +9,4 @@ const msgf=
         sourceUrl: "http://wa.me/+972522832722"},waveform: [ 20,5,0,80,80,30,20,50 ] }
  await client.sendMessage( message.from, msgf, { quoted: message });
 });
+*/
