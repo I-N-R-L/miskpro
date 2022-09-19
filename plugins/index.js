@@ -6,7 +6,7 @@ you may not use this file except in compliance with the License.
 
 inrl-md
 
-*/
+
 const bots = require('../lib/perfix');
 const got = require('got');
 const Config = require('../config');
@@ -18,3 +18,4 @@ const Config = require('../config');
           const json = JSON.parse(response.body);
 		    if (response.statusCode === 200) return await client.sendMessage( message.from, { text: 'Q :'+text+'\n\nA:'+JSON.success},{ quoted: message });
     });
+*/
