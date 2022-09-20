@@ -49,7 +49,7 @@ module.exports = {
     IMG12 : "https://imgur.com/AelfUJg.jpg",
     ERRIMG : "https://imgur.com/ggvhL6C.jpg",
     PACKNAME : process.env.PACKNAME || "ɪɴʀʟ-ʙᴏᴛ",
-    INSTAGRAM :https://instagram.com/_user_undifined,
+    INSTAGRAM : "https://instagram.com/_user_undifined_",
     GIT : process.env.GIT || "https://tinyurl.com/3ex3e48e",
     WEB : process.env.WEB || "https://tinyurl.com/ycks3s8p",
     YT : process.env.YT || "https://www.youtube.com/channel/null",
