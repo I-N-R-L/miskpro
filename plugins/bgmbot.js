@@ -1,3 +1,4 @@
+/*
 const bots = require('../lib/perfix');
 const Config = require('../config');
 const Ibot = require('../media/bgm');
@@ -218,3 +219,4 @@ bots.inrl({ pattern: ['mwonu'], desc: "mwonu",sucReact: "ðŸ¤¥",  category: [
 await client.sendMessage( message.from, { audio: { url: Ibot.mwonu }, mimetype: "audio/mp4", fileName: `${Config.profile.owanerName}.mp3`, }, { quoted: message } );
 });
 };
+*/
