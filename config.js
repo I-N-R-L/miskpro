@@ -6,11 +6,13 @@ const DATABASE_URL = process.env.DATABASE_URL === undefined ? './database.db' : 
 module.exports = {
     VERSION: 'V 1.0.0',
     SESSION_ID: process.env.SESSION_ID || '',
+    PASSWORD: process.env.PASSWORD || '',
     U_STATUS: process.env.U_STATUS || 'true',
     MENTION: process.env.MENTION || 'on',
-    WORKTYPE: process.env.WORKTYPE || 'public',
-    OWNER : ["919446072492"],
     BGMBOT : process.env.BGMBOT || 'on',
+    WORKTYPE: process.env.WORKTYPE || 'public',
+    LANG :process.env.LANG || 'ml', //values are ml, en only
+    OWNER : ["917593919575"],
     BRANCH: 'master',
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     HEROKU: {
@@ -19,9 +21,9 @@ module.exports = {
         APP_NAME: process.env.HEROKU_APP_NAME || ''
     },
     profile: {
-    ownerName: "Ziyan", 
-    ownerNumb: "919446072492", 
-    botName: "WhatsBixby-MD", 
+    ownerName: "inrl", 
+    ownerNumb: "917593919575", 
+    botName: "inrl-bot-md", 
   },
     setting: {
     blockchat: [], // Your block chat Jids
@@ -29,7 +31,7 @@ module.exports = {
   auto: {
     chat: {
       group: false, // Chat Bot In Group | u can set true or false
-      inbox: false, // chat bot in inbox | u can set true or false
+      inbox: true, // chat bot in inbox | u can set true or false
     },
     reply: {
       sticker: false, // Boolean | ===== It not created now ======
@@ -42,14 +44,18 @@ module.exports = {
     read: false, // Boolean | ===== It not created now ======
   },
     FOOTER : process.env.FOOTER || "ɪɴʀʟ-ᴍᴅ",
+    ALIVE : "https://i.imgur.com/DyLAuEh.jpg",
+    IMG11 : "https://i.imgur.com/DyLAuEh.jpg",
+    IMG12 : "https://imgur.com/AelfUJg.jpg",
+    ERRIMG : "https://imgur.com/ggvhL6C.jpg",
     PACKNAME : process.env.PACKNAME || "ɪɴʀʟ-ʙᴏᴛ",
+    INSTAGRAM :https://instagram.com/_user_undifined,
     GIT : process.env.GIT || "https://tinyurl.com/3ex3e48e",
     WEB : process.env.WEB || "https://tinyurl.com/ycks3s8p",
     YT : process.env.YT || "https://www.youtube.com/channel/null",
-    CAPTION : process.env.CAPTION || "*inrlbotmd*",
-    SUDO: process.env.SUDO || '919446072492',
-    WAGRP : process.env.WAGRP || 'https://tinyurl.com/dbtjh2vu',
+    CAPTION : process.env.CAPTION || "_created by inrl-bot_",
+    SUDO: process.env.SUDO || ['917593919575'],
+    VIDEO : "coming soon",
+    WAGRP : process.env.WAGRP || 'https://tinyurl.com/f5wh55mk',
     DATABASE: DATABASE_URL === './database.db' ? new Sequelize({ dialect: 'sqlite', storage: DATABASE_URL, logging: false }) : new Sequelize(DATABASE_URL, {dialect: 'postgres', ssl: true, protocol: 'postgres', dialectOptions: { native: true, ssl: { require: true, rejectUnauthorized: false },}, logging: false }),
-    ACR_A: "ff489a0160188cf5f0750eaf486eee74",
-    ACR_S: "ytu3AdkCu7fkRVuENhXxs9jsOW4YJtDXimAWMpJp"
     };
