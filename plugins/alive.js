@@ -36,7 +36,7 @@ const templateMessage = {
 ┃☯︎│  --------------------
 ┃☯︎│ 
 ┃☯︎╰───────────────
-╰═════════════════⊷`
+╰═════════════════⊷`,
     footer: Config.FOOTER,
     templateButtons: templateButtons
 }
