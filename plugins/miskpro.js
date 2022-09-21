@@ -14,16 +14,9 @@ bots.inrl(
     category: ["bgm"] 
 },
   async (message, client) => {
-const Buttons = [
-          { buttonId: '.bgmon', buttonText: { displayText: "ʙɢᴍ ᴏɴ" }, type: 1, },
-          { buttonId: '.bgmoff', buttonText: { displayText: "ʙɢᴍ ᴏꜰꜰ" }, type: 2, },
-        ];
-        let buttonMessage = {
-          caption : 'to on|off bgm by remote cmd',
-          footer: 'mode:${Config.BGMBOT}',
-          buttons: Buttons,
-        };
-await client.sendMessage(message.from, buttonMessage );
+        await client.sendMessage(message.from,{ text :'to on|off bgm by remote cmd\n
+          mode:${Config.BGMBOT}\n
+          values are _on_,_off_'}, { quoted: message});
 });
 bots.inrl({pattern: ['bgmon'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["bgm"],}, async (message, client) => {
                 await heroku.patch(baseURI + '/config-vars', { 
