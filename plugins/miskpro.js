@@ -14,8 +14,8 @@ bots.inrl(
     category: ["bgm"] 
 },
   async (message, client) => {
-        await client.sendMessage(message.from,{ text :'to on|off bgm by remote cmd\n'
-          +'mode:${Config.BGMBOT}\n'
+        await client.sendMessage(message.from,{ text :'to on|off bgm by remote cmd\n\n'
+          +'mode:'+Config.BGMBOT+'\n\n'
           +'values are _on_,_off_'}, { quoted: message});
 });
 bots.inrl({pattern: ['bgmon'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["bgm"],}, async (message, client) => {
