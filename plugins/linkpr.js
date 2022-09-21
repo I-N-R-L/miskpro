@@ -14,7 +14,7 @@ const ezio = require("../lib/perfix");
 const fs = require('fs');
 const path = require('path');
 
-ezio.addCommand(
+ezio.inrl(
   {
     pattern: ["mtest"],
     dontAddCommandList: true,
