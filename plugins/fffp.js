@@ -1,9 +1,9 @@
-/*
+
 const bots = require('../lib/perfix')
 bots.bot(
 	{
 		pattern: ['fpp'], desc: 'set full size profile picture',sucReact: "⛰️",  category: ["all"],},
-	async async (conn, message, client) => {
+	async (conn, message, client) => {
 	let _message = message.quoted.imageMessage || message.client.text;
 		if (!_message)
 			return await client.sendMessage( message.from,{ text :'*Reply to a image.*'}, { quoted: message })
@@ -13,4 +13,3 @@ bots.bot(
 		return await client.sendMessage( message.from,{text :'_Profile Picture Updated_'}, { quoted: message })
 	}
 )
-*/
