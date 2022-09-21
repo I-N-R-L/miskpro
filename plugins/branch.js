@@ -23,7 +23,7 @@ bots.inrl({pattern: ['update'], fromMe: true, desc: "to update bot", sucReact: "
     }
 }));
 
-bots.inrl({pattern: ['update now'], fromMe: true, desc: "updating you bot", sucReact: "⚒️",  category: ["all"]}, (async (message, client) => {
+bots.inrl({pattern: ['updatenow'], fromMe: true, desc: "updating you bot", sucReact: "⚒️",  category: ["all"]}, (async (message, client) => {
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
