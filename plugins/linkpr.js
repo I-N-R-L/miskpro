@@ -27,9 +27,6 @@ ezio.inrl(
     };
     await client.sendMessage(
       message.from,
-      Message,
-      {
-        quoted: ezio.config.quoted.product,
-      }
+      Message
     );
  });
