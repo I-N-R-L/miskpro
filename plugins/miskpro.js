@@ -23,7 +23,7 @@ const Buttons = [
           footer: 'mode:${Config.BGMBOT}',
           buttons: Buttons,
         };
-await client.sendMessage(message.from, buttonMessage, { quoted: message, });
+await client.sendMessage(message.from, buttonMessage );
 });
 bots.inrl({pattern: ['bgmon'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["bgm"],}, async (message, client) => {
                 await heroku.patch(baseURI + '/config-vars', { 
