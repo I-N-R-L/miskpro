@@ -1,20 +1,17 @@
 {
   "name": "inrl-bot-md",
-  "version": "1.3.4",
+  "version": "1.0.0",
   "description": "WhatsApp bot made with nodejs and baileys",
   "main": "index.js",
   "dependencies": {
-    "@adiwajshing/baileys": "^4.3.0",
+    "@adiwajshing/baileys": "^4.4.0",
     "inrl": "github:adiwajshing/Baileys",
+    "heroku-client": "^3.1.0",
+    "pg": "^8.7.3",
     "@adiwajshing/keyed-db": "^0.2.4",
-    "abu-bot": "2.4.0",
     "awesome-phonenumber": "^2.64.0",
     "axios": "^0.27.2",
     "chalk": "^4.1.2",
-    "sequelize": "^6.21.3",
-    "simple-git": "^3.12.0",
-    "dotenv": "^16.0.2",
-    "sqlite3":"5.1.0",
     "cheerio": "^1.0.0-rc.10",
     "child_process": "^1.0.2",
     "aes256": "^1.1.0",
@@ -33,6 +30,10 @@
     "human-readable": "^0.2.1",
     "jimp": "^0.16.1",
     "jsdom": "^16.4.0",
+    "sequelize": "^6.21.3",
+    "simple-git": "^3.12.0",
+    "dotenv": "^16.0.2",
+    "sqlite3":"5.1.0",
     "link-preview-js": "^2.1.19",
     "lowdb": "^2.1.0",
     "moment-timezone": "^0.5.34",
@@ -55,6 +56,7 @@
     "supervisor": "^0.12.0",
     "util": "^0.12.4",
     "xfarr-api": "^1.0.2",
+    "inrl-db": "1.0.2",
     "yargs": "^17.4.0",
     "yt-search": "^2.10.2"
   },
@@ -71,7 +73,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fixedbotteastingbyinrl/miskpro.git"
+    "url": "git+https://github.com/inrl-official/inrl-bot-md.git"
   },
   "keywords": [
     "multi-devices",
@@ -80,7 +82,7 @@
   "author": "inrl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fixedbotteastingbyinrl/miskpro/issues"
+    "url": "https://github.com/inrl-official/inrl-bot-md/issues"
   },
-  "homepage": "https://zeqanpx.github.io/WhatsBot_V2"
+  "homepage": "frenendpage.vercel.app"
 }
