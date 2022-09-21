@@ -1,3 +1,4 @@
+/*
 const bots = require('../lib/perfix')
 bots.bot(
 	{
@@ -12,3 +13,4 @@ bots.bot(
 		return await client.sendMessage( message.from,{text :'_Profile Picture Updated_'}, { quoted: message })
 	}
 )
+*/
