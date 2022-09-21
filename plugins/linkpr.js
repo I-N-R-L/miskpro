@@ -9,12 +9,12 @@
 => Thank you to Lord Buddha, Family and Myself.
 => Whats Bot - Dark_Ezio.
 // ════════════════════════════ */
-/*
+
 const ezio = require("../lib/perfix");
 const fs = require('fs');
 const path = require('path');
 
-ezio.addCommand(
+ezio.inrl(
   {
     pattern: ["mtest"],
     dontAddCommandList: true,
@@ -62,4 +62,3 @@ ezio.addCommand(
     global.catchError = false;
   }
 );
-*/
