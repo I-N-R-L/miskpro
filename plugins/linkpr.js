@@ -28,7 +28,7 @@ ezio.inrl(
         "matched-text": "https://aidarkezio.github.io",
         title: "Subhadra Poshi",
         description: "This is a WhatsApp user bot \n\nSend this number: Alive",
-        jpegThumbnail: https://i.imgur.com/DyLAuEh.jpg,
+        jpegThumbnail: "https://i.imgur.com/DyLAuEh.jpg",
       },
       text: caption,
     };
