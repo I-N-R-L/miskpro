@@ -162,4 +162,4 @@ bots.config.api.textpro.takes1.map(logo => {
     .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
     .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
   });});
-/*
+*/
