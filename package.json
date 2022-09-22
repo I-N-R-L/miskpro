@@ -9,6 +9,7 @@
     "heroku-client": "^3.1.0",
     "pg": "^8.7.3",
     "@adiwajshing/keyed-db": "^0.2.4",
+    "textmaker-thiccy": "1.2.1",
     "awesome-phonenumber": "^2.64.0",
     "axios": "^0.27.2",
     "chalk": "^4.1.2",
