@@ -63,7 +63,7 @@ const Config = require('../config');
         
         var respoimage = await axios.get('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
 
-        await client.sendMessage( message.from, { sticker: Buffer.from(respoimage.data) }, { quoted: message } );
+        return await client.sendMessage( message.from, { sticker: Buffer.from(respoimage.data) }, { quoted: message } );
 
     }));
 //}
