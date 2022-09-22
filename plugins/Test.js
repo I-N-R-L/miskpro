@@ -1,133 +1,164 @@
-const { inrl }= require('../lib/perfix');
-const axios = require('axios');
-const Config = require('../config');
-//if (Config.WORKTYPE == 'private') {
+const thiccysapi = require('textmaker-thiccy');
+   const bots = require("../lib/perfix");
+const maker = require("mumaker");
+let N_T = "Need Text."
+let T_L = "Text is too long."
+let T_L_1 = "First text is too long."
+let T_L_2 = "Secand text is too long."
+let T_W = "Can use two words"
+bots.inrl( { pattern: ["p1"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  if (message.client.text.length >= 12) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L) }, { quoted: message } ); };
+  await maker.textpro('https://textpro.me/create-blackpink-logo-style-online-1001.html', [message.client.text, 'inrl'])
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p2"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  if (message.client.text.length >= 30) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L) }, { quoted: message } ); };
+  await maker.textpro('https://textpro.me/create-art-paper-cut-text-effect-online-1022.html', [message.client.text, 'inrl'])
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p3"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L) }, { quoted: message } ); };
+  await maker.textpro('https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html', [message.client.text, 'inrl'])
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p4"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L) }, { quoted: message } ); };
+  await maker.textpro('https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html', [message.client.text, 'inrl-bot'])
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p5"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await maker.textpro('https://textpro.me/create-cool-wall-graffiti-text-effect-online-1009.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p6"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await maker.textpro('https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p6"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await maker.textpro('https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p7"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/create-wolf-logo-galaxy-online-936.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p8"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p9"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/neon-text-effect-online-879.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p10"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/thunder-text-effect-online-881.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p11"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/create-logo-joker-online-934.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p12"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/create-ninja-logo-online-935.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p13"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/advanced-glow-text-effect-873.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p14"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/bokeh-text-effect-876.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p15"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/create-logo-style-marvel-studios-online-971.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["p16"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  let arry = message.client.text.split("/");
+  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
+  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
+  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
+  await thiccysapi.textpro('https://textpro.me/create-3d-avengers-logo-online-974.html', arry)
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});
 
-    inrl({pattern: ['inrl'], fromMe: true, desc: "to set coder pintertest",  sucReact: "ðŸ˜¹",category: ["logo"],}, (async (message, client) => {
-    const text = message.client.text;
-        if (!text) return  await client.sendMessage(message.from, { text :"enter a text to conver i-code"}, { quoted: message});
 
-        var rgbafmin = 0; 
-        var rgbafmax = 255;  
-        var rgbafirst = Math.floor(Math.random() * (+rgbafmax - +rgbafmin) + +rgbafmin)
 
-        var rgbasmin = 0; 
-        var rgbasmax = 255;  
-        var rgbasecond = Math.floor(Math.random() * (+rgbasmax - +rgbasmin) + +rgbasmin)
 
-        var rgbatmin = 0; 
-        var rgbatmax = 255;  
-        var rgbathird = Math.floor(Math.random() * (+rgbatmax - +rgbatmin) + +rgbatmin)
-
-        var Theme = new Array ()
-        Theme[0] = "twilight";
-        Theme[1] = "panda";
-        Theme[2] = "blackboard";
-        Theme[3] = "seti";
-        Theme[4] = "verminal";
-        Theme[5] = "nord";
-        Theme[6] = "monokai";
-        Theme[7] = "cobalt";
-        Theme[8] = "vscode";
-        Theme[9] = "material";
-        Theme[10] = "hopscotch";
-        Theme[11] = "shades-of-purple";
-        Theme[12] = "oceanic-next";
-        Theme[13] = "one-light";
-        Theme[14] = "one-dark";
-        Theme[15] = "synthwave-84";
-        Theme[16] = "zenburn";
-        Theme[17] = "3024-night";
-        Theme[18] = "a11y-dark";
-        Theme[19] = "dracula-pro";
-        Theme[20] = "dracula-pro";
-        Theme[21] = "dracula-pro";
-        Theme[22] = "dracula-pro";
-        Theme[23] = "night-owl";
-        var i = Math.floor(24*Math.random())
-
-        var Language = new Array ()
-        Language[0] = "Apache";
-        Language[1] = "Python";
-        Language[2] = "Javascript";
-        Language[3] = "Bash";
-        Language[4] = "cobol";
-        Language[5] = "coffeescript";
-        Language[6] = "Crystal";
-        Language[7] = "Erlang";
-        Language[8] = "GraphQL";
-        var l = Math.floor(9*Math.random())
-
-        var fin = text.replace(/(?:\r\n|\r|\n)/g, '%250A')
-        var pay = encodeURIComponent(fin)
-        
-        var respoimage = await axios.get('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
-const Message = { image: { url:  respoimage }, caption: inrl.config.exif.cap, };
-        return await client.sendMessage( message.from,Message , { quoted: message } );
-
-    }));
-//}
-//else if (Config.WORKTYPE == 'public') {
-
-    inrl({pattern: ['inrl'], fromMe: false, desc: "to set coder pintertest",   sucReact: "ðŸ˜¹",category: ["logo"],}, (async (message, client) => {
-    const text = message.client.text;
-        if (!text) return  await client.sendMessage(message.from, { text :"enter a text to conver i-code"}, { quoted: message});
-
-        var rgbafmin = 0; 
-        var rgbafmax = 255;  
-        var rgbafirst = Math.floor(Math.random() * (+rgbafmax - +rgbafmin) + +rgbafmin)
-
-        var rgbasmin = 0; 
-        var rgbasmax = 255;  
-        var rgbasecond = Math.floor(Math.random() * (+rgbasmax - +rgbasmin) + +rgbasmin)
-
-        var rgbatmin = 0; 
-        var rgbatmax = 255;  
-        var rgbathird = Math.floor(Math.random() * (+rgbatmax - +rgbatmin) + +rgbatmin)
-
-        var Theme = new Array ()
-        Theme[0] = "twilight";
-        Theme[1] = "panda";
-        Theme[2] = "blackboard";
-        Theme[3] = "seti";
-        Theme[4] = "verminal";
-        Theme[5] = "nord";
-        Theme[6] = "monokai";
-        Theme[7] = "cobalt";
-        Theme[8] = "vscode";
-        Theme[9] = "material";
-        Theme[10] = "hopscotch";
-        Theme[11] = "shades-of-purple";
-        Theme[12] = "oceanic-next";
-        Theme[13] = "one-light";
-        Theme[14] = "one-dark";
-        Theme[15] = "synthwave-84";
-        Theme[16] = "zenburn";
-        Theme[17] = "3024-night";
-        Theme[18] = "a11y-dark";
-        Theme[19] = "dracula-pro";
-        Theme[20] = "dracula-pro";
-        Theme[21] = "dracula-pro";
-        Theme[22] = "dracula-pro";
-        Theme[23] = "night-owl";
-        var i = Math.floor(24*Math.random())
-
-        var Language = new Array ()
-        Language[0] = "Apache";
-        Language[1] = "Python";
-        Language[2] = "Javascript";
-        Language[3] = "Bash";
-        Language[4] = "cobol";
-        Language[5] = "coffeescript";
-        Language[6] = "Crystal";
-        Language[7] = "Erlang";
-        Language[8] = "GraphQL";
-        var l = Math.floor(9*Math.random())
-        var fin = text.replace(/(?:\r\n|\r|\n)/g, '%250A')
-        var pay = encodeURIComponent(fin)
-        
-        var respoimage = await axios.get('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
-const Message = { image: { url:  respoimage.data }, caption: inrl.config.exif.cap,  };
-        client.sendMessage( message.from, Message, { quoted: message } );
-    }));
-//}
+bots.config.api.textpro.takes1.map(logo => {
+  const { pattern, textLenth, id } = logo; 
+  const url = bots.config.api.textpro.domain + id;
+  bots.inrl( { pattern, sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+    if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+    if (message.client.text.length >= textLenth) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L) }, { quoted: message } ); };
+    await maker.textpro( url, [message.client.text, 'inrl'])
+    .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+    .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+  });});
