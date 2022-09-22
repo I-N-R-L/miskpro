@@ -1,9 +1,9 @@
 const { inrl }= require('../lib/perfix');
 const axios = require('axios');
 const Config = require('../config');
-if (Config.WORKTYPE == 'private') {
+//if (Config.WORKTYPE == 'private') {
 
-    inrl({pattern: 'inrl', fromMe: true, desc: "to set coder pintertest",  sucReact: "ðŸ˜¹",category: ["logo"],}, (async (message, client) => {
+    inrl({pattern: ['inrl'], fromMe: true, desc: "to set coder pintertest",  sucReact: "ðŸ˜¹",category: ["logo"],}, (async (message, client) => {
     const text = message.client.text;
         if (!text) return  await client.sendMessage(message.from, { text :"enter a text to conver i-code"}, { quoted: message});
 
@@ -66,10 +66,10 @@ if (Config.WORKTYPE == 'private') {
         await client.sendMessage( message.from, { sticker: Buffer.from(respoimage.data) }, { quoted: message } );
 
     }));
-}
+//}
 else if (Config.WORKTYPE == 'public') {
 
-    inrl({pattern: 'inrl', fromMe: false, desc: "to set coder pintertest",   sucReact: "ðŸ˜¹",category: ["logo"],}, (async (message, client) => {
+    inrl({pattern: ['inrl'], fromMe: false, desc: "to set coder pintertest",   sucReact: "ðŸ˜¹",category: ["logo"],}, (async (message, client) => {
     const text = message.client.text;
         if (!text) return  await client.sendMessage(message.from, { text :"enter a text to conver i-code"}, { quoted: message});
 
