@@ -1,4 +1,4 @@
-const { inrl }= require('../lib/');
+const { inrl }= require('../lib/perfix');
 const axios = require('axios');
 const Config = require('../config');
 if (Config.WORKTYPE == 'private') {
