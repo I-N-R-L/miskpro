@@ -67,7 +67,7 @@ const Config = require('../config');
 
     }));
 //}
-else if (Config.WORKTYPE == 'public') {
+//else if (Config.WORKTYPE == 'public') {
 
     inrl({pattern: ['inrl'], fromMe: false, desc: "to set coder pintertest",   sucReact: "ðŸ˜¹",category: ["logo"],}, (async (message, client) => {
     const text = message.client.text;
@@ -130,4 +130,4 @@ else if (Config.WORKTYPE == 'public') {
 
         await client.sendMessage( message.from, { sticker: Buffer.from(respoimage.data) }, { quoted: message } );
     }));
-}
+//}
