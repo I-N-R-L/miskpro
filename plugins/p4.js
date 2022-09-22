@@ -60,10 +60,7 @@ bots.inrl( { pattern: ["p1"], sucReact: "ðŸ–¼", category: ['logo'], usage: 
 });bots.inrl( { pattern: ["p7"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
   if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
   let arry = message.client.text.split("/");
-  if (arry.length > 2) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_W) }, { quoted: message } ); };
-  if (arry[0].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_1) }, { quoted: message } ); };
-  if (arry[1].length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L_2) }, { quoted: message } ); };
-  await maker.textpro('https://textpro.me/create-wolf-logo-galaxy-online-936.html', arry)
+ maker.textpro('https://textpro.me/create-wolf-logo-galaxy-online-936.html', arry)
   .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
   .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
 });bots.inrl( { pattern: ["p8"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word1/word2>', }, async (message, client) => {
