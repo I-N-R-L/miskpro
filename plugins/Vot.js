@@ -22,16 +22,16 @@ const text = message.client.text;
     
   
   const rows = [
- {title: `${bottomText}`, description: `\n\n${tl}`, rowId:"rowid1"},
- {title: `${t2}`, description: `\n\n${t3}`, rowId:"rowid2"}
+ {title: `${bottomText}`, rowId:"rowid1"},
+ {title: `${tl}`,  rowId:"rowid2"}
 ]
 
 const sections = [{title: `${topText}`, rows: rows}]
 const button = {
-        text: "result like a list",
+        text: "${topText}",
         footer: "inrl",
         title: "inrl-bot-md",
-        buttonText: "📃 Results Here 📃",
+        buttonText: "vote",
         sections,
 }
 
