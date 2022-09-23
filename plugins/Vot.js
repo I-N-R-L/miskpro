@@ -28,7 +28,7 @@ const text = message.client.text;
 
 const sections = [{title: `${topText}`, rows: rows}]
 const button = {
-        text: "${topText}",
+        text: `${topText}`,
         footer: "inrl",
         title: "inrl-bot-md",
         buttonText: "vote",
