@@ -8,8 +8,10 @@ bots.inrl(
 		if (!_message)
 			return await client.sendMessage( message.from,{ text :'*Reply to a image.*'}, { quoted: message })
              if (!message.client.isCreator) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
-			let download = await client.downloadAndSaveMediaMessage(_message);
+			if (/image/.test(message.client.mime)) {
+        let download = await message.quoted.download();
 		await conn.updateProfilePicture(message.from, download );
 		return await client.sendMessage( message.from,{text :'_Profile Picture Updated_'}, { quoted: message })
+}
 	}
 )
