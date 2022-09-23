@@ -38,3 +38,34 @@ const button = {
 await client.sendMessage( message.from, button, { quoted: message, });
   
   }));
+bots.inrl(
+  {
+    pattern: ["play", "song", "mp3"],
+    desc: "For list search. you can use",
+    usage: '<query>',
+    sucReact: "🔎",
+    category: ["search", "all"],
+  },
+  async (message, client) => {
+    if (!message.client.text) { global.catchError = true; return await client.sendErrorMessage( message.from, lang.NEED_TEXT_SONG, message.key, message ); };
+    try {
+      const results = await yts(message.client.text);
+      let result = results.videos;
+      let rows = [];
+      result.map((video) => {
+        let obj = { title: video.title, rowId: `song ${video.videoId}`, description: video.description, };
+        rows.push(obj);
+      });
+      const sections = [ { title: "Videos", rows: rows, }, ];
+      const listMessage = {
+        text: "result like a list",
+        footer: bots.config.exif.footer,
+        title: "inrl-bot-md",
+        buttonText: "📃 Results Here 📃",
+        sections,
+      };
+      await client.sendMessage(message.from, listMessage, { quoted: message, });
+      global.catchError = true;
+    } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message ); }
+  }
+);
