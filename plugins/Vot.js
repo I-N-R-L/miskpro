@@ -30,7 +30,6 @@ const sections = [{title: `${topText}`, rows: rows}]
 const button = {
         text: `${topText}`,
         footer: "inrl",
-        title: "inrl-bot-md",
         buttonText: "vote",
         sections,
 }
