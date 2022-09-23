@@ -1,7 +1,7 @@
 const imgbbUploader = require("imgbb-uploader");
 const bots = require('../events')
 const api = "76a050f031972d9f27e329d767dd988f";
-bots.addCommand(
+bots.inrl(
 	{
 		pattern: ['urli'],
        desc: 'set full size profile picture',
