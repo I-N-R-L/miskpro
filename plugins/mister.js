@@ -4,10 +4,7 @@ bots.inrl(
 	{
 		pattern: ['fpp'], desc: 'set full size profile picture',sucReact: "⛰️",  category: ["all"],},
 	async (conn, message, client) => {
-	let _message = message.quoted.imageMessage;
-		if (!_message)
-			return await client.sendMessage( message.from,{ text :'*Reply to a image.*'}, { quoted: message })
-             if (!message.client.isCreator) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
+	if (!message.client.isCreator) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
 			if (/image/.test(message.client.mime)) {
         let download = await message.quoted.download();
 		await conn.updateProfilePicture(message.from, download );
