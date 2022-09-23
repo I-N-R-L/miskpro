@@ -5,7 +5,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const {execFile} = require('child_process');
 const Config = require('../config');
              
- bots.inrl({pattern: ['vote'], desc: "to check whether", sucReact: "💔", category: ['all'], }, (async (message, client) => {
+ bots.inrl({pattern: ['vote'], desc: "to check whether", sucReact: "ðŸ’”", category: ['all'], }, (async (message, client) => {
 const text = message.client.text;
       if (!text) return await client.sendMessage( message.from, { text: 'Enter A text'}, { quoted: message });
       var topText, bottomText, tl, t2, t3 ;
@@ -27,12 +27,12 @@ const text = message.client.text;
 ]
 
 const sections = [{title: `${topText}`, rows: rows}]
-
 const button = {
- buttonText: 'Click Me!',
- description: `${topText}`,
- sections: sections,
- listType: 1
+        text: "result like a list",
+        footer: "inrl",
+        title: "inrl-bot-md",
+        buttonText: "📃 Results Here 📃",
+        sections,
 }
 
 await client.sendMessage( message.from, button, { quoted: message, });
