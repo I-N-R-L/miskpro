@@ -13,6 +13,7 @@ module.exports = {
     LANG :process.env.LANG || 'ml', //values are ml, en only
     OWNER : ["917593919575"],
     BRANCH: 'master',
+    REACT : "undifined",
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     HEROKU: {
         HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
