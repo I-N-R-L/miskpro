@@ -1,5 +1,5 @@
-const whatsbixby = require('../events')
-whatsbixby.addCommand( { pattern: ["gpp"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
+const whatsbixby = require('../lib/perfix')
+whatsbixby.inrl( { pattern: ["gpp"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
 	let _message = message.quoted.imageMessage || message.client.text;
 		if (!_message)
