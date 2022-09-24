@@ -3,7 +3,7 @@ const bots = require('../lib/perfix');
 const Config = require('../config');
 const Ibot = require('../media/bgm');
 
-if(Config.BGMBOT =='on' || 'ON' ){
+if(Config.BGMBOT == "true"){
 
 bots.inrl({ pattern: ['bgm'], desc: "lyfe",sucReact: "ðŸ˜¹",  category: ["bgm"]}, async (message, client) => {
 await client.sendMessage( message.from, { audio: { url: Ibot.bgm }, mimetype: "audio/mp4",ptt: true}, { quoted: message } );
