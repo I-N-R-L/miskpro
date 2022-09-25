@@ -1,7 +1,7 @@
 const bots = require('../lib/perfix');
 bots.inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥",  category: ["ibot"] }, (async (message, client) => {
-          if (message.client.text.includes('+')) { var split = message.client.text.split('+'), sonsayi = split[1], ilksayi = split[0]
-            var result = ilksayi+sonsayi
+          if (message.client.text.includes('+')) { var split = message.client.text.split('+'), number2 = split[1], number1 = split[0]
+            var result = number1 + number2;
             try {
            await client.sendMessage( message.from,{text : ilksayi+"+"+sonsayi+"="+result} ,{ quoted: message })}
             catch (err){ return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
@@ -12,8 +12,8 @@ bots.inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥
             catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
             }
         
-        else if (message.client.text.includes('x')) { var split = message.client.text.split('x'), sonsayicarp = split[1], ilksayicarp = split[0] 
-            var result = ilksayicarp*sonsayicarp
+        else if (message.client.text.includes('x')) { var split = message.client.text.split('x'), inrl2 = split[1], inrl1 = split[0] 
+            var result = ilksayicarp * sonsayicarp;
             try { await client.sendMessage( message.from,{text : ilksayicarp+"×"+sonsayicarp+"="+result } ,{ quoted: message }) }
             catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })};
             }
