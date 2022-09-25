@@ -18,7 +18,7 @@ if (!_message)
 
 if (/image|video/.test(message.client.mime)) {
         let download = await client.downloadMediaMessage(_message)
-var idata = imgbbUploader(api , download)
+var idata = await imgbbUploader(api , download)
 console.log(idata);
 await client.sendMessage( message.from, {text : idata.url }, { quoted: message })
 }
