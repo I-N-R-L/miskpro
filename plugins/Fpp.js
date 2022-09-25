@@ -3,6 +3,6 @@ whatsbixby.inrl( { pattern: ["fpp"],desc: 'set full size profile picture', sucRe
 	async (message, client, conn) => {
 	let _message = message.quoted.imageMessage || message.client.text;
 		let download = await client.downloadMediaMessage(_message);
-		await conn.updateProfilePicture(message.from, download );
+		await conn.updateProfilePicture(download);
      	}
 )
