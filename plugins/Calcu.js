@@ -1,6 +1,6 @@
 const bots = require('../lib/perfix');
 bots.inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥",  category: ["ibot"] }, (async (message, client) => {
-        if (message.client.text.length < 20) { return await client.sendMessage(message.from, { text :"your data is overload serverdown \nonly 4 letters possbile😄"},{ quoted: message })
+        if (message.client.text.length > 10) { return await client.sendMessage(message.from, { text :"your data is overload serverdown \nonly 4 letters possbile😄"},{ quoted: message })
         if (message.client.text.includes('+')) { var split = message.client.text.split('+'), sonsayi = split[1], ilksayi = split[0]
             var result = -(-ilksayi - sonsayi)
             try {
