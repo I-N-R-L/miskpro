@@ -33,3 +33,22 @@ await client.sendMessage( message.from, {text : idata.url }, { quoted: message }
 		    return await client.sendMessage( message.from, { text : "no data found on this location"},{ quoted: message });
 	    }
     });
+
+bots.inrl({pattern: ['tin'], desc: "to check whether", sucReact: "💔", category: ['all'],},   async (message, client) => {
+           const text = message.client.text;
+	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A location'}, { quoted: message });
+	    const url = `https://leyscoders-api.herokuapp.com/api/cuttly?url=${text}&apikey=IkyOgiwara`;
+	     await client.sendMessage( message.from, { text:'tinyurl:'+url.hasil }, { quoted: message });
+    });
+bots.inrl({pattern: ['tiny'], desc: "to check whether", sucReact: "💔", category: ['all'],},   async (message, client) => {
+           const text = message.client.text;
+	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A location'}, { quoted: message });
+	    const url = `https://leyscoders-api.herokuapp.com/api/cuttly?url=${text}&apikey=IkyOgiwara`;
+	    try {
+		    const response = await got(url);
+		    const json = JSON.parse(response.body);
+		    if (response.statusCode!=='false') return await client.sendMessage( message.from, { text:'tinyurl:'+json.hasil+url.hasil }, { quoted: message });
+	    } catch {
+		    return await client.sendMessage( message.from, { text : "no data found on this location"},{ quoted: message });
+	    }
+    });
