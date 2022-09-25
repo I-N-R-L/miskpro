@@ -28,7 +28,7 @@ await client.sendMessage( message.from, {text : idata.url }, { quoted: message }
 	    try {
 		    const response = await got(url);
 		    const json = JSON.parse(response.body);
-		    if (response.statusCode == 'true') return await client.sendMessage( message.from, { text:'tinyurl:'+json.hasil+url.hasil }, { quoted: message });
+		    if (response.statusCode ===200) return await client.sendMessage( message.from, { text:'tinyurl:'+json.hasil+url.hasil }, { quoted: message });
 	    } catch {
 		    return await client.sendMessage( message.from, { text : "no data found on this location"},{ quoted: message });
 	    }
