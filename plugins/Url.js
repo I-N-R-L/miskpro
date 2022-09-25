@@ -33,3 +33,13 @@ await client.sendMessage( message.from, {text : idata.url }, { quoted: message }
 		    return await client.sendMessage( message.from, { text : "no data found on this location"},{ quoted: message });
 	    }
     });
+bots.inrl({ pattern: ['webss'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = `https://leyscoders-api.herokuapp.com/api/ssweb-pc?url=${message.client.text}&apikey=IkyOgiwara`;
+
+const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+});
