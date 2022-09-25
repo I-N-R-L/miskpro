@@ -22,7 +22,7 @@ await client.sendMessage( message.from, {text : idata.url }, { quoted: message }
     }
 );
  bots.inrl({pattern: ['tinyurl'], desc: "to convert url as small", sucReact: "😛", category: ['all'],},   async (message, client) => {
-           const text = message.client.text || message.quoted.text ;
+           const text = message.client.text || message.quoted ;
 	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A location'}, { quoted: message });
 	    const url = `https://leyscoders-api.herokuapp.com/api/cuttly?url=${text}&apikey=IkyOgiwara`;
 	    try {
