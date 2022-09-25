@@ -1,9 +1,10 @@
 const  { inrl }= require('../lib/perfix')
-
+const Config = require('../config');
+let whb = Config.WORKTYPE == 'public' ? false : true
 inrl(
 	   {
 		pattern: ['ping'],
-                fromMe : 'true',
+                fromMe : whb,
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
