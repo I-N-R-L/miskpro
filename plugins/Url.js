@@ -1,6 +1,6 @@
 const imgbbUploader = require("imgbb-uploader");
 const bots = require('../lib/perfix')
-const api = ["76a050f031972d9f27e329d767dd988f","deb80cd12ababea1c9b9a8ad6ce3fab2","78c84c62b32a88e86daf87dd509a657a"];
+const api = "76a050f031972d9f27e329d767dd988f" || "deb80cd12ababea1c9b9a8ad6ce3fab2";
 bots.inrl(
 	{
 		pattern: ['urli'],
