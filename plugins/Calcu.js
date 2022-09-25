@@ -3,7 +3,7 @@ bots.inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥
           if (message.client.text.includes('+')) { var split = message.client.text.split('+'), number2 = split[1], number1 = split[0]
             var result = number1 + number2;
             try {
-           await client.sendMessage( message.from,{text : ilksayi+"+"+sonsayi+"="+result} ,{ quoted: message })}
+           await client.sendMessage( message.from,{text : number1+"+"+number2+"="+result} ,{ quoted: message })}
             catch (err){ return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
             }
         else if (message.client.text.includes('-')) { var split = message.client.text.split('-'), sonsayicik = split[1], ilksayicik = split[0] 
