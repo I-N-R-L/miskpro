@@ -85,17 +85,11 @@ console.log(' session file cretion failed ');
         for (let i in command.pattern) {
           if (command.pattern[i] == m.client.command || command.on == "text") {
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
-if(Config.REACT =='true'){
-            conn.sendReact(m.from, ezio.reactArry("INFO"), m.key);
-};
+            await conn.sendReact(m.from, await ezio.reactArry("INFO"), m.key);
             await conn.sendPresenceUpdate( ezio.config.auto.presence.value, m.from );
             try {await command.function(m, conn);}
             catch (error) { global.catchError = true; console.log(error); }
-            global.catchError ?
-if(Config.REACT =='true'){
-      conn.sendReact( m.from, ezio.reactArry("ERROR"), m.key ) : conn.sendReact(m.from, command.sucReact, m.key);
-};
- await conn.sendPresenceUpdate("available", m.from);
+            global.catchError ? await conn.sendReact( m.from, await ezio.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key); await conn.sendPresenceUpdate("available", m.from);
           }
         }
       });
