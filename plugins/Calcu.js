@@ -14,7 +14,7 @@ bots.inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥
         
         else if (message.client.text.includes('×')) { var split = message.client.text.split('×'), inrlbotswa = split[1], inrl1= split[0] 
             var result = inrl1*inrlbotswa
-            try { await client.sendMessage( message.from,{text : inrl1+"×"+inrl2+"="+result } ,{ quoted: message })}
+            try { await client.sendMessage( message.from,{text : inrl1+"×"+inrlbotswa+"="+result } ,{ quoted: message })}
             catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
             }
         
