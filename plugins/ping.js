@@ -3,6 +3,7 @@ const  { inrl }= require('../lib/perfix')
 inrl(
 	   {
 		pattern: ['ping'],
+                fromMe : 'true',
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
