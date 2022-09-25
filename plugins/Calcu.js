@@ -12,10 +12,10 @@ bots.inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥
             catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
             }
         
-        else if (message.client.text.includes('x')) { var split = message.client.text.split('x'), inrl2 = split[1], inrl1 = split[0] 
-            var result = ilksayicarp * sonsayicarp;
-            try { await client.sendMessage( message.from,{text : ilksayicarp+"×"+sonsayicarp+"="+result } ,{ quoted: message }) }
-            catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })};
+        else if (message.client.text.includes('×')) { var split = message.client.text.split('x'); let inrl2 = split[1];let inrl2= split[0] 
+            var result = inrl1 * inrl2;
+            try { await client.sendMessage( message.from,{text : inrl1+"×"+inrl2+"="+result } ,{ quoted: message })}
+            catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
             }
         
         else if (message.client.text.includes('/')) { var split = message.client.text.split('/'), sonsayibol = split[1], ilksayibol = split[0] 
