@@ -10,7 +10,7 @@ bots.inrl(
     },
 	   async (message, client) => {
 
-let _message = message.quoted.imageMessage || message.client.videoMessage;
+let _message = message.quoted.imageMessage || message.quoted;
 
 if (!_message)
 
