@@ -1,6 +1,6 @@
 const Raashii = require('../lib/perfix');
 const Config = require('../config');
-const getBuffer = require('../lib/cloud');
+const { getBuffer } = require('../lib/cloud');
 const need = "*add link after commandðŸ’Œ*"
 
   Raashii.inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"]}, (async (message, client) => {
