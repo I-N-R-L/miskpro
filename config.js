@@ -13,6 +13,8 @@ module.exports = {
     LANG :process.env.LANG || 'ml', //values are ml, en only
     OWNER : ["917593919575"],
     BRANCH: 'master',
+    ANTIFAKE : "+212,+94,+27",
+    ANTILINK : "youtube, whatsapp, Instagram ",
     REACT : "false",
     PRODUCT_ID:"https://wa.me/p/4919198358182077/917025099154",
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
@@ -23,7 +25,7 @@ module.exports = {
     },
     profile: {
     ownerName: "inrl", 
-    ownerNumb: "917593919575", 
+    ownerNumb: "917593919575",
     botName: "inrl-bot-md", 
   },
     setting: {
