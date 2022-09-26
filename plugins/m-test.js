@@ -37,14 +37,14 @@ ezio.inrl(
       message.from,
       Message,
       {
-        quoted: ezio.config.quoted.product,
+        quoted: message,
       }
     );
     await client.sendMessage(
       message.from,
       Message2,
       {
-        quoted: ezio.config.quoted.product,
+        quoted: message,
       }
     );
     global.catchError = false;
