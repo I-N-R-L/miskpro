@@ -11,6 +11,6 @@ if (text.includes('+')) {
          emoji2 = split[1];
         }
 const url = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
+console.log("inrl="+url.url)
 client.sendMessage( message.from, { sticker: Buffer.from(url.url) }, { quoted: message } );
- console.log(url.url);
 });
