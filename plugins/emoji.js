@@ -1,6 +1,6 @@
 const bots = require('../lib/perfix');
 const { fetchJson } = require('../lib/cloud');
-const fs = require('fs);
+const fs = require('fs');
 
 bots.inrl({pattern: ['emojimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
            const text = message.client.text;
