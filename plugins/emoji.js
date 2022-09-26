@@ -1,5 +1,6 @@
 const bots = require('../lib/perfix');
 const { fetchJson } = require('../lib/cloud');
+const fs = require('fs);
 
 bots.inrl({pattern: ['emojimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
            const text = message.client.text;
@@ -11,6 +12,9 @@ if (text.includes('+')) {
          emoji2 = split[1];
         }
 const url = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
-console.log("inrl="+url.results.url)
-client.sendMessage( message.from, { sticker: Buffer.from(url.results.url) }, { quoted: message } );
+for (let res of anu.results) {
+console.log("inrl="+res.url)
+await client.sendMessage( message.from, { sticker: Buffer.from(res.url) }, { quoted: message } );
+await fs.unlinkSync(encmedia)
+     }
 });
