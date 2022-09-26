@@ -10,7 +10,7 @@ const { Simple, upsert, eziofunc } = require("./lib");
 const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const ezio = require("./lib/perfix");
-const { chatting , circle } = eziofunc;
+const { chatting , circle , faketest} = eziofunc;
 const { serialize, WAConnection } = Simple;
 global.mydb = {};
 global.mydb.users = new Array();
@@ -81,6 +81,7 @@ console.log(' session file cretion failed ');
     await upsert(conn, m);
     await chatting(m, conn);
     await circle(m, conn);
+    await faketest(m, conn);
     try {
      ezio.commands.map(async (command) => {
         for (let i in command.pattern) {
