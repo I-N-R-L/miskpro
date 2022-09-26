@@ -14,7 +14,7 @@ module.exports = {
     OWNER : ["917593919575"],
     BRANCH: 'master',
     ANTIFAKE : "+212,+94,+27",
-    ANTILINK : "youtube || Instagram ",
+    ANTILINK : "youtube||Instagram",
     REACT : "false",
     PRODUCT_ID:"https://wa.me/p/4919198358182077/917025099154",
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
