@@ -14,7 +14,12 @@ if (text.includes('+')) {
 const url = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 for (let res of url.results) {
 console.log("inrl="+res.url)
-await client.sendMessage( message.from, { sticker: Buffer.from(res.url) }, { quoted: message } );
-await fs.unlinkSync(encmedia)
-     }
+await client.sendFile(message.from, res.url, "", message, {
+          asSticker: true,
+          author: bots.config.exif.author,
+          packname: bots.config.exif.packname,
+          categories: ["😄", "😊"],
+        });
+
+  }
 });
