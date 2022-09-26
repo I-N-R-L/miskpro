@@ -15,6 +15,5 @@ const url = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSy
 for (let res of url.results) {
 console.log("inrl="+res.url)
 await client.sendMessage( message.from, { sticker: Buffer.from(res.url }, { quoted: message } );
-    global.catchError = false;
   }
 });
