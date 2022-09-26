@@ -2,7 +2,7 @@ const ezio = require("../lib/perfix");
 const fs = require('fs');
 const path = require('path');
 
-ezio.addCommand(
+ezio.inrl(
   {
     pattern: ["mtest"],
     dontAddCommandList: true,
@@ -14,7 +14,7 @@ ezio.addCommand(
       linkPreview: {
         "canonical-url": "https://aidarkezio.github.io",
         "matched-text": "https://aidarkezio.github.io",
-        title: "Subhadra Poshi",
+        title: "fasweeh",
         description: "This is a WhatsApp user bot \n\nSend this number: Alive",
         jpegThumbnail: ezio.config.image.encd.D_E_ADEC,
       },
