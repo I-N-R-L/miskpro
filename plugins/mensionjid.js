@@ -16,8 +16,8 @@ bots.inrl({ pattern: ["setcmd"], usage: '<mentions|reply>', sucReact: "😎", ca
   async (message, client) => {
    const text = message.client.text;
    if (!message.quoted) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
-   if (!message.quoted.fileSha256) {return await client.sendMessage(message.from, { text: 'SHA256 Hash Missing'},{ quoted: message } ); 
-   if (!text) {return await client.sendMessage(message.from, { text: 'where is the cmd'},{ quoted: message } ); 
+   if (!message.quoted.fileSha256) {return await client.sendMessage(message.from, { text: 'SHA256 Hash Missing'},{ quoted: message } ); }
+   if (!text) {return await client.sendMessage(message.from, { text: 'where is the cmd'},{ quoted: message } ); }
    let hash = m.quoted.fileSha256.toString('base64')
    if (global.db.sticker[hash] && global.db.sticker[hash].locked) {return await client.sendMessage(message.from, { text: 'You have no permission to change this sticker command'}, { quoted: message } );
    global.db.sticker[hash] = {
