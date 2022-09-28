@@ -8,7 +8,7 @@ const fs = require('fs');
 let { webp2mp4File } = require('../lib/uploader')
 let { toAudio } = require('../lib/converter')
 let { toPTT } = require('../lib/converter')
-
+const { exec, spawn, execSync } = require('child_process')
 
 
 bots.inrl({pattern: ['tiktok'], desc: "to downlode tiktok video",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
