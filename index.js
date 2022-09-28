@@ -95,11 +95,13 @@ console.log(' session file cretion failed ');
           }
         }
       });
+   await conn.sendMessage(conn.user.id, {text 'inrl-bot-md workinow💗'});
       } catch (e) {
       console.log(e);
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
+
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
