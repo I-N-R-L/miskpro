@@ -9,7 +9,7 @@ let { webp2mp4File } = require('../lib/uploader')
 let { toAudio,toPTT } = require('../lib/converter')
 const { exec, spawn, execSync } = require('child_process')
 const ID3Writer = require('browser-id3-writer');
-const iphotos = require('../media/imagee.jpg');
+
 
 bots.inrl({pattern: ['tiktok'], desc: "to downlode tiktok video",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
 const text = message.client.text;
@@ -292,7 +292,7 @@ if (text.includes(';')) {
          var split = text.split(';');
          CreaterForAud = split[1] || 'inrl-official';
          TextForAud = split[0] || 'inrl-bot-md';
-         imgForAud = split[2] || iphotos;
+         imgForAud = split[2] || fs.readFileSync('../media/imagee.jpg');
       }
 const songBuffer = fs.readFileSync(media);
 const coverBuffer = fs.readFileSync(imgForAud);
