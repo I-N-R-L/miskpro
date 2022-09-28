@@ -43,7 +43,8 @@ await client.sendMessage( message.from, { video: { url: f.url }, mimetype: "vide
   client.sendMessage(message.from, { text :"filed to download"},{ quoted: message })
 })
 });
-bots.inrl({ pattern: ['mp3'], desc: "to downlode fb mp3",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['fbmp3'], desc: "to downlode fb mp3",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+const text = message.client.text;
 if (!text) return await client.sendMessage(message.from, { text :"enter a fb link"},{ quoted: message })
 if (!isUrl(args[0]) && !args[0].includes('facebook.com')) { global.catchError = true; }
      
