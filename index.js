@@ -47,7 +47,6 @@ console.log(' session file cretion failed ');
   connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
-await conn.sendMessage(conn.user.id, {text :`inrl-bot-md workignow💗\n\nMODE : ${Config.WORKTYPE}\n\n`});
   store.bind(conn.ev);
   conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
