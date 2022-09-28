@@ -47,6 +47,7 @@ console.log(' session file cretion failed ');
   connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
+await conn.sendMessage(conn.user.id, {text :`inrl-bot-md workignow💗\n\nMODE : ${Config.WORKTYPE}\n\n`});
   store.bind(conn.ev);
   conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
@@ -82,7 +83,6 @@ console.log(' session file cretion failed ');
     await chatting(m, conn);
     await circle(m, conn);
     await faketest(m, conn);
-    await conn.sendMessage(conn.user.id, {text :`inrl-bot-md workignow💗\n\nMODE : ${Config.WORKTYPE}\n\n`});
     try {
      ezio.commands.map(async (command) => {
         for (let i in command.pattern) {
