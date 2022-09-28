@@ -283,4 +283,16 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
 });
 bots.inrl({ pattern: ['take'], desc: "to convert packname to given txt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 const text = message.client.text;     
-if (!text) return await client.sendMessage(message.from, { text :`enter a instagram link _ex_:${Config.INSTAGRAM}`},{ quoted: message })
+if (!text) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
+if( _message == message.quoted.audioMessage) {
+   let media = await client.downloadAndSaveMediaMessage(_message)
+client.sendMessage(message.from,  { audio: { url: media }, mimetype: "audio/mpeg", fileName: `${text}.mp3`, }, { quoted: message });
+} else if(_message == message.quoted.stickerMessage){
+let media = await client.downloadAndSaveMediaMessage(_message)
+client.sendFile(message.from, url, "", message, {
+          asSticker: true,
+          packname: text,
+          categories: ["😄"],
+        });
+    }
+});
