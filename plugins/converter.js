@@ -113,7 +113,8 @@ if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
   fs.unlinkSync(ran)
-   })
+   });
+  }
 });
 bots.inrl({ pattern: ['blown'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-af acrusher=.1:1:64:0:log'
@@ -126,8 +127,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['deep'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-af atempo=4/4,asetrate=44500*2/3'
@@ -140,8 +142,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['earrape'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-af volume=12'
@@ -154,8 +157,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['fast'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=1.63,asetrate=44100"'
@@ -168,8 +172,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['fat'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=1.6,asetrate=22100"'
@@ -182,8 +187,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['nightcore'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a atempo=1.06,asetrate=44100*1.25'
@@ -196,8 +202,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['reverse'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter_complex "areverse"'
@@ -210,8 +217,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['robot'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
@@ -224,8 +232,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['slow'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=0.7,asetrate=44100"'
@@ -238,8 +247,9 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
 bots.inrl({ pattern: ['smooth'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
@@ -252,9 +262,10 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
-})
+    fs.unlinkSync(ran)
+   });
+  }
+});
 bots.inrl({ pattern: ['squirrel'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=0.5,asetrate=65100"'
 if (/audio/.test(message.client.mime)) {
@@ -266,6 +277,7 @@ let ran = getRandom('.mp3')
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
-  fs.unlinkSync(ran)
-   })
+    fs.unlinkSync(ran)
+   });
+  }
 });
