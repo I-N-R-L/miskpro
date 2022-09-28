@@ -8,7 +8,7 @@ bots.inrl({ pattern: ["setcmd"], usage: '<mentions|reply>', sucReact: "😎", ca
 if (message.client.isMedia && message.msg.fileSha256 && (message.msg.fileSha256.toString('base64') in sticker)) {
 let hash = sticker[message.msg.fileSha256.toString('base64')]
 let { text, mentionedJid } = hash
-let messages = await generateWAMessage(message.chat, { text: text, mentions: mentionedJid }, {
+let messages = generateWAMessage(message.chat, { text: text, mentions: mentionedJid }, {
  quoted: message.quoted && message.quoted.fakeObj
 })
 messages.key.fromMe = areJidsSameUser(message.sender, client.user.id)
@@ -19,7 +19,9 @@ let msg = {
  ...chatUpdate,
  messages: [proto.WebMessageInfo.fromObject(messages)],
  type: 'append'
-}
+       }
+client.ev.emit('messages.upsert', msg)
+  }
    const text = message.client.text;
    if (!message.quoted) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
    if (!message.quoted.fileSha256) {return await client.sendMessage(message.from, { text: 'SHA256 Hash Missing'},{ quoted: message } ); }
