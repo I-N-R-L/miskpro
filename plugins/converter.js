@@ -310,7 +310,7 @@ writer.setFrame('TIT2', TextForAud)
 writer.addTag();
  
 const taggedSongBuffer = Buffer.from(writer.arrayBuffer);
-var inrlbotsorg = fs.writeFileSync('inrl.mp3', taggedSongBuffer);
+var inrlbotsorg = fs.writeFileSync('../inrl.mp3', taggedSongBuffer);
 client.sendMessage(message.from,  { audio: { url: inrlbotsorg }, mimetype: "audio/mp4", fileName: `${text}.mp3`,}, { quoted: message });
 } else if(_message == message.quoted.stickerMessage){
 let media = await client.downloadAndSaveMediaMessage(_message)
