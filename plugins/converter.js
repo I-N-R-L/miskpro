@@ -311,8 +311,8 @@ writer.addTag();
  
 const taggedSongBuffer = Buffer.from(writer.arrayBuffer);
 var inrlbotsorg = fs.writeFileSync('./inrl.mp3', taggedSongBuffer);
-const sendAudio = fs.readFileSync('./plugins/inrl.mp3');
-client.sendMessage(message.from,  { audio: { url: sendAudio }, mimetype: "audio/mp4", fileName: `${text}.mp3`,}, { quoted: message });
+const sendAudio = fs.readFileSync('./inrl.mp3');
+client.sendMessage(message.from,  { audio: sendAudio, mimetype: "audio/mp4", fileName: `${text}.mp3`,}, { quoted: message });
 } else if(_message == message.quoted.stickerMessage){
 let media = await client.downloadAndSaveMediaMessage(_message)
 client.sendFile(message.from, media, "", message, {
