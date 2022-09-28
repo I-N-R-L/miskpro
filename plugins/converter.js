@@ -8,7 +8,8 @@ const fs = require('fs');
 let { webp2mp4File } = require('../lib/uploader')
 let { toAudio } = require('../lib/converter')
 let { toPTT } = require('../lib/converter')
-/*
+
+
 
 bots.inrl({pattern: ['tiktok'], desc: "to downlode tiktok video",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
 const text = message.client.text;
@@ -100,4 +101,3 @@ await client.sendMessage( message.from, { audio: { url: audio }, mimetype: "audi
    await client.sendMessage(message.from, { video: { url: webpToMp4.result,  caption: 'Convert Webp To Video' }, caption: bots.config.exif.cap, gifPlayback: true },{ quoted: message });
    await fs.unlinkSync(media)
  });
-*/
