@@ -9,7 +9,7 @@ let { webp2mp4File } = require('../lib/uploader')
 let { toAudio,toPTT } = require('../lib/converter')
 const { exec, spawn, execSync } = require('child_process')
 const ID3Writer = require('browser-id3-writer');
-const iphotos = require('../media/imagee');
+const iphotos = require('../media/imagee.jpg');
 
 bots.inrl({pattern: ['tiktok'], desc: "to downlode tiktok video",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
 const text = message.client.text;
