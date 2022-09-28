@@ -101,7 +101,7 @@ await client.sendMessage( message.from, { audio: { url: audio }, mimetype: "audi
    await client.sendMessage(message.from, { video: { url: webpToMp4.result,  caption: 'Convert Webp To Video' }, caption: bots.config.exif.cap, gifPlayback: true },{ quoted: message });
    await fs.unlinkSync(media)
  });
-bots.inrl({ pattern: ['bass'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['bass'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-af equalizer=f=54:width_type=o:width=2:g=20'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -116,7 +116,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['blown'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['blown'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-af acrusher=.1:1:64:0:log'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -131,7 +131,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['deep'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['deep'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-af atempo=4/4,asetrate=44500*2/3'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -146,7 +146,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['earrape'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['earrape'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-af volume=12'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -161,7 +161,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['fast'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['fast'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=1.63,asetrate=44100"'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -176,7 +176,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['fat'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['fat'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=1.6,asetrate=22100"'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -191,7 +191,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['nightcore'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['nightcore'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a atempo=1.06,asetrate=44100*1.25'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -206,7 +206,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['reverse'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['reverse'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter_complex "areverse"'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -221,7 +221,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['robot'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['robot'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -236,7 +236,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['slow'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['slow'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=0.7,asetrate=44100"'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -251,7 +251,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['smooth'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['smooth'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -266,7 +266,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
-bots.inrl({ pattern: ['squirrel'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['squirrel'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=0.5,asetrate=65100"'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
@@ -281,3 +281,6 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
    });
   }
 });
+bots.inrl({ pattern: ['take'], desc: "to convert packname to given txt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+const text = message.client.text;     
+if (!text) return await client.sendMessage(message.from, { text :`enter a instagram link _ex_:${Config.INSTAGRAM}`},{ quoted: message })
