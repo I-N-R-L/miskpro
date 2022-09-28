@@ -82,9 +82,7 @@ console.log(' session file cretion failed ');
     await chatting(m, conn);
     await circle(m, conn);
     await faketest(m, conn);
-   setInterval(async () => {
     await conn.sendMessage(conn.user.id, {text :`inrl-bot-md workignow💗\n\nMODE : ${Config.WORKTYPE}\n\n`});
-   }, 10000 * 1000);
     try {
      ezio.commands.map(async (command) => {
         for (let i in command.pattern) {
