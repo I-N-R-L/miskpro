@@ -290,9 +290,9 @@ if( _message == message.quoted.audioMessage) {
 
 if (text.includes(';')) {
          var split = text.split(';');
-         CreaterForAud = split[2] || 'inrl-official';
-         TextForAud = split[1] || 'inrl-bot-md';
-         imgForAud = split[0] || iphotos;
+         CreaterForAud = split[1] || 'inrl-official';
+         TextForAud = split[0] || 'inrl-bot-md';
+         imgForAud = split[2] || iphotos;
       }
 const songBuffer = fs.readFileSync(media);
 const coverBuffer = fs.readFileSync(imgForAud);
