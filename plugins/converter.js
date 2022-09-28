@@ -292,7 +292,7 @@ if (text.includes(';')) {
          var split = text.split(';');
          CreaterForAud = split[1] || 'inrl-official';
          TextForAud = split[0] || 'inrl-bot-md';
-         imgForAud = split[2] || fs.readFileSync('../media/imagee.jpg');
+         imgForAud = split[2] || fs.readFileSync('./media/imagee.jpg');
       }
 const songBuffer = fs.readFileSync(media);
 const coverBuffer = imgForAud;
