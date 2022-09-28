@@ -287,11 +287,12 @@ var _message = message.quoted.audioMessage || message.quoted.stickerMessage;
 if (!text) return await client.sendMessage(message.from, { text :"replay to a sticker with your packname txt!"},{ quoted: message })
 if( _message == message.quoted.audioMessage) {
    let media = await client.downloadAndSaveMediaMessage(_message)
-client.sendMessage(message.from,  { audio: { url: media }, mimetype: "audio/mpeg", fileName: `${text}.mp3`, }, { quoted: message });
+client.sendMessage(message.from,  { audio: { url: media }, mimetype: "audio/mp4", fileName: `${text}.mp3`,}, { quoted: message });
 } else if(_message == message.quoted.stickerMessage){
 let media = await client.downloadAndSaveMediaMessage(_message)
 client.sendFile(message.from, media, "", message, {
           asSticker: true,
+          author: message.client.pushName,
           packname: text,
           categories: ["😄"],
         });
