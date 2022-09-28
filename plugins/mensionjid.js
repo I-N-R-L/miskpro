@@ -3,13 +3,6 @@ const fs = require('fs');
 let global.db = JSON.parse(fs.readFileSync('./lib/database/server.json'));
 if (global.db) global.db = {
     sticker: {},
-    database: {},
-    game: {},
-    settings: {},
-    others: {},
-    users: {},
-    chats: {},
-    ...(global.db || {})
 }
 
 bots.inrl({ pattern: ["setcmd"], usage: '<mentions|reply>', sucReact: "😎", category: ["group", "all"],},
