@@ -1,6 +1,6 @@
 const bots = require("../lib/perfix");
-/*
-global.db = JSON.parse(fs.readFileSync('../lib/database/server.json'))
+
+let global.db = JSON.parse(fs.readFileSync('./lib/database/server.json'));
 if (global.db) global.db = {
     sticker: {},
     database: {},
@@ -30,4 +30,3 @@ bots.inrl({ pattern: ["setcmd"], usage: '<mentions|reply>', sucReact: "😎", ca
    return await client.sendMessage(message.from, { text: 'done!'},{ quoted: message } ); 
  }
 });
-*/
