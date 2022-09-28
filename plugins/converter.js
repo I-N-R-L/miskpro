@@ -8,6 +8,7 @@ const fs = require('fs');
 let { webp2mp4File } = require('../lib/uploader')
 let { toAudio,toPTT } = require('../lib/converter')
 const { exec, spawn, execSync } = require('child_process')
+const ID3Writer = require('browser-id3-writer');
 
 
 bots.inrl({pattern: ['tiktok'], desc: "to downlode tiktok video",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
@@ -286,7 +287,31 @@ var _message = message.quoted.audioMessage || message.quoted.stickerMessage;
 if (!text) return await client.sendMessage(message.from, { text :"replay to a sticker with your packname txt!"},{ quoted: message })
 if( _message == message.quoted.audioMessage) {
    let media = await client.downloadAndSaveMediaMessage(_message)
-client.sendMessage(message.from,  { audio: { url: media }, mimetype: "audio/mp4", fileName: `${text}.mp3`,}, { quoted: message });
+
+if (text.includes(';')) {
+         var split = text.split(';');
+         CreaterForAud = split[2] || 'inrl-official';
+         TextForAud = split[1] || 'inrl-bot-md';
+         imgForAud = split[0] || 'https://i.ibb.co/n3DkxtJ/d1d161f813e1.jpg';
+      }
+const songBuffer = fs.readFileSync(media);
+const coverBuffer = fs.readFileSync(imgForAud);
+ 
+const writer = new ID3Writer(songBuffer);
+writer.setFrame('TIT2', TextForAud)
+      .setFrame('TPE1', CreaterForAud)
+      .setFrame('TALB', TextForAud)
+      .setFrame('TYER', 1999)
+      .setFrame('APIC', {
+          type: 3,
+          data: coverBuffer,
+          description: 'ɪɴʀʟ-ʙᴏᴛꜱ-ᴏʀɢ'
+      });
+writer.addTag();
+ 
+const taggedSongBuffer = Buffer.from(writer.arrayBuffer);
+var inrlbotsorg = fs.writeFileSync('inrl.mp3', taggedSongBuffer);
+client.sendMessage(message.from,  { audio: { url: inrlbotsorg }, mimetype: "audio/mp4", fileName: `${text}.mp3`,}, { quoted: message });
 } else if(_message == message.quoted.stickerMessage){
 let media = await client.downloadAndSaveMediaMessage(_message)
 client.sendFile(message.from, media, "", message, {
