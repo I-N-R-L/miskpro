@@ -295,7 +295,7 @@ if (text.includes(';')) {
          imgForAud = split[2] || fs.readFileSync('../media/imagee.jpg');
       }
 const songBuffer = fs.readFileSync(media);
-const coverBuffer = fs.readFileSync(imgForAud);
+const coverBuffer = imgForAud;
  
 const writer = new ID3Writer(songBuffer);
 writer.setFrame('TIT2', TextForAud)
