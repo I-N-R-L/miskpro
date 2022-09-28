@@ -82,9 +82,6 @@ console.log(' session file cretion failed ');
     await chatting(m, conn);
     await circle(m, conn);
     await faketest(m, conn);
-   setInterval(async () => {
-    await conn.sendMessage(conn.user.id, {text :`inrl-bot-md workignow💗\n\nMODE : ${Config.WORKTYPE}\n\n});
-   }, 10000 * 1000);
     try {
      ezio.commands.map(async (command) => {
         for (let i in command.pattern) {
@@ -113,6 +110,9 @@ if(Config.U_STATUS =='true'){
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
              };
+setInterval(async () => {
+    await conn.sendMessage(conn.user.id, {text :`inrl-bot-md workignow💗\n\nMODE : ${Config.WORKTYPE}\n\n`});
+   }, 10000 * 1000);
          });
      };
 WhatsBotConnect();
