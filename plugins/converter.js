@@ -104,13 +104,13 @@ bots.inrl({ pattern: ['bass'], desc: "to convert audio to given cmd",sucReact: "
 set = '-af equalizer=f=54:width_type=o:width=2:g=20'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
-   let media = await message.quoted.download();
-let ran = getRandom('.mp3')
-   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   let media = await client.downloadAndSaveMediaMessage(_message);
+//let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} inrlbotsmd.mp3`, (err, stderr, stdout) => {
    fs.unlinkSync(media)
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
-client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+client.sendMessage(message.from,  { audio: { url: inrlbotsmd.mp3 }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
   fs.unlinkSync(ran)
    });
   }
