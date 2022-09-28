@@ -57,7 +57,7 @@ bots.inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact:
    if (!message.quoted) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
    if (!/webp/.test(message.client.mime)) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
 let _message = message.quoted.stickerMessage ;
-   let media = await client.downloadAndSaveMediaMessage(_message)
+   let media = await message.quoted.download();
    let ran = await getRandom('.png')
    exec(`ffmpeg -i ${media} ${ran}`, (err) => {
   fs.unlinkSync(media)
@@ -80,7 +80,7 @@ let _message = message.quoted.stickerMessage ;
  if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Send/Reply Video/Audio You Want Audio With Caption" },{ quoted: message })
  if (!message.quoted) return await client.sendMessage(message.from, { text :"Send/Reply Video/Audio You Want to Use as Audio With Caption " },{ quoted: message })
 let _message = message.quoted.videoMessage;
-   let media = await client.downloadAndSaveMediaMessage(_message)
+   let media = await message.quoted.download();
  let audio = await toAudio(media, 'mp4')
 await client.sendMessage( message.from, { audio: { url: audio }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
  });
@@ -88,7 +88,7 @@ bots.inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucR
  if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
  if (!message.quoted) return await client.sendMessage(message.from, { text :"Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
  let _message = message.quoted.videoMessage || message.quoted.audioMessage;
-   let media = await client.downloadAndSaveMediaMessage(_message)
+   let media = await message.quoted.download();
  let audio = await toPTT(media, 'mp4')
 await client.sendMessage( message.from, { audio: { url: audio }, mimetype: "audio/mpeg",ptt:true }, { quoted: message } );
  });
@@ -96,7 +96,7 @@ await client.sendMessage( message.from, { audio: { url: audio }, mimetype: "audi
    if (!message.quoted) return await client.sendMessage(message.from, { text : "Reply An img " },{ quoted: message });
    if (!/webp/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "this features is used to convert webp to gif playback" },{ quoted: message });
   let _message = message.quoted.stickerMessage ;
-   let media = await client.downloadAndSaveMediaMessage(_message)
+   let media = await message.quoted.download();
    let webpToMp4 = await webp2mp4File(media)
    await client.sendMessage(message.from, { video: { url: webpToMp4.result,  caption: 'Convert Webp To Video' }, caption: bots.config.exif.cap, gifPlayback: true },{ quoted: message });
    await fs.unlinkSync(media)
