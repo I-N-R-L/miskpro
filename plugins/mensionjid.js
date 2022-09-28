@@ -1,6 +1,6 @@
 const bots = require("../lib/perfix");
 
-global.db = JSON.parse(fs.readFileSync('./lib/database/server.json'))
+global.db = JSON.parse(fs.readFileSync('../lib/database/server.json'))
 if (global.db) global.db = {
     sticker: {},
     database: {},
