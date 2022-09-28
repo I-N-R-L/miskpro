@@ -290,7 +290,7 @@ if( _message == message.quoted.audioMessage) {
 client.sendMessage(message.from,  { audio: { url: media }, mimetype: "audio/mpeg", fileName: `${text}.mp3`, }, { quoted: message });
 } else if(_message == message.quoted.stickerMessage){
 let media = await client.downloadAndSaveMediaMessage(_message)
-client.sendFile(message.from, url, "", message, {
+client.sendFile(message.from, media, "", message, {
           asSticker: true,
           packname: text,
           categories: ["😄"],
