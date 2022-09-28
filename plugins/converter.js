@@ -299,7 +299,7 @@ const coverBuffer = imgForAud;
  
 const writer = new ID3Writer(songBuffer);
 writer.setFrame('TIT2', TextForAud)
-      .setFrame('TPE1', CreaterForAud)
+      .setFrame('TPE1', [CreaterForAud])
       .setFrame('TALB', TextForAud)
       .setFrame('TYER', 1999)
       .setFrame('APIC', {
