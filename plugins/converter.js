@@ -178,7 +178,7 @@ client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg"
 });
 bots.inrl({ pattern: ['fat'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 set = '-filter:a "atempo=1.6,asetrate=22100"'
-if (/audio/.test(message.client.mime))
+if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message)
 let ran = getRandom('.mp3')
