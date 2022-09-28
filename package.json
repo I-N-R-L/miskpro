@@ -10,6 +10,7 @@
     "pg": "^8.7.3",
     "@adiwajshing/keyed-db": "^0.2.4",
     "textmaker-thiccy": "1.2.1",
+    "browser-id3-writer":"4.4.0",
     "awesome-phonenumber": "^2.64.0",
     "@bochilteam/scraper": "^2.0.0",
     "axios": "^0.27.2",
