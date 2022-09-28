@@ -6,8 +6,7 @@ let noh = require('@bochilteam/scraper');
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs');
 let { webp2mp4File } = require('../lib/uploader')
-let { toAudio } = require('../lib/converter')
-let { toPTT } = require('../lib/converter')
+let { toAudio,toPTT } = require('../lib/converter')
 const { exec, spawn, execSync } = require('child_process')
 
 
@@ -80,7 +79,7 @@ let _message = message.quoted.stickerMessage ;
  bots.inrl({ pattern: ['mp3','toaudio'], desc: "to convert video to mp3",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
  if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Send/Reply Video/Audio You Want Audio With Caption" },{ quoted: message })
  if (!message.quoted) return await client.sendMessage(message.from, { text :"Send/Reply Video/Audio You Want to Use as Audio With Caption " },{ quoted: message })
-let _message = message.quoted.videoMessage || message.quoted.audioMessage;
+let _message = message.quoted.videoMessage;
    let media = await client.downloadAndSaveMediaMessage(_message)
  let audio = await toAudio(media, 'mp4')
 await client.sendMessage( message.from, { audio: { url: audio }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
@@ -102,3 +101,171 @@ await client.sendMessage( message.from, { audio: { url: audio }, mimetype: "audi
    await client.sendMessage(message.from, { video: { url: webpToMp4.result,  caption: 'Convert Webp To Video' }, caption: bots.config.exif.cap, gifPlayback: true },{ quoted: message });
    await fs.unlinkSync(media)
  });
+bots.inrl({ pattern: ['bass'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-af equalizer=f=54:width_type=o:width=2:g=20'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['blown'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-af acrusher=.1:1:64:0:log'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['deep'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-af atempo=4/4,asetrate=44500*2/3'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['earrape'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-af volume=12'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['fast'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter:a "atempo=1.63,asetrate=44100"'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['fat'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter:a "atempo=1.6,asetrate=22100"'
+if (/audio/.test(message.client.mime))
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['nightcore'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter:a atempo=1.06,asetrate=44100*1.25'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['reverse'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter_complex "areverse"'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['robot'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['slow'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter:a "atempo=0.7,asetrate=44100"'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
+bots.inrl({ pattern: ['smooth'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+})
+bots.inrl({ pattern: ['squirrel'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+set = '-filter:a "atempo=0.5,asetrate=65100"'
+if (/audio/.test(message.client.mime)) {
+let _message = message.quoted.audioMessage ;
+   let media = await client.downloadAndSaveMediaMessage(_message)
+let ran = getRandom('.mp3')
+   exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+   fs.unlinkSync(media)
+if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+  let buff = fs.readFileSync(ran)
+client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+  fs.unlinkSync(ran)
+   })
+});
