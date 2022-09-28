@@ -4,7 +4,6 @@ ezio.inrl({ pattern: ["add"], usage: '<num1/numb2&etc>', sucReact: "😋", categ
   async (message, client) => {
 const text = message.client.text;
     if (!message.client.isCreator) { global.catchError = true; return await client.sendMessage( message.from, { text: ezio.errorMessage(ezio.config.reply.owner) }, { quoted: message } ); };
-    if (!message.client.text) { global.catchError = true; return await client.sendMessage( message.from, { text: ezio.errorMessage('Enter number: \nEx g-add 1235234509/5672323625/2345456756') }, { quoted: message } ); };
     if (!message.isGroup) { global.catchError = true; return await client.sendMessage( message.from, { text: ezio.errorMessage(ezio.config.reply.group) }, { quoted: message } ); }
 let users = message.quoted ? message.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
         await client.sendMessage( message.from, { text: ezio.infoMessage("😋 Add group member. Using number.") }, { quoted: message } );
