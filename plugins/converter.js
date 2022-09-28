@@ -5,9 +5,9 @@ const { instagramdl, instagramdlv2, instagramdlv3 } = require('@bochilteam/scrap
 let noh = require('@bochilteam/scraper');
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs');
-let { webp2mp4File } = require('./lib/uploader')
-let { toAudio } = require('./lib/converter')
-let { toPTT } = require('./lib/converter')
+let { webp2mp4File } = require('../lib/uploader')
+let { toAudio } = require('../lib/converter')
+let { toPTT } = require('../lib/converter')
 /*
 
 bots.inrl({pattern: ['tiktok'], desc: "to downlode tiktok video",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
