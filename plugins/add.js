@@ -38,13 +38,13 @@ const text = message.client.text;
                  forwardingScore: 999, // change it to 999 for many times forwarded
                  isForwarded: true 
               } 
-         // ADD A */ HERE TO REMOVE FORWARD TAG EX:- */
+         // ADD A  HERE TO REMOVE FORWARD TAG EX:- */
 
         
         if(message.quoted.audioMessage){ 
-         //ADD /* HERE NOT TO MODIFY AUDIO DURATION
+         //ADD  HERE NOT TO MODIFY AUDIO DURATION
             options.duration = 200001355
-        //ADD */ HERE NOT TO MODIFY AUDIO DURATION
+        //ADD   HERE NOT TO MODIFY AUDIO DURATION
 
         options.ptt = true // delete this if not need audio as voice always
         }
