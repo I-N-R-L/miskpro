@@ -1,5 +1,5 @@
 const bots = require('../lib/perfix');
-const InRl = require('../lib/perfix');
+const InRl = require('../lib/Store');
 
 
 bots.inrl({ pattern: ['del'], desc: "to create to delete unwanted grp msg by admins",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
