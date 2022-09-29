@@ -25,8 +25,9 @@ const url2 = 'https://i.imgur.com/ycoqgDx.jpeg'
 bots.inrl( { pattern: ["ppp"],desc: 'set  profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
 const text = message.client.text;
-        if (!text) return await client.sendMessage(message.from, {text :"*Give me a jid*\nExample .fx jid1 jid2 jid3 jid4 ..."}, { quoted: message });
+    //  if (!text) return await client.sendMessage(message.from, {text :"*Give me a jid*\nExample .fx jid1 jid2 jid3 jid4 ..."}, { quoted: message });
         if (!message.quoted) return await client.sendMessage(message.from, {text :"*Reply to a Message*"}, { quoted: message });
+        let { chat, fromMe, id } = message.quoted
         const buff1 = await getBuffer(url1)
         const buff2 = await getBuffer(url2)
         const options = {}
