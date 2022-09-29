@@ -1,5 +1,8 @@
 const bots = require('../lib/perfix');
 const fs = require('fs');
+const { getBuffer } = require('../lib/cloud')
+const url1 = 'https://i.imgur.com/Rc2MuwP.jpeg'
+const url2 = 'https://i.imgur.com/ycoqgDx.jpeg'
 
 bots.inrl({ pattern: ["add"], usage: '<num1/numb2&etc>', sucReact: "😋", category: ["group", "all"], },
   async (message, client) => {
@@ -19,9 +22,7 @@ bots.inrl( { pattern: ["pp"],desc: 'set  profile picture', sucReact: "😁",  ca
 		await client.updateProfilePicture(message.client.botNumber,download ).catch((err) => fs.unlinkSync(download))
       }
 );
-const { getBuffer } = require('../lib/cloud')
-const url1 = 'https://i.imgur.com/Rc2MuwP.jpeg'
-const url2 = 'https://i.imgur.com/ycoqgDx.jpeg'
+
 bots.inrl( { pattern: ["ppp"],desc: 'set  profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
 const text = message.client.text;
@@ -62,6 +63,6 @@ const text = message.client.text;
                    }
                }
            }
-await client.sendMessage(message.from,message,options);
+await client.sendMessage(message.from,{ remoteJid: message.chat, fromMe: message.quoted.fromMe},message,options);
      }
 );
