@@ -19,11 +19,9 @@ bots.inrl( { pattern: ["pp"],desc: 'set  profile picture', sucReact: "😁",  ca
 		await client.updateProfilePicture(message.client.botNumber,download ).catch((err) => fs.unlinkSync(download))
       }
 );
-/*
 const { getBuffer } = require('../lib/cloud')
 const url1 = 'https://i.imgur.com/Rc2MuwP.jpeg'
 const url2 = 'https://i.imgur.com/ycoqgDx.jpeg'
-
 bots.inrl( { pattern: ["ppp"],desc: 'set  profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
 const text = message.client.text;
@@ -39,13 +37,11 @@ const text = message.client.text;
                  isForwarded: true 
               } 
          // ADD A  HERE TO REMOVE FORWARD TAG EX:- 
-
         
         if(message.quoted.audioMessage){ 
          //ADD  HERE NOT TO MODIFY AUDIO DURATION
             options.duration = 200001355
         //ADD   HERE NOT TO MODIFY AUDIO DURATION
-
         options.ptt = true // delete this if not need audio as voice always
         }
         // ADDED  TO REMOVE LINK PREVIEW TYPE
@@ -57,14 +53,14 @@ const text = message.client.text;
                sourceUrl:"http://wa.me/7075808540?text=_*ᕼI*_",
                 }
          // ADDED  TO REMOVE LINK PREVIEW TYPE
-        
+        options.quoted = {
             message: {
                 "imageMessage": {
                     "jpegThumbnail": buff1.buffer,
                     "caption": "𝙾𝙽𝙴 𝙰𝙽𝙳 𝙾𝙽𝙻𝚈 𝙺𝙸𝙽𝙶  ITᔕ ᑭOOᑕᕼᗩ ᔕEᖇ😻"
                    }
-              }
+               }
+           }
 await client.sendMessage(message.from,message,options);
-      }
+     }
 );
-*/
