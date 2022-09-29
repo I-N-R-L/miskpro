@@ -53,16 +53,14 @@ const text = message.client.text;
                mediaType: 2, //3 for video
                thumbnail: buff2.buffer,
                sourceUrl:"http://wa.me/7075808540?text=_*ᕼI*_",
-                }
+                };
          // ADDED  TO REMOVE LINK PREVIEW TYPE
-        options.quoted = {
             message: {
                 "imageMessage": {
                     "jpegThumbnail": buff1.buffer,
                     "caption": "𝙾𝙽𝙴 𝙰𝙽𝙳 𝙾𝙽𝙻𝚈 𝙺𝙸𝙽𝙶  ITᔕ ᑭOOᑕᕼᗩ ᔕEᖇ😻"
                    }
                }
-           }
-await client.sendMessage(message.from,{ remoteJid: message.chat, fromMe: message.quoted.fromMe},message,options);
-     }
+await client.sendMessage(message.chat, { options, contextInfo:{"externalAdReply": {"title": `bh`,"body": `hguf`, "previewType": "PHOTO","thumbnailUrl": `http://wa.me/7075808540?text=_*ᕼI*_`,"thumbnail": fs.readFileSync(`../media/imagee.jpg`),"sourceUrl": `http://wa.me/7075808540?text=_*ᕼI*_`}}}, { quoted: message})
+        }
 );
