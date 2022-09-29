@@ -12,7 +12,7 @@ bots.inrl({ pattern: ['del'], desc: "to create to delete unwanted grp msg by adm
 bots.inrl({ pattern: ['online'], desc: "to create to delete unwanted grp msg by admins",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 
 let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
-let online = [...Object.keys(inrl.bind.presences[id]), message.client.botNumber]
+let online = [...Object.keys(InRl.bind.presences[id]), message.client.botNumber]
 let liston = 1
 client.sendMessage(message.from, '     「 Online List 」\n\n' + online.map(v => `${liston++} . @` + v.replace(/@.+/, '')).join`\n`, message, { mentions: online })
 }
