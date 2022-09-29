@@ -19,7 +19,8 @@ bots.inrl( { pattern: ["pp"],desc: 'set  profile picture', sucReact: "😁",  ca
 		await client.updateProfilePicture(message.client.botNumber,download ).catch((err) => fs.unlinkSync(download))
       }
 );
-const{ getBuffer } = require('../lib/cloud')
+/*
+const { getBuffer } = require('../lib/cloud')
 const url1 = 'https://i.imgur.com/Rc2MuwP.jpeg'
 const url2 = 'https://i.imgur.com/ycoqgDx.jpeg'
 
@@ -66,3 +67,4 @@ const text = message.client.text;
 await client.sendMessage(message.from,message,options);
       }
 );
+*/
