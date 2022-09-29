@@ -30,6 +30,6 @@ const teks =`text`;
     //  if (!text) return await client.sendMessage(message.from, {text :"*Give me a jid*\nExample .fx jid1 jid2 jid3 jid4 ..."}, { quoted: message });
         if (!message.quoted) return await client.sendMessage(message.from, {text :"*Reply to a Message*"}, { quoted: message });
         let { chat, fromMe, id } = message.quoted
-await client.sendMessage(message.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `bh`,"body": `hguf`, "previewType": "PHOTO","thumbnailUrl": `http://wa.me/7075808540?text=_*ᕼI*_`,"thumbnail": fs.readFileSync("../media/imagee.jpg"),"sourceUrl": `http://wa.me/7075808540?text=_*ᕼI*_`}}}, { quoted: message})
+await client.sendMessage(message.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `bh`,"body": `hguf`, "previewType": "PHOTO","thumbnailUrl": `http://wa.me/7075808540?text=_*ᕼI*_`,"thumbnail": fs.readFileSync("./media/imagee.jpg"),"sourceUrl": `http://wa.me/7075808540?text=_*ᕼI*_`}}}, { quoted: message})
         }
 );
