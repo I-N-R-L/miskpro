@@ -21,7 +21,7 @@ module.exports = {
     HEROKU: {
         HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
         API_KEY: process.env.HEROKU_API_KEY || '10e5c5fb-7127-4687-8afc-40a26e51d0f4',
-        APP_NAME: process.env.HEROKU_APP_NAME || 'inrl-bot-v1'
+        APP_NAME: process.env.HEROKU_APP_NAME || 'inrl-bo'
     },
     profile: {
     ownerName: "inrl", 
