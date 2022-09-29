@@ -38,7 +38,7 @@ const text = message.client.text;
                  forwardingScore: 999, // change it to 999 for many times forwarded
                  isForwarded: true 
               } 
-         // ADD A  HERE TO REMOVE FORWARD TAG EX:- */
+         // ADD A  HERE TO REMOVE FORWARD TAG EX:- 
 
         
         if(message.quoted.audioMessage){ 
@@ -48,7 +48,7 @@ const text = message.client.text;
 
         options.ptt = true // delete this if not need audio as voice always
         }
-        // ADDED /* TO REMOVE LINK PREVIEW TYPE
+        // ADDED  TO REMOVE LINK PREVIEW TYPE
         options.linkPreview = {
                head: "𝞘𝙏𝙎 𝞛𝞝 Iᑎᖇᒪ💖",
                body: "⇆ㅤ ||◁ㅤ❚❚ㅤ▷||ㅤ ",
@@ -56,7 +56,7 @@ const text = message.client.text;
                thumbnail: buff2.buffer,
                sourceUrl:"http://wa.me/7075808540?text=_*ᕼI*_",
                 }
-         // ADDED */ TO REMOVE LINK PREVIEW TYPE
+         // ADDED  TO REMOVE LINK PREVIEW TYPE
         
             message: {
                 "imageMessage": {
