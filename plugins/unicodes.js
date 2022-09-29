@@ -1,5 +1,5 @@
 const bots = require('../lib/perfix');
-const verix = require('../media/inrl');
+//const verix = require('../media/inrl');
 /*
 bots.inrl( { pattern: ["virtex"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
