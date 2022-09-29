@@ -1,4 +1,6 @@
 const whatsbixby = require('../lib/perfix')
+const fs = require('fs');
+
 whatsbixby.inrl( { pattern: ["fpp"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
 	let _message = message.quoted.imageMessage || message.client.text;
