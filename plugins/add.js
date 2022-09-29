@@ -63,7 +63,6 @@ const text = message.client.text;
                     "caption": "𝙾𝙽𝙴 𝙰𝙽𝙳 𝙾𝙽𝙻𝚈 𝙺𝙸𝙽𝙶  ITᔕ ᑭOOᑕᕼᗩ ᔕEᖇ😻"
                    }
               }
-         } 
-    }
 await client.sendMessage(message.from,message,options);
+      }
 );
