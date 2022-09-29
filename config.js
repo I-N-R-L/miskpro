@@ -20,7 +20,7 @@ module.exports = {
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     HEROKU: {
         HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
-        API_KEY: process.env.HEROKU_API_KEY || '10e5c5fb-7127-4687-8afc-40a26e51d0f4',
+        API_KEY: process.env.HEROKU_API_KEY || '8e1c3eb4-d26d-43cc-8d24-ea824945ccc8',
         APP_NAME: process.env.HEROKU_APP_NAME || 'inrl-bo'
     },
     profile: {
