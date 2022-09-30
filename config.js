@@ -9,7 +9,7 @@ module.exports = {
     U_STATUS: process.env.U_STATUS || 'true',
     MENTION: process.env.MENTION || 'on',
     BGMBOT : process.env.BGMBOT || 'false',
-    WORKTYPE: process.env.WORKTYPE || 'publihc',
+    WORKTYPE: process.env.WORKTYPE || 'privet',
     PERFIX : ".",
     LANG :process.env.LANG || 'ml', //values are ml, en only
     OWNER : ["917593919575"],
