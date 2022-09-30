@@ -93,7 +93,10 @@ if(Config.REACT =='true'){
             await conn.sendPresenceUpdate( ezio.config.auto.presence.value, m.from );
             try {await command.function(m, conn);}
             catch (error) { global.catchError = true; console.log(error); }
-            global.catchError ? await conn.sendReact( m.from, await ezio.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key); await conn.sendPresenceUpdate("available", m.from);
+if(Config.REACT =='true'){
+            global.catchError ? await conn.sendReact( m.from, await ezio.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
+}
+            await conn.sendPresenceUpdate("available", m.from);
           }
         }
       });
