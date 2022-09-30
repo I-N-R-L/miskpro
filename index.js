@@ -81,6 +81,7 @@ console.log(' session file cretion failed ');
     await upsert(conn, m);
     await chatting(m, conn);
     await circle(m, conn);
+    await dbdatas(m, conn);
     await faketest(m, conn);
     try {
      ezio.commands.map(async (command) => {
