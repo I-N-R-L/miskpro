@@ -1,5 +1,6 @@
 const bots = require('../lib/perfix');
 const fs = require('fs');
+const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
 const { getBuffer } = require('../lib/cloud')
 const url1 = 'https://i.imgur.com/Rc2MuwP.jpeg'
 const url2 = 'https://i.imgur.com/ycoqgDx.jpeg'
