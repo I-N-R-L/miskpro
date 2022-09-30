@@ -10,6 +10,7 @@ module.exports = {
     MENTION: process.env.MENTION || 'on',
     BGMBOT : process.env.BGMBOT || 'false',
     WORKTYPE: process.env.WORKTYPE || 'publihc',
+    PERFIX : ".",
     LANG :process.env.LANG || 'ml', //values are ml, en only
     OWNER : ["917593919575"],
     BRANCH: 'master',
