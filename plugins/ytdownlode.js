@@ -164,7 +164,6 @@ bots.inrl(
     try {
         let videos = await yts(message.client.text);
         let video = {};
-        message.client.command == 'yta'
           ? video = videos.videos[0] 
           : video = videos.videos[Math.floor(Math.random() * videos.videos.length)]
         let caption = `
@@ -221,7 +220,6 @@ bots.inrl(
     try {
         let videos = await yts(message.client.text);
         let video = {};
-        message.client.command == 'ytv'
           ? video = videos.videos[0] 
           : video = videos.videos[Math.floor(Math.random() * videos.videos.length)]
         let caption = `
