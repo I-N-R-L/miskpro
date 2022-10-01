@@ -164,8 +164,7 @@ bots.inrl(
     try {
         let videos = await yts(message.client.text);
         let video = {};
-          ? video = videos.videos[0] 
-          : video = videos.videos[Math.floor(Math.random() * videos.videos.length)]
+   video = videos.videos[Math.floor(Math.random() * videos.videos.length)]
         let caption = `
       ${Config.FREE_TXT}
 ☢︎︎ ᴛɪᴛɪʟᴇ : ${video.title}
@@ -220,8 +219,7 @@ bots.inrl(
     try {
         let videos = await yts(message.client.text);
         let video = {};
-          ? video = videos.videos[0] 
-          : video = videos.videos[Math.floor(Math.random() * videos.videos.length)]
+     video = videos.videos[Math.floor(Math.random() * videos.videos.length)]
         let caption = `
 ————————————————————
               ✰${Config.FREE_TXT}✰
