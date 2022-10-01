@@ -22,3 +22,13 @@ const text = message.client.text;
             });
             await client.sendMessage( message.from, { audio:buffer, mimetype: "audio/mp4",ptt: true}, { quoted: message } );
         }));
+bots.inrl({pattern: ['vv'], desc: "to get text as audio ", sucReact: "💔", category: ['all'], }, (async (message, client) => {
+if(message.quoted.imageMessage){
+let media = await client.downloadAndSaveMediaMessage(message.quoted.imageMessage)
+await client.sendMessage( message.from, { image:media, caption :"inrlbots",}, { quoted: message } );
+}else if(message.quoted.videoMessage){
+let media = await client.downloadAndSaveMediaMessage(message.quoted.videoMessage)
+await client.sendMessage( message.from, { video :media, caption :"inrlbots",}, { quoted: message } );
+}else iNRL = message.quoted
+let download = await client.downloadAndSaveMediaMessage(iNRL);
+}));
