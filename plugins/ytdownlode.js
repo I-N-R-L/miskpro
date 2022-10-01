@@ -1,7 +1,6 @@
 const yts = require("yt-search");
 const bots = require("../lib/perfix");
 const lang = bots.getString("scrapers");
-const lang = bots.getString("scrapers");
 let { isUrl } = require("../lib/Function");
 const { yta, ytv } = require("../lib/y2Mate");
 const Config = require('../config');
@@ -104,7 +103,7 @@ bots.inrl(
     category: ["downloade"],
   },
   async (message, client) => {
-if(message.client.text.includes("https://youtube.com"){
+if(message.client.text.includes("https://youtube.com")){
     // if (isUrl(message.client.args[0])) { global.catchError = true; return await client.sendErrorMessage( message.from, `Enter url\nExample : ${ message.client.prefix + message.client.command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`, message.key, message );}
     try {
       let quality = message.client.args[1] ? message.client.args[1] : "320kbps";
@@ -132,7 +131,7 @@ bots.inrl(
   },
   async (message, client) => {
     if (!message.client.text) { global.catchError = true; return await client.sendErrorMessage( message.from, `Example : ${ message.client.prefix + message.client.command} https://youtube.com/watch?v=inrlbotsp`, message.key, message ); }
-    if(message.client.text.includes("https://youtube.com"){
+    if(message.client.text.includes("https://youtube.com")){
     // if (isUrl(message.client.args[0])) { global.catchError = true; return await client.sendErrorMessage( message.from, `Enter url\nExample : ${ message.client.prefix + message.client.command} https://youtube.com/watch?v=inrl360p`, message.key, message );}
     try {
       let quality = message.client.args[1] ? message.client.args[1] : "360p";
