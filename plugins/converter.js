@@ -77,22 +77,6 @@ let _message = message.quoted.stickerMessage ;
    await client.sendMessage(message.from, { video: { url : webpToMp4.result }, caption: bots.config.exif.cap }, { quoted: message });
    await fs.unlinkSync(media)
  });
- bots.inrl({ pattern: ['mp3','toaudio'], desc: "to convert video to mp3",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
- if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Send/Reply Video/Audio You Want Audio With Caption" },{ quoted: message })
- if (!message.quoted) return await client.sendMessage(message.from, { text :"Send/Reply Video/Audio You Want to Use as Audio With Caption " },{ quoted: message })
- let _message = message.quoted.videoMessage;
- let media = await client.downloadAndSaveMediaMessage(_message);
- let audio = await toAudio(media,'mp4')
-await client.sendMessage( message.from, { audio: audio, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
- });
-bots.inrl({ pattern: ['mp33'], desc: "to convert video to mp3",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
- if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Send/Reply Video/Audio You Want Audio With Caption" },{ quoted: message })
- if (!message.quoted) return await client.sendMessage(message.from, { text :"Send/Reply Video/Audio You Want to Use as Audio With Caption " },{ quoted: message })
-let _message = message.quoted.videoMessage;
-   let media = await client.downloadAndSaveMediaMessage(_message);
- let audio = await toAudio(media)
-await client.sendMessage( message.from, { audio: { url:audio }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
- });
 bots.inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
  if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
  if (!message.quoted) return await client.sendMessage(message.from, { text :"Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
@@ -330,4 +314,21 @@ client.sendFile(message.from, media, "", message, {
           categories: ["😄"],
         });
     }
+});
+bots.inrl({ pattern: ['audio-menu'], desc: "to convert audio to given cmd",sucReact: "😹",  category: ["all"]}, async (message, client) => {
+const ImSg =`╭───────────────╮
+│ 1 .ʙᴀss                             
+│ 2 .ʙʟᴏᴡɴ                          
+│ 3 .ᴅᴇᴇᴘ                   
+│ 4 .ᴇᴀʀʀᴀᴘᴇ            
+│ 5 .ғᴀsᴛ                                                                                             
+│ 6 .ғᴀᴛ                       
+│ 7 .ɴɪɢʜᴛᴄᴏʀᴇ
+│ 8.ʀᴇᴠᴇʀsᴇ                
+│ 9 .ʀᴏʙᴏᴛ                 
+│ 10 .sʟᴏᴡ
+│ 11 .sᴍᴏᴏᴛʜ
+│ 12 .sǫᴜɪʀʀᴇʟ
+╰───────────────╯`
+await client.sendMessage(message.from,  { text : ImSg }, { quoted: message });
 });
