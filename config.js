@@ -9,6 +9,7 @@ module.exports = {
     U_STATUS: process.env.U_STATUS || 'true',
     MENTION: process.env.MENTION || 'on',
     BGMBOT : process.env.BGMBOT || 'false',
+    FREE_TXT:"INRL",
     WORKTYPE: process.env.WORKTYPE || 'privet',
     PERFIX : ".",
     LANG :process.env.LANG || 'ml', //values are ml, en only
