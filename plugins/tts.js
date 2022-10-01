@@ -8,10 +8,10 @@ const text = message.client.text;
             var InRL ;
             if (text.includes('#')) {
             var split = text.split('#');
-            InRL = split[1] || 'en';
+            InRL = split[1];
            }
             let 
-                LANG = InRL,
+                LANG = InRL || "en",
                 ttsMessage = text,
                 SPEED = 1.0
     
