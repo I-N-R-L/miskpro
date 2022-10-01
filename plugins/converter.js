@@ -83,7 +83,7 @@ let _message = message.quoted.stickerMessage ;
 let _message = message.quoted.videoMessage;
    let media = await client.downloadAndSaveMediaMessage(_message);
  let audio = await toAudio(media, 'mp4')
-await client.sendMessage( message.from, { audio: audio , mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
+await client.sendMessage( message.from, { audio: { url:audio }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
  });
 bots.inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
  if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
