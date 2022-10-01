@@ -88,7 +88,7 @@ await client.sendMessage( message.from, { audio: audio , mimetype: "audio/mpeg",
 bots.inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
  if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
  if (!message.quoted) return await client.sendMessage(message.from, { text :"Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
- let _message = message.quoted.videoMessage || message.quoted.audioMessage;
+ let _message = message.quoted.audioMessage;
    let media = await client.downloadAndSaveMediaMessage(_message);
 await client.sendMessage( message.from, { audio: media, mimetype: "audio/mp4",ptt:true }, { quoted: message } );
  });
