@@ -111,7 +111,7 @@ let ran = getRandom('.mp3')
    fs.unlinkSync(media)
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
-client.sendMessage(message.from,  { audio: { url: inrlbotsmd.mp3 }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+client.sendMessage(message.from,  { audio:buff, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
   fs.unlinkSync(ran)
    });
   }
@@ -126,7 +126,7 @@ let ran = getRandom('.mp3')
    fs.unlinkSync(media)
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
-client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+client.sendMessage(message.from,  { audio:buff, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
     fs.unlinkSync(ran)
    });
   }
@@ -141,7 +141,7 @@ let ran = getRandom('.mp3')
    fs.unlinkSync(media)
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
-client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+client.sendMessage(message.from,  { audio: buff , mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
     fs.unlinkSync(ran)
    });
   }
@@ -156,7 +156,7 @@ let ran = getRandom('.mp3')
    fs.unlinkSync(media)
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
-client.sendMessage(message.from,  { audio: { url: buff }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
+client.sendMessage(message.from,  { audio:buff , mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
     fs.unlinkSync(ran)
    });
   }
