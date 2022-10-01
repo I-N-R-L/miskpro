@@ -30,7 +30,7 @@ await client.sendMessage( message.from, { image : media, caption : "inrl",}, { q
 });
 bots.inrl({pattern: ['vvv'], desc: "to get text as audio ", sucReact: "💔", category: ['all'], }, async (message, client) => {
 if(message.quoted.viewOnceMessage){
-let media = await client.quoted.download();
+let media = await message.quoted.download();
   //  return await message.sendFile(buff);
 await client.sendMessage( message.from, { image : media, caption : "inrl",}, { quoted: message } );
       }
