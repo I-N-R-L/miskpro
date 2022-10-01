@@ -34,4 +34,4 @@ const bots = require('../lib/perfix');
         const vMsg = client.sendMessage( message.from, { video: { url: i }, mimetype: "video/mp4", fileName: `${Config.FREE_TXT}.mp4`, caption: bots.config.exif.cap,}, { quoted: message });
         
        await client.sendMessage( message.from, vMsg,{ quoted: message })
-    });
+    }));
