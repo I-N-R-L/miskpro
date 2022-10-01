@@ -74,7 +74,7 @@ let _message = message.quoted.stickerMessage ;
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message)
    let webpToMp4 = await webp2mp4File(media)
-   await client.sendMessage(message.from, { video: webpToMp4.result, caption: bots.config.exif.cap }, { quoted: message });
+   await client.sendMessage(message.from, { video: { url : webpToMp4.result }, caption: bots.config.exif.cap }, { quoted: message });
    await fs.unlinkSync(media)
  });
  bots.inrl({ pattern: ['mp3','toaudio'], desc: "to convert video to mp3",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
@@ -98,7 +98,7 @@ await client.sendMessage( message.from, { audio: { url: media }, mimetype: "audi
   let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message)
    let webpToMp4 = await webp2mp4File(media)
-   await client.sendMessage(message.from, { video: webpToMp4.result, caption: bots.config.exif.cap, gifPlayback: true },{ quoted: message });
+   await client.sendMessage(message.from, { video: { url : webpToMp4.result }, caption: bots.config.exif.cap, gifPlayback: true },{ quoted: message });
    await fs.unlinkSync(media)
  });
 bots.inrl({ pattern: ['bass'], desc: "to convert audio to given cmd",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
