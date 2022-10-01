@@ -64,7 +64,7 @@ if (!message.client.text) return await client.sendMessage(message.from,{text: "e
 		'*📕 ' + "name" +'* ```' + json.result[0].title + '```\n\n' + 
 		'*📘 ' + "size" +'* ```' + json.result[0].size + '```\n\n\n' + 
 		'*📗 ' + "download" +':* ```' + json.result[0].link + '```\n'}, { quoted: message })
-	} catch {
-		await client.sendMessage( message.from,{ text :"e" },{ quoted: message })
+	} catch (e){
+		await client.sendMessage( message.from,{ text :e },{ quoted: message })
        }
 }));
