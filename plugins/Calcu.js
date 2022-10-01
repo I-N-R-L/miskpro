@@ -67,4 +67,4 @@ if (!message.client.text) return await client.sendMessage(message.from,{text: "e
 	} catch (e){
 		await client.sendMessage( message.from, e ,{ quoted: message })
        }
-});
+}));
