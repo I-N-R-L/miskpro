@@ -22,8 +22,9 @@ const text = message.client.text;
             });
             await client.sendMessage( message.from, { audio:buffer, mimetype: "audio/mp4",ptt: true}, { quoted: message } );
         }));
-bots.inrl({pattern: ['vv'], desc: "to get text as audio ", sucReact: "💔", category: ['all'], }, (async (message, client) => {
+bots.inrl({pattern: ['vv'], desc: "to get text as audio ", sucReact: "💔", category: ['all'], }, async (message, client) => {
 if(message.quoted.viewOnceMessage){
 let media = await client.downloadAndSaveMediaMessage(message.quoted.viewOnceMessage)
 await client.sendMessage( message.from, { image : media, caption : "inrl",}, { quoted: message } );
-    }));
+      }
+});
