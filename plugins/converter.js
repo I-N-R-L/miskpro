@@ -82,7 +82,15 @@ let _message = message.quoted.stickerMessage ;
  if (!message.quoted) return await client.sendMessage(message.from, { text :"Send/Reply Video/Audio You Want to Use as Audio With Caption " },{ quoted: message })
 let _message = message.quoted.videoMessage;
    let media = await client.downloadAndSaveMediaMessage(_message);
- let audio = await toAudio(media, 'mp4')
+ let audio = await toAudio(media, 'mp3')
+await client.sendMessage( message.from, { audio: { url:audio }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
+ });
+bots.inrl({ pattern: ['mp33'], desc: "to convert video to mp3",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+ if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Send/Reply Video/Audio You Want Audio With Caption" },{ quoted: message })
+ if (!message.quoted) return await client.sendMessage(message.from, { text :"Send/Reply Video/Audio You Want to Use as Audio With Caption " },{ quoted: message })
+let _message = message.quoted.videoMessage;
+   let media = await client.downloadAndSaveMediaMessage(_message);
+ let audio = await toAudio(media)
 await client.sendMessage( message.from, { audio: { url:audio }, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message } );
  });
 bots.inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
