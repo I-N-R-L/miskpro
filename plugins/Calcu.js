@@ -1,5 +1,5 @@
 const bots = require('../lib/perfix');
-
+const got = require('got');
 
 bots.inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥",  category: ["ibot"] }, (async (message, client) => {
           if (message.client.text.includes('+')) { var split = message.client.text.split('+');let number2 = split[1];let number1 = split[0]
@@ -52,3 +52,19 @@ bots.inrl({ pattern: ['hih'], desc: "to calculate by using bots",sucReact: "🤥
         await client.sendMessage( message.from, Message,{ quoted: message })
 
 }));
+bots.inrl({pattern: ['modapk'], desc: "to calculate by using bots",sucReact: "🤥",  category: ["ibot"] }, (async (message, client) => {
+
+if (!message.client.text) return await client.sendMessage(message.from,{text: "enter some text"},{ quoted: message })
+
+	const url = `https://api.zeks.xyz/api/happymod?apikey=&q=${message.client.text}&apikey=1hroZ3ju94h0PBjCNKsfhYaSuLs`;
+	try {
+		const response = await got(url);
+		const json = JSON.parse(response.body);
+		if (response.statusCode === 200) return await message.client.sendMessage(message.from, {text :
+		'*📕 ' + "name" +'* ```' + json.result[0].title + '```\n\n' + 
+		'*📘 ' + "size" +'* ```' + json.result[0].size + '```\n\n\n' + 
+		'*📗 ' + "download" +':* ```' + json.result[0].link + '```\n'}, { quoted: message })
+	} catch (e){
+		await client.sendMessage( message.from, e ,{ quoted: message })
+       }
+});
