@@ -29,9 +29,9 @@ const Config = require('../config');
         r_text[20] = "https://imgur.com/CeizCwC.mp4";
         r_text[21] = "https://imgur.com/XQNNBxg.mp4";
         
-        var i = Math.floor(22*Math.random())
+        var i = Math.floor(r_text.length * Math.random());
 
-        const vMsg = client.sendMessage( message.from, { video: { url: i }, mimetype: "video/mp4", fileName: `${Config.FREE_TXT}.mp4`, caption: bots.config.exif.cap,}, { quoted: message });
+        const vMsg = client.sendMessage( message.from, { video: { url: r_text[i] }, mimetype: "video/mp4", fileName: `${Config.FREE_TXT}.mp4`, caption: bots.config.exif.cap,}, { quoted: message });
         
        await client.sendMessage( message.from, vMsg,{ quoted: message })
     }));
