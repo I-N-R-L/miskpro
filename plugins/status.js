@@ -1,5 +1,5 @@
 const bots = require('../lib/perfix');
-
+const Config = require('../config');
    bots.inrl({pattern: ['status'], desc: "to make a vote with pepoles", sucReact: "🙄", category: ['all'], }, (async (message, client) => {
 
    //  var reply = await message.client.sendMessage(message.jid,'*꧁•⊹٭D͙O͙W͙N͙L͙O͙A͙D͙I͙N͙G͙ W͙H͙A͙T͙S͙A͙P͙P͙ S͙T͙A͙T͙U͙S͙٭⊹•꧂*', MessageType.text);
