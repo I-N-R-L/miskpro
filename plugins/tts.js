@@ -10,12 +10,11 @@ const text = message.client.text;
             var split = text.split('#');
             TEXT = split[0]
             InRL = split[1];
-            ISpeeD = split[2];
            }
             let 
                 LANG = InRL || "en",
                 ttsMessage = TEXT,
-                SPEED = 2.0
+                SPEED = 1.0
     
             var buffer = await googleTTS.synthesize({
                 text: ttsMessage,
