@@ -23,7 +23,7 @@ const text = message.client.text;
 	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A text'}, { quoted: message });
 
             let 
-                LANG = 'en',
+                LANG = 'ml',
                 ttsMessage = text,
                 SPEED = 1.0
     
