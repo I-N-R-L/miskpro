@@ -90,7 +90,7 @@ bots.inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucR
  if (!message.quoted) return await client.sendMessage(message.from, { text :"Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
  let _message = message.quoted.audioMessage;
    let media = await client.downloadAndSaveMediaMessage(_message);
-await client.sendMessage( message.from, { audio: media, mimetype: "audio/mp4",ptt:true }, { quoted: message } );
+await client.sendMessage( message.from,{ audio: { url: media }, mimetype: "audio/mp4", ptt:true }, { quoted: message });
  });
  bots.inrl({ pattern: ['togif'], desc: "to convert webp to gif",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
    if (!message.quoted) return await client.sendMessage(message.from, { text : "Reply An img " },{ quoted: message });
