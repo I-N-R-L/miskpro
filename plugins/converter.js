@@ -64,7 +64,7 @@ let _message = message.quoted.stickerMessage ;
   fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buffer = fs.readFileSync(ran)
-  client.sendMessage(message.from, { image: { url: buffer }, caption: bots.config.exif.cap }, { quoted: message });
+  client.sendMessage(message.from, { image:  buffer , caption: bots.config.exif.cap }, { quoted: message });
   fs.unlinkSync(ran)
    })
  });
