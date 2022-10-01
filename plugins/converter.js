@@ -9,6 +9,7 @@ let { webp2mp4File } = require('../lib/uploader')
 let { toAudio,toPTT } = require('../lib/converter')
 const { exec, spawn, execSync } = require('child_process')
 const ID3Writer = require('browser-id3-writer');
+const googleTTS = require('google-translate-tts');
 
 
 bots.inrl({pattern: ['tiktok'], desc: "to downlode tiktok video",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
@@ -317,10 +318,10 @@ client.sendFile(message.from, media, "", message, {
 });
 bots.inrl({ pattern: ['audio-menu'], desc: "to convert audio to given cmd",sucReact: "😹",  category: ["all"]}, async (message, client) => {
 const ImSg =`╭───────────────╮
-│ 1 .ʙᴀss                             
-│ 2 .ʙʟᴏᴡɴ                          
+│ 1 .ʙᴀss           
+│ 2 .ʙʟᴏᴡɴ            
 │ 3 .ᴅᴇᴇᴘ                   
-│ 4 .ᴇᴀʀʀᴀᴘᴇ            
+│ 4 .ᴇᴀʀʀᴀᴘᴇ           
 │ 5 .ғᴀsᴛ                                                                                             
 │ 6 .ғᴀᴛ                       
 │ 7 .ɴɪɢʜᴛᴄᴏʀᴇ
@@ -332,3 +333,23 @@ const ImSg =`╭───────────────╮
 ╰───────────────╯`
 await client.sendMessage(message.from,  { text : ImSg }, { quoted: message });
 });
+bots.inrl({pattern: ['tts'], desc: "to get text as audio ", sucReact: "💔", category: ['all'], }, (async (message, client) => {
+const text = message.client.text;
+	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A text'}, { quoted: message });
+            var InRL ;
+            if (text.includes('#')) {
+            var split = text.split('#');
+            TEXT = split[0]
+            InRL = split[1];
+           }
+            let 
+                LANG = InRL || "en",
+                ttsMessage = TEXT,
+                SPEED = 1.0
+    
+            var buffer = await googleTTS.synthesize({
+                text: ttsMessage,
+                voice: LANG
+            });
+            await client.sendMessage( message.from, { audio:buffer, mimetype: "audio/mp4",ptt: true}, { quoted: message } );
+        }));
