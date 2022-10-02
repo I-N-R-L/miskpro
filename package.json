@@ -4,7 +4,7 @@
   "description": "WhatsApp bot made with nodejs and baileys",
   "main": "index.js",
   "dependencies": {
-    "@adiwajshing/baileys": "^4.4.0",
+    "@adiwajshing/baileys": "git+https://github.com/adiwajshing/Baileys.git",
     "inrl": "github:adiwajshing/Baileys",
     "heroku-client": "^3.1.0",
     "pg": "^8.7.3",
