@@ -6,40 +6,48 @@ const exec = require('child_process').exec;
 const Heroku = require('heroku-client');
 const { PassThrough } = require('stream');
 const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
-bots.inrl({pattern: ['update'], fromMe: true, desc: "to update bot", sucReact: "⚒️",  category: ["all"]}, (async (message, client) => {
-    await git.fetch();
-    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+bots.inrl( { pattern: ["update"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
+	async (message, client) => {
+     await git.fetch();
+    var commits = await git.log(['master' + '..origin/' + 'master']);
+    var mss = '';
     if (commits.total === 0) {
-        await client.sendMessage(message.from, { text :" you got no update"},{ quoted: message })
+        mss = "_Bot up to date!_"
+        return await message.sendReply(mss);
     } else {
-        var degisiklikler = "new update";
-        commits['all'].map(
-            (commit) => {
-                degisiklikler += '⚙️ [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
-            }
-        );
-        
-        await client.sendMessage(message.from, {text : degisiklikler },{ quoted: message })
+        var changelog = "_Pending updates:_\n\n";
+        for (var i in commits.all){
+        changelog += `${(parseInt(i)+1)}• *${commits.all[i].message}*\n`
     }
-}));
-
-bots.inrl({pattern: ['updatenow'], fromMe: true, desc: "updating you bot", sucReact: "⚒️",  category: ["all"]}, (async (message, client) => {
+        mss = changelog;
+        var buttons = [{buttonId: 'update-now', buttonText: {displayText: 'START UPDATE'}, type: 1}]
+    }
+          const buttonMessage = {
+              text: mss,
+              footer: 'Feel free to update!',
+              buttons: buttons,
+              headerType: 1
+          }
+    return await message.client.sendMessage(message.from, buttonMessage, { quoted: message })
+});
+whatsbixby.inrl( { pattern: ["update-now"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
+	async (message, client) => {
     await git.fetch();
-    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    var commits = await git.log(['master' + '..origin/' + 'master']);
     if (commits.total === 0) {
-        return await client.sendMessage(message.from, { text :"already up-to-date"},{ quoted: message })
+        return await message.client.sendMessage(message.from, { text:"_Bot up to date_"},{ quoted: message })
+
     } else {
-        var guncelleme = await message.reply("updating");
-        if (Config.HEROKU.HEROKU) {
+        await message.client.sendMessage(message.jid, { text:"_Started update.._"},{ quoted: message })
+
             try {
                 var app = await heroku.get('/apps/' + Config.HEROKU.APP_NAME)
             } catch {
-                await client.sendMessage(message.from, { text :"invalid data frome heroku " },{ quoted: message })
-                await new Promise(r => setTimeout(r, 1000));
-                return await client.sendMessage(message.from, { text :"updated"},{ quoted: message })
-            }
+                await message.client.sendMessage(message.jid, { text:"_Heroku information wrong!_"},{ quoted: message })
 
-            git.fetch('upstream', Config.BRANCH);
+                await new Promise(r => setTimeout(r, 1000));
+            }
+            git.fetch('upstream', 'master');
             git.reset('hard', ['FETCH_HEAD']);
 
             var git_url = app.git_url.replace(
@@ -49,20 +57,9 @@ bots.inrl({pattern: ['updatenow'], fromMe: true, desc: "updating you bot", sucRe
             try {
                 await git.addRemote('heroku', git_url);
             } catch { console.log('heroku remote ekli'); }
-            await git.push('heroku', Config.BRANCH);
+            await git.push('heroku', 'master');
 
-            await client.sendMessage(message.from, { text :"bot compleatly up-to-date"},{ quoted: message })
-
-        } else {
-            git.pull((async (err, update) => {
-                if(update && update.summary.changes) {
-                    await client.sendMessage(message.from, { text :"updation is not possble now due to an error"},{ quoted: message })
-                    exec('npm install').stderr.pipe(process.stderr);
-                } else if (err) {
-                    await client.sendMessage(message.from, { text : " undefined error "+err},{ quoted: message })
-                }
-            }));
-            await guncelleme.delete();
-        }
-    }
-}));
+            await client.sendMessage(message.from, { text:"_Successfully updated_"},{ quoted: message })
+           await client.sendMessage(message.from, { text:"_Restarting_"},{ quoted: message })
+            }
+});
