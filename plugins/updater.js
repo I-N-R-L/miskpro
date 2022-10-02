@@ -30,7 +30,7 @@ bots.inrl( { pattern: ["update"],desc: 'set full size profile picture', sucReact
           }
     return await message.client.sendMessage(message.from, buttonMessage, { quoted: message })
 });
-whatsbixby.inrl( { pattern: ["update-now"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
+bots.inrl( { pattern: ["update-now"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
     await git.fetch();
     var commits = await git.log(['master' + '..origin/' + 'master']);
