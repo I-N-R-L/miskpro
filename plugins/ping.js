@@ -1,4 +1,4 @@
-const  { inrl }= require('../lib/perfix')
+const  { inrl }= require('../lib/')
 const Config = require('../config');
 let whb = Config.WORKTYPE == 'public' ? false : true
 inrl(
