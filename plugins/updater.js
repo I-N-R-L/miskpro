@@ -13,7 +13,7 @@ bots.inrl( { pattern: ["update"],desc: 'set full size profile picture', sucReact
     var mss = '';
     if (commits.total === 0) {
         mss = "_Bot up to date!_"
-        return await message.sendReply(mss);
+        return await client.sendMessage(message.from, buttonMessage, { quoted: message })
     } else {
         var changelog = "_Pending updates:_\n\n";
         for (var i in commits.all){
@@ -28,7 +28,7 @@ bots.inrl( { pattern: ["update"],desc: 'set full size profile picture', sucReact
               buttons: buttons,
               headerType: 1
           }
-    return await message.client.sendMessage(message.from, buttonMessage, { quoted: message })
+    return await client.sendMessage(message.from, buttonMessage, { quoted: message })
 });
 bots.inrl( { pattern: ["update-now"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
@@ -38,12 +38,12 @@ bots.inrl( { pattern: ["update-now"],desc: 'set full size profile picture', sucR
         return await message.client.sendMessage(message.from, { text:"_Bot up to date_"},{ quoted: message })
 
     } else {
-        await message.client.sendMessage(message.jid, { text:"_Started update.._"},{ quoted: message })
+        await client.sendMessage(message.from, { text:"_Started update.._"},{ quoted: message })
 
             try {
                 var app = await heroku.get('/apps/' + Config.HEROKU.APP_NAME)
             } catch {
-                await message.client.sendMessage(message.jid, { text:"_Heroku information wrong!_"},{ quoted: message })
+                await client.sendMessage(message.from, { text:"_Heroku information wrong!_"},{ quoted: message })
 
                 await new Promise(r => setTimeout(r, 1000));
             }
