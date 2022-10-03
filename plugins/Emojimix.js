@@ -1,6 +1,6 @@
 const fs = require('fs');
-const {inrl,fetchJson} = require('../lib/');
-const ffmpeg = require('fluent-ffmpeg');
+const {inrl , fetchJson , config } = require('../lib/');
+
 
 inrl({pattern: ['emojimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
            const text = message.client.text;
@@ -78,23 +78,11 @@ const text = message.client.text;
         var pay = encodeURIComponent(fin)
         
         var respoimage = await fetchJson('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
-
-        await await client.sendImageAsSticker(message.from, respoimage, message, { packname: "inrl", author: "inrl", categories: "😄" })
-		    
-ffmpeg()
-    .input(respoimage)
-    .size("608x?")
-    .aspect("9:9")
-    .output(inrlbots)
-    .run();
-await client.sendImageAsSticker(message.from, inrlbots, message, { packname: "inrl", author: "inrl", categories: "😄" })
-		 ffmpeg()
-    .input(respoimage)
-    .size("608x?")
-    .aspect("9:9")
-    .output(inrlbot.jpg)
-    .run();
-await client.sendImageAsSticker(message.from, inrlbots.jpg, message, { packname: "inrl", author: "inrl", categories: "😄" })		  
-           await fs.unlinkSync(respoimage)
+const Message = {
+      image: { url: respoimage },
+      caption: config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+		        await fs.unlinkSync(respoimage)
 
     }));
