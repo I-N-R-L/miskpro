@@ -90,10 +90,13 @@ if (!text) {
                 for (let i of anu) {
                 teks += `🐦 *${i.name}* : ${i.result}\n\n`
 await client.sendMessage(message.from, {text : teks}, { quoted : message })
-                } else if(text) {
+              }
+} else if(text){
                 let anu = await styletext(text)
                 let teks = `Entered Text ${text}\n\n`
                 for (let i of anu) {
                 teks += `🐦 *${i.name}* : ${i.result}\n\n`
 await client.sendMessage(message.from, {text : teks}, { quoted : message })
+            }
+      }
 });
