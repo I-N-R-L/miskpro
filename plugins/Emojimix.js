@@ -1,7 +1,6 @@
 const fs = require('fs');
-const axios = require('axios');
 const {inrl,fetchJson} = require('../lib/');
-const fs = require('fs');
+
 
 inrl({pattern: ['emojimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
            const text = message.client.text;
@@ -78,9 +77,9 @@ const text = message.client.text;
         var fin = text.replace(/(?:\r\n|\r|\n)/g, '%250A')
         var pay = encodeURIComponent(fin)
         
-        var respoimage = await axios.get('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
+        var respoimage = await fetchJson('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
 
-        await await client.sendImageAsSticker(message.from, respoimage.data, message, { packname: "inrl", author: "inrl", categories: res.tags })
+        await await client.sendImageAsSticker(message.from, respoimage, message, { packname: "inrl", author: "inrl", categories: res.tags })
 		    await fs.unlinkSync(encmedia)
 
     }));
