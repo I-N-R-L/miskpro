@@ -94,9 +94,8 @@ await client.sendMessage(message.from, {text : teks}, { quoted : message })
             }
       }
 });
-const IFunc = require('../lib/INrlFunc');
+const inrlbots = require('../lib/INrlFunc');
 inrl({pattern: ['terminal'], desc: "to get video as audio ", sucReact: "😇", category: ['all'], }, async (message, client) => {
 const text = message.client.text;
-const data = await IFunc(text)
-await client.sendMessage(message.from, {text : data.result}, { quoted : message })
+await client.sendMessage(message.from, {text : await inrlbots.iFunc(text).result }, { quoted : message })
             });
