@@ -89,7 +89,7 @@ let no = 1
                 let anu = await styletext("enter your text")
                 let teks = "enter your text\n\n"
                 for (let i of anu) {
-                teks += `fancy${no++} *${i.name}* : ${i.result}\n\n`
+                teks += `fancy${no++}. ${i.result}\n\n`
 return await client.sendMessage(message.from, {text : teks}, { quoted : message })
               }
 } else if(text){
