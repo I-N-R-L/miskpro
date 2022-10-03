@@ -81,7 +81,7 @@ const text = message.client.text;
 
         await await client.sendImageAsSticker(message.from, respoimage, message, { packname: "inrl", author: "inrl", categories: "😄" })
 		    
-FFmpeg()
+ffmpeg()
     .input(respoimage)
     .size("608x?")
     .aspect("9:9")
