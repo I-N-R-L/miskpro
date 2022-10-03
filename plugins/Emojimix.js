@@ -85,12 +85,77 @@ const text = message.client.text;
 inrl({pattern: ['fancy'], desc: "to get video as audio ", sucReact: "😇", category: ['all'], }, async (message, client) => {
 const text = message.client.text;
 if (!text) {
-                let no = 1
-                let teks = ''
-                let anu = await styletext("enter your text")
-                for (let i of anu) {
-                teks += `fancy${no++}. ${i.result}\n\n`
-return await client.sendMessage(message.from, {text : teks}, { quoted : message })
+ await client.sendMessage(message.from, {text : fancy1. ⓔⓝⓣⓔⓡ ⓐ ⓣⓔⓧⓣ
+
+fancy2. 🅔🅝🅣🅔🅡 🅐 🅣🅔🅧🅣
+
+fancy3. ｅｎｔｅｒ ａ ｔｅｘｔ
+
+fancy4. 𝐞𝐧𝐭𝐞𝐫 𝐚 𝐭𝐞𝐱𝐭
+
+fancy5. 𝖊𝖓𝖙𝖊𝖗 𝖆 𝖙𝖊𝖝𝖙
+
+fancy6. 𝒆𝒏𝒕𝒆𝒓 𝒂 𝒕𝒆𝒙𝒕
+
+fancy7. 𝓮𝓷𝓽𝓮𝓻 𝓪 𝓽𝓮𝔁𝓽
+
+fancy8. 𝕖𝕟𝕥𝕖𝕣 𝕒 𝕥𝕖𝕩𝕥
+
+fancy9. 𝚎𝚗𝚝𝚎𝚛 𝚊 𝚝𝚎𝚡𝚝
+
+fancy10. 𝖾𝗇𝗍𝖾𝗋 𝖺 𝗍𝖾𝗑𝗍
+
+fancy11. 𝗲𝗻𝘁𝗲𝗿 𝗮 𝘁𝗲𝘅𝘁
+
+fancy12. 𝙚𝙣𝙩𝙚𝙧 𝙖 𝙩𝙚𝙭𝙩
+
+fancy13. 𝘦𝘯𝘵𝘦𝘳 𝘢 𝘵𝘦𝘹𝘵
+
+fancy14. ⒠⒩⒯⒠⒭ ⒜ ⒯⒠⒳⒯
+
+fancy15. 🇪🇳🇹🇪🇷 🇦 🇹🇪🇽🇹
+
+fancy16. 🄴🄽🅃🄴🅁 🄰 🅃🄴🅇🅃
+
+fancy17. 🅴🅽🆃🅴🆁 🅰 🆃🅴🆇🆃
+
+fancy18. 󠁥󠁮󠁴󠁥󠁲󠀠󠁡󠀠󠁴󠁥󠁸󠁴Enter a Textx
+
+fancy19. éńtéŕ á téxt
+
+fancy20. 乇刀ｲ乇尺 ﾑ ｲ乇ﾒｲ
+
+fancy21. ﻉกՇﻉɼ ค ՇﻉซՇ
+
+fancy22. єηтєя α тєχт
+
+fancy23. єภՇєг ค ՇєאՇ
+
+fancy24. эитэѓ а тэхт
+
+fancy25. ቿክፕቿዪ ል ፕቿሸፕ
+
+fancy26. 𝔢𝔫𝔱𝔢𝔯 𝔞 𝔱𝔢𝔵𝔱
+
+fancy27. ëṅẗëṛ ä ẗëẍẗ
+
+fancy28. ᴇɴᴛᴇʀ ᴀ ᴛᴇxᴛ
+
+fancy29. ɇnŧɇɍ Ⱥ ŧɇxŧ
+
+fancy30. ₑₙₜₑᵣ ₐ ₜₑₓₜ
+
+fancy31. ᵉⁿᵗᵉʳ ᵃ ᵗᵉˣᵗ
+
+fancy32. ǝuʇǝɹ ɐ ʇǝxʇ
+
+fancy33. ʇxǝʇ ɐ ɹǝʇuǝ
+
+fancy34. ɘᴎTɘᴙ A TɘxT
+
+fancy35. TxɘT A ᴙɘTᴎɘ
+
+}, { quoted : message })
               }
 } else if(text){
                 let anu = await styletext(text)
