@@ -1,6 +1,6 @@
 const fs = require('fs');
 const {inrl,fetchJson} = require('../lib/');
-
+const ffmpeg = require('fluent-ffmpeg');
 
 inrl({pattern: ['emojimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
            const text = message.client.text;
@@ -80,6 +80,14 @@ const text = message.client.text;
         var respoimage = await fetchJson('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
 
         await await client.sendImageAsSticker(message.from, respoimage, message, { packname: "inrl", author: "inrl", categories: "😄" })
-		    await fs.unlinkSync(encmedia)
+		    
+FFmpeg()
+    .input(respoimage)
+    .size("608x?")
+    .aspect("9:9")
+    .output(inrlbots)
+    .run();
+await client.sendImageAsSticker(message.from, inrlbots, message, { packname: "inrl", author: "inrl", categories: "😄" })
+		    await fs.unlinkSync(respoimage)
 
     }));
