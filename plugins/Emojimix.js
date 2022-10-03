@@ -85,7 +85,7 @@ const text = message.client.text;
 inrl({pattern: ['fancy'], desc: "to get video as audio ", sucReact: "😇", category: ['all'], }, async (message, client) => {
 const text = message.client.text;
 if (!text) {
- await client.sendMessage(message.from, {text : `fancy1. ⓔⓝⓣⓔⓡ ⓐ ⓣⓔⓧⓣ
+ await client.sendMessage(message.from, {text :"  fancy1. ⓔⓝⓣⓔⓡ ⓐ ⓣⓔⓧⓣ
 
 fancy2. 🅔🅝🅣🅔🅡 🅐 🅣🅔🅧🅣
 
@@ -153,9 +153,9 @@ fancy33. ʇxǝʇ ɐ ɹǝʇuǝ
 
 fancy34. ɘᴎTɘᴙ A TɘxT
 
-fancy35. TxɘT A ᴙɘTᴎɘ`
+fancy35. TxɘT A ᴙɘTᴎɘ
 
-}, { quoted : message })
+"}, { quoted : message })
               }
 } else if(text){
                 let anu = await styletext(text)
