@@ -1,6 +1,5 @@
 const fs = require('fs');
-const {inrl , fetchJson , config } = require('../lib/');
-
+const {inrl,fetchJson,styletext} = require('../lib/');
 
 inrl({pattern: ['emojimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
            const text = message.client.text;
@@ -78,7 +77,23 @@ const text = message.client.text;
         var pay = encodeURIComponent(fin)
         
         var respoimage = await fetchJson('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
-await client.sendImageAsSticker(message.from, respoimage, message, { packname: "inrl", author: "inrl", categories: "😹"})
-		        await fs.unlinkSync(respoimage)
+
+        await await client.sendImageAsSticker(message.from, respoimage, message, { packname: "inrl", author: "inrl", categories: "😄" })
+		          await fs.unlinkSync(respoimage)
 
     }));
+inrl({pattern: ['fancy'], desc: "to get video as audio ", sucReact: "😇", category: ['all'], }, async (message, client) => {
+const text = message.client.text;
+if (!text) {
+                let anu = await styletext("enter your text")
+                let teks = "enter your text\n\n"
+                for (let i of anu) {
+                teks += `🐦 *${i.name}* : ${i.result}\n\n`
+await client.sendMessage(message.from, {text : teks}, { quoted : message })
+                } else if(text) {
+                let anu = await styletext(text)
+                let teks = `Entered Text ${text}\n\n`
+                for (let i of anu) {
+                teks += `🐦 *${i.name}* : ${i.result}\n\n`
+await client.sendMessage(message.from, {text : teks}, { quoted : message })
+});
