@@ -3,6 +3,31 @@
   "version": "1.0.0",
   "description": "WhatsApp bot made with nodejs and baileys",
   "main": "index.js",
+
+  "scripts": {
+    "start": "supervisor -w lib,index.js,plugins index.js",
+    "test": "node index.js"
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro.git"
+  },
+
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "ai",
+    "Inrl-Bot",
+    "Inrl"
+  ],
+  "author": "inrl",
+  "developer": "@INRL",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro/issues"
+  },
+  "homepage": "https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro#readme",
+
   "dependencies": {
     "@adiwajshing/baileys": "4.3.0",
     "inrl": "github:adiwajshing/Baileys",
@@ -73,22 +98,4 @@
     "pino": "^7.6.5",
     "qrcode-terminal": "^0.12.0"
   },
-  "scripts": {
-    "start": "supervisor -w lib,index.js,plugins index.js",
-    "test": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/inrl-official/inrl-bot-md.git"
-  },
-  "keywords": [
-    "multi-devices",
-    "whatsapp-bot"
-  ],
-  "author": "inrl",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/inrl-official/inrl-bot-md/issues"
-  },
-  "homepage": "frenendpage.vercel.app"
 }
