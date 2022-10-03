@@ -88,6 +88,13 @@ ffmpeg()
     .output(inrlbots)
     .run();
 await client.sendImageAsSticker(message.from, inrlbots, message, { packname: "inrl", author: "inrl", categories: "😄" })
-		    await fs.unlinkSync(respoimage)
+		 ffmpeg()
+    .input(respoimage)
+    .size("608x?")
+    .aspect("9:9")
+    .output(inrlbot.jpg)
+    .run();
+await client.sendImageAsSticker(message.from, inrlbots.jpg, message, { packname: "inrl", author: "inrl", categories: "😄" })		  
+           await fs.unlinkSync(respoimage)
 
     }));
