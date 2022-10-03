@@ -85,18 +85,19 @@ const text = message.client.text;
 inrl({pattern: ['fancy'], desc: "to get video as audio ", sucReact: "😇", category: ['all'], }, async (message, client) => {
 const text = message.client.text;
 if (!text) {
-let no = 1
+                let no = 1
+                let teks = ''
                 let anu = await styletext("enter your text")
-                let teks = "enter your text\n\n"
                 for (let i of anu) {
                 teks += `fancy${no++}. ${i.result}\n\n`
 return await client.sendMessage(message.from, {text : teks}, { quoted : message })
               }
 } else if(text){
                 let anu = await styletext(text)
-                let teks = `Entered Text ${text}\n\n`
+                let no = 1
+                let teks = ''
                 for (let i of anu) {
-                teks += `🐦 *${i.name}* : ${i.result}\n\n`
+                teks += `${no++}. ${i.result}\n\n`
 await client.sendMessage(message.from, {text : teks}, { quoted : message })
             }
       }
