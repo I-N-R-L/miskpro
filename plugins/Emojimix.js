@@ -79,7 +79,7 @@ const text = message.client.text;
         
         var respoimage = await fetchJson('https://thiccyscarbonapi.herokuapp.com/?code=' + pay + '&theme=' + Theme[i] + '&exportSize=3x&paddingVertical=200px&paddingHorizontal=200px&backgroundColor=rgba(' + rgbafirst + ',' + rgbasecond + ',' + rgbathird + ')&language=' + Language[l], { responseType: 'arraybuffer' })
 const Message = {
-      image: { url: respoimage },
+      image: Buffer.from(respoimage.data),
       caption: config.exif.cap,
     };
     await client.sendMessage(message.from, Message, { quoted: message });
