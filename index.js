@@ -104,7 +104,7 @@ if(Config.REACT =='true'){
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
-
+conn.sendMessage(conn.user.id, { text :"workingnow"});
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
