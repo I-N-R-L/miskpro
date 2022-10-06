@@ -4,7 +4,7 @@ const { existsSync } = require('fs')
 if (existsSync('config.env')) require('dotenv').config({ path: './config.env' })
 module.exports = {
     VERSION: 'V 1.0.0',
-    SESSION_ID: process.env.SESSION_ID || '',
+    SESSION_ID: process.env.SESSION_ID || 'inrl~aERcvy7YuygegPGrUJeT5OWooCUlmxrh',
     PASSWORD: process.env.PASSWORD || '',
     REACT : process.env.REACT || 'false',
     GROUP_CHAT : process.env.GROUP_CHAT || 'false',
