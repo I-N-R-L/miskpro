@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro#readme",
   "dependencies": {
-    "@adiwajshing/baileys": "4.3.0",
+    "@adiwajshing/baileys": "4.4.0",
     "inrl": "github:adiwajshing/Baileys",
     "heroku-client": "^3.1.0",
     "pg": "^8.7.3",
