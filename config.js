@@ -12,6 +12,7 @@ module.exports = {
     FREE_TXT:"INRL",
     WORKTYPE: process.env.WORKTYPE || 'privet',
     PERFIX : ".",
+    BLOCK_CHAT :[],
     LANG :process.env.LANG || 'ml', //values are ml, en only
     OWNER : ["917593919575"],
     ANTIFAKE : "+212,+94,+27",
