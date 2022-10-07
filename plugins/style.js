@@ -1,4 +1,4 @@
-/*
+
 const { inrl } = require("../lib/");
 const { styletext, listall, tiny } =require("../lib/INrlFunc");
 
@@ -9,4 +9,3 @@ const text = message.client.text;
       client.sendMessage( message.from, {text :styletext(text, parseInt(text))},{ quoted: message });
     }
 );
-*/
