@@ -6,7 +6,8 @@ const chalk = require("chalk");
 const pino = require("pino");
 const path = require("path");
 const { Boom } = require("@hapi/boom");
-const { Simple, upsert, inrlspfunc } = require("./lib");
+const { Simple, upsert } = require("./lib");
+const inrlspfunc = = require("./lib/Message")
 const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const inrl = require("./lib/perfix");
