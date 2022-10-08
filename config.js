@@ -2,6 +2,10 @@ const toBool = (x) => x == 'true'
 const { Sequelize } = require('sequelize')
 const { existsSync } = require('fs')
 if (existsSync('config.env')) require('dotenv').config({ path: './config.env' })
+const DATABASE_URL =
+	process.env.DATABASE_URL === undefined
+		? './database.db'
+		: process.env.DATABASE_URL
 module.exports = {
     VERSION: 'V 1.0.0',
     SESSION_ID: process.env.SESSION_ID || 'inrl~aERcvy7YuygegPGrUJeT5OWooCUlmxrh',
@@ -22,6 +26,23 @@ module.exports = {
     ANTIFAKE : process.env.ANTIFAKE || '+2222',
     ALL_LINK_BAN : process.env.ALL_LINK_BAN || 'false',
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
+    DATABASE:
+		DATABASE_URL === './database.db'
+			? new Sequelize({
+					dialect: 'sqlite',
+					storage: DATABASE_URL,
+					logging: false,
+			  })
+			: new Sequelize(DATABASE_URL, {
+					dialect: 'postgres',
+					ssl: true,
+					protocol: 'postgres',
+					dialectOptions: {
+						native: true,
+						ssl: { require: true, rejectUnauthorized: false },
+					},
+					logging: false,
+			  }),
     HEROKU: {
         HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
         API_KEY: process.env.HEROKU_API_KEY || '',
