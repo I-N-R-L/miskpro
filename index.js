@@ -5,7 +5,6 @@ const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatest
 const chalk = require("chalk");
 const pino = require("pino");
 const path = require("path");
-const { PluginDB } = require("./lib/database/ThanksAsena/plugins");
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, inrlspfunc } = require("./lib");
 const Welcome = require("./lib/Welcome");
