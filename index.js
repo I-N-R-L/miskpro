@@ -39,21 +39,6 @@ const { state, saveState } = useSingleFileAuthState( "./session.json")
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
-let plugins = await PluginDB.findAll();
-      plugins.map(async (plugin) => {
-        if (!fs.existsSync("./plugins/" + plugin.dataValues.name + ".js")) {
-          console.log(plugin.dataValues.name);
-          var response = await got(plugin.dataValues.url);
-          if (response.statusCode == 200) {
-            fs.writeFileSync(
-              "./plugins/" + plugin.dataValues.name + ".js",
-              response.body
-            );
-            require("./plugins/" + plugin.dataValues.name + ".js");
-          }
-        }
-      });
-
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 if('./session.json'!== true ){
@@ -68,7 +53,10 @@ console.log(' session file cretion failed ');
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
-    else if (connection == "open") console.log(chalk.green("💖 Login successful! \n bot working now💗")); 
+    else if (connection == "open") {
+console.log(chalk.green("💖 Login successful! \n bot working now💗"));
+conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
+}
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
       if (reason === DisconnectReason.badSession) { console.log(chalk.red(`💥 Bad Session File, Please Delete Session and Scan Again`)); conn.logout(); } 
