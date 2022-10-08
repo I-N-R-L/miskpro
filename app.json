@@ -32,7 +32,7 @@
             "description": "Exact name which you gave at the top",
             "required": true,
             "value":""
-        },
+        }
     },
    "addons": [
 		{
