@@ -10,7 +10,7 @@ const { Boom } = require("@hapi/boom");
 const { Simple, upsert, inrlspfunc } = require("./lib");
 const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
-const inrlspfunc = require("./lib/perfix");
+const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
 const { serialize, WAConnection } = Simple;
 global.mydb = {};
@@ -76,28 +76,28 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
    });
-  conn.ev.on("group-participants.update", async (m) => { if (inrlspfunc.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
+  conn.ev.on("group-participants.update", async (m) => { if (inrl.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
   conn.ev.on("messages.upsert", async (chatUpdate) => {
     global.isInCmd = false;
     let m = new serialize(conn, chatUpdate.messages[0]);
-    if ((inrlspfunc.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
+    if ((inrl.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);
     await chatting(m, conn);
     await dbdatas(m, conn);
     try {
-     inrlspfunc.commands.map(async (command) => {
+     inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
           if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
 if(Config.REACT =='true'){
-            await conn.sendReact(m.from, await inrlspfunc.reactArry("INFO"), m.key);
+            await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
 }
-            await conn.sendPresenceUpdate( inrlspfunc.config.auto.presence.value, m.from );
+            await conn.sendPresenceUpdate( inrl.config.auto.presence.value, m.from );
             try {await command.function(m, conn);}
             catch (error) { global.catchError = true; console.log(error); }
 if(Config.REACT =='true'){
-            global.catchError ? await conn.sendReact( m.from, await inrlspfunc.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
+            global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
 }
             await conn.sendPresenceUpdate("available", m.from);
           }
