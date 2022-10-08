@@ -49,6 +49,12 @@ console.log(' session file cretion failed ');
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
+
+setInterval(() => {
+    store.writeToFile("./lib/database/json/store.json");
+    console.log("saved store");
+  }, 30 * 60 * 1000);
+
   conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
