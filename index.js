@@ -84,7 +84,6 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);
     await chatting(m, conn);
-    await dbdatas(m, conn);
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
