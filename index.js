@@ -5,6 +5,7 @@ const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatest
 const chalk = require("chalk");
 const pino = require("pino");
 const path = require("path");
+const { PluginDB } = require("./lib/database/ThanksAsena/plugins");
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, eziofunc } = require("./lib");
 const Welcome = require("./lib/Welcome");
@@ -38,6 +39,21 @@ const { state, saveState } = useSingleFileAuthState( "./session.json")
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
+let plugins = await PluginDB.findAll();
+      plugins.map(async (plugin) => {
+        if (!fs.existsSync("./plugins/" + plugin.dataValues.name + ".js")) {
+          console.log(plugin.dataValues.name);
+          var response = await got(plugin.dataValues.url);
+          if (response.statusCode == 200) {
+            fs.writeFileSync(
+              "./plugins/" + plugin.dataValues.name + ".js",
+              response.body
+            );
+            require("./plugins/" + plugin.dataValues.name + ".js");
+          }
+        }
+      });
+
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 if('./session.json'!== true ){
