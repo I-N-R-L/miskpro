@@ -5,7 +5,6 @@ const Config = require('../config');
 const ffmpeg = require('fluent-ffmpeg');
 const White = Config.ALIVE
 const {execFile} = require('child_process');
-const cwebp = require('cwebp-bin');
 
     inrl({ pattern: ['send','snd'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, (async (message, client) => {
 
