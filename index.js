@@ -49,12 +49,22 @@ console.log(' session file cretion failed ');
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
-/*
+
+conn.ws.on('CB:call', async (json) => {
+    const callerId = json.content[0].attrs['call-creator']
+    if (json.content[0].tag == 'offer') {
+    let pa7rick = await conn.sendContact(callerId, Config.OWNER)
+    hisoka.sendMessage(callerId, { text: `Sistem otomatis block!\nJangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
+    await sleep(8000)
+    await conn.updateBlockStatus(callerId, "block")
+    }
+ })
+
 setInterval(() => {
     store.writeToFile("./lib/database/json/store.json");
     console.log("saved store");
   }, 30 * 60 * 1000);
-*/
+
   conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
