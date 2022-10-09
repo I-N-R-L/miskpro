@@ -26,11 +26,11 @@
   },
   "homepage": "https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro#readme",
   "dependencies": {
-    "@adiwajshing/baileys": "4.4.0",
+    "@adiwajshing/baileys": "^4.0.1",
     "inrl": "github:adiwajshing/Baileys",
     "heroku-client": "^3.1.0",
     "pg": "^8.7.3",
-    "@adiwajshing/keyed-db": "^4.0.1",
+    "@adiwajshing/keyed-db": "^0.2.4",
     "textmaker-thiccy": "1.2.1",
     "browser-id3-writer":"4.4.0",
     "awesome-phonenumber": "^2.64.0",
