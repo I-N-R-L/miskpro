@@ -85,10 +85,10 @@ let users = message.quoted.sender;
 );
 inrl({ pattern: ["gpp"],desc: 'set full size profile picture', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
-	let _message = message.quoted.imageMessage || message.quoted.text;
 		if (!message.quoted) {
 			return await client.sendMessage( message.from,{ text :'*Reply to a image.*'}, { quoted: message })
                      }
+let _message = message.quoted.imageMessage || message.quoted.text;
 			let download = await client.downloadMediaMessage(_message);
 		await client.updateProfilePicture(message.from, download );
 		return await client.sendMessage( message.from,{text :'_Profile Picture Updated_'}, { quoted: message })
