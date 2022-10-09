@@ -1,4 +1,5 @@
 const bots = require('../lib/perfix');
+const { config , infoMessage } = require('../lib/');
 const fs = require('fs');
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
 const { getBuffer } = require('../lib/cloud')
@@ -11,7 +12,7 @@ const text = message.client.text;
     if (!message.client.isCreator) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
     if (!message.isGroup) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.group) }, { quoted: message } ); }
 let users = message.quoted.sender || text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-        await client.sendMessage( message.from, { text: ezio.infoMessage("😋 Add group member. Using number.") }, { quoted: message } );
+        await client.sendMessage( message.from, { text: infoMessage("😋 Add group member. Using number.") }, { quoted: message } );
         await client.groupParticipantsUpdate( message.from, [users], "add" );
         global.catchError = false;
     }
