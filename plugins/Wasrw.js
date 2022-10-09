@@ -1,4 +1,4 @@
-/*
+
 const { inrl,config }= require('../lib/');
 const fs = require('fs');
 const Config = require('../config');
@@ -19,9 +19,8 @@ await client.sendMessage(message.from, { video: location, caption: config.exif.c
             ffmpeg(location)
                 .save('status.png')
                 .on('end', async () => {
-                    await client.sendMessage(message.from, { image:status.png, caption: config.exif.cap }, { quoted: message });
+                    await client.sendMessage(message.from, { image: status.png, caption: config.exif.cap }, { quoted: message });
             });
         return 
         }
     }));
-*/
