@@ -91,6 +91,8 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     await upsert(conn, m);
     await chatting(m, conn);
 //inrl bot call block speciol func!🥵//
+if(Config.CALL_BLOCK == "true"){
+    if(!m.isGroup){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
     if(m.from !== users){
     conn.ws.on('CB:call', async (json) => {
@@ -99,17 +101,21 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     conn.sendMessage(callerId, { text: `iam already bussy bro! \nThen fans like as you calling?!\nhow i can response`})
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
-    }
-});
+           }
+       });
+     }
+  }
 }
 //inrl pm block specio function❣️//
+if(Config.PM_BLOCK == "true"){
     if(!m.isGroup){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
     if(m.from !== users){
     conn.updateBlockStatus(m.from, "block")
     conn.sendMessage(m.from, { text: `iam alread`})
-    }
-}
+      }
+   }
+};
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
