@@ -45,10 +45,12 @@ if('./session.json'!== true ){
 console.log(' session file cretion failed ');
 };
   let { version, isLatest } = await fetchLatestBaileysVersion();
-  connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
-  conn = WASocket(connOptions);
-  conn = new WAConnection(conn);
-  store.bind(conn.ev);
+  const conn = WASocket({
+        logger: pino({ level: 'silent' }),
+        printQRInTerminal: true,
+        browser: ['hihi','Safari','1.0.0'],
+        auth: state
+    })
 
 conn.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
