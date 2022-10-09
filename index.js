@@ -45,28 +45,10 @@ if('./session.json'!== true ){
 console.log(' session file cretion failed ');
 };
   let { version, isLatest } = await fetchLatestBaileysVersion();
-  const conn = WASocket({
-        logger: pino({ level: 'silent' }),
-        printQRInTerminal: true,
-        browser: ['hihi','Safari','1.0.0'],
-        auth: state
-    })
-
-conn.ws.on('CB:call', async (json) => {
-    const callerId = json.content[0].attrs['call-creator']
-    if (json.content[0].tag == 'offer') {
-    let pa7rick = await conn.sendContact(callerId, ['7593919575'])
-    conn.sendMessage(callerId, { text: `Sistem otomatis block!\nJangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
-    await sleep(8000)
-    await conn.updateBlockStatus(callerId, "block")
-    }
- })
-
-setInterval(() => {
-    store.writeToFile("./lib/database/json/store.json");
-    console.log("saved store");
-  }, 30 * 60 * 1000);
-
+  connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
+  conn = WASocket(connOptions);
+  conn = new WAConnection(conn);
+  store.bind(conn.ev);
   conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
