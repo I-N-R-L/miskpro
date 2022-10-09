@@ -99,9 +99,13 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     await conn.updateBlockStatus(callerId, "block")
     }
 });
-console.log(conn.from);
+
+console.log("inrl😹");
+console.log(conn.user.id);
 console.log(m.from);
-    if(conn.from == m.isBot){
+console.log("inrl😹");
+
+    if(conn.from == conn.user.id){
     conn.updateBlockStatus(conn.from, "block")
     conn.sendMessage(conn.from, { text: `iam alread`})
 }
