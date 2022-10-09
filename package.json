@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro.git"
+    "url": "git+https://github.com/inrl-official/inrl-bot-md.git"
   },
   "keywords": [
     "whatsapp",
@@ -22,11 +22,11 @@
   "developer": "@INRL",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro/issues"
+    "url": "https://github.com/inrl-official/inrl-bot-md/issues"
   },
-  "homepage": "https://github.com/intkfthhffffghhbvfdsscghhnkkjjjjhhgg/miskpro#readme",
+  "homepage": "https://github.com/inrl-official/inrl-bot-md#readme",
   "dependencies": {
-    "@adiwajshing/baileys": "^4.0.1",
+    "@adiwajshing/baileys": "^4.4.0",
     "inrl": "github:adiwajshing/Baileys",
     "heroku-client": "^3.1.0",
     "pg": "^8.7.3",
