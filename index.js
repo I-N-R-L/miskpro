@@ -41,7 +41,7 @@ store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
 fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
-if('./session.json'!== true ){
+if('./session.json' === false ){
 console.log(' session file cretion failed ');
 };
   let { version, isLatest } = await fetchLatestBaileysVersion();
@@ -49,6 +49,12 @@ console.log(' session file cretion failed ');
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
+
+setInterval(() => {
+    store.writeToFile("./lib/database/json/store.json");
+    console.log("saved store");
+  }, 30 * 60 * 1000);
+
   conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
@@ -107,7 +113,15 @@ if(Config.REACT =='true'){
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
-
+conn.ws.on('CB:call', async (json) => {
+    const callerId = json.content[0].attrs['call-creator']
+    if (json.content[0].tag == 'offer') {
+    let pa7rick = await conn.sendContact(callerId, global.owner)
+    conn.sendMessage(callerId, { text: `Sistem otomatis block!\nJangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
+    await sleep(8000)
+    await conn.updateBlockStatus(callerId, "block")
+    }
+});
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
