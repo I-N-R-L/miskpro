@@ -76,6 +76,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-return await client.sendErrorMessage( message.from, { text : `${message.from}`},{ quoted: message } );
+const hehe = message.key.remoteJid || mmessage.from;
+return await client.sendErrorMessage( message.from, { text : hehe },{ quoted: message } );
                 }
 );
