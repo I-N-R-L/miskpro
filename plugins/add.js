@@ -11,7 +11,7 @@ bots.inrl({ pattern: ["add"], usage: '<num1/numb2&etc>', sucReact: "😋", categ
 const text = message.client.text;
     if (!message.client.isCreator) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
     if (!message.isGroup) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.group) }, { quoted: message } ); }
-if(message.client.text ===true){
+if(message.client.text){
 let users = text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
         await client.sendMessage( message.from, { text: infoMessage("😋 Add group member. Using number.") }, { quoted: message } );
         await client.groupParticipantsUpdate( message.from, [users], "add" );
