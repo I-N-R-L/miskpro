@@ -90,7 +90,9 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);
     await chatting(m, conn);
-    if(!m.isCreator){
+//inrl bot call block speciol func!🥵//
+    let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
+    if(m.from !== users){
     conn.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
@@ -100,10 +102,7 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     }
 });
 }
-console.log("inrl😹");
-console.log(conn.user.id);
-console.log(m.from);
-console.log("inrl😹");
+//inrl pm block specio function❣️//
     if(!m.isGroup){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
     if(m.from !== users){
