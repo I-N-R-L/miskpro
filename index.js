@@ -105,10 +105,9 @@ console.log(conn.user.id);
 console.log(m.from);
 console.log("inrl😹");
 
-    if(conn.from == conn.user.id){
-    conn.updateBlockStatus(conn.from, "block")
-    conn.sendMessage(conn.from, { text: `iam alread`})
-}
+    conn.updateBlockStatus(m.from, "block")
+    conn.sendMessage(m.from, { text: `iam alread`})
+
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
