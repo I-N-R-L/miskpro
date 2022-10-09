@@ -90,7 +90,7 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);
     await chatting(m, conn);
-    
+    if(!m.isCreator){
     conn.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
@@ -99,14 +99,16 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     await conn.updateBlockStatus(callerId, "block")
     }
 });
-
+}
 console.log("inrl😹");
 console.log(conn.user.id);
 console.log(m.from);
 console.log("inrl😹");
     if(!m.isGroup){
+       if(!m.isCreator){
     conn.updateBlockStatus(m.from, "block")
     conn.sendMessage(m.from, { text: `iam alread`})
+    }
 }
     try {
      inrl.commands.map(async (command) => {
