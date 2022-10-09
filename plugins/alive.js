@@ -68,3 +68,14 @@ const Message = {
     };
     await client.sendMessage(message.from, Message, { quoted: message });
 });
+inrl(
+	   {
+		pattern: ['jid'],
+		desc: 'To check ping',
+                sucReact: "💯",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+return await client.sendErrorMessage( message.from, { text : `${message.from}`},{ quoted: message } );
+                }
+);
