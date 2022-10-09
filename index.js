@@ -104,10 +104,10 @@ console.log("inrl😹");
 console.log(conn.user.id);
 console.log(m.from);
 console.log("inrl😹");
-
+    if(!m.isGroup){
     conn.updateBlockStatus(m.from, "block")
     conn.sendMessage(m.from, { text: `iam alread`})
-
+}
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
