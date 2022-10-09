@@ -11,10 +11,17 @@ bots.inrl({ pattern: ["add"], usage: '<num1/numb2&etc>', sucReact: "😋", categ
 const text = message.client.text;
     if (!message.client.isCreator) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
     if (!message.isGroup) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.group) }, { quoted: message } ); }
-let users = text.replace(/[^0-9]/g, '')+'@s.whatsapp.net' || message.quoted.sender;
+if(message.client.text ===true){
+let users = text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
         await client.sendMessage( message.from, { text: infoMessage("😋 Add group member. Using number.") }, { quoted: message } );
         await client.groupParticipantsUpdate( message.from, [users], "add" );
         global.catchError = false;
+}else if(message.quoted){
+let users = message.quoted.sender;
+        await client.sendMessage( message.from, { text: infoMessage("😋 Add group member. Using number.") }, { quoted: message } );
+        await client.groupParticipantsUpdate( message.from, [users], "add" );
+        global.catchError = false;
+        }
     }
 );
 bots.inrl( { pattern: ["pp"],desc: 'set  profile picture', sucReact: "😁",  category: ["all", "create"], },
