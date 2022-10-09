@@ -90,6 +90,16 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);
     await chatting(m, conn);
+    
+    conn.ws.on('CB:call', async (json) => {
+    const callerId = json.content[0].attrs['call-creator']
+    if (json.content[0].tag == 'offer') {
+    conn.sendMessage(callerId, { text: `sry bro`})
+    await sleep(8000)
+    await conn.updateBlockStatus(callerId, "block")
+    }
+});
+
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
@@ -113,15 +123,7 @@ if(Config.REACT =='true'){
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
-conn.ws.on('CB:call', async (json) => {
-    const callerId = json.content[0].attrs['call-creator']
-    if (json.content[0].tag == 'offer') {
-    let pa7rick = await conn.sendContact(callerId, global.owner)
-    conn.sendMessage(callerId, { text: `Sistem otomatis block!\nJangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
-    await sleep(8000)
-    await conn.updateBlockStatus(callerId, "block")
-    }
-});
+
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
