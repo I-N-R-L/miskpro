@@ -1,4 +1,4 @@
-const { inrl }= require('../lib/');
+const { inrl , config }= require('../lib/');
 const Config = require('../config');
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'VERSION:3.0\n' 
@@ -18,7 +18,7 @@ inrl(
   },
   async (message, client) => {
       const Message = {
-      image: { url: bots.config.image.url.D_E_TMB },
+      image: { url: config.image.url.D_E_TMB },
       caption: `╭═══〘${Config.BOT_INFO.split(",")[0]}〙═══⊷❍
 ┃☯︎╭──────────────
 ┃☯︎│
