@@ -99,7 +99,10 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     await conn.updateBlockStatus(callerId, "block")
     }
 });
-
+    if(conn.from === m.isBot){
+    conn.updateBlockStatus(conn.from, "block")
+    conn.sendMessage(conn.from, { text: `iam alread`})
+}
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
