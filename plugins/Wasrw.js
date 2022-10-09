@@ -1,3 +1,4 @@
+/*
 const { inrl,config }= require('../lib/');
 const fs = require('fs');
 const Config = require('../config');
@@ -23,3 +24,4 @@ await client.sendMessage(message.from, { video: location, caption: config.exif.c
         return 
         }
     }));
+*/
