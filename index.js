@@ -94,7 +94,7 @@ conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
     conn.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
-    conn.sendMessage(callerId, { text: `sry bro`})
+    conn.sendMessage(callerId, { text: `iam already bussy bro! \nThen fans like as you calling?!\nhow i can response`})
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
     }
