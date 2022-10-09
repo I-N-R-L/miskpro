@@ -105,7 +105,8 @@ console.log(conn.user.id);
 console.log(m.from);
 console.log("inrl😹");
     if(!m.isGroup){
-       if(!m.isCreator){
+    let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
+    if(m.from !== users){
     conn.updateBlockStatus(m.from, "block")
     conn.sendMessage(m.from, { text: `iam alread`})
     }
