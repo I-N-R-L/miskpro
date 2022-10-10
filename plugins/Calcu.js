@@ -42,11 +42,23 @@ const text = message.client.text || message.quoted.textMessage;
 
             await client.sendMessage( message.from, { text: decodedString }, { quoted: message } );
         }));
-//qrcod
 inrl({ pattern: ['qr'], desc: "to convert text as qrcode",sucReact: "💗",  category: ["all"]}, async (message, client) => {
         if (!message.client.text) return await client.sendMessage(message.from, { text :" enter some text to convert qr code😦",},{ quoted: message })
         let text = message.client.text;
         var ttinullimage = qrcode(text);
 const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
         await client.sendMessage( message.from, Message,{ quoted: message })
+});
+inrl({ pattern: ['age'], desc: "to convert text as qrcode",sucReact: "💗",  category: ["all"]}, async (message, client) => {
+        if (!message.client.text) return await client.sendMessage(message.from, { text :" enter your date of birth \n_ex_:year/month/day",},{ quoted: message })
+        let text = message.client.text;
+var year, month, day ;
+      if (text.includes('/')) {
+         var split = text.split('/');
+         year = split[0];
+         month = split[1];
+         day = split[2];
+      }
+        var ageOfYou = age(new Date(year, month, day));
+await client.sendMessage( message.from, { text : ageOfYou },{ quoted: message })
 });
