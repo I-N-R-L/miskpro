@@ -1,4 +1,4 @@
-const { inrl, add, subtract, multiply, division, qrcode, base64e, base64d, age, config } = require('../lib/');
+const { inrl, add, subtract, multiply, division, qrcode, base64e, base64d, age, inrlFont, config } = require('../lib/');
 const got = require('got');
 
 inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥",  category: ["ibot"] }, (async (message, client) => {
@@ -62,4 +62,10 @@ var year, month, day ;
         var ageOfYou = age(new Date(year, month, day));
 console.log(ageOfYou);
 await client.sendMessage( message.from, { text : ageOfYou},{ quoted: message })
+});
+inrl({ pattern: ['font'], desc: "to convert text as qrcode",sucReact: "💗",  category: ["all"]}, async (message, client) => {
+        if (!message.client.text) return await client.sendMessage(message.from, { text :" enter some text to convert superFont💗",},{ quoted: message })
+        let text = message.client.text;
+        var sooperFont = inrlFont(text);
+        await client.sendMessage( message.from, { text :"to viwe the fonr perfectly\nopen in a txtBrowser\n\n"+sooperFont },{ quoted: message })
 });
