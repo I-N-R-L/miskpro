@@ -60,5 +60,6 @@ var year, month, day ;
          day = split[2];
       }
         var ageOfYou = age(new Date(year, month, day));
-await client.sendMessage( message.from, { text : ageOfYou },{ quoted: message })
+console.log(ageOfYou);
+await client.sendMessage( message.from, ( text : { url : ageOfYou }),{ quoted: message })
 });
