@@ -26,4 +26,20 @@ inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥",  c
             catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
             }  
     }));
+inrl({pattern: ['base64e'], desc: "to convert ascii to base64", sucReact: "ðŸ˜‰", category: ['all'], }, (async (message, client) => {
+
+const text = message.client.text || message.quoted.textMessage;
+	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A text to convert base64'}, { quoted: message });
+           var encodedString = base64e(text);
+
+            await client.sendMessage( message.from, { text: encodedString }, { quoted: message } );
+        }));
+inrl({pattern: ['base64d'], desc: "to convert base64 to ascii", sucReact: "ðŸ˜‰", category: ['all'], }, (async (message, client) => {
+
+const text = message.client.text || message.quoted.textMessage;
+	    if (!text) return await client.sendMessage( message.from, { text: 'Enter A text to convert base64'}, { quoted: message });
+           var decodedString = base64d(text);
+
+            await client.sendMessage( message.from, { text: decodedString }, { quoted: message } );
+        }));
 //qrcod
