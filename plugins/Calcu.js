@@ -63,10 +63,3 @@ var year, month, day ;
 console.log(ageOfYou);
 await client.sendMessage( message.from, { text : ageOfYou},{ quoted: message })
 });
-inrl({ pattern: ['font'], desc: "to convert text as qrcode",sucReact: "💗",  category: ["all"]}, async (message, client) => {
-        if (!message.client.text) return await client.sendMessage(message.from, { text :" enter some text to convert superFont💗",},{ quoted: message })
-        let text = message.client.text;
-        var sooperFont = inrlFont(text);
-console.log(sooperFont);
-        await client.sendMessage( message.from, { text :"to viwe the font perfectly\nopen in a txtBrowser\n\n"+await sooperFont },{ quoted: message })
-});
