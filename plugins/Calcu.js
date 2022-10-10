@@ -43,3 +43,10 @@ const text = message.client.text || message.quoted.textMessage;
             await client.sendMessage( message.from, { text: decodedString }, { quoted: message } );
         }));
 //qrcod
+inrl({ pattern: ['qr'], desc: "to convert text as qrcode",sucReact: "💗",  category: ["all"]}, async (message, client) => {
+        if (!message.client.text) return await client.sendMessage(message.from, { text :" enter some text to convert qr code😦",},{ quoted: message })
+        let text = message.client.text;
+        var ttinullimage = qrcode(text);
+const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+        await client.sendMessage( message.from, Message,{ quoted: message })
+});
