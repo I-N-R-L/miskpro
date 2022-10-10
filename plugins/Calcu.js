@@ -1,4 +1,4 @@
-const { inrl, add, subtract, multiply, division, qrcode, base64e, base64d, age } = require('../lib/');
+const { inrl, add, subtract, multiply, division, qrcode, base64e, base64d, age, config } = require('../lib/');
 const got = require('got');
 
 inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥",  category: ["ibot"] }, (async (message, client) => {
@@ -47,6 +47,6 @@ inrl({ pattern: ['qr'], desc: "to convert text as qrcode",sucReact: "💗",  cat
         if (!message.client.text) return await client.sendMessage(message.from, { text :" enter some text to convert qr code😦",},{ quoted: message })
         let text = message.client.text;
         var ttinullimage = qrcode(text);
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
