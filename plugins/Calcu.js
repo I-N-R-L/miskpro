@@ -26,4 +26,4 @@ inrl({pattern: ['calc'], desc: "to calculate by using bots",sucReact: "🤥",  c
             catch (err) { return await client.sendMessage(message.from,{text : "error="+err} ,{ quoted: message })}
             }  
     }));
-qrcod
+//qrcod
