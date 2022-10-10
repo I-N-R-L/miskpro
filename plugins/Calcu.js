@@ -61,5 +61,5 @@ var year, month, day ;
       }
         var ageOfYou = age(new Date(year, month, day));
 console.log(ageOfYou);
-await client.sendMessage( message.from, { text : parseInt(ageOfYou)},{ quoted: message })
+await client.sendMessage( message.from, { text : ageOfYou},{ quoted: message })
 });
