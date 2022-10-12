@@ -55,7 +55,7 @@ const Message = {
 
         var ttinullimage = ff1(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -65,7 +65,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff2(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -75,7 +75,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff3(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
     });
@@ -85,7 +85,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff4(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -95,7 +95,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff5(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -105,7 +105,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff6(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -115,7 +115,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff7(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -125,7 +125,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff8(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -135,7 +135,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff9(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -145,7 +145,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff10(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -155,7 +155,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff11(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -165,7 +165,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff12(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -175,7 +175,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff13(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -185,7 +185,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff14(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -195,7 +195,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff15(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -205,7 +205,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff16(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -215,7 +215,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff17(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -225,7 +225,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff18(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -235,7 +235,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff19(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -245,7 +245,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff20(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -255,7 +255,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff21(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -265,7 +265,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff22(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -275,7 +275,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff23(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -285,7 +285,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff24(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -295,7 +295,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff25(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -305,7 +305,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff26(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -315,7 +315,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff27(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -325,7 +325,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff28(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -335,7 +335,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff29(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -345,7 +345,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff30(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -355,7 +355,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff31(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -365,7 +365,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff32(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -375,7 +375,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff33(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -385,7 +385,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff34(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -395,7 +395,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff35(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -405,7 +405,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff36(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -415,7 +415,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff37(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -425,7 +425,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff38(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -435,7 +435,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff39(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -445,7 +445,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff40(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
        await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -455,7 +455,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff41(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -465,7 +465,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff42(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -475,7 +475,7 @@ inrl({ pattern: ['ff43'], desc: "to create ff logo",sucReact: "⚒️",  categor
 
         var ttinullimage = ff43(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -485,7 +485,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff44(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -495,7 +495,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff45(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -505,7 +505,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff46(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -515,7 +515,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff47(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
 
         await client.sendMessage( message.from, Message,{ quoted: message })
@@ -526,7 +526,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff48(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -536,7 +536,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff49(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
@@ -546,7 +546,7 @@ const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap, 
 
         var ttinullimage = ff50(message.client.text);
 
-const Message = { image: { url:  ttinullimage }, caption: bots.config.exif.cap,  };
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 
