@@ -5,7 +5,10 @@ const axios = require('axios');
 const Config = require('../config');
 const ll ="*```Enter a word```"
 const Ln = "Free Fire logo maker"
-
+let pass = require('../lib/');
+let crtPass = pass.PASS;
+let passErr = pass.PERR;
+let CheckPass = Config.PASSWORD
 inrl(
   {
     pattern: ["xxx"],
@@ -14,14 +17,19 @@ inrl(
     category: ["all"],
   },
   async (message, client) => {
+if(CheckPass === crtPass ){
 if(!message.client.text){
 let ttinullimg = youAreBad(); 
 const Message = {
       image: { url: ttinullimg },
       caption: config.exif.cap,
     };
+if(!message.client.isCreator){
+    return await client.sendMessage(message.from, passErr, { quoted: message });
+}
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
+      }
     }
   }
 );
