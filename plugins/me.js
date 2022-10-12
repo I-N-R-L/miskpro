@@ -8,9 +8,9 @@ inrl(
     category: ["all"],
   },
   async (message, client) => {
-
+let ttinullimg = youAreBad(); 
 const Message = {
-      image: { url: youAreBad(); },
+      image: { url: ttinullimg },
       caption: config.exif.cap,
     };
     await client.sendMessage(message.from, Message, { quoted: message });
