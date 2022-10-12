@@ -9,7 +9,8 @@ let pass = require('../lib/');
 let crtPass = pass.PASS;
 let passErr = pass.PERR;
 let checkPass = Config.PASSWORD
-
+console.log(crtPass);
+console.log(checkPass);
 inrl(
   {
     pattern: ["xxx"],
@@ -30,8 +31,6 @@ const Message = {
       image: { url: ttinullimg },
       caption: config.exif.cap,
     };
-console.log(crtPass);
-console.log(checkPass);
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
     }
