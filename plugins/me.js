@@ -975,3 +975,44 @@ const Message = {
     }
   }
 );
+   inrl({ pattern: ['an'], fromMe: true, desc: "to add " ,sucReact: "😹", category: ['all'],usage: '<word>',}, async (message, client) => {
+
+const text = message.client.text;
+
+    if (!text) return await client.sendMessage( message.from, { text: 'Enter A weard'}, { quoted: message });
+
+        var ttinullimage = ansay(text);
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    });
+
+    inrl({ pattern: ['ch'], fromMe: true, desc: 'just for fun' ,sucReact: "😹", category: ['all'], },  async (message, client) => {
+
+const text = message.client.text;
+
+            if (!text) return await client.sendMessage( message.from, { text: 'Enter A weard'}, { quoted: message });
+
+        var ttinullimage = ch(text);
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    });
+
+    inrl({ pattern: ['tr'], fromMe: true, desc: 'funny trumb Twitter post' ,sucReact: "😹", category: ['all'],usage: '<word>',} , async (message, client) => {
+
+const text = message.client.text;
+
+     if (!text) return await client.sendMessage( message.from, { text: 'Enter A weard'}, { quoted: message });
+
+        var ttinullimage = trumb(text);
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap, };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    });
