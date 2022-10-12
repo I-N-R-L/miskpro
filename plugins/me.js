@@ -17,8 +17,10 @@ inrl(
     category: ["all","18+"],
   },
   async (message, client) => {
-if(CheckPass === crtPass ){
 if(!message.client.text){
+if(CheckPass != crtPass ){
+return await client.sendMessage(message.from, passErr, { quoted: message });
+}
 let ttinullimg = youAreBad(); 
 const Message = {
       image: { url: ttinullimg },
@@ -29,7 +31,6 @@ if(!message.client.isCreator){
 }
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
-      }
     }
   }
 );
