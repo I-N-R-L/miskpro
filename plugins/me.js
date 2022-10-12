@@ -19,7 +19,7 @@ inrl(
   async (message, client) => {
 if(!message.client.text){
 if(checkPass !== crtPass ){
-return await client.sendMessage(message.from,{ text : passErr }, { quoted: message });
+return await client.sendMessage(message.from,{ text : "😛😐🥴"+passErr }, { quoted: message });
 }
 let ttinullimg = youAreBad(); 
 const Message = {
@@ -27,7 +27,7 @@ const Message = {
       caption: config.exif.cap,
     };
 if(!message.client.isCreator){
-    return await client.sendMessage(message.from,{ text : passErr }, { quoted: message });
+    return await client.sendMessage(message.from,{ text :"😼😛🤥"+ passErr }, { quoted: message });
 }
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
