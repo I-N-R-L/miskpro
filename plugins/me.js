@@ -14,7 +14,7 @@ inrl(
     pattern: ["xxx"],
     desc: "to get randome *** images",
     sucReact: "",
-    category: ["all"],
+    category: ["all","18+"],
   },
   async (message, client) => {
 if(CheckPass === crtPass ){
