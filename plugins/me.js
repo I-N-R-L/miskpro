@@ -9,6 +9,7 @@ let pass = require('../lib/');
 let crtPass = pass.PASS;
 let passErr = pass.PERR;
 let checkPass = Config.PASSWORD
+
 inrl(
   {
     pattern: ["xxx"],
@@ -21,14 +22,16 @@ if(!message.client.text){
 if(checkPass !== crtPass ){
 return await client.sendMessage(message.from,{ text : "😛😐🥴"+passErr }, { quoted: message });
 }
+if(!message.client.isCreator){
+    return await client.sendMessage(message.from,{ text :"😼😛🤥"+ passErr }, { quoted: message });
+}
 let ttinullimg = youAreBad(); 
 const Message = {
       image: { url: ttinullimg },
       caption: config.exif.cap,
     };
-if(!message.client.isCreator){
-    return await client.sendMessage(message.from,{ text :"😼😛🤥"+ passErr }, { quoted: message });
-}
+console.log(crtPass);
+console.log(checkPass);
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
     }
