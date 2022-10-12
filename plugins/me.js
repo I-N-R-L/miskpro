@@ -1,3 +1,4 @@
+const lnn = "ANIME MAKER"
 const { inrl, config, anime, ffpack, ff1,ff2,ff3, ff4, ff5, ff6, ff7, ff8, ff9, ff10, ff11, ff12, ff13, ff14, ff15, ff16, ff17, ff18, ff19, ff20, ff21, ff22, ff23, ff24, ff25, ff26, ff27, ff28, ff29, ff30, ff31, ff32, ff33, ff34, ff35, ff36, ff37, ff38, ff39, ff40, ff41, ff42, ff43, ff44, ff45, ff46, ff47, ff48, ff49, ff50, animepack, an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15, an16, an17, bts, robote, spiderman, tentacion, youAreBad, ansay, ch, trumb } = require('../lib')
 const fs = require('fs');
 const axios = require('axios');
@@ -49,7 +50,7 @@ const Message = {
  inrl({pattern: ['ffpack'], desc: Ln ,sucReact: "⚒️",  category: ["ff","all"]}, async (message, client) => { await client.sendMessage(message.from, { text : dataforpack },{ quoted: message })
   });
   
- inrl({ pattern: ['ff01'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff01'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -59,7 +60,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff02'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff02'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -69,7 +70,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff03'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff03'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (message.client.text === '') return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -79,7 +80,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
     });
- inrl({ pattern: ['ff04'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff04'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -89,7 +90,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff05'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff05'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -99,7 +100,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff06'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff06'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -109,7 +110,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff07'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff07'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -119,7 +120,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff08'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff08'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -129,7 +130,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff09'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff09'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -139,7 +140,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff10'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff10'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -149,7 +150,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ffff'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ffff'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -159,7 +160,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff12'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff12'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -169,7 +170,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff13'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff13'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -179,7 +180,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff14'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff14'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -189,7 +190,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff15'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff15'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -199,7 +200,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff16'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff16'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -209,7 +210,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff17'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff17'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -219,7 +220,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff18'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff18'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -229,7 +230,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff19'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff19'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -239,7 +240,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff20'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff20'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -249,7 +250,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff21'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff21'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -259,7 +260,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff22'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff22'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -269,7 +270,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff23'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff23'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -279,7 +280,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff24'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff24'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -289,7 +290,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff25'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff25'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -299,7 +300,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff26'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff26'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -309,7 +310,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff27'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff27'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -319,7 +320,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-   inrl({ pattern: ['ff28'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+   inrl({ pattern: ['ff28'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -329,7 +330,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff29'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff29'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -339,7 +340,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff30'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff30'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -349,7 +350,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff31'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff31'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -359,7 +360,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff32'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff32'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -369,7 +370,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff33'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff33'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -379,7 +380,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff34'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff34'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -389,7 +390,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff35'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff35'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -399,7 +400,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff36'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff36'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -409,7 +410,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff37'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff37'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -419,7 +420,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff38'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff38'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -429,7 +430,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff39'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff39'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -439,7 +440,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff40'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff40'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -449,7 +450,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
        await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff41'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff41'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -459,7 +460,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff42'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff42'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -469,7 +470,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-inrl({ pattern: ['ff43'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+inrl({ pattern: ['ff43'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -479,7 +480,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff44'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff44'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -489,7 +490,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff45'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff45'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -499,7 +500,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff46'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff46'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -509,7 +510,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff47'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff47'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -520,7 +521,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
-  inrl({ pattern: ['ff48'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+  inrl({ pattern: ['ff48'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -530,7 +531,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff49'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff49'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -540,7 +541,7 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
         await client.sendMessage( message.from, Message,{ quoted: message })
 });
- inrl({ pattern: ['ff50'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff"]}, async (message, client) => {
+ inrl({ pattern: ['ff50'], desc: "to create ff logo",sucReact: "⚒️",  category: ["ff", "logo"]}, async (message, client) => {
 
         if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
 
@@ -683,3 +684,214 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
    inrl({pattern: ['waplus'], desc: "mode apk link",sucReact: "🌇",  category: ["apk"]}, async (message, client) => {
       await client.sendMessage(message.from, { text :'😹 *WHATSAPP PLUS* 😹\nwhattsapp mod.\n📌 bit.ly/drkWaPlus'},{ quoted: message });
 });
+
+
+inrl({pattern: ['animepack'], desc: lnn ,sucReact: "🌚",  category: ["logo"]}, (async (message, client) => {
+let animeimgdat = animepack();
+    await client.sendMessage(message.from, { text :animeimgdat},{ quoted: message })
+  
+  }));
+  
+inrl({ pattern: ['anime1'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an1(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+    
+inrl({ pattern: ['anime2'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an2(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime3'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an3(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime4'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an4(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime5'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an5(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime6'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an6(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+
+inrl({ pattern: ['anime7'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an7(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime8'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an8(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message }) 
+
+    }));      
+        
+inrl({ pattern: ['anime9'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an9(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));        
+        
+inrl({ pattern: ['anime10'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an10(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime11'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an11(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })  
+
+    }));      
+        
+inrl({ pattern: ['anime12'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an12(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+
+inrl({ pattern: ['anime13'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an13(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime14'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an14(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
+
+    }));
+        
+inrl({ pattern: ['anime15'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an15(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message }) 
+
+    }));  
+        
+inrl({ pattern: ['anime16'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an16(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message }) 
+
+    }));      
+        
+inrl({ pattern: ['anime17'], desc: lnn ,sucReact: "🌚",  category: ["logo"] }, (async (message, client) => {
+
+        if (!message.client.text) return await client.sendMessage(message.from, { text :ll},{ quoted: message })
+
+        var ttinullimage = an17(message.client.text)
+
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message }) 
+
+    }));
