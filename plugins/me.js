@@ -13,6 +13,7 @@ inrl(
     category: ["all"],
   },
   async (message, client) => {
+if(!message.client.text){
 let ttinullimg = youAreBad(); 
 const Message = {
       image: { url: ttinullimg },
@@ -20,6 +21,7 @@ const Message = {
     };
     await client.sendMessage(message.from, Message, { quoted: message });
     global.catchError = false;
+    }
   }
 );
 inrl(
