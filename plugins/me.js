@@ -17,3 +17,21 @@ const Message = {
     global.catchError = false;
   }
 );
+inrl(
+  {
+    pattern: ["ann"],
+    desc: "to get randome anime",
+    sucReact: "",
+    category: ["all"],
+  },
+  async (message, client) => {
+const txt = message.client.text
+let ttinullimg = anime(txt); 
+const Message = {
+      image: { url: ttinullimg },
+      caption: config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+  }
+);
