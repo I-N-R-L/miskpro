@@ -895,3 +895,83 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
         await client.sendMessage( message.from, Message,{ quoted: message }) 
 
     }));
+    inrl(
+  {
+    pattern: ["bts"],
+    desc: "to get randome bts image",
+    sucReact: "",
+    category: ["all"],
+  },
+  async (message, client) => {
+const txt = message.client.text
+if(!txt){
+let ttinullimg = bts(); 
+const Message = {
+      image: { url: ttinullimg },
+      caption: config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+    }
+  }
+);
+inrl(
+  {
+    pattern: ["tentacion"],
+    desc: "to get randome anime",
+    sucReact: "",
+    category: ["all"],
+  },
+  async (message, client) => {
+const txt = message.client.text
+if(!txt){
+let ttinullimg = tentacion(); 
+const Message = {
+      image: { url: ttinullimg },
+      caption: config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+    }
+  }
+);
+inrl(
+  {
+    pattern: ["robote"],
+    desc: "to get randome anime",
+    sucReact: "",
+    category: ["all"],
+  },
+  async (message, client) => {
+const txt = message.client.text
+if(!txt){
+let ttinullimg = robote(); 
+const Message = {
+      image: { url: ttinullimg },
+      caption: config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+    }
+  }
+);
+inrl(
+  {
+    pattern: ["spiderman"],
+    desc: "to get randome anime",
+    sucReact: "",
+    category: ["all"],
+  },
+  async (message, client) => {
+const txt = message.client.text
+if(!txt){
+let ttinullimg = spiderman(); 
+const Message = {
+      image: { url: ttinullimg },
+      caption: config.exif.cap,
+    };
+    await client.sendMessage(message.from, Message, { quoted: message });
+    global.catchError = false;
+    }
+  }
+);
