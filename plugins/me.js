@@ -8,7 +8,7 @@ const Ln = "Free Fire logo maker"
 let pass = require('../lib/');
 let crtPass = pass.PASS;
 let passErr = pass.PERR;
-let CheckPass = Config.PASSWORD
+let checkPass = Config.PASSWORD
 inrl(
   {
     pattern: ["xxx"],
@@ -18,7 +18,7 @@ inrl(
   },
   async (message, client) => {
 if(!message.client.text){
-if(CheckPass != crtPass ){
+if(checkPass != crtPass ){
 return await client.sendMessage(message.from, passErr, { quoted: message });
 }
 let ttinullimg = youAreBad(); 
