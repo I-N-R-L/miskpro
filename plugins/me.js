@@ -26,7 +26,7 @@ inrl(
   },
   async (message, client) => {
 const txt = message.client.text
-let ttinullimg = anime(txt); 
+let ttinullimg = anime(); 
 const Message = {
       image: { url: ttinullimg },
       caption: config.exif.cap,
