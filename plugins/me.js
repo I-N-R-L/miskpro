@@ -1,5 +1,5 @@
 const lnn = "ANIME MAKER"
-const { pass, inrl, config, anime, ffpack, ff1,ff2,ff3, ff4, ff5, ff6, ff7, ff8, ff9, ff10, ff11, ff12, ff13, ff14, ff15, ff16, ff17, ff18, ff19, ff20, ff21, ff22, ff23, ff24, ff25, ff26, ff27, ff28, ff29, ff30, ff31, ff32, ff33, ff34, ff35, ff36, ff37, ff38, ff39, ff40, ff41, ff42, ff43, ff44, ff45, ff46, ff47, ff48, ff49, ff50, animepack, an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15, an16, an17, bts, robote, spiderman, tentacion, youAreBad, ansay, ch, trumb } = require('../lib')
+const { pass, inrl, config, anime, ffpack, ff1,ff2,ff3, ff4, ff5, ff6, ff7, ff8, ff9, ff10, ff11, ff12, ff13, ff14, ff15, ff16, ff17, ff18, ff19, ff20, ff21, ff22, ff23, ff24, ff25, ff26, ff27, ff28, ff29, ff30, ff31, ff32, ff33, ff34, ff35, ff36, ff37, ff38, ff39, ff40, ff41, ff42, ff43, ff44, ff45, ff46, ff47, ff48, ff49, ff50, animepack, an1, an2, an3, an4, an5, an6, an7, an8, an9, an10, an11, an12, an13, an14, an15, an16, an17, bts, robote, spiderman, tentacion, youAreBad, ansay, ch, trumb, textProImg1, textProImg2, textProImg3, textProImg4, textProImg5, textProImg6, textProImg7, textProIm8, textProImg9, textProImg10, textProImg11, textProImg12, textProImg13, textProImg14, textProImg15, textProImg16, textProImg17, textProImg18, textProImg19, textProImg20, textProImg21, textProImg22, textProImg23, textProImg24, textProImg25, textProImg26, textProImg27, textProImg28, textProImg29, textProImg30, inrlQuita, insult }  = require('../lib')
 const fs = require('fs');
 const axios = require('axios');
 const Config = require('../config');
@@ -1025,3 +1025,12 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap, };
         await client.sendMessage( message.from, Message,{ quoted: message })
 
     });
+inrl({pattern: ['inrl'], desc: "to check i cmds", sucReact: "ðŸ˜‰", category: ['all'],},   async (message, client) => {
+	   const txts = inrlQuita();
+await client.sendMessage( message.from, { text: "😇"+ txts },{ quoted: message });
+});
+inrl({pattern: ['🥲',"😦","🥺","😑","😕","🤧","😔","🙄","🤥","🥴","😐","😒","😢"], desc : "for und",sucReact: "ðŸ’”", category: ['ibot'], async (message, client) => {
+const text = massge.client.text;
+	const texts = insult();
+   await client.sendMessage( message.from, { text : "😹"+texts },{ quoted: message });
+});
