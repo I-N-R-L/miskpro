@@ -1029,7 +1029,7 @@ inrl({pattern: ['inrl'], desc: "to check i cmds", sucReact: "ðŸ˜‰", categor
 	   const txts = inrlQuita();
 await client.sendMessage( message.from, { text: "😇"+ txts },{ quoted: message });
 });
-inrl({pattern: ['🥲',"😦","🥺","😑","😕","🤧","😔","🙄","🤥","🥴","😐","😒","😢"], desc : "for und",sucReact: "ðŸ’”", category: ['ibot'], async (message, client) => {
+inrl({pattern: ['🥲',"😦","🥺","😑","😕","🤧","😔","🙄","🤥","🥴","😐","😒","😢"],}, desc : "for und",sucReact: "ðŸ’”", category: ['ibot'], async (message, client) => {
 const text = massge.client.text;
 	const texts = insult();
    await client.sendMessage( message.from, { text : "😹"+texts },{ quoted: message });
