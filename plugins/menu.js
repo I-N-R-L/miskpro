@@ -26,7 +26,7 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
       ]
 
 const templateButtons = {
-      image: { url: Config.ALIVE_DATA.split(',')[0] },
+      image: { url: Config.ALIVE_DATA.split(';')[0] },
       caption: CMD_HELP,
       footer: bots.config.exif.footer,
       buttons,
@@ -51,7 +51,7 @@ bots.categories.map(category => {
       if (command.category.includes(category)) { command.pattern.map((cmd) => CMD_HELP += "│ *➪* ```" + prefix + cmd + ' '+"\n"+"│```\n")}
     }); 
     CMD_HELP += "│\n│ ᴄʀᴇᴀᴛᴇᴅ ʙʏ ${Config.BOT_INFO.split(',')[0]}\n╰═════════════════⊷";
-    await client.sendMessage( message.from,{ image: { url: ${Config.ALIVE_DATA.split(',')[0]} }, caption: CMD_HELP, }, { quoted: message });
+    await client.sendMessage( message.from,{ image: { url: Config.ALIVE_DATA.split(';')[0] }, caption: CMD_HELP, }, { quoted: message });
     global.catchError = false;
   } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
   });
