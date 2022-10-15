@@ -23,7 +23,6 @@ var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
-const WhatsBotConnect = async () => {
 const mddc=(Config.SESSION_ID);
 var m = (mddc);
 let mdm = m.replaceAll("inrl~", "");
@@ -32,10 +31,10 @@ var plaintext = (mdm);
 var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
-  .then(async function hi(data) {
+  .then(async(data) {
    fs.writeFileSync("./session.json" , data);
-await console.log('file creted successfully☑️');
 });
+const WhatsBotConnect = async () => {
 const { state, saveState } = useSingleFileAuthState("./session.json");
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 // store.readFromFile("./lib/database/json/store.json");
@@ -153,7 +152,7 @@ if(Config.U_STATUS =='true'){
      };
 setTimeout(() => {
 WhatsBotConnect();
-}, 3000);
+}, 4000);
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
