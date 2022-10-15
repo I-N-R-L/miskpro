@@ -37,8 +37,8 @@ pastebin
 await console.log('file creted successfully☑️');
 });
 const { state, saveState } = await useSingleFileAuthState("./session.json");
-const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
-store.readFromFile("./lib/database/json/store.json");
+const store = await makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
+// store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 if('./session.json' === false ){
