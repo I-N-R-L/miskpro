@@ -40,7 +40,7 @@ inrl( { pattern: ["vv"], sucReact: "🥵", category: ['logo'], usage: '<word>', 
       return await client.sendMessage( message.from, { text: "_Not A Viwe 0ne_"}, { quoted: message } );
       }
     let buff = message.quoted.viewOnceMessage;
-        let download = await client.downloadMediaMessage(_message);
+        let download = await client.downloadMediaMessage(buff);
     return await client.sendMessage( message.from, { image: download, caption: config.exif.cap }, { quoted: message });
   }
 );
