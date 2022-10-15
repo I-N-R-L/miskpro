@@ -31,7 +31,7 @@ var plaintext = (mdm);
 var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
-  .then(async(data) {
+  .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
 });
 const WhatsBotConnect = async () => {
