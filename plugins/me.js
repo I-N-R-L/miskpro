@@ -1363,6 +1363,28 @@ if (text.includes(',')) {  var split = text.split(',');text1 = split[0];text2 = 
   await maker.textpro('https://textpro.me/create-thunder-text-effect-online-881.html', [texts,txt])
   .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
   .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["heart"], sucReact: "💗", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L) }, { quoted: message } ); };
+let text = message.client.text;
+var text1, text2;
+if (text.includes(',')) {  var split = text.split(',');text1 = split[0];text2 = split[1];  }
+         var texts = text1 || text;
+         var txt = text2 || Config.FREE_TXT;
+  await maker.textpro('https://textpro.me/create-glowing-neon-light-text-effect-online-free-1061.html', [texts,txt])
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});bots.inrl( { pattern: ["summer"], sucReact: "💗", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (!message.client.args[0]) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(N_T) }, { quoted: message } ); };
+  if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(T_L) }, { quoted: message } ); };
+let text = message.client.text;
+var text1, text2;
+if (text.includes(',')) {  var split = text.split(',');text1 = split[0];text2 = split[1];  }
+         var texts = text1 || text;
+         var txt = text2 || Config.FREE_TXT;
+  await maker.textpro('https://textpro.me/create-a-summer-neon-light-text-effect-online-1076.html', [texts,txt])
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: bots.config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
 });
 
 
