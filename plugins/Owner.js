@@ -39,7 +39,8 @@ inrl( { pattern: ["vv"], sucReact: "🥵", category: ['logo'], usage: '<word>', 
     if (!message.quoted){
       return await client.sendMessage( message.from, { text: "_Not A Viwe 0ne_"}, { quoted: message } );
       }
-    let buff = await message.quoted.download();
-    return await client.sendMessage( message.from, { image: buff, caption: config.exif.cap }, { quoted: message });
+    let buff = message.quoted.imageMessage || message.quoted.videoMessage;
+        let download = await client.downloadMediaMessage(_message);
+    return await client.sendMessage( message.from, { image: download, caption: config.exif.cap }, { quoted: message });
   }
 );
