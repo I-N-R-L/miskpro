@@ -152,7 +152,7 @@ if(Config.U_STATUS =='true'){
      };
 setTimeout(() => {
 WhatsBotConnect();
-}, 3000);
+}, 2000);
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
