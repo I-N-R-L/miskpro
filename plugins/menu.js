@@ -10,7 +10,7 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
     let CMD_HELP = 
-`╭═══〘`+`{Config.BOT_INFO.split(',')[0]}`+`〙═══⊷❍
+`╭═══〘`+"Config.BOT_INFO.split(',')[0]"+`〙═══⊷❍
 │
 `;
     bots.commands.map((command) => {
