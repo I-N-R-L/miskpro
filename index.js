@@ -112,7 +112,7 @@ if(Config.PM_BLOCK == "true"){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
     if(m.from !== users){
     conn.updateBlockStatus(m.from, "block")
-    conn.sendMessage(m.from, { text: `hey bro!\nyou note thet i a bussy person!\nevry day we got 139,28,287 msgs inPM\nHow i can response!?`})
+    conn.sendMessage(m.from, { text: `hey bro!\nyou note thet i am bussy person!\nevery day we got 139,28,287😌 msgs on PM🤭\nHow i can response!?😹`})
       }
    }
 };
