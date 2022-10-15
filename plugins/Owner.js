@@ -35,3 +35,11 @@ inrl(
     };
     await client.sendMessage(message.from, Message, { quoted: message });
 });
+inrl( { pattern: ["vv"], sucReact: "🥵", category: ['logo'], usage: '<word>', }, async (message, client) => {
+    if (!message.quoted){
+      return await client.sendMessage( message.from, { text: "_Not A Viwe 0ne_}, { quoted: message } );
+      }
+    let buff = await message.quoted.download();
+    return await client.sendMessage( message.from, { image: buff, caption: config.exif.cap }, { quoted: message });
+  }
+);
