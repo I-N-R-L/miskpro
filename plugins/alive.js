@@ -64,7 +64,7 @@ const templateButtons = {
       buttons,
     };
 
-    await client.sendMessage(message.from, Message, { quoted: message });
+    await client.sendMessage(message.from, templateButtons, { quoted: message });
 });
 
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
