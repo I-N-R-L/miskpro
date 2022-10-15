@@ -10,14 +10,14 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
     let CMD_HELP = 
-`╭═══〘{Config.BOT_INFO.split(',')[0]}〙═══⊷❍
+`╭═══〘`+`{Config.BOT_INFO.split(',')[0]}`+`〙═══⊷❍
 │
 `;
     bots.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
       if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += "│➪" + prefix + cmd + ' ' +"\n"+"│"+ command.desc + "\n│\n")}
     }); 
-    CMD_HELP += "│\n│ ✰${Config.BOT_INFO.split(',')[0]}✰\n╰═════════════════⊷";
+    CMD_HELP += "│\n│ ✰"+`${Config.BOT_INFO.split(',')[0]}`+"✰\n╰═════════════════⊷";
    
   const buttons = [
         { buttonId: ".ping", buttonText: { displayText: "ᴩɪɴɢ"}, type: 1, },
