@@ -1026,11 +1026,10 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap, };
 
     });
 inrl({pattern: ['inrl'], desc: "to check i cmds", sucReact: "🙀", category: ['all'],},   async (message, client) => {
-	   const txts = inrlQuita();
+	  const txts =await inrlQuita();
 await client.sendMessage( message.from, { text: "😇"+ txts },{ quoted: message });
 });
 inrl({pattern: ['🥲',"😦","🥺","😑","😕","🤧","😔","🙄","🤥","🥴","😐","😒","😢"], desc : "for und",sucReact: "😛", category: ['ibot'], },async (message, client) => {
-const text = massge.client.text;
-	const texts = insult();
+   const texts =await insult();
    await client.sendMessage( message.from, { text : "😹"+texts },{ quoted: message });
 });
