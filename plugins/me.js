@@ -1034,28 +1034,30 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap, };
 inrl( { pattern: ["p1"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
   if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: errorMessage(T_L) }, { quoted: message } ); };
   
-var ttinullimage = textProImg1(message.client.text);
+var ttinullimage =await textProImg1(message.client.text);
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
 
-  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: config.exif.cap }, { quoted: message }); })
-  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+        await client.sendMessage( message.from, Message,{ quoted: message })
 });
 
 inrl( { pattern: ["p2"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
   if (message.client.text.length >= 30) { global.catchError = true; return await client.sendMessage( message.from, { text: errorMessage(T_L) }, { quoted: message } ); };
   
-var ttinullimage = textProImg2(message.client.text);
+var ttinullimage =await textProImg2(message.client.text);
 
-  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: config.exif.cap }, { quoted: message }); })
-  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
 });
 
 inrl( { pattern: ["p3"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
   if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: errorMessage(T_L) }, { quoted: message } ); };
   
-var ttinullimage = textProImg3(message.client.text);
+var ttinullimage =await textProImg3(message.client.text);
 
-  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: config.exif.cap }, { quoted: message }); })
-  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+const Message = { image: { url:  ttinullimage }, caption: config.exif.cap,  };
+
+        await client.sendMessage( message.from, Message,{ quoted: message })
 });
 
 config.api.textpro.takes1.map(logo => {
