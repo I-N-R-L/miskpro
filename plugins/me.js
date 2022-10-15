@@ -5,6 +5,11 @@ const axios = require('axios');
 const Config = require('../config');
 const ll ="*```Enter a word```"
 const Ln = "Free Fire logo maker"
+let N_T = "Need Text."
+let T_L = "Text is too long."
+let T_L_1 = "First text is too long."
+let T_L_2 = "Secand text is too long."
+let T_W = "Can use two words"
 let crtPass = pass.PASS;
 let passErr = pass.PERR;
 let checkPass = Config.PASSWORD
@@ -1025,6 +1030,45 @@ const Message = { image: { url:  ttinullimage }, caption: config.exif.cap, };
         await client.sendMessage( message.from, Message,{ quoted: message })
 
     });
+
+inrl( { pattern: ["p1"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: errorMessage(T_L) }, { quoted: message } ); };
+  
+var ttinullimage = textProImg1(message.client.text);
+
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});
+
+inrl( { pattern: ["p2"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (message.client.text.length >= 30) { global.catchError = true; return await client.sendMessage( message.from, { text: errorMessage(T_L) }, { quoted: message } ); };
+  
+var ttinullimage = textProImg2(message.client.text);
+
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});
+
+inrl( { pattern: ["p3"], sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+  if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: errorMessage(T_L) }, { quoted: message } ); };
+  
+var ttinullimage = textProImg3(message.client.text);
+
+  .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: config.exif.cap }, { quoted: message }); })
+  .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+});
+
+config.api.textpro.takes1.map(logo => {
+  const { pattern, textLenth, id } = logo; 
+  const url = config.api.textpro.domain + id;
+  inrl( { pattern, sucReact: "ðŸ–¼", category: ['logo'], usage: '<word>', }, async (message, client) => {
+    if (message.client.text.length >= 15) { global.catchError = true; return await client.sendMessage( message.from, { text: errorMessage(T_L) }, { quoted: message } ); };
+    await maker.textpro( url, [message.client.text])
+    .then( async (data) => { global.catchError = false; return await client.sendMessage( message.from, { image: { url: data }, caption: config.exif.cap }, { quoted: message }); })
+    .catch( async (err) => { global.catchError = true; return await client.sendErrorMessage( message.from, err, message.key, message ); });
+  });
+});
+
 inrl({pattern: ['inrl'], desc: "to check i cmds", sucReact: "🙀", category: ['all'],},   async (message, client) => {
 	  const txts =await inrlQuita();
 await client.sendMessage( message.from, { text: "😇"+ txts },{ quoted: message });
