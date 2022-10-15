@@ -32,11 +32,11 @@ var plaintext = (mdm);
 var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
-  .then(async (data) {
+  .then(async function hi(data) {
    fs.writeFileSync("./session.json" , data);
 await console.log('file creted successfully☑️');
 });
-await { state, saveState } = useSingleFileAuthState( "./session.json")
+const { state, saveState } = await useSingleFileAuthState("./session.json");
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
