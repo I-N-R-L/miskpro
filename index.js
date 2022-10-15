@@ -39,7 +39,6 @@ const { state, saveState } = useSingleFileAuthState( "./session.json")
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/baileys/store_multi.json");
 setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
-fs.readdirSync("./plugins").forEach((file) => {if (path.extname(file).toLowerCase() == ".js") {require(`./plugins/${file}`);}});
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 if('./session.json' === false ){
 console.log(' session file cretion failed ');
@@ -60,6 +59,11 @@ setInterval(() => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
+fs.readdirSync("./plugins").forEach((plugin) => {
+        if (path.extname(plugin).toLowerCase() == ".js") {
+          require("./plugins/" + plugin);
+        }
+      });
 console.log(chalk.green("💖 Login successful! \n bot working now💗"));
 conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
 }
