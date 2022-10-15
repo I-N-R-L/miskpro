@@ -32,10 +32,11 @@ var plaintext = (mdm);
 var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
-  .then(async function inrlBot(data) {
+  .then(async (data) {
    fs.writeFileSync("./session.json" , data);
 await console.log('file creted successfully☑️');
-const { state, saveState } = useSingleFileAuthState( "./session.json")
+});
+await { state, saveState } = useSingleFileAuthState( "./session.json")
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
@@ -148,8 +149,7 @@ if(Config.U_STATUS =='true'){
     await conn.updateProfileStatus(biography);
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
-             };
-         });
+          };
      };
 WhatsBotConnect();
 let file = require.resolve(__filename)
