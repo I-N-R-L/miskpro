@@ -36,8 +36,8 @@ pastebin
    fs.writeFileSync("./session.json" , data);
 await console.log('file creted successfully☑️');
 });
-const { state, saveState } = await useSingleFileAuthState("./session.json");
-const store = await makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
+const { state, saveState } = useSingleFileAuthState("./session.json");
+const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 // store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
@@ -151,7 +151,9 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
+setTimeout(() => {
 WhatsBotConnect();
+}, 3000);
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
