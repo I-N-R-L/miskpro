@@ -37,8 +37,8 @@ pastebin
 await console.log('file creted successfully☑️');
 const { state, saveState } = useSingleFileAuthState( "./session.json")
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
-store.readFromFile("./lib/database/json/baileys/store_multi.json");
-setInterval(() => { store.writeToFile("./lib/database/baileys/store_multi.json")}, 30 * 1000);
+store.readFromFile("./lib/database/json/store.json");
+setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
 global.api = (name, path = "/", query = {}, apikeyqueryname) => (name in jsoConfig.APIs ? jsoConfig.APIs[name] : name) + path + (query || apikeyqueryname ? "?" + new URLSearchParams( Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: jsoConfig.APIs.apikey } : {}), }) ) : "");
 if('./session.json' === false ){
 console.log(' session file cretion failed ');
@@ -48,24 +48,20 @@ console.log(' session file cretion failed ');
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
-
-setInterval(() => {
-    store.writeToFile("./lib/database/json/store.json");
-    console.log("saved store");
-  }, 30 * 60 * 1000);
-
-  conn.ev.on("creds.update", saveState);
+ conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
+    console.log("installing plugins🔘")
 fs.readdirSync("./plugins").forEach((plugin) => {
         if (path.extname(plugin).toLowerCase() == ".js") {
           require("./plugins/" + plugin);
         }
       });
+      console.log("plugin installed successfully☑️");
 console.log(chalk.green("💖 Login successful! \n bot working now💗"));
-conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now"})
+await conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now💕"})
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -116,7 +112,7 @@ if(Config.PM_BLOCK == "true"){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
     if(m.from !== users){
     conn.updateBlockStatus(m.from, "block")
-    conn.sendMessage(m.from, { text: `iam alread`})
+    conn.sendMessage(m.from, { text: `hey bro!\nyou note thet i a bussy person!\nevry day we got 139,28,287 msgs inPM\nHow i can response!?`})
       }
    }
 };
