@@ -184,7 +184,6 @@ const buttonMessage = {
       text: alievTxtNew,
       footer:"current mode : "+Config.REACT,
       buttons: buttons,
-      headerType: 1
     };
 
 await client.sendMessage(message.from,buttonMessage, { quoted: message});
@@ -220,7 +219,6 @@ const buttonMessage = {
       text: alievTxtNew+"type set-sud and your number",
       footer:"current value: "+Config.SUDO,
       buttons: buttons,
-      headerType: 1
     };
 await client.sendMessage(message.from, buttonMessage , { quoted: message});
 });
@@ -257,7 +255,6 @@ const buttonMessage = {
       text: alievTxtNew,
       footer:"current mode in grp: "+Config.GROUP_CHAT+"\n\ncurrent mode in all chat :"+Config.CHATBOT,
       buttons: buttons,
-      headerType: 1
     };
     
 await client.sendMessage(message.from, buttonMessage , { quoted: message});
@@ -305,7 +302,6 @@ const buttonMessage = {
       text: alievTxtNew,
       footer:"current mode : "+Config.U_STATUS,
       buttons: buttons,
-      headerType: 1
     };
     
 await client.sendMessage(message.from, buttonMessage, { quoted: message});
@@ -341,7 +337,6 @@ const buttonMessage = {
       text: alievTxtNew,
       footer:"current data : "+Config.ALIVE_DATA,
       buttons: buttons,
-      headerType: 1
     };
 
  await client.sendMessage(message.from, buttonMessage , { quoted: message});
@@ -378,7 +373,6 @@ const buttonMessage = {
       text: alievTxtNew,
       footer:"current mode : "+Config.BGMBOT,
       buttons: buttons,
-      headerType: 1
     };
 
  await client.sendMessage(message.from,  buttonMessage, { quoted: message});
@@ -751,7 +745,6 @@ const buttonMessage = {
       text: alievTxtNew,
       footer:"current mode : "+Config.CALL_BLOCK,
       buttons: buttons,
-      headerType: 1
     };
 
 await client.sendMessage(message.from,buttonMessage, { quoted: message});
@@ -788,7 +781,6 @@ const buttonMessage = {
       text: alievTxtNew,
       footer:"current mode : "+Config.PM_BLOCK,
       buttons: buttons,
-      headerType: 1
     };
 
 await client.sendMessage(message.from,buttonMessage, { quoted: message});
