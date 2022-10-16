@@ -62,20 +62,7 @@ aliveTxt = split[1];
 aliveButton1 = split[2];
 aliveButton2 = split[3];
   }
-         if(aliveTxt.includes("#")){
-var split = aliveTxt.split('#');
-const NewText0 = split[0].includes(ReplaseTxt) ? NewText0.replace(ReplaseTxt,${NewText0}) : NewText0;
-const NewText1 = split[1].includes(ReplaseTxt) ? NewText1.replace(ReplaseTxt,${NewText0}) : NewText1;
-const NewText2 = split[2].includes(ReplaseTxt) ? NewText2.replace(ReplaseTxt,${NewText0}) : NewText2;
-const NewText3 = split[3].includes(ReplaseTxt) ? NewText3.replace(ReplaseTxt,${NewText0}) : NewText3;
-const NewText4 = split[4].includes(ReplaseTxt) ? NewText4.replace(ReplaseTxt,${NewText0}) : NewText4;
-const NewText5 = split[5].includes(ReplaseTxt) ? NewText5.replace(ReplaseTxt,${NewText0}) : NewText5;
-const NewText6 = split[6].includes(ReplaseTxt) ? NewText6.replace(ReplaseTxt,${NewText0}) : NewText6;
-const NewText7 = split[7].includes(ReplaseTxt) ? NewText7.replace(ReplaseTxt,${NewText0}) : NewText7;
-}
-let NewOne = 
-
-
+         
       const alievTxtNew = aliveTxt;
       const buttons = [
         { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, },
