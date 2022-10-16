@@ -49,8 +49,8 @@ module.exports = {
 			  }),
     HEROKU: {
         HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
-        API_KEY: process.env.HEROKU_API_KEY || '',
-        APP_NAME: process.env.HEROKU_APP_NAME || ''
+        API_KEY: process.env.HEROKU_API_KEY || 'fbe6bea5-7e49-4262-adcc-df6c292de193',
+        APP_NAME: process.env.HEROKU_APP_NAME || 'test-bot-wa-md'
     },
     BLOCK_CHAT : process.env.BLOCK_CHAT ||[],
     AUTO_CHAT_PM : process.env.AUTO_CHAT_PM || "false",
