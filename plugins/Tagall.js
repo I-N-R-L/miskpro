@@ -1,7 +1,11 @@
 const { inrl, config, add } = require('../lib');
 
 inrl({ pattern: ["tagall"], sucReact: "😋", category: ["group", "all"], },
-  async (message, client) => {
+ 
+async (message, client) => {
+
+let { id, owner, subject, subjectOwner, subjectTime, creation, desc, descOwner, descId, restrict, announce, size, participants, ephemeralDuration, } = await client.groupMetadata(message.id)
+let gParticipants = message.participants
 
                 if (!message.isGroup) return await client.sendMessage( message.from, { text: "feature only work at group "}, { quoted: message } );
 
