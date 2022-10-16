@@ -138,15 +138,15 @@ _ex_ : set-imag-2 _-values are UrL_\n\n
  To change err img \n
 _ex_ : set-err _-values are UrL_\n\n\n
 To set  U-STATUS :\n
-_ex_ : ```set-ustatus``` Values are true false\n\n
+_ex_ : set-ustatus Values are true false\n\n
 To set  U-profiledata :\n
-_ex_ : ````set-profile``` Values are your txt\n\n
+_ex_ : set-profile Values are your txt\n\n
 To set  alivedata :\n
-_ex_ : ````set-alive-data ``` Values are your txt\n\n
+_ex_ : set-alive-data Values are your txt\n\n
 To set  bot info:\n
-_ex_ : ````set-bot-info ``` Values are your txt\n\n
+_ex_ : set-bot-info Values are your txt\n\n
 To set  Call_block :\n
-_ex_ : ````set-call-block``` Values are true false\n\n
+_ex_ : set-call-block Values are true false\n\n
 To set  pmBlock :\n
 _ex_ : ````set-pm-block``` Values are true false\n\n
 To set password :\n
