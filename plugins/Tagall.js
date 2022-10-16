@@ -19,7 +19,7 @@ let teks = `╚»˙·٠•●♥ Tag All ♥●•٠·˙«╝
 
                 }
 
-                await client.sendMessage(message.from, { text: teks }, { quoted: message })
+                await client.sendMessage(message.from, { text: "➪ "+teks }, { quoted: message })
 
                 });
 /*
