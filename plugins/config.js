@@ -180,14 +180,14 @@ const alievTxtNew = "to on, or off automatic react msg";
         { buttonId: ".set-rea false", buttonText: { displayText: "reaction off"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew,
+const buttonMessage = {
+      text: alievTxtNew,
       footer:"current mode : "+Config.REACT,
       buttons: buttons,
       headerType: 1
     };
 
-await client.sendMessage(message.from,templateButtons, { quoted: message});
+await client.sendMessage(message.from,buttonMessage, { quoted: message});
 });
 bots.inrl({pattern: ['set-rea'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
           const text = message.client.text;
@@ -216,13 +216,13 @@ const alievTxtNew = "to change sudo number ";
         { buttonId: ".😹", buttonText: { displayText: "_ok_"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew+"type set-sud and your number",
+const buttonMessage = {
+      text: alievTxtNew+"type set-sud and your number",
       footer:"current value: "+Config.SUDO,
       buttons: buttons,
       headerType: 1
     };
-await client.sendMessage(message.from, templateButtons , { quoted: message});
+await client.sendMessage(message.from, buttonMessage , { quoted: message});
 });
 bots.inrl({pattern: ['set-sud'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
           const text = message.client.text;
@@ -253,14 +253,14 @@ const alievTxtNew = "to set chat bot on grp or allchat";
         { buttonId: ".chat-all true", buttonText: { displayText: "chat bot on in all msg"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew,
+const buttonMessage = {
+      text: alievTxtNew,
       footer:"current mode in grp: "+Config.GROUP_CHAT+"\n\ncurrent mode in all chat :"+Config.CHATBOT,
       buttons: buttons,
       headerType: 1
     };
     
-await client.sendMessage(message.from, templateButtons , { quoted: message});
+await client.sendMessage(message.from, buttonMessage , { quoted: message});
 });
 bots.inrl({pattern: ['chat-grp'], fromMe: true, desc:"server err",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
           const text = message.client.text;
@@ -301,14 +301,14 @@ const alievTxtNew = "to on, or off automatic bio changing";
         { buttonId: ".set-bio true", buttonText: { displayText: "bio changing on"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew,
+const buttonMessage = {
+      text: alievTxtNew,
       footer:"current mode : "+Config.U_STATUS,
       buttons: buttons,
       headerType: 1
     };
     
-await client.sendMessage(message.from, templateButtons, { quoted: message});
+await client.sendMessage(message.from, buttonMessage, { quoted: message});
 });
 bots.inrl({pattern: ['set-bio'], fromMe: true, desc:"server err",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
           const text = message.client.text;
@@ -337,14 +337,14 @@ const alievTxtNew = "to change alive image, text, buttuns id names,buttuns id \n
         { buttonId: "e", buttonText: { displayText: "_ok_"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew,
+const buttonMessage = {
+      text: alievTxtNew,
       footer:"current data : "+Config.ALIVE_DATA,
       buttons: buttons,
       headerType: 1
     };
 
- await client.sendMessage(message.from, templateButtons , { quoted: message});
+ await client.sendMessage(message.from, buttonMessage , { quoted: message});
 });
 bots.inrl({pattern: ['set-alive-value'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
           const text = message.client.text;
@@ -374,14 +374,14 @@ const alievTxtNew = "to set bgm bot on or off";
         { buttonId: ".bgm-off", buttonText: { displayText: "bgm off"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew,
+const buttonMessage = {
+      text: alievTxtNew,
       footer:"current mode : "+Config.BGMBOT,
       buttons: buttons,
       headerType: 1
     };
 
- await client.sendMessage(message.from,  templateButtons, { quoted: message});
+ await client.sendMessage(message.from,  buttonMessage, { quoted: message});
 });
 bots.inrl({pattern: ['bgm-on'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
                 if (message.client.isCreator) { 
@@ -747,14 +747,14 @@ const alievTxtNew = "to set call block";
         { buttonId: ".call-block false", buttonText: { displayText: "call block off"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew,
+const buttonMessage = {
+      text: alievTxtNew,
       footer:"current mode : "+Config.CALL_BLOCK,
       buttons: buttons,
       headerType: 1
     };
 
-await client.sendMessage(message.from,templateButtons, { quoted: message});
+await client.sendMessage(message.from,buttonMessage, { quoted: message});
 });
 bots.inrl({pattern: ['call-block'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
           const text = message.client.text;
@@ -784,14 +784,14 @@ const alievTxtNew = "to set pm block";
         { buttonId: ". pm-block false", buttonText: { displayText: "pm block off"}, type: 1, },
       ]
 
-const templateButtons = {
-      caption: alievTxtNew,
+const buttonMessage = {
+      text: alievTxtNew,
       footer:"current mode : "+Config.PM_BLOCK,
       buttons: buttons,
       headerType: 1
     };
 
-await client.sendMessage(message.from,templateButtons, { quoted: message});
+await client.sendMessage(message.from,buttonMessage, { quoted: message});
 });
 bots.inrl({pattern: ['pm-block'], fromMe: true, desc:"bgm",sucReact: "🙅‍♀️", category: ["inrl"],}, async (message, client) => {
           const text = message.client.text;
