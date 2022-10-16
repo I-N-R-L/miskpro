@@ -3,9 +3,9 @@ const { inrl, config, add } = require('../lib');
 inrl({ pattern: ["tagall"], sucReact: "😋", category: ["group", "all"], },
   async (message, client) => {
 
-                if (!message.isGroup) client.sendMessage( message.from, { text: "feature only work at group "}, { quoted: message } );
+                if (!message.isGroup) return await client.sendMessage( message.from, { text: "feature only work at group "}, { quoted: message } );
 
-                if (!message.isBotAdmins) client.sendMessage( message.from, { text: "feature only for bot with admin"}, { quoted: message } );
+                if (!message.isBotAdmins) return await client.sendMessage( message.from, { text: "feature only for bot with admin"}, { quoted: message } );
 
 let teks = `╚»˙·٠•●♥ Tag All ♥●•٠·˙«╝ 
 
