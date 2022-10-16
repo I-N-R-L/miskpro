@@ -148,7 +148,7 @@ _ex_ : set-bot-info Values are your txt\n\n
 To set  Call_block :\n
 _ex_ : set-call-block Values are true false\n\n
 To set  pmBlock :\n
-_ex_ : ````set-pm-block``` Values are true false\n\n
+_ex_ : set-pm-block Values are true false\n\n
 To set password :\n
 _ex_: set-pass : value is crt pass\n\n
 to set freetxt\n
