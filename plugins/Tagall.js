@@ -7,23 +7,19 @@ async (message, client) => {
 let { id, owner, subject, subjectOwner, subjectTime, creation, desc, descOwner, descId, restrict, announce, size, participants, ephemeralDuration, } = await client.groupMetadata(message.id)
 let gParticipants = message.participants
 
-                if (!message.isGroup) return await client.sendMessage( message.from, { text: "feature only work at group "}, { quoted: message } );
-
-                if (!message.isBotAdmins) return await client.sendMessage( message.from, { text: "feature only for bot with admin"}, { quoted: message } );
-
 let teks = `╚»˙·٠•●♥ Tag All ♥●•٠·˙«╝ 
 
  
 
  ➲ *Message : ${mesage.client.text}*\n\n`
 
-                for (let mem of message.participants) {
+                for (let mem of gParticipants) {
 
                 teks += ` @${mem.id.split('@')[0]}\n`
 
                 }
 
-                await client.sendMessage(message.from, { text: teks, mentions: message.participants.map(a => a.id) }, { quoted: message })
+                await client.sendMessage(message.from, { text: teks, mentions: gParticipants.map(a => a.id) }, { quoted: message })
 
                 });
 /*
