@@ -84,8 +84,6 @@ await client.sendMessage(message.from,
  }, { quoted: message });
    }
 });
-const bots = require("../lib/perfix");
-const Config = require("../config");
 bots.inrl(
   {
     pattern: ["setvar"],
