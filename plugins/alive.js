@@ -42,14 +42,12 @@ inrl(
     category: ["system", "all"],
   },
   async (message, client) => {
-let timestampe = speed();
-let Wspeed = speed() - timestampe;
 let Quita = inrlQuita();
 let insult = insult();
 let Sender = message.client.pushName;
 let Hits = global.mydb.hits;
 let myUsers = global.mydb.users.length;
-let speed = Wspeed.toFixed(4);
+let date = new Date().toLocaleString("EN", { timeZone: "Asia/kolkata" }); ;
 let host = os.hostname();
 let ReplaseTxt = "Quita" || "insult" || "Sender" || "Hits" || "myUsers" || "speed" || "host";
 // testing
