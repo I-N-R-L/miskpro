@@ -43,9 +43,9 @@ inrl(
   },
   async (message, client) => {
 let Quita = inrlQuita();
-let insult = insult();
-let Sender = message.client.pushName;
-let Hits = global.mydb.hits;
+const insult = insult();
+const Sender = message.client.pushName;
+const Hits = global.mydb.hits;
 let myUsers = global.mydb.users.length;
 let date = new Date().toLocaleString("EN", { timeZone: "Asia/kolkata" }); ;
 let host = os.hostname();
