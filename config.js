@@ -14,7 +14,7 @@ module.exports = {
     GROUP_CHAT : process.env.GROUP_CHAT || 'false',
     FREE_TXT : process.env.FREE_TXT || 'inrlbotmd',
     U_STATUS: process.env.U_STATUS || 'true',
-    ALIVE_DATA : process.env.ALIVE_DATA || "https://i.imgur.com/DyLAuEh.jpg;aliveText;alivebButtenText1;aliveTextButten2",
+    ALIVE_DATA : process.env.ALIVE_DATA || `https://i.imgur.com/DyLAuEh.jpg;aliveText;alivebButtenText1;aliveTextButten2`,
     ALIVETXT: process.env.ALIVETXT || 'INRL-BOT-MD',
     MENTION: process.env.MENTION || 'on',
     BOT_INFO : process.env.BOT_INFO || "INRL-BOT-MD,INRL,https://i.imgur.com/DyLAuEh.jpg",
