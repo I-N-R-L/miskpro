@@ -101,11 +101,12 @@ let _message = message.quoted.audioMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
 let ran = getRandom('.mp3')
    exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
-   fs.unlinkSync(media)
+   
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buff = fs.readFileSync(ran)
 client.sendMessage(message.from,  { audio: buff, mimetype: "audio/mpeg", fileName: `${Config.FREE_TXT}.mp3`, }, { quoted: message });
   fs.unlinkSync(ran)
+fs.unlinkSync(media)
    });
   }
 });
