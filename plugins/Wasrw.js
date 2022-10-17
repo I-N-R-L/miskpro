@@ -18,7 +18,7 @@ await client.sendMessage(message.from, { video: location, caption: config.exif.c
 inrl({pattern: ['scan'], desc: "to scan", sucReact: "💗", category: ['all'],},   async (message, client) => {
 	    const url = `https://qr-code-for-whatsapp-bot.herokuapp.com/`;
 		    
-const qrTxtNew = ᴛᴏ ᴜꜱᴇ ɪɴʀʟ ʙᴏᴛ ᴍᴅ\nᴩʟᴇᴀꜱᴇ ꜱᴄᴀɴ ᴛɢᴇ qʀ ᴡɪᴛʜɪɴ 25 ꜱᴇᴄᴏᴜɴᴅꜱ\nɪꜰ ᴛʜᴇ qʀ ᴡɪʟʟ ʙᴇᴇɴ ᴇxᴩɪʀᴇᴅ\nᴄʟɪᴄᴋ ᴛʜᴇ ʙɪʟᴏᴡᴡ ʙᴏᴛᴜɴ ᴀɴᴅ ʀᴇꜱᴄᴀɴ;
+const qrTxtNew = "ᴛᴏ ᴜꜱᴇ ɪɴʀʟ ʙᴏᴛ ᴍᴅ\nᴩʟᴇᴀꜱᴇ ꜱᴄᴀɴ ᴛɢᴇ qʀ ᴡɪᴛʜɪɴ 25 ꜱᴇᴄᴏᴜɴᴅꜱ\nɪꜰ ᴛʜᴇ qʀ ᴡɪʟʟ ʙᴇᴇɴ ᴇxᴩɪʀᴇᴅ\nᴄʟɪᴄᴋ ᴛʜᴇ ʙɪʟᴏᴡᴡ ʙᴏᴛᴜɴ ᴀɴᴅ ʀᴇꜱᴄᴀɴ";
       const buttons = [
         { buttonId: "scan", buttonText: { displayText: "ꜱᴄᴀɴ qʀ"}, type: 1, },
       ]
