@@ -1,5 +1,4 @@
 var NewGen;
-var NewGen1;
 const os = require("os");
 const speed = require("performance-now");
 const  { inrl , config, inrlQuita, insult }= require('../lib/')
@@ -51,8 +50,6 @@ const Hits = global.mydb.hits;
 let myUsers = global.mydb.users.length;
 let date = new Date().toLocaleString("EN", { timeZone: "Asia/kolkata" }); ;
 let host = os.hostname();
-let ReplaseTxt = "Quita" || "insult" || "Sender" || "Hits" || "myUsers" || "speed" || "host";
-// testing
 
 const aliveData = Config.ALIVE_DATA;
 if (aliveData.includes(';')) { 
@@ -66,10 +63,25 @@ NewGen = aliveTxt
          if (NewGen.includes('#Quita')) {
 NewGen = NewGen.replace("#Quita", `${Quita}`)
 }
-
 if (NewGen.includes('#Insult')) {
 NewGen = NewGen.replace("#Insult", `${Insult}`)
 }
+if (NewGen.includes('#Sender')) {
+NewGen = NewGen.replace("#Sender", `${Sender}`)
+}
+if (NewGen.includes('#myUsers')) {
+NewGen = NewGen.replace("#myUsers", `${myUsers}`)
+}
+if (NewGen.includes('#Hits')) {
+NewGen = NewGen.replace("#myUsers", `${myUsers}`)
+}
+if (NewGen.includes('#host')) {
+NewGen = NewGen.replace("#host", `${host}`)
+}
+if (NewGen.includes('#date')) {
+NewGen = NewGen.replace("#date", `${date}`)
+}
+
       let alievTxtNew = `${NewGen}`;
       const buttons = [
         { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, },
