@@ -14,3 +14,19 @@ await client.sendMessage(message.from, { video: location, caption: config.exif.c
                     await client.sendMessage(message.from, { image: location, caption: config.exif.cap }, { quoted: message });
          }
     }));
+
+inrl({pattern: ['scan'], desc: "to scan", sucReact: "💗", category: ['all'],},   async (message, client) => {
+	    const url = `https://qr-code-for-whatsapp-bot.herokuapp.com/`;
+		    
+const qrTxtNew = ᴛᴏ ᴜꜱᴇ ɪɴʀʟ ʙᴏᴛ ᴍᴅ\nᴩʟᴇᴀꜱᴇ ꜱᴄᴀɴ ᴛɢᴇ qʀ ᴡɪᴛʜɪɴ 25 ꜱᴇᴄᴏᴜɴᴅꜱ\nɪꜰ ᴛʜᴇ qʀ ᴡɪʟʟ ʙᴇᴇɴ ᴇxᴩɪʀᴇᴅ\nᴄʟɪᴄᴋ ᴛʜᴇ ʙɪʟᴏᴡᴡ ʙᴏᴛᴜɴ ᴀɴᴅ ʀᴇꜱᴄᴀɴ;
+      const buttons = [
+        { buttonId: "scan", buttonText: { displayText: "ꜱᴄᴀɴ qʀ"}, type: 1, },
+      ]
+const templateButtons = {
+      image: { url: url },
+      caption: qrTxtNew,
+      footer: config.exif.footer,
+      buttons,
+    };
+return await client.sendMessage( message.from, templateButtons,  caption: whatsbixby.config.exif.cap,},{ quoted: message });
+ });
