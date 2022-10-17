@@ -99,7 +99,7 @@ set = '-af equalizer=f=54:width_type=o:width=2:g=20'
 if (/audio/.test(message.client.mime)) {
 let _message = message.quoted.audioMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
-let ran = getRandom('.mp3')
+let ran = getRandom(media,'.mp3')
    exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
    
 if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
