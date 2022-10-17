@@ -1,3 +1,4 @@
+/*
 var NewGen, templateButtons;
 const os = require("os");
 const speed = require("performance-now");
@@ -277,3 +278,4 @@ bots.inrl({ pattern: [`cmds-count`], sucReact: "🆗", category: ["all", "system
     return await client.sendErrorMessage( message.from, error, message.key, message);
   }
 });
+*/
