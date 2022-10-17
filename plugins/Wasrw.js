@@ -28,5 +28,5 @@ const templateButtons = {
       footer: config.exif.footer,
       buttons,
     };
-return await client.sendMessage( message.from, templateButtons,  caption: whatsbixby.config.exif.cap,},{ quoted: message });
+return await client.sendMessage( message.from, templateButtons, { quoted: message });
  });
