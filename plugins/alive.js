@@ -1,4 +1,5 @@
 var NewGen;
+var NewGen1;
 const os = require("os");
 const speed = require("performance-now");
 const  { inrl , config, inrlQuita, insult }= require('../lib/')
@@ -65,10 +66,11 @@ aliveButton2 = split[3];
  NewGen = aliveTxt;
  NewGen = aliveTxt.replace("#Quita", `${Quita}`)
 }
-if (NewGen.includes('#Insult')) {
- NewGen = aliveTxt.replace("#Insult", `${Insult}`)
+NewGen1 = NewGen;
+if (NewGen1.includes('#Insult')) {
+ NewGen1 = aliveTxt.replace("#Insult", `${Insult}`)
 }
-      let alievTxtNew = `${NewGen}`;
+      let alievTxtNew = `${NewGen1}`;
       const buttons = [
         { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, },
         { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, },
