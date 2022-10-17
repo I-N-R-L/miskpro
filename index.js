@@ -28,13 +28,12 @@ global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
     new cloudDBAdapter(opts['db']) : /mongodb/.test(opts['db']) ?
       new mongoDB(opts['db']) :
-       JSONFile(`lib/database/store.json`)
+      new JSONFile(`lib/database/store.json`)
 )
 global.db.data = {
     users: {},
     chats: {},
     database: {},
-    game: {},
     settings: {},
     others: {},
     sticker: {},
