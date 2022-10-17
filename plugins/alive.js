@@ -43,8 +43,8 @@ inrl(
     category: ["system", "all"],
   },
   async (message, client) => {
-const Quita = inrlQuita();
-const Insult = insult();
+const Quita = await inrlQuita();
+const Insult = await insult();
 const Sender = message.client.pushName;
 const Hits = global.mydb.hits;
 let myUsers = global.mydb.users.length;
