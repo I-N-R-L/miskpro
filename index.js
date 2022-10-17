@@ -20,13 +20,9 @@ global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
 
-var low
-try {
-  low = require('lowdb')
-} catch (e) {
-  low = require('./lib/database/server')
-}
+var low;
 
+  low = require('lowdb')
 const { Low, JSONFile } = low
 const mongoDB = require('./lib/database/NewDb')
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
