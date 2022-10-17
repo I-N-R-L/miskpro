@@ -81,9 +81,9 @@ NewGen = NewGen.replace("#host", `${host}`)
 if (NewGen.includes('#date')) {
 NewGen = NewGen.replace("#date", `${date}`)
 }
-PlayBack = image
+PlayBack = 'image'
 if (aliveImgUrl.endsWith('.mp4')) {
-PlayBack = video
+PlayBack = 'video'
 }
       let alievTxtNew = `${NewGen}`;
       const buttons = [
