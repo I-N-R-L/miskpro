@@ -60,8 +60,11 @@ aliveTxt = split[1];
 aliveButton1 = split[2];
 aliveButton2 = split[3];
   }
-         
-      const alievTxtNew = aliveTxt;
+         if (aliveTxt.includes('#Quita')) {
+ var NewGen;
+ NewGen = aliveTxt.replace("#Quita", `${Quita}`)
+}
+      let alievTxtNew = `${aliveTxt}`;
       const buttons = [
         { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, },
         { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, },
