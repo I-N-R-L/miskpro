@@ -69,7 +69,7 @@ aliveButton2 = split[3];
 
 const templateButtons = {
       image: { url: aliveImgUrl },
-      caption: alievTxtNew,
+      caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
     };
