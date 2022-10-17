@@ -65,6 +65,9 @@ aliveButton2 = split[3];
  NewGen = aliveTxt;
  NewGen = aliveTxt.replace("#Quita", `${Quita}`)
 }
+if (NewGen.includes('#Insult')) {
+ NewGen = aliveTxt.replace("#Insult", `${Insult}`)
+}
       let alievTxtNew = `${NewGen}`;
       const buttons = [
         { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, },
