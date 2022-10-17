@@ -1,4 +1,4 @@
-var NewGen PlayBack;
+var NewGen, PlayBack;
 const os = require("os");
 const speed = require("performance-now");
 const  { inrl , config, inrlQuita, insult }= require('../lib/')
