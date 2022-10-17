@@ -7,7 +7,7 @@ const Config = require('../config');
 
         if (message.quoted.videoMessage) {
        let location = await message.quoted.download();
-await client.sendMessage(message.from, { video: location, caption: config.exif.cap }, { quoted: message });
+await client.sendMessage(message.from, { video: location, caption: message.quoted.download().caption }, { quoted: message });
    await fs.unlinkSync(location)
       }else if (!message.quoted.videoMessage && message.quoted.imageMessage) {
             let location =await message.quoted.download()
