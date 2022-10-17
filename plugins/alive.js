@@ -1,4 +1,4 @@
-var NewGen;
+var NewGen, templateButtons;
 const os = require("os");
 const speed = require("performance-now");
 const  { inrl , config, inrlQuita, insult }= require('../lib/')
@@ -88,19 +88,27 @@ NewGen = NewGen.replace("#date", `${date}`)
         { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, },
       ]
 if (aliveImgUrl.endsWith('.mp4')) {
-let templateButtons = {
+ templateButtons = {
       video: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
     };
-} else templateButtons = {
+}else if(aliveImgUrl.endsWith('.jpg')) {
+  templateButtons = {
       image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
     };
-
+}else if(aliveImgUrl.endsWith('.jpeg')) {
+   templateButtons = {
+      image: { url: aliveImgUrl },
+      caption: `${alievTxtNew}`,
+      footer: config.exif.footer,
+      buttons,
+    };
+}
     await client.sendMessage(message.from, templateButtons, { quoted: message });
 });
 
