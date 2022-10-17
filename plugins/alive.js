@@ -1,4 +1,4 @@
-var NewGen, PlayBack;
+var NewGen;
 const os = require("os");
 const speed = require("performance-now");
 const  { inrl , config, inrlQuita, insult }= require('../lib/')
@@ -81,18 +81,21 @@ NewGen = NewGen.replace("#host", `${host}`)
 if (NewGen.includes('#date')) {
 NewGen = NewGen.replace("#date", `${date}`)
 }
-PlayBack = 'image'
-if (aliveImgUrl.endsWith('.mp4')) {
-PlayBack = 'video'
-}
+
       let alievTxtNew = `${NewGen}`;
       const buttons = [
         { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, },
         { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, },
       ]
-
-const templateButtons = {
-      PlayBack: { url: aliveImgUrl },
+if (aliveImgUrl.endsWith('.mp4')) {
+let templateButtons = {
+      video: { url: aliveImgUrl },
+      caption: `${alievTxtNew}`,
+      footer: config.exif.footer,
+      buttons,
+    };
+} else templateButtons = {
+      image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
