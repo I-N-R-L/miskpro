@@ -1,4 +1,4 @@
-/*
+
 var NewGen, templateButtons;
 const os = require("os");
 const speed = require("performance-now");
@@ -48,6 +48,9 @@ const Quita = await inrlQuita();
 const Insult = await insult();
 const Sender = message.client.pushName;
 const Hits = global.mydb.hits;
+const Git = Config.GIT;
+const Yt = Config.YT;
+const Insta = Config.INSTAGRAM; 
 let myUsers = global.mydb.users.length;
 let date = new Date().toLocaleString("EN", { timeZone: "Asia/kolkata" }); ;
 let host = os.hostname();
@@ -82,6 +85,18 @@ NewGen = NewGen.replace("#host", `${host}`)
 if (NewGen.includes('#date')) {
 NewGen = NewGen.replace("#date", `${date}`)
 }
+if (NewGen.includes('#Hits')) {
+NewGen = NewGen.replace("#Hits", `${Hits}`)
+}
+if (NewGen.includes('#Git')) {
+NewGen = NewGen.replace("#Git", `${Git}`)
+}
+if (NewGen.includes('#Yt')) {
+NewGen = NewGen.replace("#Yt", `${Yt}`)
+}
+if (NewGen.includes('#Insta')) {
+NewGen = NewGen.replace("#Insta", `${Insta}`)
+}
 
       let alievTxtNew = `${NewGen}`;
       const buttons = [
@@ -94,23 +109,27 @@ if (aliveImgUrl.endsWith('.mp4')) {
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
-    };
+    }
+await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpg')) {
   templateButtons = {
       image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
-    };
+    }
+await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpeg')) {
    templateButtons = {
       image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
-    };
-}
-    await client.sendMessage(message.from, templateButtons, { quoted: message });
+    }
+await client.sendMessage(message.from, templateButtons, { quoted: message });
+} else {
+await client.sendMessage(message.from,{ text :`${aliveTxt}\n\niam alive Bro\nfor adding your own datas like coustmized button\ntype the same type as wahts you want\nset-alive-value  imgurl;alivetxt;buttonName1;2\nCurrent value :${Config.ALIVE_DATA}\n\nif need coustmized twxts like Quita;insult;Inst_Url;\n add whats you want withStarting# \n_ex_:Quita :#Quita \n note thet the fisrt letter is capitel\nvalues is :#Hits,#Sender,#Insult#Quita...\n#Insta, #Yt, #Git,`}, { quoted: message });
+      }
 });
 
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
@@ -278,4 +297,3 @@ bots.inrl({ pattern: [`cmds-count`], sucReact: "🆗", category: ["all", "system
     return await client.sendErrorMessage( message.from, error, message.key, message);
   }
 });
-*/
