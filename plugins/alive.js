@@ -128,7 +128,7 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 } else {
-await client.sendMessage(message.from,{ text :`${aliveTxt}\n\niam alive Bro\nfor adding your own datas like coustmized button\ntype the same type as wahts you want\nset-alive-value  imgurl;alivetxt;buttonName1;2\nCurrent value :${Config.ALIVE_DATA}\n\nif need coustmized twxts like Quita;insult;Inst_Url;\n add whats you want withStarting# \n_ex_:Quita :#Quita \n note thet the fisrt letter is capitel\nvalues is :#Hits,#Sender,#Insult#Quita...\n#Insta, #Yt, #Git,`}, { quoted: message });
+await client.sendMessage(message.from,{ text :`${aliveTxt}\n\niam alive Bro ${Sender}\n\nfor adding your own datas like coustmized button\ntype the same type as wahts you want\n\nset-alive-value  imgurl;alivetxt;buttonName1;2\n\nCurrentValue :${Config.ALIVE_DATA}\n\nif need coustmized texts like Quita;insult;Inst_Url.. \n\n add whats you want *withStarting#* \n_ex_:Quita :#Quita \n note thet the fisrt letter is _capitel_\n\nvalues is :#Hits,#Sender,#Insult#Quita...\n#Insta, #Yt, #Git,`}, { quoted: message });
       }
 });
 
