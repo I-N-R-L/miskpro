@@ -14,7 +14,7 @@ module.exports = {
     GROUP_CHAT : process.env.GROUP_CHAT || 'false',
     FREE_TXT : process.env.FREE_TXT || 'inrlbotmd',
     U_STATUS: process.env.U_STATUS || 'true',
-    ALIVE_DATA : process.env.ALIVE_DATA || `https://i.imgur.com/DyLAuEh.jpg;aliveText;alivebButtenText1;aliveTextButten2`,
+    ALIVE_DATA : process.env.ALIVE_DATA || `aliveTxt;aliveText;alivebButtenText1;aliveTextButten2`,
     ALIVETXT: process.env.ALIVETXT || 'INRL-BOT-MD',
     MENTION: process.env.MENTION || 'on',
     BOT_INFO : process.env.BOT_INFO || "INRL-BOT-MD,INRL,https://i.imgur.com/DyLAuEh.jpg",
@@ -49,7 +49,7 @@ module.exports = {
 			  }),
     HEROKU: {
         HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
-        API_KEY: process.env.HEROKU_API_KEY || 'freetrsr-md5c70df7f-b11e-44cd-9b8f-4a67055e66ba',
+        API_KEY: process.env.HEROKU_API_KEY || '5c70df7f-b11e-44cd-9b8f-4a67055e66ba',
         APP_NAME: process.env.HEROKU_APP_NAME || 'freetrsr-md'
     },
     BLOCK_CHAT : process.env.BLOCK_CHAT ||[],
