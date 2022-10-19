@@ -105,7 +105,7 @@ let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Ins
    buttons.push(b3);
 }
 
-buttons.push(bi);
+buttons.push(b1);
 buttons.push(b2);
 
 let alievTxtNew = `${NewGen}`;
