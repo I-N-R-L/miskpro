@@ -102,7 +102,7 @@ let buttons = [];
 if (NewGen.includes('#Insta')) {
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
-   buttons.push(b3);
+  await buttons.push(b3);
 }
 
 buttons.push(b1);
@@ -114,7 +114,7 @@ if (aliveImgUrl.endsWith('.mp4')) {
       video: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
-      await buttons,
+      buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpg')) {
@@ -122,7 +122,7 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
       image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
-      await buttons,
+      buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpeg')) {
@@ -130,7 +130,7 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
       image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
-      await buttons,
+      buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 } else {
