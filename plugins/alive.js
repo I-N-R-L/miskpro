@@ -114,7 +114,7 @@ if (aliveImgUrl.endsWith('.mp4')) {
       video: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
-      buttons,
+      await buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpg')) {
@@ -122,7 +122,7 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
       image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
-      buttons,
+      await buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpeg')) {
@@ -130,7 +130,7 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
       image: { url: aliveImgUrl },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
-      buttons,
+      await buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 } else {
