@@ -97,11 +97,11 @@ NewGen = NewGen.replace("#Yt", `${Yt}`)
       
 let buttons = [];
       
-      let b1 = { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, },
-      let b2 = { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, },
+      let b1 = { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, };
+      let b2 = { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, };
 if (NewGen.includes('#Insta')) {
 NewGen = NewGen.replace("#Insta", "")
-let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }},
+let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
    buttons.push(b3);
 }
 
