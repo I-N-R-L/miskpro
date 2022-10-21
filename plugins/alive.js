@@ -1,4 +1,3 @@
-
 var NewGen, templateButtons;
 const os = require("os");
 const speed = require("performance-now");
@@ -127,7 +126,7 @@ templateButtons = {
     templateButtons: buttons,
     image: {url: aliveImgUrl}
     }
-await client.sendMessage(message.sender, templateButtons, { quoted: message });
+await client.sendMessage(message.from, templateButtons);
    }
 }else if (NewGen.includes('#Insta')) {
 NewGen = NewGen.replace("#Insta", "")
@@ -140,7 +139,7 @@ templateButtons = {
     templateButtons: buttons,
     image: {url: aliveImgUrl}
     }
-await client.sendMessage(message.sender, templateButtons, { quoted: message });
+await client.sendMessage(message.from, templateButton);
     }
 }else if (NewGen.includes('#Insta')) {
 NewGen = NewGen.replace("#Insta", "")
@@ -153,7 +152,7 @@ templateButtons = {
     templateButtons: buttons,
     video: {url: aliveImgUrl}
     }
-await client.sendMessage(message.sender, templateButtons, { quoted: message });
+await client.sendMessage(message.from, templateButtons);
     }
 }else if(aliveImgUrl.endsWith('.jpg')) {
   templateButtons = {
@@ -170,7 +169,7 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
       footer: config.exif.footer,
       buttons,
     }
-await client.sendMessage(message.sender, templateButtons, { quoted: message });
+await client.sendMessage(message.from, templateButtons, { quoted: message });
 } else {
 await client.sendMessage(message.from,{ text :`${aliveTxt}\n\niam alive Bro ${Sender}\n\nfor adding your own datas like coustmized button\ntype the same type as wahts you want\n\nset-alive-value  imgurl;alivetxt;buttonName1;2\n\nCurrentValue :${Config.ALIVE_DATA}\n\nif need coustmized texts like Quita;insult;Inst_Url.. \n\n add whats you want *withStarting#* \n_ex_:Quita :#Quita \n note thet the fisrt letter is _capitel_\n\nvalues is :#Hits,#Sender,#Insult#Quita...\n#Insta, #Yt, #Git,`}, { quoted: message });
       }
