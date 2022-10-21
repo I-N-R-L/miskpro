@@ -8,7 +8,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-     const text = "message.quoted.text";
+     const text = message.quoted.text;
    
 let ThenText = await styletext(text, "31")
 
