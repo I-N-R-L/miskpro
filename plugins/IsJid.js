@@ -1,3 +1,4 @@
+module.exports = async (conn, m) => {
 const { inrl } = require('../lib/');
 inrl(
 	   {
@@ -19,8 +20,8 @@ inrl(
 	   },
 	async (message, client) => {
 try{
-		let { id, owner, subject, subjectOwner, subjectTime, creation, desc, descOwner, descId, restrict, announce, size, participants, ephemeralDuration, } = await client.groupMetadata(message.id)
-		let gParticipants = message.participants
+		let { participants } = await conn.groupMetadata(m.id)
+		let gParticipants = m.participants
 		let teks = `╚»˙·٠•●♥ Tag All ♥●•٠·˙«╝ 
  
                 ➲ *Message : ${mesage.client.text}*\n\n`
@@ -38,3 +39,4 @@ try{
                 }
 	}
 );
+}
