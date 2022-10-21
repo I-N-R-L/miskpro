@@ -146,7 +146,7 @@ await client.sendMessage(message.sender, templateButtons, { quoted: message });
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
   await buttons.push(b3);
-(aliveImgUrl.endsWith('.mp4')){
+if(aliveImgUrl.endsWith('.mp4')){
 templateButtons = {
     text: alievTxtNew,
     footer: config.exif.footer,
