@@ -8,10 +8,14 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-     const text = message.quoted.text;
-   
-let ThenText = await styletext(text, "31")
+     const text = message.client.text;
+  // if (text.includes(',')) {
+         var split = text.split(',');
+         Num = split[0] || "25";
+         Text = split[1] || "enter A text with number ex 31,text";
+//}
+let ThenText = await styletext(Text, Num)
 
-return await client.sendMessage(message.from, { text : "he"+ ThenText });
+return await client.sendMessage(message.from, { text : ThenText });
     }
 );
