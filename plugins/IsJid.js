@@ -18,7 +18,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-
+try{
 		let { id, owner, subject, subjectOwner, subjectTime, creation, desc, descOwner, descId, restrict, announce, size, participants, ephemeralDuration, } = await client.groupMetadata(message.id)
 		let gParticipants = message.participants
 		let teks = `╚»˙·٠•●♥ Tag All ♥●•٠·˙«╝ 
@@ -31,7 +31,10 @@ inrl(
 
                 }
 
-                return await client.sendMessage(message.from, { text: teks })
+                await client.sendMessage(message.from, { text: teks })
 
                 }
+} catch (err) {
+		return await client.sendMessage(message.from, { text: err })
+	}
 );
