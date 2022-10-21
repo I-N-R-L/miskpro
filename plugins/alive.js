@@ -107,7 +107,7 @@ let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Ins
 
 buttons.push(b1);
 buttons.push(b2);
-if (NewGen.includes('@Style')) {
+if (aliveData.includes('@Style')) {
 NewGen = NewGen.replace("@Style", "")
 NewGen = randomStyle(NewGen);
 }
