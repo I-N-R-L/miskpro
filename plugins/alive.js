@@ -119,6 +119,8 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
   await buttons.push(b3);
+await buttons.push(b1);
+await buttons.push(b2);
 if(aliveImgUrl.endsWith('.jpg')){
 templateButtons = {
     text: alievTxtNew,
@@ -132,6 +134,8 @@ await client.sendMessage(message.from, templateButtons);
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
   await buttons.push(b3);
+await buttons.push(b1);
+await buttons.push(b2);
 if(aliveImgUrl.endsWith('.jpeg')){
 templateButtons = {
     text: alievTxtNew,
@@ -145,6 +149,8 @@ await client.sendMessage(message.from, templateButton);
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
   await buttons.push(b3);
+await buttons.push(b1);
+await buttons.push(b2);
 if(aliveImgUrl.endsWith('.mp4')){
 templateButtons = {
     text: alievTxtNew,
