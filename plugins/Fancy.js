@@ -10,7 +10,7 @@ inrl(
 	async (message, client) => {
      const text = "message.quoted.text";
    
-let ThenText = await styletext("text", "31")
+let ThenText = await styletext(text, "31")
 
 return await client.sendMessage(message.from, { text : ThenText });
     }
