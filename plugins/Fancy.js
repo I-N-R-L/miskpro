@@ -1,4 +1,4 @@
-const { inrl , styletext, listall, tiny } = require("../lib/");
+const { inrl , styletext, listall, tiny , randomStyle} = require("../lib/");
 
 inrl(
 	   {
@@ -82,6 +82,19 @@ return await client.sendMessage(message.from, { text : NewText });
 //}
 let ThenText = await styletext(Text, Num)
 
+return await client.sendMessage(message.from, { text : ThenText });
+    }
+);
+inrl(
+	   {
+		pattern: ['rand'],
+		desc: 'To check ping',
+                sucReact: "💯",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+     const text = message.client.text;
+let ThenText = await randomStyle(text)
 return await client.sendMessage(message.from, { text : ThenText });
     }
 );
