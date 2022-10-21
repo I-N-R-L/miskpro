@@ -21,7 +21,17 @@ inrl(
 
 		let { id, owner, subject, subjectOwner, subjectTime, creation, desc, descOwner, descId, restrict, announce, size, participants, ephemeralDuration, } = await client.groupMetadata(message.id)
 		let gParticipants = message.participants
-		let texts += await participants;
-		return await client.sendMessage( message.from, { text: texts }, { quoted: message })
+		let teks = `╚»˙·٠•●♥ Tag All ♥●•٠·˙«╝ 
+ 
+                ➲ *Message : ${mesage.client.text}*\n\n`
+
+                for (let mem of participants) {
+
+                teks += ` @${mem.id.split('@')[0]}\n`
+
                 }
-)
+
+                return await client.sendMessage(message.from, { text: teks })
+
+                }
+);
