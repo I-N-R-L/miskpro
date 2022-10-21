@@ -1,3 +1,4 @@
+const { inrl } = require('../lib/');
 inrl(
 	   {
 		pattern: ['jid'],
