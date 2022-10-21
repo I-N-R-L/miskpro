@@ -116,10 +116,11 @@ if (aliveImgUrl.endsWith('.mp4')) {
       buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
-}else if (NewGen.includes('#Insta')) && (aliveImgUrl.endsWith('.jpg')) {
+}else if (NewGen.includes('#Insta')) {
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
   await buttons.push(b3);
+if(aliveImgUrl.endsWith('.jpg')){
 templateButtons = {
     text: alievTxtNew,
     footer: config.exif.footer,
@@ -127,10 +128,12 @@ templateButtons = {
     image: {url: aliveImgUrl}
     }
 await client.sendMessage(message.sender, templateButtons, { quoted: message });
-}else if (NewGen.includes('#Insta')) && (aliveImgUrl.endsWith('.jpeg')) {
+   }
+}else if (NewGen.includes('#Insta')) {
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
   await buttons.push(b3);
+if(aliveImgUrl.endsWith('.jpeg')){
 templateButtons = {
     text: alievTxtNew,
     footer: config.exif.footer,
@@ -138,10 +141,12 @@ templateButtons = {
     image: {url: aliveImgUrl}
     }
 await client.sendMessage(message.sender, templateButtons, { quoted: message });
-}else if (NewGen.includes('#Insta')) && (aliveImgUrl.endsWith('.mp4')) {
+    }
+}else if (NewGen.includes('#Insta')) {
 NewGen = NewGen.replace("#Insta", "")
 let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
   await buttons.push(b3);
+(aliveImgUrl.endsWith('.mp4')){
 templateButtons = {
     text: alievTxtNew,
     footer: config.exif.footer,
@@ -149,6 +154,7 @@ templateButtons = {
     video: {url: aliveImgUrl}
     }
 await client.sendMessage(message.sender, templateButtons, { quoted: message });
+    }
 }else if(aliveImgUrl.endsWith('.jpg')) {
   templateButtons = {
       image: { url: aliveImgUrl },
