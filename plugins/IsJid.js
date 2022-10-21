@@ -25,7 +25,7 @@ inrl(
  
                 ➲ *Message : ${mesage.client.text}*\n\n`
 
-                for (let mem of participants) {
+                for (let mem of gParticipants) {
 
                 teks += ` @${mem.split('@')[0]}\n`
 
