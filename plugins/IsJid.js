@@ -27,7 +27,7 @@ inrl(
 
                 for (let mem of participants) {
 
-                teks += ` @${mem.id.split('@')[0]}\n`
+                teks += ` @${mem.split('@')[0]}\n`
 
                 }
 
