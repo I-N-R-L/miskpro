@@ -99,11 +99,6 @@ let buttons = [];
       
       let b1 = { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, };
       let b2 = { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, };
-if (NewGen.includes('#Insta')) {
-NewGen = NewGen.replace("#Insta", "")
-let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
-  await buttons.push(b3);
-}
 
 buttons.push(b1);
 buttons.push(b2);
@@ -121,6 +116,39 @@ if (aliveImgUrl.endsWith('.mp4')) {
       buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
+}else if (NewGen.includes('#Insta')) && (aliveImgUrl.endsWith('.jpg')) {
+NewGen = NewGen.replace("#Insta", "")
+let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
+  await buttons.push(b3);
+templateButtons = {
+    text: alievTxtNew,
+    footer: config.exif.footer,
+    templateButtons: buttons,
+    image: {url: aliveImgUrl}
+    }
+await client.sendMessage(message.sender, templateButtons, { quoted: message });
+}else if (NewGen.includes('#Insta')) && (aliveImgUrl.endsWith('.jpeg')) {
+NewGen = NewGen.replace("#Insta", "")
+let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
+  await buttons.push(b3);
+templateButtons = {
+    text: alievTxtNew,
+    footer: config.exif.footer,
+    templateButtons: buttons,
+    image: {url: aliveImgUrl}
+    }
+await client.sendMessage(message.sender, templateButtons, { quoted: message });
+}else if (NewGen.includes('#Insta')) && (aliveImgUrl.endsWith('.mp4')) {
+NewGen = NewGen.replace("#Insta", "")
+let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
+  await buttons.push(b3);
+templateButtons = {
+    text: alievTxtNew,
+    footer: config.exif.footer,
+    templateButtons: buttons,
+    video: {url: aliveImgUrl}
+    }
+await client.sendMessage(message.sender, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpg')) {
   templateButtons = {
       image: { url: aliveImgUrl },
