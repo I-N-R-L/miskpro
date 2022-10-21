@@ -29,12 +29,12 @@ try{
 
                 teks += ` @${mem.split('@')[0]}\n`
 
-                }
-
+               
                 await client.sendMessage(message.from, { text: teks })
-
+    
                 }
 } catch (err) {
 		return await client.sendMessage(message.from, { text: err })
+                }
 	}
 );
