@@ -9,6 +9,9 @@ inrl(
 	   },
 	async (message, client) => {
      const text = "message.quoted.text";
-    await client.sendMessage(styletext(text, parseInt(message.client.text)));
+   
+let ThenText = await styletext("text", "31")
+
+await client.sendMessage(message.from, { text : ThenText });
     }
 );
