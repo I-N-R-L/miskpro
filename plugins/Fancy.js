@@ -12,6 +12,6 @@ inrl(
    
 let ThenText = await styletext("text", "31")
 
-await client.sendMessage(message.from, { text : ThenText });
+return await client.sendMessage(message.from, { text : ThenText });
     }
 );
