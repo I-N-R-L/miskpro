@@ -2,7 +2,7 @@
 var NewGen, templateButtons;
 const os = require("os");
 const speed = require("performance-now");
-const  { inrl , config, inrlQuita, insult }= require('../lib/')
+const  { inrl , config, inrlQuita, insult , randomStyle }= require('../lib/')
 const Config = require("../config");
 
 inrl(
@@ -107,6 +107,8 @@ let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Ins
 
 buttons.push(b1);
 buttons.push(b2);
+
+NewGen = randomStyle(NewGen);
 
 let alievTxtNew = `${NewGen}`;
 if (aliveImgUrl.endsWith('.mp4')) {
