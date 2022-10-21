@@ -12,6 +12,7 @@ inrl(
 if(!text){
 let NewText =`
 Enter A Text Quary
+_ex_ : Enter a text like this *faancy 55,hi*
 1 Fᴀɴᴄʏ
 2 ʎɔuɐℲ
 3 F⃣   a⃣   n⃣   c⃣   y⃣
@@ -70,7 +71,8 @@ Enter A Text Quary
 56 𝐹𝛥𝛮𝐶𝑌
 57 𝙁𝞓𝞜𝘾𝙔
 58 𝐅𝚫𝚴𝐂𝐘
-59 ᖴᗩᑎᑕᎩ`
+59 ᖴᗩᑎᑕᎩ
+_ex_ : Enter a text like this *faancy 55,hi*`
 return await client.sendMessage(message.from, { text : NewText });
     }
   // if (text.includes(',')) {
