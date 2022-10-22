@@ -24,8 +24,8 @@ let gParticipants = message.participants;
                 `╭═══〘Config.BOT_INFO.split(',')[1]〙═══⊷❍
                 │`
                 teks += await `${mem}\n`
-     }
 console.log(teks);
                 return await client.sendMessage(message.from, { text: teks })
-   }
+           }
+     }
 );
