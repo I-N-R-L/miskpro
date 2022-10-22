@@ -26,10 +26,8 @@ inrl({
                 │`
                 teks += `@${users.split('@')[0]}\n`
 
-               }
                 return await client.sendMessage(message.from, { text: teks })
-    
-               }
-	}
+                        }
+            }
 );
 }
