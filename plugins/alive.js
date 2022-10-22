@@ -290,7 +290,6 @@ templateButtons = {
     video: {url: aliveImgUrl}
     }
 await client.sendMessage(message.from, templateButtons);
-    }
 }else if(aliveImgUrl.endsWith('.jpg')) {
   templateButtons = {
       image: { url: aliveImgUrl },
