@@ -48,7 +48,7 @@ const Config = require('../config');
 const { getBuffer } = require('../lib/cloud');
 const need = "*add link after commandðŸ’Œ*"
 
-  Raashii.inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"], iscmd : "pdf", type:"misc"}, (async (message, client) => {
+  Raashii.inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"], setcmd : "pdf"}, (async (message, client) => {
 
 const text = message.client.text;
 
