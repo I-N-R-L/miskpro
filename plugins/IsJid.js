@@ -19,7 +19,7 @@ inrl({
 	async (message, client) => {
 let { participants } = await client.groupMetadata(message.id);
 let gParticipants = message.participants;
-		for (let mem of gParticipants){
+		for (let mem of participants){
                 let teks = 
                 `╭═══〘Config.BOT_INFO.split(',')[1]〙═══⊷❍
                 │`
