@@ -324,33 +324,27 @@ bots.categories.map(category => {
   try {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
-    let CMD_HELP =  `╭═══〘 ${Config.BOT_INFO.split(",")[0]} 〙═══⊷❍
+    let CMD_HELP =  ` ╭═══〘 ${Config.BOT_INFO.split(",")[0]} 〙═══⊷❍
  ┃
  ┃  ╭════〘 about 〙════⊷❍
- ┃  ┃
  ┃  │
  ┃  │  Owner : ${Config.BOT_INFO.split(",")[1]}
  ┃  │  User : ${message.client.pushName}
  ┃  │  webSite : ${Config.WEB}
  ┃  │  Server : ${Config.HEROKU.APP_NAME}
- ┃  │  github : ${Config.GIT}
- ┃  │  you Tube : ${Config.YT}
  ┃  │  Disk Space: 620 GB
  ┃  │  Version: ${Config.VERSION}
- ┃  │ 
- ┃  │ 
- ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
- ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
+ ┃  │
  ┃  │    ${Config.BOT_INFO.split(",")[0]}
- ┃  │  
+ ┃  │
  ┃  ╰───────────────
  ┃  ╭════〘 all-cmds 〙═══⊷❍\n`;
-
     bots.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
-      if (command.category.includes(category)) { command.pattern.map((cmd) => CMD_HELP += "│ *➪* ```" + prefix + cmd + ' '+"\n"+"│```\n")}
+      if (command.category.includes(category)) { command.pattern.map((cmd) => CMD_HELP +=  " ┃  │      "+cmd+"\n")}
     }); 
-    CMD_HELP += "│\n│ ᴄʀᴇᴀᴛᴇᴅ ʙʏ ${Config.BOT_INFO.split(',')[0]}\n╰═════════════════⊷";
+   CMD_HELP += ` ┃  ╰─═════════════⊷❍
+ ╰══════════════════⊷❍`;
     await client.sendMessage( message.from,{ image: { url: Config.ALIVE_DATA.split(';')[0] }, caption: CMD_HELP, }, { quoted: message });
     global.catchError = false;
   } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
