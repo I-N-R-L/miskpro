@@ -1,3 +1,5 @@
+/*
+
 const config = require('../config')
 const {
 	inrl
@@ -23,3 +25,4 @@ inrl(
       return await client.sendErrorMessage( message.from, error, message.key, message );
                 }
 );
+*/
