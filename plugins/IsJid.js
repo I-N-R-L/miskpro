@@ -1,5 +1,3 @@
-let { participants } = await conn.groupMetadata(m.id);
-let gParticipants = m.participants
 const { inrl } = require('../lib/');
 inrl(
 	   {
@@ -19,6 +17,8 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
+let { participants } = await client.groupMetadata(message.id);
+let gParticipants = message.participants
 		gParticipants.map((users) => {
                 let teks = 
                 `╭═══〘${Config.BOT_INFO.split(',')[1]}〙═══⊷❍
