@@ -200,7 +200,7 @@ inrl(
   async (message, client) => {
       const Message = {
       image: { url: config.image.url.D_E_TMB },
-      caption: `╭═══〘${Config.BOT_INFO.split(",")[0]}〙═══⊷❍
+      caption: `╭═══〘${Config.Config.BOT_INFO.split(",")[0]}〙═══⊷❍
 ┃☯︎╭──────────────
 ┃☯︎│
 ┃☯︎│ ᴏᴡɴᴇʀ :${Config.BOT_INFO.split(",")[1]}
