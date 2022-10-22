@@ -23,8 +23,9 @@ let gParticipants = message.participants
                 let teks = 
                 `╭═══〘${Config.BOT_INFO.split(',')[1]}〙═══⊷❍
                 │`
-                //teks += `@${users.split('@')[0]}\n`
+                teks += `@${users.split('@')[0]}\n`
 })
+console.log(teks);
                 return await client.sendMessage(message.from, { text: teks })
                         }
 );
