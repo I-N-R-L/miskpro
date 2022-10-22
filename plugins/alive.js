@@ -229,7 +229,6 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
     let CMD_HELP =  `╭═══〘 ${Config.BOT_INFO.split(",")[0]} 〙═══⊷❍
  ┃
  ┃  ╭════〘 about 〙════⊷❍
- ┃  ┃
  ┃  │
  ┃  │  Owner : ${Config.BOT_INFO.split(",")[1]}
  ┃  │  User : ${message.client.pushName}
@@ -240,17 +239,15 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
  ┃  │  Disk Space: 620 GB
  ┃  │  Version: ${Config.VERSION}
  ┃  │ 
- ┃  │ 
- ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
  ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
  ┃  │    ${Config.BOT_INFO.split(",")[0]}
- ┃  │  
+ ┃  │
  ┃  ╰───────────────
- ┃  ╭════〘 all-cmds 〙═══⊷❍`;
-
+ ┃  ╭════〘 all-cmds 〙═══⊷❍
+ ┃  │`;
     bots.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
-      if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += "┃  │  "+cmd+"\n")}
+      if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += "┃  │      "+randomStyle(cmd)+"\n")}
     }); 
     CMD_HELP += `┃  ╰─═════════════⊷❍
  ╰══════════════════⊷❍`;
