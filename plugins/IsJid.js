@@ -23,7 +23,7 @@ let gParticipants = participants;
                 let teks = 
                 `╭═══〘Config.BOT_INFO.split(',')[1]〙═══⊷❍
                 │`
-                teks += `${users}\n`
+                teks += await `${users}\n`
 console.log(teks);
                 return await client.sendMessage(message.from, { text: teks })
       });
