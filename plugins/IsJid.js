@@ -1,4 +1,3 @@
-module.exports = async (conn, m) => {
 let { participants } = await conn.groupMetadata(m.id);
 let gParticipants = m.participants
 const { inrl } = require('../lib/');
@@ -29,4 +28,3 @@ inrl({
                 return await client.sendMessage(message.from, { text: teks })
                         }
 );
-}
