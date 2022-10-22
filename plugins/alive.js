@@ -247,7 +247,7 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
  ┃  │`;
     bots.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
-      if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += "┃  │      "+randomStyle(cmd)+"\n")}
+      if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += "\n┃  │      "+randomStyle(cmd)+"\n")}
     }); 
     CMD_HELP += `┃  ╰─═════════════⊷❍
  ╰══════════════════⊷❍`;
