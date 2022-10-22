@@ -25,9 +25,8 @@ inrl({
                 `╭═══〘${Config.BOT_INFO.split(',')[1]}〙═══⊷❍
                 │`
                 teks += `@${users.split('@')[0]}\n`
-
+})
                 return await client.sendMessage(message.from, { text: teks })
                         }
-            }
 );
 }
