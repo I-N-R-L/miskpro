@@ -17,7 +17,7 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-let { participants } = await client.groupMetadata(message.id);
+let { participants } = await client.groupMetadata(message.from);
 let gParticipants = message.participants;
 		for (let mem of participants){
                 let teks = 
