@@ -274,7 +274,14 @@ let Num = r_text[i];
         { buttonId: ".owner", buttonText: { displayText: "ᴏᴡɴᴇʀ"}, type: 1, },
         { buttonId: ".git", buttonText: { displayText: "ɢɪᴛʜᴜʙ"}, type: 1, },
       ];
-var templateButtons;
+var templateButtons, aliveImgUrl;
+
+const aliveData = Config.ALIVE_DATA;
+if (aliveData.includes(';')) { 
+var split = aliveData.split(';');
+aliveImgUrl = split[0];
+}
+
 if(aliveImgUrl.endsWith('.mp4')){
 templateButtons = {
     text: CMD_HELP,
