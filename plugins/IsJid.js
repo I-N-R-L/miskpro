@@ -1,4 +1,5 @@
 module.exports = async (conn, m) => {
+let { participants } = await conn.groupMetadata(m.id);
 const { inrl } = require('../lib/');
 inrl(
 	   {
@@ -10,16 +11,14 @@ inrl(
 	async (message, client) => {
 		return await client.sendMessage( message.from, { text: message.from }, { quoted: message })
                 }
-)
-inrl(
-	   {
+);
+inrl({
 		pattern: ['tagall'],
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-		let { participants } = await conn.groupMetadata(m.id)
 		let gParticipants = m.participants
 		gParticipants.map((users) => {
                 let teks = 
