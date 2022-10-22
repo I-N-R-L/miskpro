@@ -244,7 +244,11 @@ let countcmdOfCmd = 0;
   try {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
- bots.commands.map((command) => { countcmdOfCmd += command.pattern.length })}
+
+ bots.commands.map((command) => {
+ countcmdOfCmd += command.pattern.length
+ });
+
  let CMD_HELP =  ` ╭═══〘 ${Config.BOT_INFO.split(",")[0]} 〙═══⊷❍
  ┃
  ┃  ╭════〘 about 〙════⊷❍
