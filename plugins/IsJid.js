@@ -21,7 +21,7 @@ let { participants } = await client.groupMetadata(message.from);
 let gParticipants = participants;
 		gParticipants.map((users) => {
                 let teks = 
-                `╭═══〘${Config.BOT_INFO.split(',')[1]}〙═══⊷❍
+                `╭═══〘Config.BOT_INFO.split(',')[1]〙═══⊷❍
                 │`
                 teks += `@${users.split('@')[0]}\n`
 })
