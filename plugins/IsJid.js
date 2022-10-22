@@ -22,9 +22,9 @@ inrl(
 try{
 		let { participants } = await conn.groupMetadata(m.id)
 		let gParticipants = m.participants
-		for (let mem of gParticipants) {
+		gParticipants.map((users) => {
 
-                let teks += await `@${mem.split('@')[0]}\n`
+                let teks += `@${users.split('@')[0]}\n`
 
                
                 await client.sendMessage(message.from, { text: teks })
