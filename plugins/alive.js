@@ -223,6 +223,22 @@ const Lang = bots.getString("_whats");
 let cTitle = { "search": "Search",  "all": 'All', "downloade": "Downloade", "chat": "Chat","inrl":"Inrl","ibot":"Ibot", "system": "System", 'fun': "Fun", '18+': "18+","ff:":"Ff", 'owner': "Owner", 'create': "Create", 'group': "Group", "logo": "Logo", }
 
 bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰", category: ["all", "system"] }, async (message, client) => {
+
+var r_text = new Array();
+    r_text[0] = "22";
+    r_text[1] = "23";
+    r_text[1] = "24";
+    r_text[3] = "57";
+    r_text[4] = "1";
+    r_text[5] = "36";
+    r_text[6] = "37";
+    r_text[7] = "38";
+    r_text[8] = "39";
+    r_text[9] = "41";
+    r_text[10] = "26";
+    r_text[11] = "25";
+    const i = Math.floor(12 * Math.random());
+
   try {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
