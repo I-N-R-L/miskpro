@@ -243,8 +243,7 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
  ┃  │    ${Config.BOT_INFO.split(",")[0]}
  ┃  │
  ┃  ╰───────────────
- ┃  ╭════〘 all-cmds 〙═══⊷❍
- ┃  │`;
+ ┃  ╭════〘 all-cmds 〙═══⊷❍\n`;
     bots.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
       if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += " ┃  │      "+randomStyle(cmd)+"\n")}
