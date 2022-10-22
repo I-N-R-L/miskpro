@@ -168,6 +168,14 @@ await client.sendMessage(message.from, templateButtons);
       buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
+}else if(aliveImgUrl.endsWith('.gif')) {
+  templateButtons = {
+      image: ({ url: aliveImgUrl }, gifPlayback: true )
+      caption: `${alievTxtNew}`,
+      footer: config.exif.footer,
+      buttons,
+    }
+await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.jpeg')) {
    templateButtons = {
       image: { url: aliveImgUrl },
