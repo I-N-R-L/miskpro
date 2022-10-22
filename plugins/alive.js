@@ -227,8 +227,9 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
     let CMD_HELP =  `╭═══〘 ${BOT_INFO.split(";")[0]} 〙═══⊷❍
+ ┃
  ┃  ╭════〘 about 〙════⊷❍
- ┃  ┃❉╭──────────────
+ ┃  ┃
  ┃  │
  ┃  │  Owner : ${Config.BOT_INFO.split(",")[1]}
  ┃  │  User : ${message.client.pushName}
@@ -278,25 +279,27 @@ bots.categories.map(category => {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
     let CMD_HELP =  `╭═══〘 ${BOT_INFO.split(";")[0]} 〙═══⊷❍
- ┃  ╭════〘 Group 〙════⊷❍
- ┃  ┃❉╭──────────────
+ ┃
+ ┃  ╭════〘 about 〙════⊷❍
+ ┃  ┃
  ┃  │
- ┃  │  Owner : ${BOT_INFO.split(";")[1]}
- ┃  │  User : ${message.senderName}
- ┃  │  Mode : ${Comfig.}
+ ┃  │  Owner : ${Config.BOT_INFO.split(",")[1]}
+ ┃  │  User : ${message.client.pushName}
+ ┃  │  webSite : ${Config.WEB}
  ┃  │  Server : ${Config.HEROKU.APP_NAME}
- ┃  │  Total RAM: ${total}
- ┃  │  Available RAM: ${used}
+ ┃  │  github : ${Config.GIT}
+ ┃  │  you Tube : ${Config.YT}
  ┃  │  Disk Space: 620 GB
  ┃  │  Version: ${Config.VERSION}
  ┃  │ 
  ┃  │ 
  ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
  ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
- ┃  │    ${BOT_INFO.split(";")[0]}
+ ┃  │    ${Config.BOT_INFO.split(";")[0]}
  ┃  │  
  ┃  ╰───────────────
- ┃`;
+ ┃  ╭════〘 all-cmds 〙═══⊷❍`;
+
     bots.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
       if (command.category.includes(category)) { command.pattern.map((cmd) => CMD_HELP += "│ *➪* ```" + prefix + cmd + ' '+"\n"+"│```\n")}
