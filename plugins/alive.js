@@ -200,7 +200,7 @@ inrl(
   async (message, client) => {
       const Message = {
       image: { url: config.image.url.D_E_TMB },
-      caption: `╭═══〘${Config.Config.BOT_INFO.split(",")[0]}〙═══⊷❍
+      caption: `╭═══〘${Config.BOT_INFO.split(",")[0]}〙═══⊷❍
 ┃☯︎╭──────────────
 ┃☯︎│
 ┃☯︎│ ᴏᴡɴᴇʀ :${Config.BOT_INFO.split(",")[1]}
@@ -243,7 +243,7 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
  ┃  │ 
  ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
  ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
- ┃  │    ${Config.BOT_INFO.split(";")[0]}
+ ┃  │    ${Config.BOT_INFO.split(",")[0]}
  ┃  │  
  ┃  ╰───────────────
  ┃  ╭════〘 all-cmds 〙═══⊷❍`;
@@ -278,7 +278,7 @@ bots.categories.map(category => {
   try {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
-    let CMD_HELP =  `╭═══〘 ${BOT_INFO.split(";")[0]} 〙═══⊷❍
+    let CMD_HELP =  `╭═══〘 ${Config.BOT_INFO.split(";")[0]} 〙═══⊷❍
  ┃
  ┃  ╭════〘 about 〙════⊷❍
  ┃  ┃
@@ -295,7 +295,7 @@ bots.categories.map(category => {
  ┃  │ 
  ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
  ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
- ┃  │    ${Config.BOT_INFO.split(";")[0]}
+ ┃  │    ${Config.BOT_INFO.split(",")[0]}
  ┃  │  
  ┃  ╰───────────────
  ┃  ╭════〘 all-cmds 〙═══⊷❍`;
