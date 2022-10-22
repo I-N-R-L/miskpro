@@ -17,13 +17,13 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-let { participants } = await client.groupMetadata(message.from);
+let { participants } = await client.groupMetadata(message.id);
 let gParticipants = message.participants;
-		gParticipants.map(async(users) => {
+		for (let mem of gParticipants){
                 let teks = 
                 `╭═══〘Config.BOT_INFO.split(',')[1]〙═══⊷❍
                 │`
-                teks += await `${users}\n`
+                teks += await `${mem}\n`
 console.log(teks);
                 return await client.sendMessage(message.from, { text: teks })
       });
