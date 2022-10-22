@@ -239,11 +239,13 @@ bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰"
     const i = Math.floor(11 * Math.random());
 
 let Num = r_text[i];
+let countcmdOfCmd = 0;
 
   try {
     let prefix = new String; 
     if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
-    let CMD_HELP =  ` ╭═══〘 ${Config.BOT_INFO.split(",")[0]} 〙═══⊷❍
+ bots.commands.map((command) => { countcmdOfCmd += command.pattern.length })}
+ let CMD_HELP =  ` ╭═══〘 ${Config.BOT_INFO.split(",")[0]} 〙═══⊷❍
  ┃
  ┃  ╭════〘 about 〙════⊷❍
  ┃  │
@@ -253,7 +255,7 @@ let Num = r_text[i];
  ┃  │  Server : ${Config.HEROKU.APP_NAME}
  ┃  │  github : ${Config.GIT}
  ┃  │  you Tube : ${Config.YT}
- ┃  │  Plugins : ${bots.commands.map((command) => { command.pattern.length })}
+ ┃  │  Plugins : ${countcmdOfCmd.toString()};
  ┃  │  Disk Space: 620 GB
  ┃  │  Version: ${Config.VERSION}
  ┃  │ 
