@@ -307,7 +307,9 @@ await client.sendMessage(message.from, templateButtons, { quoted: message });
       buttons,
     }
 await client.sendMessage(message.from, templateButtons, { quoted: message });
-} 
+} else {
+await client.sendMessage(message.from,{ text :"error while img capturing"}, { quoted: message });
+      }
     global.catchError = false;
   } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
 });
