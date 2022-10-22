@@ -253,6 +253,7 @@ let Num = r_text[i];
  ┃  │  Server : ${Config.HEROKU.APP_NAME}
  ┃  │  github : ${Config.GIT}
  ┃  │  you Tube : ${Config.YT}
+ ┃  │  Plugins : ${bots.commands.map((command) => { command.pattern.length })}
  ┃  │  Disk Space: 620 GB
  ┃  │  Version: ${Config.VERSION}
  ┃  │ 
@@ -265,23 +266,41 @@ let Num = r_text[i];
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
       if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += " ┃  │      "+styletext(cmd, Num)+"\n")}
     }); 
-    CMD_HELP += `┃  ╰─═════════════⊷❍
+    CMD_HELP += ` ┃  ╰─═════════════⊷❍
  ╰══════════════════⊷❍`;
    
   const buttons = [
         { buttonId: ".ping", buttonText: { displayText: "ᴩɪɴɢ"}, type: 1, },
         { buttonId: ".owner", buttonText: { displayText: "ᴏᴡɴᴇʀ"}, type: 1, },
         { buttonId: ".git", buttonText: { displayText: "ɢɪᴛʜᴜʙ"}, type: 1, },
-      ]
-
-const templateButtons = {
-      image: { url: Config.ALIVE_DATA.split(';')[0] },
+      ];
+var templateButtons;
+if(aliveImgUrl.endsWith('.mp4')){
+templateButtons = {
+    text: CMD_HELP,
+    footer: config.exif.footer,
+    templateButtons: buttons,
+    video: {url: aliveImgUrl}
+    }
+await client.sendMessage(message.from, templateButtons);
+    }
+}else if(aliveImgUrl.endsWith('.jpg')) {
+  templateButtons = {
+      image: { url: aliveImgUrl },
       caption: CMD_HELP,
-      footer: bots.config.exif.footer,
+      footer: config.exif.footer,
       buttons,
-    };
-  
-    await client.sendMessage( message.from,templateButtons,{ quoted: message });
+    }
+await client.sendMessage(message.from, templateButtons, { quoted: message });
+}else if(aliveImgUrl.endsWith('.jpeg')) {
+   templateButtons = {
+      image: { url: aliveImgUrl },
+      caption: CMD_HELP,
+      footer: config.exif.footer,
+      buttons,
+    }
+await client.sendMessage(message.from, templateButtons, { quoted: message });
+} 
     global.catchError = false;
   } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
 });
@@ -311,7 +330,7 @@ bots.categories.map(category => {
  ┃  │    ${Config.BOT_INFO.split(",")[0]}
  ┃  │  
  ┃  ╰───────────────
- ┃  ╭════〘 all-cmds 〙═══⊷❍`;
+ ┃  ╭════〘 all-cmds 〙═══⊷❍\n`;
 
     bots.commands.map((command) => {
       if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
