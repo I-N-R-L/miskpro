@@ -11,21 +11,33 @@ inrl(
                 }
 );
 inrl({
-		pattern: ['tagall'],
-		desc: 'To check ping',
+		pattern: ['block'],
+		desc: 'To block a person',
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-let { participants } = await client.groupMetadata(message.from);
-let gParticipants = message.participants;
-		for (let mem of participants){
-                let teks = 
-                `╭═══〘Config.BOT_INFO.split(',')[1]〙═══⊷❍
-                │`
-                teks += await `${mem}\n`
-console.log(teks);
-                return await client.sendMessage(message.from, { text: teks })
-           }
-     }
-);
+await client.updateBlockStatus(message.from, "block") // Block user
+});
+inrl({
+		pattern: ['unblock'],
+		desc: 'To unblock a person',
+                sucReact: "💯",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+await sock.updateBlockStatus(message.from, "unblock") // Unblock user
+});
+inrl({
+		pattern: ['clear'],
+		desc: 'To clear a group chat',
+                sucReact: "💯",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+const lastMsgInChat = await getLastMessageInChat(message.from) // implement this on your end
+await client.chatModify({
+  delete: true,
+  lastMessages: [{ key: lastMsgInChat.key, messageTimestamp: lastMsgInChat.messageTimestamp }]
+},message.from)
+});
