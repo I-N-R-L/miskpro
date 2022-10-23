@@ -41,10 +41,11 @@ inrl({
 console.log(participants);
 		let msg = message.client.text+"\n\n" || ' 💗 \n\n';
 		let count = 1
-			msg += ` ${count++}  @${participants.id.split('@')[0]}`+"\n"
+			msg += ` ${count++}  @${participants}`+"\n"
 console.log(msg);
+var IsSend = msg.replaceAll(@s.whatsapp.net,"")
 		return await client.sendMessage(message.from, {
-			text: msg,
+			text: IsSend,
 			mentions: participants.map(a => a.id)
 	})
      }
