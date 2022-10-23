@@ -1,5 +1,3 @@
-const translate = require("translate-google-api")
-const config = require('../config')
 const { inrl } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 inrl(
@@ -20,8 +18,12 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-await client.updateBlockStatus(message.from, "block") // Block user
-});
+if(!message.client.isCreator) return await client.sendMessage( message.from, { text: "sorry about thets! this cmd only for owner"});
+if (message.isGroup) { 
+await client.updateBlockStatus(message.quoted, "block") // Block user
+}else{
+await client.updateBlockStatus(message.from, "block")
+}); // Block user
 inrl({
 		pattern: ['unblock'],
 		desc: 'To unblock a person',
@@ -29,6 +31,10 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
+if(!message.client.isCreator) return await client.sendMessage( message.from, { text: "sorry about thets this cmd only for owner"});
+if (message.isGroup) { 
+await client.updateBlockStatus(message.quoted, "unblock") // Unblock user
+}else{
 await client.updateBlockStatus(message.from, "unblock") // Unblock user
 });
 inrl({
@@ -69,20 +75,3 @@ inrl({
 			text: msg })
           }
 });
-
-inrl({
-		pattern: ['trt'],
-		desc: 'To tag all group member',
-                sucReact: "😄",
-                category: ["system", "all"],
-	   }, async (message, client) => {
-//if (!m.quoted.text) return await m.reply('_Reply to a text message_\n*Example : trt ml"')
-const [to, from] = message.client.text.split(' ')
-let lang = message.client.text.split("#")[1] || "ml";
-try {
-const translated = await translate(message.client.text, {tld: "co.in", to: to || lang , from: from})
-await client.sendMessage(message.from, { text: translated?.join() })
-} catch (e) {
-return await client.sendMessage(message.from, {text: `_${e.message}_` })
-}
-})
