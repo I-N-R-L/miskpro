@@ -30,7 +30,7 @@
     "fs": "^0.0.1-security",
     "g-i-s": "^2.1.6",
     "google-it": "^1.6.2",
-    "google-tts-api": "^2.0.2",
+    "translate-google-api": "^1.0.4",
     "got": "^11.8.3",
     "human-readable": "^0.2.1",
     "jimp": "^0.16.1",
