@@ -13,7 +13,7 @@ const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
-//const isJid = require('./plugins/IsJid');
+const IsFake = require('./plugins/ToSetAntiFake');
 const { serialize, WAConnection } = Simple;
 global.mydb = {};
 global.mydb.users = new Array();
@@ -119,7 +119,7 @@ await conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now💕"})
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);
     await chatting(m, conn);
- // await isJid(conn, m);
+    await IsFake(m, conn);
 //inrl bot call block speciol func!🥵//
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
