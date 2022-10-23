@@ -1,5 +1,5 @@
 const { inrl } = require('../lib/');
-const { getLastMessageInChat } = require('@adiwajshing/baileys');
+//const { getLastMessageInChat } = require('@adiwajshing/baileys');
 inrl(
 	   {
 		pattern: ['jid'],
@@ -36,7 +36,7 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-const lastMsgInChat = await getLastMessageInChat(message.from) // implement this on your end
+const lastMsgInChat = await client.getLastMessageInChat(message.from) // implement this on your end
 await client.chatModify({
   delete: true,
   lastMessages: [{ key: lastMsgInChat.key, messageTimestamp: lastMsgInChat.messageTimestamp }]
