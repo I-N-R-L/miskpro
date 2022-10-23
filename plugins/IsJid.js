@@ -46,8 +46,8 @@ console.log(participants);
 console.log(msg);
 //let IsSend = msg.replaceAll("@s.whatsapp.net","")
 		return await client.sendMessage(message.from, {
-			text: msg,
-			mentions: participants.map(a => a.id)
-	})
+			text: msg});
+	       })
+          }
      }
 });
