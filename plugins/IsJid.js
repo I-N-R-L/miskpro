@@ -38,10 +38,10 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
 console.log(participants);
-		let msg = ''
+		let msg = mesage.client.text || ' 💗 ';
 		let count = 1
 		for (let participant of participants) {
-			msg += `${count++} @${participant.id.split('@')[0]}\n`
+			msg += `@${participant.id.split('@')[0]}\n`
 console.log(msg);
 		return await client.sendMessage(message.from, {
 			text: msg,
