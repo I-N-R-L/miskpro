@@ -43,7 +43,7 @@ console.log(participants);
 		let count = 1
 			msg += ` ${count++}  @${participants}`+"\n"
 console.log(msg);
-var IsSend = msg.replaceAll(@s.whatsapp.net,"")
+let IsSend = msg.replaceAll("@s.whatsapp.net","")
 		return await client.sendMessage(message.from, {
 			text: IsSend,
 			mentions: participants.map(a => a.id)
