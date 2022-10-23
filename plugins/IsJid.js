@@ -26,7 +26,7 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-await sock.updateBlockStatus(message.from, "unblock") // Unblock user
+await client.updateBlockStatus(message.from, "unblock") // Unblock user
 });
 inrl({
 		pattern: ['clear'],
