@@ -1,4 +1,5 @@
 const { inrl } = require('../lib/');
+const { getLastMessageInChat } = require('@adiwajshing/baileys');
 inrl(
 	   {
 		pattern: ['jid'],
