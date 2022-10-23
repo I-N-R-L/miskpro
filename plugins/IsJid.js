@@ -23,6 +23,7 @@ if (message.isGroup) {
 await client.updateBlockStatus(message.quoted, "block") // Block user
 }else{
 await client.updateBlockStatus(message.from, "block")
+    }
 }); // Block user
 inrl({
 		pattern: ['unblock'],
@@ -36,6 +37,7 @@ if (message.isGroup) {
 await client.updateBlockStatus(message.quoted, "unblock") // Unblock user
 }else{
 await client.updateBlockStatus(message.from, "unblock") // Unblock user
+    }
 });
 inrl({
 		pattern: ['tagall'],
