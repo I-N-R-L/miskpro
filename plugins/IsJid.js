@@ -42,7 +42,8 @@ console.log(participants);
 		let msg = message.client.text+"\n\n" || ' 💗 \n\n';
 		let count = 1
 		for (let participant of participants) {
-			msg += `@${participant.id.split('@')[0]}`
+console.log(participant)
+			msg += `@${participant.id.split('@')[0]}`+"\n"
 console.log(msg);
 		return await client.sendMessage(message.from, {
 			text: msg,
