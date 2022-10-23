@@ -1,3 +1,5 @@
+const translate = require("translate-google-api")
+const config = require('../config')
 const { inrl } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 inrl(
@@ -39,8 +41,8 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
 console.log(participants);
-		let msg = "  "+ message.client.text+"\n\n" || '       💗 \n\n';
-		let count = 1
+		let msg = "  "+ message.client.text+"\n\n     💗💗";
+                let count = 1
                 for (let mem of participants) {
 			msg += ` ${count++}  @${mem.id.split('@')[0]}\n`
                 }
@@ -58,7 +60,7 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
-		let msg = "  "+ message.client.text+"\n\n" || '     💥💖💥 \n\n';
+		let msg = "  "+ message.client.text+"\n\n     💥💖💥 \n\n";
 		let count = 1
                 for (let mem of admins) {
 			msg += ` ${count++}  @${mem.split('@')[0]}\n`
@@ -67,3 +69,20 @@ inrl({
 			text: msg })
           }
 });
+
+inrl({
+		pattern: ['trt'],
+		desc: 'To tag all group member',
+                sucReact: "😄",
+                category: ["system", "all"],
+	   }, async (message, client) => {
+//if (!m.quoted.text) return await m.reply('_Reply to a text message_\n*Example : trt ml"')
+const [to, from] = message.client.text.split(' ')
+let lang = message.client.text.split("#")[1] || "ml";
+try {
+const translated = await translate(message.client.text, {tld: "co.in", to: to || lang , from: from})
+await client.sendMessage(message.from, { text: translated?.join() })
+} catch (e) {
+return await client.sendMessage(message.from, {text: `_${e.message}_` })
+}
+})
