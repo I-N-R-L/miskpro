@@ -30,11 +30,18 @@ inrl({
 await client.updateBlockStatus(message.from, "unblock") // Unblock user
 });
 inrl({
-		pattern: ['clear'],
-		desc: 'To clear a group chat',
-                sucReact: "💯",
+		pattern: ['tagall'],
+		desc: 'To tag all group member',
+                sucReact: "😄",
                 category: ["system", "all"],
-	   },
-	async (message, client) => {
-return await client.chatModify(message.from, {delete: true}) // implement this on your end
+	   }, async (message, client) => {
+	const participants = message.isGroup ? await groupMetadata.participants : ''
+		let msg = ''
+		let count = 1
+		for (let participant of participants) {
+			msg += `${count++} @${participant.id.split('@')[0]}\n`
+		return await m.client.sendMessage(message.from, {
+			text: msg,
+			mentions: participants.map(a => a.id)
+		})
 });
