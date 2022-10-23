@@ -35,10 +35,11 @@ inrl({
                 sucReact: "😄",
                 category: ["system", "all"],
 	   }, async (message, client) => {
+        if(message.isGroup){
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
 console.log(participants);
-		let msg = mesage.client.text || ' 💗 ';
+		let msg = message.client.text || ' 💗 ';
 		let count = 1
 		for (let participant of participants) {
 			msg += `@${participant.id.split('@')[0]}\n`
@@ -47,5 +48,6 @@ console.log(msg);
 			text: msg,
 			mentions: participants.map(a => a.id)
 		})
-        }
+           }
+     }
 });
