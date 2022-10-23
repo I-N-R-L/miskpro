@@ -36,9 +36,5 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-const lastMsgInChat = await client.getLastMessageInChat(message.from) // implement this on your end
-await client.chatModify({
-  delete: true,
-  lastMessages: [{ key: lastMsgInChat.key, messageTimestamp: lastMsgInChat.messageTimestamp }]
-},message.from)
+return await client.clearChat(message.from) // implement this on your end
 });
