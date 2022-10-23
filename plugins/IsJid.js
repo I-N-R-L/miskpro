@@ -35,7 +35,7 @@ inrl({
                 sucReact: "😄",
                 category: ["system", "all"],
 	   }, async (message, client) => {
-	const groupMetadata = message.isGroup ? await client.groupMetadata(message.chat).catch(e => {}) : ''
+	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
 		let msg = ''
 		let count = 1
