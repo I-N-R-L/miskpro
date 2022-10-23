@@ -36,5 +36,5 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-return await client.clearChat(message.from) // implement this on your end
+return await client.chatModify(message.from, {delete: true}) // implement this on your end
 });
