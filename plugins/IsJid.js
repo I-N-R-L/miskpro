@@ -43,11 +43,8 @@ console.log(participants);
 		let count = 1
                 for (let mem of participants) {
 			msg += ` ${count++}  @${mem.id.split('@')[0]}\n`
-console.log(msg);
-//let IsSend = msg.replaceAll("@s.whatsapp.net","")
+                }
 		return await client.sendMessage(message.from, {
-			text: msg});
-	       })
+			text: msg })
           }
-     }
 });
