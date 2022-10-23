@@ -170,7 +170,7 @@ await client.sendMessage(message.from, templateButtons);
 await client.sendMessage(message.from, templateButtons, { quoted: message });
 }else if(aliveImgUrl.endsWith('.gif')) {
   templateButtons = {
-      image: { url: aliveImgUrl , gifPlayback: true }
+      image: { url: aliveImgUrl , gifPlayback: true },
       caption: `${alievTxtNew}`,
       footer: config.exif.footer,
       buttons,
