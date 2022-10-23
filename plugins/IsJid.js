@@ -39,10 +39,29 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
 console.log(participants);
-		let msg = message.client.text+"\n\n" || ' 💗 \n\n';
+		let msg = "  "+ message.client.text+"\n\n" || '       💗 \n\n';
 		let count = 1
                 for (let mem of participants) {
 			msg += ` ${count++}  @${mem.id.split('@')[0]}\n`
+                }
+		return await client.sendMessage(message.from, {
+			text: msg })
+          }
+});
+inrl({
+		pattern: ['tagadmin'],
+		desc: 'To tag all group member',
+                sucReact: "😄",
+                category: ["system", "all"],
+	   }, async (message, client) => {
+        if(message.isGroup){
+	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
+	const participants = message.isGroup ? await groupMetadata.participants : ''
+        let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
+		let msg = "  "+ message.client.text+"\n\n" || '     💥💖💥 \n\n';
+		let count = 1
+                for (let mem of admins) {
+			msg += ` ${count++}  @${mem.split('@')[0]}\n`
                 }
 		return await client.sendMessage(message.from, {
 			text: msg })
