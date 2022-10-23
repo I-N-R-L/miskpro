@@ -44,4 +44,5 @@ inrl({
 			text: msg,
 			mentions: participants.map(a => a.id)
 		})
+        }
 });
