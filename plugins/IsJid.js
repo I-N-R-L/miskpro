@@ -42,6 +42,7 @@ inrl({
 		for (let participant of participants) {
 			msg += `${count++} @${participant.id.split('@')[0]}\n`
 		return await client.sendMessage(message.from, {
+console.log(msg);
 			text: msg,
 			mentions: participants.map(a => a.id)
 		})
