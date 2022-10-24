@@ -28,7 +28,8 @@ module.exports = {
     CALL_BLOCK : process.env.CALL_BLOCK || "true",
     SET_ANTI_LINK : process.env.ANTILINK || 'youtube',
     FACK_REMOVE : process.env.ANTIFAKE || '91',
-    ALL_LINK_BAN : process.env.ALL_LINK_BAN || 'false',
+    ALL_LINK_BAN : process.env.ALL_LINK_BAN || 'true;120363044370289918@g.us',
+    BAD_WORD_TEXT : "-&6";
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     DATABASE:
 		DATABASE_URL === './database.db'
