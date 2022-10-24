@@ -14,7 +14,7 @@ const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
 const isFubc = require('./lib/ToSetAntiFake');
-const { IsFake, AllLinkBan, FakeRemove } = isFubc;
+const { IsFake, AllLinkBan, FakeRemove, IsBadWord } = isFubc;
 const { serialize, WAConnection } = Simple;
 global.mydb = {};
 global.mydb.users = new Array();
@@ -123,6 +123,7 @@ await conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now💕"})
     await IsFake(m, conn);
     await AllLinkBan(m, conn);
     await FakeRemove(m, conn);
+    await IsBadWord(m, conn);
 //inrl bot call block speciol func!🥵//
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
