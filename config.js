@@ -26,8 +26,8 @@ module.exports = {
     PROCFILE_DATA : process.env.PROCFILE_DATA || "\n\n💗 ᴀᴜᴛᴏ ᴍᴀᴛɪᴄ ʙɪᴏ ʙy ɪɴʀʟ-ʙᴏᴛ-ᴍᴅ",
     PM_BLOCK : process.env.PM_BLOCK || "false",
     CALL_BLOCK : process.env.CALL_BLOCK || "true",
-    ANTILINK : process.env.ANTILINK || 'youtube',
-    ANTIFAKE : process.env.ANTIFAKE || '+2222',
+    SET_ANTI_LINK : process.env.ANTILINK || 'youtube',
+    FACK_REMOVE : process.env.ANTIFAKE || '91',
     ALL_LINK_BAN : process.env.ALL_LINK_BAN || 'false',
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     DATABASE:
