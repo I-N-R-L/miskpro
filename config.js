@@ -26,10 +26,10 @@ module.exports = {
     PROCFILE_DATA : process.env.PROCFILE_DATA || "\n\n💗 ᴀᴜᴛᴏ ᴍᴀᴛɪᴄ ʙɪᴏ ʙy ɪɴʀʟ-ʙᴏᴛ-ᴍᴅ",
     PM_BLOCK : process.env.PM_BLOCK || "false",
     CALL_BLOCK : process.env.CALL_BLOCK || "true",
-    SET_ANTI_LINK : process.env.ANTILINK || 'youtube',
-    FACK_REMOVE : process.env.ANTIFAKE || '91',
-    ALL_LINK_BAN : process.env.ALL_LINK_BAN || 'true;120363044370289918@g.us',
-    BAD_WORD_TEXT : "-&6",
+    SET_ANTI_LINK : process.env.ANTILINK || 'xnxx;120363044370289918@g.us',
+    FACK_REMOVE : process.env.ANTIFAKE || '2222;120363044370289918@g.us',
+    ALL_LINK_BAN : process.env.ALL_LINK_BAN || 'false',
+    BAD_WORD_TEXT : "xxx, xnxx, fuck, myr, poor, endi, andi",
     SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
     DATABASE:
 		DATABASE_URL === './database.db'
