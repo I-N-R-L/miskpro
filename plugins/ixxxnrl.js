@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { inrl, getBuffer } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 inrl(
