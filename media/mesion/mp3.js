@@ -1,10 +1,8 @@
-const Config = require('../config');
 const { getBuffer } = require('../lib/');
-let mp3 = Config.MENSION.MENSION_AUDIO;
 
-async function mensionMp3(mp3){
+async function mensionMp3(mP3){
 let StoreMp3 = [];
-var split = mp3.split(',')
+var split = mP3.split(',')
 if(split[0]){ StoreMp3.push(split[0]) }
 if(split[1]){ StoreMp3.push(split[1]) }
 if(split[2]){ StoreMp3.push(split[2]) }
@@ -50,6 +48,57 @@ if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
 let FinelMp3 = await getBuffer(NextMp3)
-
 return FinelMp3
+};
+
+async function mensionImg(jPg){
+let StoreImg = [];
+var split = jPg.split(',')
+if(split[0]){ StoreImg.push(split[0]) }
+if(split[1]){ StoreImg.push(split[1]) }
+if(split[2]){ StoreImg.push(split[2]) }
+if(split[3]){ StoreImg.push(split[3]) }
+if(split[4]){ StoreImg.push(split[4]) }
+if(split[5]){ StoreImg.push(split[5]) }
+if(split[6]){ StoreImg.push(split[6]) }
+if(split[7]){ StoreImg.push(split[7]) }
+if(split[8]){ StoreImg.push(split[8]) }
+if(split[9]){ StoreImg.push(split[9]) }
+if(split[10]){ StoreImg.push(split[10]) }
+if(split[11]){ StoreImg.push(split[11]) }
+if(split[12]){ StoreImg.push(split[12]) }
+if(split[13]){ StoreImg.push(split[13]) }
+if(split[14]){ StoreImg.push(split[14]) }
+if(split[15]){ StoreImg.push(split[15]) }
+if(split[16]){ StoreImg.push(split[16]) }
+if(split[17]){ StoreImg.push(split[17]) }
+if(split[18]){ StoreImg.push(split[18]) }
+if(split[19]){ StoreImg.push(split[19]) }
+if(split[20]){ StoreImg.push(split[20]) }
+if(split[21]){ StoreImg.push(split[21]) }
+if(split[22]){ StoreImg.push(split[22]) }
+if(split[23]){ StoreImg.push(split[23]) }
+if(split[24]){ StoreImg.push(split[24]) }
+if(split[25]){ StoreImg.push(split[25]) }
+if(split[26]){ StoreImg.push(split[26]) }
+if(split[27]){ StoreImg.push(split[27]) }
+if(split[28]){ StoreImg.push(split[28]) }
+if(split[29]){ StoreImg.push(split[29]) }
+if(split[30]){ StoreImg.push(split[30]) }
+if(split[31]){ StoreImg.push(split[31]) }
+if(split[32]){ StoreImg.push(split[32]) }
+if(split[33]){ StoreImg.push(split[33]) }
+if(split[34]){ StoreImg.push(split[34]) }
+if(split[35]){ StoreImg.push(split[35]) }
+if(split[36]){ StoreImg.push(split[36]) }
+if(split[37]){ StoreImg.push(split[37]) }
+if(split[38]){ StoreImg.push(split[38]) }
+if(split[39]){ StoreImg.push(split[39]) }
+if(split[40]){ StoreImg.push(split[40]) }
+if(split[41]){ StoreImg.push(split[41]) }
+
+let NextImg = await StoreImg[Math.floor(Math.random() * StoreImg.length)]
+
+return NextImg
 }
+module.exports = { mensionMp3 , mensionImg }
