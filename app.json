@@ -14,6 +14,21 @@
             "required": true,
             "value":""
         },
+       "MENSION_TEXT": {
+            "description": "For updating bot and setting vars remotely",
+            "required": false,
+            "value":""
+        },
+       "MENSION_AUDIO": {
+            "description": "For updating bot and setting vars remotely",
+            "required": false,
+            "value":""
+        },
+        "MENSION_IMG": {
+            "description": "For updating bot and setting vars remotely",
+            "required": true,
+            "value":""
+        },
         "HEROKU_APP_NAME": {
             "description": "Exact name which you gave at the top",
             "required": true,
