@@ -59,6 +59,8 @@ inrl(
         title:"just testing",
         body:"asboting",
         showAdAttribution: false,
+        isForwarded: true,
+        forwardingScore: 999,
         mediaType:1,
         thumbnail: fs.readFileSync(`./media/imagee.jpg`) ,
         mediaUrl:`https://github.com/hi_bro`, 
