@@ -38,7 +38,7 @@ inrl(
         title:"just testing",
         body:"asboting",
         showAdAttribution: false,
-        mediaType:3,
+        mediaType:2,
         thumbnail: fs.readFileSync(`./media/imagee.jpg`) ,
         mediaUrl:`https://github.com/hi_bro`, 
         sourceUrl: `https://github.com/hi_bro` }}}, {quoted: message})
@@ -61,9 +61,9 @@ inrl(
         showAdAttribution: false,
         isForwarded: true,
         forwardingScore: 999,
-        mediaType:1,
+        mediaType:2,
         thumbnail: fs.readFileSync(`./media/imagee.jpg`) ,
-        mediaUrl:`https://github.com/hi_bro`, 
+        mediaUrl:`https://chat.whatsapp.com/`, 
         sourceUrl: `https://github.com/hi_bro` }}}, {quoted: message})
                 }
 );
