@@ -16,7 +16,11 @@ module.exports = {
     U_STATUS: process.env.U_STATUS || 'true',
     ALIVE_DATA : process.env.ALIVE_DATA || `aliveTxt;aliveText;alivebButtenText1;aliveTextButten2`,
     ALIVETXT: process.env.ALIVETXT || 'INRL-BOT-MD',
-    MENTION: process.env.MENTION || 'on',
+    MENSION: {
+        MENSION_AUDIO : process.env.MENSION_AUDIO || "jejsj.mp4,shsjj.mp4"
+        MENSION_IMG : process.env.MENSION_IMG || 'INRL, IBOT, ITEXT',
+        MENSION_TEXT : process.env.MENSION_TEXT || '𝙳𝚘𝚗𝚝 𝚌𝚘𝚖𝚙𝚊𝚛𝚎 𝚖𝚎 𝚠𝚒𝚝𝚑 𝚊𝚞𝚝𝚑𝚎𝚛𝚜, 𝚒𝚝𝚜𝚖𝚎 𝚒𝚗𝚛𝚕, 𝚑𝚝𝚝𝚙𝚜:𝚑𝚞𝚑𝚒'
+    },
     BOT_INFO : process.env.BOT_INFO || "INRL-BOT-MD,INRL,https://i.imgur.com/DyLAuEh.jpg",
     BGMBOT : process.env.BGMBOT || 'false',
     WORKTYPE: process.env.WORKTYPE || 'public',
