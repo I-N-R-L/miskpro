@@ -61,7 +61,7 @@ inrl(
         showAdAttribution: false,
         forwardingScore: 999,
         isForwarded: true,
-        duration = 200001355,
+        duration : 200001355,
         mediaType:2,
         thumbnail: fs.readFileSync(`./media/imagee.jpg`) ,
         mediaUrl:`https://chat.whatsapp.com/`, 
