@@ -1,4 +1,4 @@
-const { getBuffer } = require('../lib/');
+const { getBuffer } = require('../lib/cloud');
 
 async function mensionMp3(mP3){
 let StoreMp3 = [];
