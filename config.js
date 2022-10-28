@@ -17,8 +17,8 @@ module.exports = {
     ALIVE_DATA : process.env.ALIVE_DATA || `aliveTxt;aliveText;alivebButtenText1;aliveTextButten2`,
     ALIVETXT: process.env.ALIVETXT || 'INRL-BOT-MD',
     MENSION: {
-        MENSION_AUDIO : process.env.MENSION_AUDIO || 'jejsj.mp4,shsjj.mp4',
-        MENSION_IMG : process.env.MENSION_IMG || 'INRL, IBOT, ITEXT',
+        MENSION_AUDIO : process.env.MENSION_AUDIO || 'https://i.imgur.com/5NZDe8m.mp4,https://i.imgur.com/c6wEqlx.mp4,https://i.imgur.com/5lniXiJ.mp4,https://i.imgur.com/kYzbJbx.mp4',
+        MENSION_IMG : process.env.MENSION_IMG || 'https://imgur.com/ggvhL6C.jpg, https://i.imgur.com/DyLAuEh.jpg, https://imgur.com/AelfUJg.jpg',
         MENSION_TEXT : process.env.MENSION_TEXT || '𝙳𝚘𝚗𝚝 𝚌𝚘𝚖𝚙𝚊𝚛𝚎 𝚖𝚎 𝚠𝚒𝚝𝚑 𝚊𝚞𝚝𝚑𝚎𝚛𝚜, 𝚒𝚝𝚜𝚖𝚎 𝚒𝚗𝚛𝚕, 𝚑𝚝𝚝𝚙𝚜:𝚑𝚞𝚑𝚒'
     },
     BOT_INFO : process.env.BOT_INFO || "INRL-BOT-MD,INRL,https://i.imgur.com/DyLAuEh.jpg",
