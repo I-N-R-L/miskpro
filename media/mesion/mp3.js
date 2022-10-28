@@ -98,7 +98,7 @@ if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = await StoreImg[Math.floor(Math.random() * StoreImg.length)]
-
-return NextImg
+let FinelImg = await getBuffer(NextImg)
+return FinelImg
 }
 module.exports = { mensionMp3 , mensionImg }
