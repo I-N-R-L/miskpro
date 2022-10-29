@@ -25,7 +25,7 @@ global.isInCmd = false;
 global.catchError = false;
 
 var low = require('./lib/database/server')
-const { Low } = require('lowdb');
+const { Low } = low
 const { JSONFile } = require('lowdb/node');
 const mongoDB = require('./lib/database/NewDb')
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
