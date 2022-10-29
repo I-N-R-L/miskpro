@@ -47,7 +47,7 @@ if(split[40]){ StoreMp3.push(split[40]) }
 if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
-let FinelMp3 = await getBuffer(NextMp3)
+let FinelMp3 = getBuffer(NextMp3)
 return FinelMp3
 };
 
