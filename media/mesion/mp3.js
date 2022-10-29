@@ -1,6 +1,6 @@
-const { getBuffer } = require('../../lib/');
+const { getBuffer } = require('../../lib/cloud');
 
-async function mensionMp3(mP3){
+function mensionMp3(mP3){
 let StoreMp3 = [];
 var split = mP3.split(',')
 if(split[0]){ StoreMp3.push(split[0]) }
@@ -51,7 +51,7 @@ let FinelMp3 = await getBuffer(NextMp3)
 return FinelMp3
 };
 
-async function mensionImg(jPg){
+function mensionImg(jPg){
 let StoreImg = [];
 var split = jPg.split(',')
 if(split[0]){ StoreImg.push(split[0]) }
@@ -97,8 +97,8 @@ if(split[39]){ StoreImg.push(split[39]) }
 if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
-let NextImg = await StoreImg[Math.floor(Math.random() * StoreImg.length)]
-let FinelImg = await getBuffer(NextImg)
+let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
+let FinelImg = getBuffer(NextImg)
 return FinelImg
 }
 module.exports = { mensionMp3 , mensionImg }
