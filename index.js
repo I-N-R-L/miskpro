@@ -23,7 +23,7 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
-
+/*
 var low = require('./lib/database/server')
 const { Low, JSONFile } = low
 const mongoDB = require('./lib/database/NewDb')
@@ -49,7 +49,7 @@ if (global.db) setInterval(async () => {
     if (global.db.data) await global.db.write()
   }, 30 * 1000)
 
-
+*/
 //varconst fs = require("fs");
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
