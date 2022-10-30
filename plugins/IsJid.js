@@ -74,7 +74,8 @@ inrl({
 		let count ="│🪀";
                 for (let mem of admins) {
 			msg += `${count}  ${mem.split('@')[0]}\n`
-                       await msg += "\nmsg +="
+                         msg += "";
+                          msg += "-----";
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {
