@@ -3,7 +3,7 @@ const  { inrl , config }= require('../lib/')
 
 inrl(
 	   {
-		pattern: ['ping'],
+		pattern: ['vv'],
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
