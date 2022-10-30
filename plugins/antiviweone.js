@@ -1,3 +1,4 @@
+const fs = require('fs');
 const  { inrl , config }= require('../lib/')
 
 inrl(
