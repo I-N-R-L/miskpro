@@ -48,9 +48,8 @@ inrl({
                 category: ["system", "all"],
 	   }, async (message, client) => {
         if(message.isGroup){
-	let groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
-	let participants = message.isGroup ? await groupMetadata.participants : ''
-        let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
+	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
+	const participants = message.isGroup ? await groupMetadata.participants : ''
 		let msg = "╭───────────────────⊷❍\n";
                 let Ising = "│🪀";
                 for (let mem of participants) {
@@ -75,11 +74,11 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
-		let msg = "╭───────────────────⊷❍\n";
+		let msg = "╭───────────────────⊷❍\n│";
                 let Ising = "│🪀";
                 for (let mem of admins) {
 			msg += `${Ising} ${mem}\n`;
-                        msg += "\n╰───────────────────⊷❍";
+                        msg += "│\n╰───────────────────⊷❍";
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {text: msg })
