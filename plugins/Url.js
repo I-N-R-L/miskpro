@@ -4,14 +4,14 @@ const got = require('got');
 const api = "76a050f031972d9f27e329d767dd988f" || "deb80cd12ababea1c9b9a8ad6ce3fab2";
 bots.inrl(
 	{
-		pattern: ['urli'],
+		pattern: ['url'],
        desc: 'set full size profile picture',
        sucReact: "⛰️",
        category: ["all"]
     },
 	   async (message, client) => {
 
-let _message = message.quoted.imageMessage || message.quoted.videoMessage;
+let _message = message.quoted.imageMessage || message.quoted.stickerMessage;
 
 if (!_message)
 return await client.sendMessage( message.from,{ text :'*Reply to a image/video to url.*'}, { quoted: message })
