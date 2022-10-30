@@ -10,7 +10,7 @@ inrl(
 	   },
 	async (message, client) => {
       if(message.quoted.type !== "viewOnceMessage") return await client.sendMessage(m.from, {text:'Please quote a view once message.'})
-      let buff = await client.downloadAndSaveMediaMessage(citel.quoted.viewOnceMessage)
+      let buff = await client.downloadAndSaveMediaMessage(message.quoted.viewOnceMessage)
       await client.sendFile(buff);
         fs.unlinkSync(buff)
            /*  try {
