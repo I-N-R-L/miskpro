@@ -32,9 +32,7 @@ inrl({
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-if(!message.client.isCreator) {
-return await client.sendMessage( message.from, { text: "sorry about thets this cmd only for owner"});
-}
+if(!message.client.isCreator) return await client.sendMessage( message.from, { text: "sorry about thets this cmd only for owner"});
 if (message.isGroup) { 
 await client.updateBlockStatus(message.quoted, "unblock") // Unblock user
 }else{
@@ -50,14 +48,12 @@ inrl({
         if(message.isGroup){
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
-		let msg = "╭───────────────────⊷❍\n";
-                let Ising = "│🪀";
+        let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
+		let msg = "  "+ message.client.text+"\n\n     💗💗";
+                let count = 1
                 for (let mem of participants) {
-console.log("😹"+participants,"\n\n😄"+mem,"\n\n\n"+groupMetadata);
-			msg += `\n${Ising}  ${mem}`;
-                   msg += "\n╰───────────────────⊷❍";
+			msg += ` ${count++}  @${mem.id.split('@')[0]}\n`
                 }
-
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {
 			text: msg })
@@ -74,15 +70,14 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
-		let msg = "╭───────────────────⊷❍\n│";
-                let Ising = "\n│🪀";
+		let msg = "╭────────────────────⊷❍\n";
+		let count ="│🪀";
                 for (let mem of admins) {
-			msg += `${Ising} ${mem}`;
-                        msg += "│\n╰───────────────────⊷❍";
-console.log("😹"+participants,"\n\n😄"+mem,"\n\n\n"+groupMetadata);
+			msg += ` ${count++}  ${mem.split('@')[0]}\n`
                 }
 if(message.client.isCreator || admins){
-		return await client.sendMessage(message.from, {text: msg })
+		return await client.sendMessage(message.from, {
+			text: msg })
                     }
           }
 });
