@@ -75,10 +75,11 @@ inrl({
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
 		let msg = "╭───────────────────⊷❍\n│";
-                let Ising = "│🪀";
+                let Ising = "\n│🪀";
                 for (let mem of admins) {
-			msg += `${Ising} ${mem}\n`;
+			msg += `${Ising} ${mem}`;
                         msg += "│\n╰───────────────────⊷❍";
+console.log("😹"+participants,"\n\n😄"+mem,"\n\n\n"+groupMetadata);
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {text: msg })
