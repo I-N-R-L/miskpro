@@ -49,10 +49,10 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
-		let msg = "  "+ message.client.text+"\n\n     💗💗";
-                let count = 1
+		let msg = "╭───────────────⊷❍\n";
+                let count ="│🪀";
                 for (let mem of participants) {
-			msg += ` ${count++}  @${mem.id.split('@')[0]}\n`
+			msg += `${count}  ${mem.id.split('@')[0]}\n`
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {
@@ -70,10 +70,11 @@ inrl({
 	const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
-		let msg = "╭────────────────────⊷❍\n";
+		let msg = "╭───────────────⊷❍\n";
 		let count ="│🪀";
                 for (let mem of admins) {
-			msg += ` ${count++}  ${mem.split('@')[0]}\n`
+			msg += `${count}  ${mem.split('@')[0]}\n`
+                        msg += "msg +="
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {
