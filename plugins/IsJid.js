@@ -53,7 +53,7 @@ inrl({
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
 		let msg = "╭───────────────────⊷❍\n";
                 for (let mem of participants) {
-			msg += `${│🪀}  ${mem}\n`;
+			msg += `${│🪀}  ${mem}\n`
                    msg += "╰───────────────────⊷❍";
                 }
 if(message.client.isCreator || admins){
@@ -74,7 +74,7 @@ inrl({
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
 		let msg = "╭───────────────────⊷❍\n";
                 for (let mem of admins) {
-			msg += `${│🪀} ${mem}\n`;
+			msg += `${│🪀} ${mem}\n`
                         msg += "╰───────────────────⊷❍";
                 }
 if(message.client.isCreator || admins){
