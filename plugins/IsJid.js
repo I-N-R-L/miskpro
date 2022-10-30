@@ -54,9 +54,11 @@ inrl({
 		let msg = "╭───────────────────⊷❍\n";
                 let Ising = "│🪀";
                 for (let mem of participants) {
+console.log(participants,mem);
 			msg += `${Ising}  ${mem}\n`
-                   msg += "╰───────────────────⊷❍";
+                   msg += "\n╰───────────────────⊷❍";
                 }
+
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {
 			text: msg })
@@ -77,7 +79,7 @@ inrl({
                 let Ising = "│🪀";
                 for (let mem of admins) {
 			msg += `${Ising} ${mem}\n`
-                        msg += "╰───────────────────⊷❍";
+                        msg += "\n╰───────────────────⊷❍";
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {text: msg })
