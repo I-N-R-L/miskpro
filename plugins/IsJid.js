@@ -56,7 +56,7 @@ inrl({
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {
-			text: msg })
+			text: msg+"\n╰───────────────⊷❍" })
                      }
           }
 });
@@ -77,7 +77,7 @@ inrl({
                 }
 if(message.client.isCreator || admins){
 		return await client.sendMessage(message.from, {
-			text: msg })
+			text: msg+"\n╰───────────────⊷❍"})
                     }
           }
 });
