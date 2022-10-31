@@ -1,4 +1,4 @@
-const { inrl, sendUrl, tinyUrl, webSs, pdfGen } = require('../lib')
+const { inrl, sendUrl, tinyUrl, webSs, pdfGen, AudioMetaData } = require('../lib')
 
 inrl(
 	{
@@ -20,6 +20,13 @@ inrl({ pattern: ['webss'], desc: "to get web screenshot",sucReact: "⚒️",  ca
         await webSs(message, client);
 });
 
-inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"], setcmd : "pdf"}, (async (message, client) => {
+inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, (async (message, client) => {
      await pdfGen(message, client);
 }))
+
+inrl({ pattern: ['copy'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+let _message == message.quoted.audioMessage
+let media = await client.downloadAndSaveMediaMessage(_message)
+
+    await AudioMetaData(media, message, client);
+})
