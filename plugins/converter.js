@@ -1,4 +1,4 @@
-const { inrl, isUrl , getBuffer , getRandom, webp2mp4File, toAudio,toPTT } = require('../lib/');
+const { inrl, isUrl , config, getBuffer , getRandom, webp2mp4File, toAudio,toPTT } = require('../lib/');
 const Config = require('../config');
 const { instagramdl, instagramdlv2, instagramdlv3 } = require('@bochilteam/scraper');
 let noh = require('@bochilteam/scraper');
@@ -62,10 +62,9 @@ let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = await getRandom('.png')
    exec(`ffmpeg -i ${media} ${ran}`, (err) => {
-  fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buffer = fs.readFileSync(ran)
-  client.sendMessage(message.from, { image:  buffer , caption: bots.config.exif.cap }, { quoted: message });
+  client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
   fs.unlinkSync(ran,media)
    })
  });
@@ -75,7 +74,7 @@ let _message = message.quoted.stickerMessage ;
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message)
    let webpToMp4 = await webp2mp4File(media)
-   await client.sendMessage(message.from, { video: { url : webpToMp4.result }, caption: bots.config.exif.cap }, { quoted: message });
+   await client.sendMessage(message.from, { video: { url : webpToMp4.result }, caption: config.exif.cap }, { quoted: message });
    await fs.unlinkSync(media)
  });
 inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
