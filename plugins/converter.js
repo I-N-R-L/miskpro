@@ -61,7 +61,7 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = await getRandom('.png')
-   exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+  async exec(`ffmpeg -i ${media} ${ran}`, (err) => {
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buffer = await fs.readFileSync(ran)
  await client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
@@ -75,7 +75,7 @@ let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message)
    let webpToMp4 = await webp2mp4File(media)
    await client.sendMessage(message.from, { video: { url : webpToMp4.result }, caption: config.exif.cap }, { quoted: message });
-   await fs.unlinkSync(media)
+   return await fs.unlinkSync(media)
  });
 inrl({ pattern: ['voice','ptt'], desc: "to convert audio/video to ptt",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
  if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime)) return await client.sendMessage(message.from, { text : "Reply Video/Audio That You Want To Be VN With Caption " },{ quoted: message });
