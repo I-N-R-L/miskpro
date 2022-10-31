@@ -24,9 +24,9 @@ client.ev.emit('messages.upsert', msg)
   }
    const text = message.client.text;
    if (!message.quoted) { global.catchError = true; return await client.sendMessage( message.from, { text: bots.errorMessage(bots.config.reply.owner) }, { quoted: message } ); };
-   if (!message.quoted.fileSha256) {return await client.sendMessage(message.from, { text: 'SHA256 Hash Missing'},{ quoted: message } ); }
+   if (!message.quoted.stickerMessage.fileSha256) {return await client.sendMessage(message.from, { text: 'SHA256 Hash Missing'},{ quoted: message } ); }
    if (!text) {return await client.sendMessage(message.from, { text: 'where is the cmd'},{ quoted: message } ); }
-   let hash = message.quoted.fileSha256.toString('base64')
+   let hash = message.quoted.stickerMessage.fileSha256.toString('base64')
    if (sticker[hash] && sticker[hash].locked) {return await client.sendMessage(message.from, { text: 'You have no permission to change this sticker command'}, { quoted: message } );
    sticker[hash] = {
   text,
