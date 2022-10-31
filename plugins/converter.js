@@ -63,9 +63,9 @@ let _message = message.quoted.stickerMessage ;
    let ran = await getRandom('.png')
    exec(`ffmpeg -i ${media} ${ran}`, (err) => {
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
-  let buffer = fs.readFileSync(ran)
-  client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
-  fs.unlinkSync(ran,media)
+  let buffer = await fs.readFileSync(ran)
+ await client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
+ return await fs.unlinkSync(ran,media)
    })
  });
  inrl({ pattern: ['video','tomp4'], desc: "to convert webp to mp4",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
