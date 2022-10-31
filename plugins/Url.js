@@ -25,7 +25,7 @@ inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  cate
 }))
 
 inrl({ pattern: ['copy'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
-let _message == message.quoted.audioMessage
+let _message = message.quoted.audioMessage
 let media = await client.downloadAndSaveMediaMessage(_message)
 
     await AudioMetaData(media, message, client);
