@@ -60,7 +60,7 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
    if (!/webp/.test(message.client.mime)) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
-   let ran = await getRandom('.png')
+   let ran = ('inrlimgc.jpg')
 console.log(ran);
    exec(`ffmpeg -i ${media} ${ran}`, async (err) => {
    if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
