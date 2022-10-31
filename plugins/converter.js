@@ -60,10 +60,10 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
    if (!/webp/.test(message.client.mime)) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
-   let ran = fs.writeFileSync('./media/isstickertodec.png', fs.readFileSync(media));
-   exec(`ffmpeg -i ${media} ${ran}`, async (err) => {
+   let ran = getRandom('.png')
+   exec(`ffmpeg -i ${media} ${ran}`, (err) => {
    if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
-  let buffer = await fs.readFileSync(ran)
+  let buffer = fs.readFileSync(ran)
   client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
   fs.unlinkSync(ran,media)
      })
