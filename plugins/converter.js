@@ -66,7 +66,7 @@ let _message = message.quoted.stickerMessage ;
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   //let buffer = fs.readFileSync(ran)
   client.sendMessage(message.from, { image:  ran , caption: bots.config.exif.cap }, { quoted: message });
-  fs.unlinkSync(ran)
+  //fs.unlinkSync(ran)
    })
  });
  bots.inrl({ pattern: ['video','tomp4'], desc: "to convert webp to mp4",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
