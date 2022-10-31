@@ -55,7 +55,7 @@ await client.sendMessage( message.from, { audio: { url: inrl.url[0].url }, mimet
 client.sendMessage(message.from, { text :"filed to download"},{ quoted: message })
 })
 });
-bots.inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
+bots.inrl({ pattern: ['photo'], desc: "to convert webp to img",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
    if (!message.quoted) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
    if (!/webp/.test(message.client.mime)) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
 let _message = message.quoted.stickerMessage ;
@@ -357,7 +357,6 @@ bots.inrl({pattern: ['mp3','audio'], desc: "to get video as audio ", sucReact: "
 if (!/video/.test(message.client.mime) && !/audio/.test(message.client.mime))return await client.sendMessage( message.from, { text: 'Send/Reply Video/Audio You Want To Use As Audio With Caption '}, { quoted: message });
             if (!message.quoted) return await client.sendMessage( message.from, { text: 'please replay to a video to get audio😛'}, { quoted: message });
             let media = await message.quoted.download()
-            let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
             client.sendMessage(message.from, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : message })
             }));
