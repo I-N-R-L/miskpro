@@ -1,6 +1,18 @@
+const fs = require('fs');
+global.db = JSON.parse(fs.readFileSync('./lib/database/server.json'))
+if (global.db) global.db = {
+    sticker: {},
+    database: {},
+    game: {},
+    settings: {},
+    others: {},
+    users: {},
+    chats: {},
+    ...(global.db || {})
+}
+
 const bots = require("../lib/perfix");
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, WAZimBotIncection, MessageType, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType, fetchLatestBaileysVersion } = require('@adiwajshing/baileys')
-const fs = require('fs');
 let sticker = JSON.parse(fs.readFileSync('./lib/database/server.json'));
 
 bots.inrl({ pattern: ["setcmd"], usage: '<mentions|reply>', sucReact: "😎", category: ["group", "all"],},
