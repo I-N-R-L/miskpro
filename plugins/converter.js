@@ -60,14 +60,13 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
    if (!/webp/.test(message.client.mime)) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
-   let ran = ('inrlimgc.jpg')
-console.log(ran);
-   exec(`ffmpeg -i ${media} ${ran}`, async (err) => {
-   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
+   let ran = getRandom('.png')
+  //? exec(`ffmpeg -i ${media} ${ran}`, async (err) => {
+  // if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buffer = await fs.readFileSync(ran)
   client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
   fs.unlinkSync(ran,media)
-     })
+    // })
  });
  inrl({ pattern: ['video','tomp4'], desc: "to convert webp to mp4",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
    if (!message.quoted) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
