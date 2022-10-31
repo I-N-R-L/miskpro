@@ -1,24 +1,14 @@
-const imgbbUploader = require("imgbb-uploader");
-const bots = require('../lib/perfix')
-const got = require('got');
-const api = "76a050f031972d9f27e329d767dd988f" || "deb80cd12ababea1c9b9a8ad6ce3fab2";
-bots.inrl(
+const { inrl, sendUrl, tinyUrl, webSs, pdfGen } = require('../lib')
+
+inrl(
 	{
 		pattern: ['url'],
-       desc: 'set full size profile picture',
+       desc: 'to convert image/sticker to url',
        sucReact: "⛰️",
        category: ["all"]
     },
 	   async (message, client) => {
-
-let _message = message.quoted.imageMessage || message.quoted.stickerMessage;
-
-if (!_message)
-return await client.sendMessage( message.from,{ text :'*Reply to a image/video to url.*'}, { quoted: message })
-let download = await client.downloadAndSaveMediaMessage(_message)
-var idata = await imgbbUploader(api , download)
-console.log(idata);
-await client.sendMessage( message.from, {text : idata.url }, { quoted: message })
+await sendUrl(message, client);
     }
 );
  bots.inrl({pattern: ['tinyurl'], desc: "to convert url as small", sucReact: "😛", category: ['all'],},   async (message, client) => {
