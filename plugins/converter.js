@@ -61,12 +61,12 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = await getRandom('.png')
-  async exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+//  async exec(`ffmpeg -i ${media} ${ran}`, (err) => {
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
-  let buffer = await fs.readFileSync(ran)
+  let buffer = fs.readFileSync(ran)
  await client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
  return await fs.unlinkSync(ran,media)
-   })
+ //  })
  });
  inrl({ pattern: ['video','tomp4'], desc: "to convert webp to mp4",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
    if (!message.quoted) return await client.sendMessage(message.from, { text :"replay to a sticker"},{ quoted: message })
