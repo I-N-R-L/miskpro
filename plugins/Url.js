@@ -29,9 +29,10 @@ inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  cate
 inrl({ pattern: ['copy'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 let _message = message.quoted.audioMessage
 let media = await client.downloadAndSaveMediaMessage(_message)
-const text = message.client.text;
+let text = message.client.text;
+if(text.includes(' ')){ text = text.trim() }
 let img = text.split(',')[2] || Config.AUDIO_DATA.split(',')[2];
-
+if(img.includes(' ')){ img = img.trim() }
 let imgForUdio = await urlBufferToImgFile(img,'./media/imagForAudio.jpg');
 //let mediaImg = await readFile('./media/imagForAudio.jpg')
 //let dltImg = ('./media/imagForAudio.jpg');
