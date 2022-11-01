@@ -36,6 +36,6 @@ let imgForUdio = urlBufferToImgFile(img,'./media/imagForAudio.jpg');
 let mediaImg = fs.readFileSync('./media/imagForAudio.jpg')
 let dltImg = ('./media/imagForAudio.jpg');
     await AudioMetaData(mediaImg, media, message, client);
-return await fs.unlinkSync(dltImg)
+//return await fs.unlinkSync(dltImg)
 
 })
