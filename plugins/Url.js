@@ -1,7 +1,7 @@
 const { inrl, sendUrl, tinyUrl, webSs, pdfGen, urlBufferToImgFile, AudioMetaData  } = require('../lib')
 const Config = require('../config');
 const fs = require('fs');
-
+const { readFile, writeFile } = require('fs/promises')
 inrl(
 	{
 		pattern: ['url'],
@@ -33,7 +33,7 @@ const text = message.client.text;
 let img = text.split(',')[2] || Config.AUDIO_DATA.split(',')[2];
 
 let imgForUdio = urlBufferToImgFile(img,'./media/imagForAudio.jpg');
-let mediaImg = fs.readFileSync('./media/imagForAudio.jpg')
+let mediaImg = await readFile('./media/imagForAudio.jpg')
 let dltImg = ('./media/imagForAudio.jpg');
     await AudioMetaData(mediaImg, media, message, client);
 //return await fs.unlinkSync(dltImg)
