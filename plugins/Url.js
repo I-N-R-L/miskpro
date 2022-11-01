@@ -30,9 +30,13 @@ inrl({ pattern: ['copy'], desc: "to get web screenshot",sucReact: "⚒️",  cat
 let _message = message.quoted.audioMessage
 let media = await client.downloadAndSaveMediaMessage(_message)
 let text = message.client.text;
+
 if(text.includes(' ')){ text = text.trim() }
-let img = text.split(',')[2] || Config.AUDIO_DATA.split(',')[2];
+let img = Config.AUDIO_DATA.split(',')[2];
 if(img.includes(' ')){ img = img.trim() }
+if(text.includes(','){
+img = text.split(',')[2];
+}
 let imgForUdio = await urlBufferToImgFile(img,'./media/imagForAudio.jpg');
 console.log(img)
 //let mediaImg = await readFile('./media/imagForAudio.jpg')
