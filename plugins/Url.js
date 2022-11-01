@@ -1,4 +1,6 @@
-const { inrl, sendUrl, tinyUrl, webSs, pdfGen, AudioMetaData } = require('../lib')
+const { inrl, sendUrl, tinyUrl, webSs, pdfGen, urlBufferToImgFile, AudioMetaData  } = require('../lib')
+const Config = require('../config');
+const fs = require('fs');
 
 inrl(
 	{
@@ -27,6 +29,13 @@ inrl({ pattern: ['pdf'], desc: "to get web screenshot",sucReact: "⚒️",  cate
 inrl({ pattern: ['copy'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
 let _message = message.quoted.audioMessage
 let media = await client.downloadAndSaveMediaMessage(_message)
+const text = message.client.text;
+let img = text.split(',')[2] || Config.AUDIO_DATA.split(',')[2];
 
-    await AudioMetaData(media, message, client);
+let imgForUdio = urlBufferToImgFile(img,'./media/imagForAudio.jpg');
+let mediaImg = fs.readFileSync('./media/imagForAudio.jpg')
+let dltImg = ('./media/imagForAudio.jpg');
+    await AudioMetaData(mediaImg, media, message, client);
+return await fs.unlinkSync(dltImg)
+
 })
