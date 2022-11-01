@@ -37,8 +37,8 @@ if(img.includes(' ')){ img = img.trim() }
 if(text.includes(',')){
 img = text.split(',')[2];
 }
-let imgForUdio = await urlBufferToImgFile(img,'./media/imagForAudio.jpg');
 console.log(img)
+let imgForUdio = await urlBufferToImgFile(img,'./media/imagForAudio.jpg');
 //let mediaImg = await readFile('./media/imagForAudio.jpg')
 //let dltImg = ('./media/imagForAudio.jpg');
     await AudioMetaData(imgForUdio, media, message, client);
