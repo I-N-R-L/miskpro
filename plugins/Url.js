@@ -34,13 +34,9 @@ let text = message.client.text;
 if(text.includes(' ')){ text = text.trim() }
 let img = Config.AUDIO_DATA.split(',')[2];
 if(img.includes(' ')){ img = img.trim() }
-if(text.includes(',')){
-img = text.split(',')[2];
-}
+img = text.split(',')[2] ? text.split(',')[2] : img;
 console.log(img)
 let imgForUdio = await urlBufferToImgFile(img,'./media/imagForAudio.jpg');
-//let mediaImg = await readFile('./media/imagForAudio.jpg')
-//let dltImg = ('./media/imagForAudio.jpg');
     await AudioMetaData(imgForUdio, media, message, client);
 //return await fs.unlinkSync(dltImg)
 
