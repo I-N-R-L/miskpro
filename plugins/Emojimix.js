@@ -11,9 +11,13 @@ if (text.includes('+')) {
          emoji2 = split[1];
         }
 const url = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
-console.log("url="+url);
+
+const response = await got(url);
+	const json = response.results.url;
+
+console.log("url="+json);
 const Message = {
-      image: { url: url.results.url },
+      image: { url: json },
       caption: "ezio.config.exif.cap",
 }
 await client.sendMessage(message.from, Message, /*message, { packname: "inrl", author: "inrl", categories: "🥵" }*/)
