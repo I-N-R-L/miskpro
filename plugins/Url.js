@@ -42,5 +42,5 @@ let imgForUdio = await urlBufferToImgFile(img,'./media/imagForAudio.jpg');
 
 })
 inrl({ pattern: ['>data'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, (async (message, client) => {
-     await client.sendMessage(message.from, {text : message,client});
+     await client.sendMessage(message.from, {text : "hi="+message,client});
 }))
