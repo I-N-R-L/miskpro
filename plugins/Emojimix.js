@@ -1,4 +1,5 @@
 const fs = require('fs');
+const got = require('got');
 const {inrl,fetchJson,styletext} = require('../lib/');
 
 inrl({pattern: ['emojiimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
