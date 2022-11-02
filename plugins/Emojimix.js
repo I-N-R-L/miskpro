@@ -13,8 +13,9 @@ if (text.includes('+')) {
 const response = await got(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 /*
 await got(url);
-	const json = response.results.url;
 */
+	const json = response.results.url;
+
 console.log("url="+json);
 const Message = {
       image: { url: json },
