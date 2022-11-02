@@ -10,11 +10,11 @@ if (text.includes('+')) {
          emoji1= split[0];
          emoji2 = split[1];
         }
-const url = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
-
-const response = await got(url);
+const response = await got(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
+/*
+await got(url);
 	const json = response.results.url;
-
+*/
 console.log("url="+json);
 const Message = {
       image: { url: json },
