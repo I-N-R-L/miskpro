@@ -27,6 +27,7 @@ ezio.inrl( { pattern: ["attp"], desc: lang.ATTP_DESC, sucReact: "☯", category:
         global.catchError = true; 
         return await client.sendErrorMessage( message.from, error, message.key, message );
     }
+console.log("normel:"+resSticker.data, "buffer:"+Buffer.from(resSticker.data));
 console.log(resSticker.data);
     client.sendMessage( message.from, { sticker: Buffer.from(resSticker.data) }, { quoted: message } );
     global.catchError = false;
