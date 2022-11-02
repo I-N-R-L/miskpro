@@ -12,5 +12,9 @@ if (text.includes('+')) {
         }
 const url = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 console.log("url="+url);
-await client.sendMessage(message.from,image: { url : url.results.url }, /*message, { packname: "inrl", author: "inrl", categories: "🥵" }*/)
+const Message = {
+      image: { url: url.results.url },
+      caption: "ezio.config.exif.cap",
+}
+await client.sendMessage(message.from, Message, /*message, { packname: "inrl", author: "inrl", categories: "🥵" }*/)
 });
