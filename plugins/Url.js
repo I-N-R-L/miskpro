@@ -1,4 +1,4 @@
-const { inrl, sendUrl, tinyUrl, webSs, pdfGen, urlBufferToImgFile, AudioMetaData  } = require('../lib')
+const { inrl, sendUrl, tinyUrl, webSs, pdfGen, BufferToFile, AudioMetaData, send_alive } = require('../lib')
 const Config = require('../config');
 const fs = require('fs');
 const { readFile, writeFile } = require('fs/promises')
@@ -45,4 +45,7 @@ inrl({ pattern: ['clear'], desc: "to get web screenshot",sucReact: "⚒️",  ca
      await client.sendMessage(message.from, {text : "```cleaning chat...```"});
     await client.modifyChat (message.from, ChatModification.delete);
     await client.sendMessage(message.from, {text:'```🏳 Chat cleared 🏳```'});
+}))
+inrl({ pattern: ['aliv'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, (async (message, client) => {
+     await send_alive(message, client);
 }))
