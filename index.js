@@ -139,7 +139,9 @@ if(Config.REACT =='true'){
 if(Config.REACT =='true'){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
 }
-            await conn.sendPresenceUpdate("available", m.from);
+            await conn.sendPresenceUpdate("available", m.from);//if (config.READ_CMD == "true") {
+          	await conn.readMessages([m.from])
+             // }
           }
         }
       });
