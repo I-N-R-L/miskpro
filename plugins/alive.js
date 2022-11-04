@@ -1,7 +1,7 @@
 var NewGen, templateButtons;
 const os = require("os");
 const speed = require("performance-now");
-const  { inrl , config, inrlQuita, insult , randomStyle, styletext}= require('../lib/')
+const  { inrl , config, inrlQuita, insult , randomStyle, styletext, send_alive, send_menu }= require('../lib/')
 const Config = require("../config");
 
 inrl(
@@ -37,168 +37,13 @@ inrl({ pattern: ['del'], desc: "to create to delete unwanted grp msg by admins",
 
 inrl(
   {
-    pattern: ["alive", "bot", "system_status"],
+    pattern: ["alive"],
     desc: "to check the bot status",
     sucReact: "🥰",
     category: ["system", "all"],
   },
   async (message, client) => {
-const Quita = await inrlQuita();
-const Insult = await insult();
-const Sender = message.client.pushName;
-const Hits = global.mydb.hits;
-const Git = Config.GIT;
-const Yt = Config.YT;
-const Insta = Config.INSTAGRAM; 
-let myUsers = global.mydb.users.length;
-let date = new Date().toLocaleString("EN", { timeZone: "Asia/kolkata" }); ;
-let host = os.hostname();
-
-const aliveData = Config.ALIVE_DATA;
-if (aliveData.includes(';')) { 
-var split = aliveData.split(';');
-aliveImgUrl = split[0];
-aliveTxt = split[1];
-aliveButton1 = split[2];
-aliveButton2 = split[3];
-  }
-NewGen = aliveTxt
-         if (NewGen.includes('#Quita')) {
-NewGen = NewGen.replace("#Quita", `${Quita}`)
-}
-if (NewGen.includes('#Insult')) {
-NewGen = NewGen.replace("#Insult", `${Insult}`)
-}
-if (NewGen.includes('#Sender')) {
-NewGen = NewGen.replace("#Sender", `${Sender}`)
-}
-if (NewGen.includes('#myUsers')) {
-NewGen = NewGen.replace("#myUsers", `${myUsers}`)
-}
-if (NewGen.includes('#Hits')) {
-NewGen = NewGen.replace("#myUsers", `${myUsers}`)
-}
-if (NewGen.includes('#host')) {
-NewGen = NewGen.replace("#host", `${host}`)
-}
-if (NewGen.includes('#date')) {
-NewGen = NewGen.replace("#date", `${date}`)
-}
-if (NewGen.includes('#Hits')) {
-NewGen = NewGen.replace("#Hits", `${Hits}`)
-}
-if (NewGen.includes('#Git')) {
-NewGen = NewGen.replace("#Git", `${Git}`)
-}
-if (NewGen.includes('#Yt')) {
-NewGen = NewGen.replace("#Yt", `${Yt}`)
-}
-      
-let buttons = [];
-      
-      let b1 = { buttonId: "1", buttonText: { displayText: aliveButton1}, type: 1, };
-      let b2 = { buttonId: "2", buttonText: { displayText: aliveButton2}, type: 1, };
-
-buttons.push(b1);
-buttons.push(b2);
-if (aliveData.includes('@Style')) {
-NewGen = NewGen.replace("@Style", "")
-NewGen = randomStyle(NewGen);
-}
-
-let alievTxtNew = `${NewGen}`;
-if (aliveImgUrl.endsWith('.mp4')) {
- templateButtons = {
-      video: { url: aliveImgUrl },
-      caption: `${alievTxtNew}`,
-      footer: config.exif.footer,
-      buttons,
-    }
-await client.sendMessage(message.from, templateButtons, { quoted: message });
-}else if (NewGen.includes('#Insta')) {
-NewGen = NewGen.replace("#Insta", "")
-let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
-  await buttons.push(b3);
-await buttons.push(b1);
-await buttons.push(b2);
-if(aliveImgUrl.endsWith('.jpg')){
-templateButtons = {
-    text: alievTxtNew,
-    footer: config.exif.footer,
-    templateButtons: buttons,
-    image: {url: aliveImgUrl}
-    }
-await client.sendMessage(message.from, templateButtons);
-   }
-}else if (NewGen.includes('#Insta')) {
-NewGen = NewGen.replace("#Insta", "")
-let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
-  await buttons.push(b3);
-await buttons.push(b1);
-await buttons.push(b2);
-if(aliveImgUrl.endsWith('.jpeg')){
-templateButtons = {
-    text: alievTxtNew,
-    footer: config.exif.footer,
-    templateButtons: buttons,
-    image: {url: aliveImgUrl}
-    }
-await client.sendMessage(message.from, templateButton);
-    }
-}else if (NewGen.includes('#Insta')) {
-NewGen = NewGen.replace("#Insta", "")
-let b3 = {index: 1, urlButton: {displayText: 'ɪɴꜱᴛᴀɢʀᴀᴍ', url: Insta }};
-  await buttons.push(b3);
-await buttons.push(b1);
-await buttons.push(b2);
-if(aliveImgUrl.endsWith('.mp4')){
-templateButtons = {
-    text: alievTxtNew,
-    footer: config.exif.footer,
-    templateButtons: buttons,
-    video: {url: aliveImgUrl}
-    }
-await client.sendMessage(message.from, templateButtons);
-    }
-}else if(aliveImgUrl.endsWith('.jpg')) {
-  templateButtons = {
-      image: { url: aliveImgUrl },
-      caption: `${alievTxtNew}`,
-      footer: config.exif.footer,
-      buttons,
-    }
-await client.sendMessage(message.from, templateButtons, { quoted: message });
-}else if(aliveImgUrl.endsWith('.gif')) {
-  templateButtons = {
-      image: { url: aliveImgUrl , gifPlayback: true },
-      caption: `${alievTxtNew}`,
-      footer: config.exif.footer,
-      buttons,
-    }
-await client.sendMessage(message.from, templateButtons, { quoted: message });
-}else if(aliveImgUrl.endsWith('.jpeg')) {
-   templateButtons = {
-      image: { url: aliveImgUrl },
-      caption: `${alievTxtNew}`,
-      footer: config.exif.footer,
-      buttons,
-    }
-await client.sendMessage(message.from, templateButtons, { quoted: message });
-} else {
-await client.sendMessage(message.from,{ text :`${aliveTxt}\n\niam alive Bro ${Sender}\n\nfor adding your own datas like coustmized button\ntype the same type as wahts you want\n\nset-alive-value  imgurl;alivetxt;buttonName1;2\n\nCurrentValue :${Config.ALIVE_DATA}\n\nif need coustmized texts like Quita;insult;Inst_Url.. \n\n add whats you want *withStarting#* \n_ex_:Quita :#Quita \n note thet the fisrt letter is _capitel_\n\nvalues is :#Hits,#Sender,#Insult#Quita...\n#Insta, #Yt, #Git,`}, { quoted: message });
-await client.sendMessage(client.user.id,{ text :`${aliveTxt}\n\niam alive Bro ${Sender}\n\nfor adding your own datas like coustmized button\ntype the same type as wahts you want\n\nset-alive-value  imgurl;alivetxt;buttonName1;2\n\nCurrentValue :${Config.ALIVE_DATA}\n\nif need coustmized texts like Quita;insult;Inst_Url.. \n\n add whats you want *withStarting#* \n_ex_:Quita :#Quita \n note thet the fisrt letter is _capitel_\n\nvalues is :#Hits,#Sender,#Insult#Quita...\n#Insta, #Yt, #Git,`}, { quoted: message });
-await client.sendMessage(message.client.isCreator,{ text :`${aliveTxt}\n\niam alive Bro ${Sender}\n\nfor adding your own datas like coustmized button\ntype the same type as wahts you want\n\nset-alive-value  imgurl;alivetxt;buttonName1;2\n\nCurrentValue :${Config.ALIVE_DATA}\n\nif need coustmized texts like Quita;insult;Inst_Url.. \n\n add whats you want *withStarting#* \n_ex_:Quita :#Quita \n note thet the fisrt letter is _capitel_\n\nvalues is :#Hits,#Sender,#Insult#Quita...\n#Insta, #Yt, #Git,`}, { quoted: message });
-     }
-});
-
-const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
-            + 'VERSION:3.0\n' 
-            + 'FN:'+Config.PACKNAME+'\n' // full name
-            + 'ORG:'+Config.FOOTER+';\n' // the organization of the contact
-            + 'TEL;type=CELL;type=VOICE;waid='+Config.SUDO+':'+Config.SUDO+'\n' // WhatsApp ID + phone number
-            + 'END:VCARD'
- inrl({pattern: ['owner'], desc: "to check whether", sucReact: "🥺", category: ['all']},   async (message, client) => {
- await client.sendMessage( message.from, { contacts:{ displayName:`${Config.BOT_INFO.split(",")[0]}`, contacts: [{ vcard }],}})
+await send_alive(message, client)
 });
 inrl(
   {
@@ -209,7 +54,7 @@ inrl(
   },
   async (message, client) => {
       const Message = {
-      image: { url: config.image.url.D_E_TMB },
+      image: { url: Config.BOT_INFO.split(",")[2] },
       caption: `╭═══〘${Config.BOT_INFO.split(",")[0]}〙═══⊷❍
 ┃☯︎╭──────────────
 ┃☯︎│
@@ -232,101 +77,8 @@ const Lang = bots.getString("_whats");
 // const path = require("path");
 let cTitle = { "search": "Search",  "all": 'All', "downloade": "Downloade", "chat": "Chat","inrl":"Inrl","ibot":"Ibot", "system": "System", 'fun': "Fun", '18+': "18+","ff:":"Ff", 'owner': "Owner", 'create': "Create", 'group': "Group", "logo": "Logo", }
 
-bots.inrl({ pattern: ["menu", 'help',"list"], desc: Lang.DESCC, sucReact: "📰", category: ["all", "system"] }, async (message, client) => {
- var r_text = new Array();
-    r_text[0] = "22";
-    r_text[1] = "23";
-    r_text[1] = "24";
-    r_text[3] = "57";
-    r_text[4] = "1";
-    r_text[5] = "36";
-    r_text[6] = "37";
-    r_text[7] = "38";
-    r_text[8] = "39";
-    r_text[9] = "41";
-    r_text[10] = "39";
-    r_text[11] = "41";
-    const i = Math.floor(11 * Math.random());
-
-let Num = r_text[i];
-let countcmdOfCmd = 0;
-
-  try {
-    let prefix = new String; 
-    if (!message.client.prefix || !message.client.prefix.length == 1) prefix = '.';
-
- bots.commands.map((command) => {
- countcmdOfCmd += command.pattern.length
- });
-
- let CMD_HELP =  ` ╭═══〘 ${Config.BOT_INFO.split(",")[0]} 〙═══⊷❍
- ┃
- ┃  ╭════〘 about 〙════⊷❍
- ┃  │
- ┃  │  Owner : ${Config.BOT_INFO.split(",")[1]}
- ┃  │  User : ${message.client.pushName}
- ┃  │  webSite : ${Config.WEB}
- ┃  │  Server : ${Config.HEROKU.APP_NAME}
- ┃  │  github : ${Config.GIT}
- ┃  │  you Tube : ${Config.YT}
- ┃  │  Plugins : ${countcmdOfCmd.toString()};
- ┃  │  Disk Space: 620 GB
- ┃  │  Version: ${Config.VERSION}
- ┃  │ 
- ┃  │   ▎▍▌▌▉▏▎▌▉▐▏▌▎
- ┃  │    ${Config.BOT_INFO.split(",")[0]}
- ┃  │
- ┃  ╰───────────────
- ┃  ╭════〘 all-cmds 〙═══⊷❍\n`;
-    bots.commands.map((command) => {
-      if (command.dontAddCommandList || command.pattern === undefined || command.pattern === null) return;
-      if (command.category.includes('all')) { command.pattern.map((cmd) => CMD_HELP += " ┃  │      "+styletext(cmd, Num)+"\n")}
-    }); 
-    CMD_HELP += ` ┃  ╰─═════════════⊷❍
- ╰══════════════════⊷❍`;
-   
-  const buttons = [
-        { buttonId: ".ping", buttonText: { displayText: "ᴩɪɴɢ"}, type: 1, },
-        { buttonId: ".owner", buttonText: { displayText: "ᴏᴡɴᴇʀ"}, type: 1, },
-        { buttonId: ".git", buttonText: { displayText: "ɢɪᴛʜᴜʙ"}, type: 1, },
-      ];
-var templateButtons, aliveImgUrl;
-
-const aliveData = Config.ALIVE_DATA;
-if (aliveData.includes(';')) { 
-var split = aliveData.split(';');
-aliveImgUrl = split[0];
-}
-
-if(aliveImgUrl.endsWith('.mp4')){
-templateButtons = {
-    text: CMD_HELP,
-    footer: config.exif.footer,
-    templateButtons: buttons,
-    video: {url: aliveImgUrl}
-    }
-await client.sendMessage(message.from, templateButtons);
-}else if(aliveImgUrl.endsWith('.jpg')) {
-  templateButtons = {
-      image: { url: aliveImgUrl },
-      caption: CMD_HELP,
-      footer: config.exif.footer,
-      buttons,
-    }
-await client.sendMessage(message.from, templateButtons, { quoted: message });
-}else if(aliveImgUrl.endsWith('.jpeg')) {
-   templateButtons = {
-      image: { url: aliveImgUrl },
-      caption: CMD_HELP,
-      footer: config.exif.footer,
-      buttons,
-    }
-await client.sendMessage(message.from, templateButtons, { quoted: message });
-} else {
-await client.sendMessage(message.from,{ text :"error while img capturing"}, { quoted: message });
-      }
-    global.catchError = false;
-  } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
+bots.inrl({ pattern: ["menu"], desc: Lang.DESCC, sucReact: "📰", category: ["all", "system"] }, async (message, client) => {
+ await send_menu(message, client);
 });
 bots.categories.map(category => {
   if (category == 'all') return;
