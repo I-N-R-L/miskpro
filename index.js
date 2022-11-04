@@ -7,7 +7,7 @@ const pino = require("pino");
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
-const { Simple, upsert, sleep} = require("./lib");
+const { Simple, upsert, sleep,tiny } = require("./lib");
 const inrlspfunc = require("./lib/Message")
 const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
@@ -23,34 +23,6 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
-/*
-var low = require('./lib/database/server')
-const { Low, JSONFile } = low
-const mongoDB = require('./lib/database/NewDb')
-global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-global.db = new Low(
-  /https?:\/\//.test(opts['db'] || '') ?
-    new cloudDBAdapter(opts['db']) : /mongodb/.test(opts['db']) ?
-      new mongoDB(opts['db']) :
-      new JSONFile(`lib/database/store.json`)
-)
-global.db.data = {
-    users: {},
-    chats: {},
-    database: {},
-    settings: {},
-    others: {},
-    sticker: {},
-    ...(global.db.data || {})
-}
-
-// save database every 30seconds
-if (global.db) setInterval(async () => {
-    if (global.db.data) await global.db.write()
-  }, 30 * 1000)
-
-*/
-//varconst fs = require("fs");
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
@@ -93,7 +65,6 @@ fs.readdirSync("./plugins").forEach((plugin) => {
       });
       console.log("plugin installed successfully☑️");
 console.log(chalk.green("💖 Login successful! \n bot working now💗"));
-await conn.sendMessage(conn.user.id, {text : "inrl-bot-md working now💕"})
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -183,7 +154,7 @@ if(Config.U_STATUS =='true'){
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
     var ov_time = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
     const biography = "📅 " + utch + "\n⌚ " + ov_time + `${Config.PROCFILE_DATA}`;
-    await conn.updateProfileStatus(biography);
+    await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
