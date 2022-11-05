@@ -98,7 +98,6 @@ console.log(chalk.green("💖 Login successful! \n bot working now💗"));
     await FakeRemove(m, conn);
     await IsBadWord(m, conn);
     await IsMension(m, conn);
-
 //inrl bot call block speciol func!🥵//
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
@@ -130,16 +129,17 @@ if(Config.PM_BLOCK == "true"){
         for (let i in command.pattern) {
           if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
-if(Config.REACT =='true'){
+            if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
-}
+            }
             await conn.sendPresenceUpdate( inrl.config.auto.presence.value, m.from );
             try {await command.function(m, conn);}
             catch (error) { global.catchError = true; console.log(error); }
-if(Config.REACT =='true'){
+            if(Config.REACT =='true'){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
-}
+            }
             await conn.sendPresenceUpdate("available", m.from);
+            if(Config.READ_CHAT == "true"){ conn.readMessages([m.key]) }
           }
         }
       });
@@ -148,7 +148,6 @@ if(Config.REACT =='true'){
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
-if(Config.READ_CHAT == "true"){ conn.readMessages([m.key]) }
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
