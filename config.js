@@ -15,7 +15,7 @@ module.exports = {
     FREE_TXT : process.env.FREE_TXT || 'inrlbotmd',
     READ_CHAT : process.env.READ_CHAT || "true", //values are true and false only if true read all chats
     U_STATUS: process.env.U_STATUS || 'true',
-    ALIVE_DATA : process.env.ALIVE_DATA || `https://imgur.com/TEvjH1c.mp4,aliveTxt{ig}{quita}{insult}{fancy}{git}{yt},aliveTextButten2`,
+    ALIVE_DATA : process.env.ALIVE_DATA || `alive`,
     ALIVETXT: process.env.ALIVETXT || 'INRL-BOT-MD',
     MENSION: {
         MENSION_AUDIO : process.env.MENSION_AUDIO || 'https://i.imgur.com/5NZDe8m.mp4,https://i.imgur.com/c6wEqlx.mp4,https://i.imgur.com/5lniXiJ.mp4,https://i.imgur.com/kYzbJbx.mp4',
