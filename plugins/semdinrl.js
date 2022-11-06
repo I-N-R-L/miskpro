@@ -1,5 +1,6 @@
 const { inrl, getBuffer } = require('../lib');
 const { animewifu, animenom } = require('../lib/database/anime_api_pack');
+const Config = require('../config');
 
 inrl({ pattern: ['animewifu'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, async (message, client) => {
 let ttimg = await animewifu();
@@ -16,10 +17,10 @@ let buttons = [
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
 })
 
-inrl({ pattern: ['animewifu'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, async (message, client) => {
+inrl({ pattern: ['animenom'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, async (message, client) => {
 let ttimg = await animenom();
 let buttons = [
-        {buttonId:'.animewifu', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
+        {buttonId:'.animenom', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
       let buttonMsg = {
       image: {url:ttimg.data.url},
