@@ -107,7 +107,7 @@ bots.categories.map(category => {
     }); 
    CMD_HELP += ` ┃  ╰─═════════════⊷❍
  ╰══════════════════⊷❍`;
-    await client.sendMessage( message.from,{ image: { url: Config.ALIVE_DATA.split(';')[0] }, caption: CMD_HELP, }, { quoted: message });
+    await client.sendMessage( message.from,{ image: { url: Config.BOT_INFO.split(",")[0] }, caption: CMD_HELP, }, { quoted: message });
     global.catchError = false;
   } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message);}
   });
