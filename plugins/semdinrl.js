@@ -69,7 +69,7 @@ let buttons = [
       ]
       let buttonMsg = {
       image: {url:ttimg.data.url},
-      caption:  `Here you go!`,
+      caption:  `are you bad!`,
       footer: Config.FOOTER,
       buttons: buttons,
       headerType: 4
@@ -86,7 +86,7 @@ let buttons = [
       ]
       let buttonMsg = {
       image: {url:ttimg.data.url},
-      caption:  `Here you go!`,
+      caption:  `Are you bad!`,
       footer: Config.FOOTER,
       buttons: buttons,
       headerType: 4
@@ -102,7 +102,7 @@ let buttons = [
       ]
       let buttonMsg = {
       image: {url:ttimg.data.url},
-      caption:  `Here you go!`,
+      caption:  `Are you bad!`,
       footer: Config.FOOTER,
       buttons: buttons,
       headerType: 4
@@ -328,7 +328,7 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['animeneko'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['animeneko'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animeneko();
 let buttons = [
         {buttonId:'.animeneko', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -343,7 +343,7 @@ let buttons = [
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
 })
 
-inrl({ pattern: ['animecuddle'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+inrl({ pattern: ['animecuddle'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animecuddle();
 let buttons = [
         {buttonId:'.animecuddle', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -357,7 +357,7 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['animeslap'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['animeslap'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animeslap();
 let buttons = [
         {buttonId:'.animeslap', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -372,7 +372,7 @@ let buttons = [
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
 })
 
-inrl({ pattern: ['animepat'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+inrl({ pattern: ['animepat'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animepat();
 let buttons = [
         {buttonId:'.animepat', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -386,7 +386,7 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['animegood'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['animegood'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animegood();
 let buttons = [
         {buttonId:'.animegood', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -401,7 +401,7 @@ let buttons = [
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
 })
 
-inrl({ pattern: ['animehug'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+inrl({ pattern: ['animehug'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animehug();
 let buttons = [
         {buttonId:'.animehug', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -415,7 +415,7 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['animekiss'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['animekiss'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animekiss();
 let buttons = [
         {buttonId:'.animekiss', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -430,7 +430,7 @@ let buttons = [
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
 })
 
-inrl({ pattern: ['animewlp'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+inrl({ pattern: ['animewlp'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animewlp();
 let buttons = [
         {buttonId:'.animewlp', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -444,7 +444,7 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['animespank'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['animespank'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animespank();
 let buttons = [
         {buttonId:'.animespank', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -459,7 +459,7 @@ let buttons = [
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
 })
 
-inrl({ pattern: ['animecry'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+inrl({ pattern: ['animecry'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animecry();
 let buttons = [
         {buttonId:'.animecry', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -473,7 +473,7 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['animekill'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['animekill'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animekill();
 let buttons = [
         {buttonId:'.animekill', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -488,7 +488,7 @@ let buttons = [
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
 })
 
-inrl({ pattern: ['animelick'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+inrl({ pattern: ['animelick'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animelick();
 let buttons = [
         {buttonId:'.animelick', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -502,7 +502,7 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['animebite'], desc: "thus send random anime imgs, maybe bad"",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['animebite'], desc: "thus send random anime imgs, maybe bad",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animebite();
 let buttons = [
         {buttonId:'.animebite', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
