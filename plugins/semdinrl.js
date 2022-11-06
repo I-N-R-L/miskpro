@@ -1,5 +1,4 @@
-const { inrl, getBuffer } = require('../lib');
-const { animewifu, animenom } = require('../lib/database/anime_api_pack');
+const { inrl, animewifu, animenom, animefox, animesmug, hentaiWifu, hentaiNeko, hentaiTrap, animeawoo, animemegumin, animemehold, animehighfive, animecringe, animedance, animehappy, animeblush, animeglomp, animewave, animepoke, animewink, animebonk, animebully, animeyeet, animeneko, animecuddle, animeslap, animepat, animegood, animehug, animekiss, animewlp, animespank, animecry, animekill, animelick, animebite } = require('../lib');
 const Config = require('../config');
 
 inrl({ pattern: ['animewifu'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, async (message, client) => {
