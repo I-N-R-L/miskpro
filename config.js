@@ -65,6 +65,7 @@ module.exports = {
     IS_PRESENCE : process.env.IS_PRESENCE || "false",
     CHATBOT : process.env.CHATBOT || 'null',
     FOOTER : process.env.FOOTER || "ɪɴʀʟ-ᴍᴅ",
+    INFO_URL : process.env.INFO_URL || "https://tinyurl.com/36r3668n",
     AUDIO_DATA : process.env.AUDIO_DATA || "inrl, ibot,https://i.imgur.com/DyLAuEh.jpg",
     STICKER_DATA: process.env.STICKER_DATA || "inrl, ibot,https://i.imgur.com/DyLAuEh.jpg",
     INSTAGRAM : process.env.INSTAGRAM || "https://instagram.com/_user_not_define",
