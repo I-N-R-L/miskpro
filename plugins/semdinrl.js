@@ -1,16 +1,20 @@
 const { inrl, getBuffer } = require('../lib');
+const { animewifu } = require('../lib/database/anime_api_pack');
 const Config = require('../config');
 const fs = require('fs');
 const mendia = fs.readFileSync('./media/imagee.jpg');
 
-inrl({ pattern: ['virtext'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, async (message, client) => {
-client.sendMessage(message.from, { text : "audio, mimetype: 'audio/mpeg', ptt: true", quoted: message, contextInfo: { externalAdReply:{
-        title : Config.MENSION.MENSION_TEXT.split(',')[0],
-        body : Config.MENSION.MENSION_TEXT.split(',')[1],
-        showAdAttribution: true,
-        mediaType:1,
-        thumbnail: fs.readFileSync('./media/imagee.jpg'),
-        mediaUrl: "https://instagram.com/hi_bro"/*Config.MENSION.MENSION_TEXT.split(',')[2]*/, 
-        sourceUrl: "https://instagram.com/hi_bro"/*Config.MENSION.MENSION_TEXT.split(',')[2]*/ }}}, {quoted: message })
-//client.sendMessage(message.from, { text: "error", contextInfo:{"externalAdReply": {"title": ` ${Config.OWNER}`,"body": ` Gojo-Satoru`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./media/imagee.jpg`),"sourceUrl": "https://telegra.ph/file/8bbe8a7de5c351dfcb077.jpg"}}}, { quoted: message})
-   })
+inrl({ pattern: ['animewifu'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, async (message, client) => {
+let ttimg = await animewifu();
+let buttons = [
+        {buttonId:'.animewifu', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
+      ]
+      let buttonMsg = {
+      image: {url:ttimg.data.url},
+      caption:  `Here you go!`,
+      footer: Config.FOOTER,
+      buttons: buttons,
+      headerType: 4
+      }
+await client.sendMessage(message.from, buttonMsg , , quoted: message, contextInfo: { externalAdReply:{
+ })
