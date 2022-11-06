@@ -16,5 +16,5 @@ let buttons = [
       buttons: buttons,
       headerType: 4
       }
-await client.sendMessage(message.from, buttonMsg , , quoted: message, contextInfo: { externalAdReply:{
+await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
