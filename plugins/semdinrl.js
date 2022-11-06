@@ -1,5 +1,7 @@
-const { inrl, animewifu, animenom, animefox, animesmug, hentaiWifu, hentaiNeko, hentaiTrap, animeawoo, animemegumin, animemehold, animehighfive, animecringe, animedance, animehappy, animeblush, animeglomp, animewave, animepoke, animewink, animebonk, animebully, animeyeet, animeneko, animecuddle, animeslap, animepat, animegood, animehug, animekiss, animewlp, animespank, animecry, animekill, animelick, animebite } = require('../lib');
+const { inrl, pass, animewifu, animenom, animefox, animesmug, hentaiWifu, hentaiNeko, hentaiTrap, animeawoo, animemegumin, animemehold, animehighfive, animecringe, animedance, animehappy, animeblush, animeglomp, animewave, animepoke, animewink, animebonk, animebully, animeyeet, animeneko, animecuddle, animeslap, animepat, animegood, animehug, animekiss, animewlp, animespank, animecry, animekill, animelick, animebite } = require('../lib');
 const Config = require('../config');
+let checkPass = Config.PASSWORD;
+let crtPass = pass.PASS;
 
 inrl({ pattern: ['animewifu'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: "💗",  category: ["anime"],}, async (message, client) => {
 let ttimg = await animewifu();
@@ -59,7 +61,8 @@ let buttons = [
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
  })
- inrl({ pattern: ['hentaiwifu'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: "💗",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['hentaiwifu'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: 😕",  category: ["anime","18+"],}, async (message, client) => {
+if(checkPass === crtPass && message.client.isCreator){
 let ttimg = await hentaiWifu();
 let buttons = [
         {buttonId:'.hentaiwifu', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -72,9 +75,11 @@ let buttons = [
       headerType: 4
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
+    }
 })
 
-inrl({ pattern: ['hentaineko'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: "💗",  category: ["anime"],}, async (message, client) => {
+inrl({ pattern: ['hentaineko'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: "😑",  category: ["anime","18+"],}, async (message, client) => {
+if(checkPass === crtPass && message.client.isCreator){
 let ttimg = await hentaiNeko();
 let buttons = [
         {buttonId:'.hentaineko', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -87,8 +92,10 @@ let buttons = [
       headerType: 4
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
+      }
  })
- inrl({ pattern: ['hentaitrap'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: "💗",  category: ["anime"],}, async (message, client) => {
+ inrl({ pattern: ['hentaitrap'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: "🤥",  category: ["anime","18+"],}, async (message, client) => {
+if(checkPass === crtPass && message.client.isCreator){
 let ttimg = await hentaiTrap();
 let buttons = [
         {buttonId:'.hentaitrap', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
@@ -101,6 +108,7 @@ let buttons = [
       headerType: 4
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
+    }
 })
 
 inrl({ pattern: ['animeawoo'], desc: "thus seend ranfom anime imgs, maybe bad😹",sucReact: "💗",  category: ["anime"],}, async (message, client) => {
