@@ -1,4 +1,4 @@
-const yts = require("yt-search");
+/*const yts = require("yt-search");
 const bots = require("../lib/perfix");
 const lang = bots.getString("scrapers");
 let { isUrl } = require("../lib/Function");
@@ -293,3 +293,4 @@ bots.inrl({pattern: ['status'], desc: "to make a vote with pepoles", sucReact: "
         
        await client.sendMessage( message.from, vMsg,{ quoted: message })
     }));
+*/
