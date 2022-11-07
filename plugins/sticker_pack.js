@@ -12,7 +12,7 @@ await client.sendMessage( message.from, { sticker: Buffer.from(sticker) }, { quo
 });
 inrl({ pattern: ['dogstick'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
-await client.sendMessage( message.from, { sticker: sticker }, { quoted: message } );
+//await client.sendMessage( message.from, { sticker: sticker }, { quoted: message } );
 encmedia = await client.sendImageAsSticker(message.from, sticker, message, { packname: Config.STICKER_DATA.split(',')[0], author: Config.STICKER_DATA.split(',')[1], })
 await fs.unlinkSync(encmedia)
 });
