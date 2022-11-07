@@ -39,3 +39,17 @@ let buttons = [
           }
      }
 );
+inrl(
+	   {
+		pattern: ['ringtone'],
+		desc: 'do get random ringtons ',
+                sucReact: "🙃",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+        if(message.client.text){
+        let result = await ringTone(message.client.text);
+        return await client.sendMessage( message.from, { audio: { url: result.audio }, fileName: result.title+'.mp3', mimetype: 'audio/mpeg' }, { quoted: message })
+          }
+     }
+);
