@@ -8,6 +8,7 @@
     "@adiwajshing/baileys": "^4.4.0",
     "@adiwajshing/keyed-db": "^0.2.4",
     "aes256": "^1.1.0",
+    "tod-api": "^1.0.5",
     "google-translate-tts": "^0.3.0",
     "pastebin-js" : "1.0.6",
     "browser-id3-writer":"4.4.0",
