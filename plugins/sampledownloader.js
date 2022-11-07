@@ -57,17 +57,26 @@ inrl(
 );
 inrl(
 	   {
-		pattern: ['gitclone'],
+		pattern: ['happymod'],
 		desc: 'do get dat from media fire',
                 sucReact: "🙃",
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-        if (!isUrl(message.client.args[0]) && !message.client.args[0].includes('mediafire.com')) return await client.sendMessage( message.from, { text :`The link you provided is invalid` })
         if(message.client.text){
-        let filename = await gitClone(message.client.args).filename
-        let url = await gitClone(message.client.args).url
-        return await client.sendMessage( message.from, { document : { url :url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: message })
+        let taks = await happyMod(message.client.text).teks
+        let imeg = await happyMod(message.client.text).imag
+let buttons = [
+           {buttonId: `hia`, buttonText: {displayText: 'thankyou❣️'}, type: 1}
+              ]
+let buttonMessage = {
+image: { url:imeg },
+caption: taks,
+footer: `Config.FOOTER`,
+buttons: buttons,
+headerType: 4
+}
+return await client.sendMessage( message.from, buttonMessage, { quoted: message })
           }
      }
 );
