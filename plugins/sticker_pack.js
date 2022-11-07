@@ -5,7 +5,7 @@ const Config = require('../config');
 inrl({ pattern: ['dogsticker'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
 let secd = await BufferToFile(sticker,'./media/stickers.webp');
-await client.sendMessage( message.from, { sticker: fs.readFileSync('./media/stickers.webp'), }, { quoted: message } );
+await client.sendMessage( message.from, { sticker: Buffer.from(('./media/stickers.webp'), }, { quoted: message } );
 });
 inrl({ pattern: ['dogsticke'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
