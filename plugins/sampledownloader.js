@@ -65,8 +65,8 @@ inrl(
 	async (message, client) => {
         if (!isUrl(message.client.args[0]) && !message.client.args[0].includes('mediafire.com')) return await client.sendMessage( message.from, { text :`The link you provided is invalid` })
         if(message.client.text){
-        let filename = await gitClone(message.client.args).filename
-        let url = await gitClone(message.client.args).url
+        let filename = await gitClone(message.client.text).filename
+        let url = await gitClone(message.client.text).url
         return await client.sendMessage( message.from, { document : { url :url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: message })
           }
      }
