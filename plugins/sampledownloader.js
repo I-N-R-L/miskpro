@@ -1,4 +1,4 @@
-const { inrl, googleIt, wikiMedia, ringtone, mediaFire, gitClone, happyMod } = require('../lib');
+const { inrl, googleIt, wikiMedia, ringTone, mediaFire, gitClone, happyMod } = require('../lib');
 inrl(
 	   {
 		pattern: ['google'],
