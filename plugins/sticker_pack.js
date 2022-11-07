@@ -5,7 +5,7 @@ const Config = require('../config');
 inrl({ pattern: ['dogsticker'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
 let stickEr, data = sticker;
-if(data.includes('.png'){ stickEr = data.replace('.png','.webp') }else if(data.includes('.gif'){ stickEr = data.replace('.gif','.webp') }
+if(data.includes('.png')){ stickEr = data.replace('.png','.webp') }else if(data.includes('.gif')){ stickEr = data.replace('.gif','.webp') }
 console.log(stickEr);
 await client.sendMessage( message.from, { sticker:  { url: stickEr }, }, { quoted: message } );
 });
