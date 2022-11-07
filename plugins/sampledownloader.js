@@ -66,6 +66,7 @@ inrl(
         if(message.client.text){
         let taks = await happyMod(message.client.text).teks
         let imeg = await happyMod(message.client.text).imag
+console.log(taks, imeg);
 let buttons = [
            {buttonId: `hia`, buttonText: {displayText: 'thankyou❣️'}, type: 1}
               ]
