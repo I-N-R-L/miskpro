@@ -9,7 +9,7 @@ const DATABASE_URL =
 module.exports = {
     VERSION: 'V 1.0.0',
     SESSION_ID: process.env.SESSION_ID || 'inrl~aERcvy7YuygegPGrUJeT5OWooCUlmxrh',
-    PASSWORD: process.env.PASSWORD || 'inrl-bot-md',
+    PASSWORD: process.env.PASSWORD || 'inrl-bot~md',
     REACT : process.env.REACT || 'false',
     GROUP_CHAT : process.env.GROUP_CHAT || 'false',
     FREE_TXT : process.env.FREE_TXT || 'inrlbotmd',
