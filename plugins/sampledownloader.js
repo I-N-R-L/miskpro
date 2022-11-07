@@ -1,5 +1,7 @@
 const { inrl, isUrl, googleIt, wikiMedia, ringTone, mediaFire, gitClone, happyMod } = require('../lib');
 const Config = require('../config');
+const util = require('util');
+
 
 inrl(
 	   {
@@ -62,9 +64,10 @@ inrl(
 	   },
 	async (message, client) => {
         if (!isUrl(message.client.args[0]) && !message.client.args[0].includes('mediafire.com')) return await client.sendMessage( message.from, { text :`The link you provided is invalid` })
+        if (firstData[0].size.split('MB')[0] >= 999) return await client.sendMessage( message.from, { text :'*File Over Limit* '+util.format(firstData)})
         if(message.client.text){
         await client.sendMessage( message.from, { text: await mediaFire(message.client.text).result })
-        return await client.sendMessage( message.from, { document : { url : await mediaFire(message.client.text).firstData[0].link}, fileName : await mediaFire(message.client.text).firstData[0].nama, mimetype: await mediaFire(message.client.text).firstData[0].mime }, { quoted: message })
+        //return await client.sendMessage( message.from, { document : { url : await mediaFire(message.client.text).firstData[0].link}, fileName : await mediaFire(message.client.text).firstData[0].nama, mimetype: await mediaFire(message.client.text).firstData[0].mime }, { quoted: message })
           }
      }
 );
