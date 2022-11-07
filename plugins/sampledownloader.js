@@ -1,4 +1,6 @@
 const { inrl, googleIt, wikiMedia, ringTone, mediaFire, gitClone, happyMod } = require('../lib');
+const Config = require('../config');
+
 inrl(
 	   {
 		pattern: ['google'],
@@ -22,8 +24,18 @@ inrl(
 	   },
 	async (message, client) => {
         if(message.client.text){
-        let teks = await wikiMedia(message.client.text);
-        return await client.sendMessage( message.from, { text: "_result_\n\n"+teks }, { quoted: message })
+        let result = await wikiMedia(message.client.text);
+let buttons = [
+                 {buttonId: `wikimedia ${message.client.text}`, buttonText: {displayText: 'next result'}, type: 1}
+              ]
+                let buttonMessage = {
+                    image: { url: result.image },
+                    caption: `Title : ${result.title}\n Source : ${result.source}\n Media Url : ${result.image}`,
+                    footer: Config.FOOTER,
+                    buttons: buttons,
+                    headerType: 4
+                }
+        return await client.sendMessage( message.from, buttonMessage, { quoted: message })
           }
      }
 );
