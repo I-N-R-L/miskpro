@@ -55,29 +55,3 @@ inrl(
           }
      }
 );
-inrl(
-	   {
-		pattern: ['happymod'],
-		desc: 'do get dat from media fire',
-                sucReact: "🙃",
-                category: ["system", "all"],
-	   },
-	async (message, client) => {
-        if(message.client.text){
-        let taks = await happyMod(message.client.text).teks
-        let imeg = await happyMod(message.client.text).imag
-console.log(taks, imeg);
-let buttons = [
-           {buttonId: `hia`, buttonText: {displayText: 'thankyou❣️'}, type: 1}
-              ]
-let buttonMessage = {
-image: { url:imeg },
-caption: taks,
-footer: `Config.FOOTER`,
-buttons: buttons,
-headerType: 4
-}
-return await client.sendMessage( message.from, buttonMessage, { quoted: message })
-          }
-     }
-);
