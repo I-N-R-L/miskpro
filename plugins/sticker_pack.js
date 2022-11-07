@@ -4,7 +4,7 @@ const Config = require('../config');
 
 inrl({ pattern: ['dogsticker'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
-await client.sendMessage( message.from, { sticker:  { url: "https://i.ibb.co/H2TSHnL/34fd06ac823c.webp" }, }, { quoted: message } );
+await client.sendMessage( message.from, { sticker:  { url: sticker }, }, { quoted: message } );
 });
 inrl({ pattern: ['dogsticke'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
