@@ -64,7 +64,7 @@ inrl(
 	   },
 	async (message, client) => {
         if (!isUrl(message.client.args[0]) && !message.client.args[0].includes('mediafire.com')) return await client.sendMessage( message.from, { text :`The link you provided is invalid` })
-        if (mediaFire(message.client.text).firstData[0].size.split('MB')[0] >= 999) return await client.sendMessage( message.from, { text :'*File Over Limit* '+util.format(firstData)})
+      //  if (mediaFire(message.client.text).firstData[0].size.split('MB')[0] >= 999) return await client.sendMessage( message.from, { text :'*File Over Limit* '+util.format(firstData)})
         if(message.client.text){
 console.log("282828828929");
         //await client.sendMessage( message.from, { text: await mediaFire(message.client.text).result })
