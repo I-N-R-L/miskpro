@@ -1,4 +1,4 @@
-const { inrl, isUrl, googleIt, wikiMedia, ringTone, happyMod } = require('../lib');
+const { inrl, isUrl, googleIt, wikiMedia, ringTone } = require('../lib');
 const Config = require('../config');
 const util = require('util');
 
