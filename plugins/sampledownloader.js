@@ -1,1 +1,15 @@
-const { googleIt, wikiMedia, ringtone, mediaFire, gitClone, happyMod } = require('../lib');
+const { inrl, googleIt, wikiMedia, ringtone, mediaFire, gitClone, happyMod } = require('../lib');
+inrl(
+	   {
+		pattern: ['google'],
+		desc: 'do get goole aerch rsult',
+                sucReact: "🙃",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+        if(message.client.text){
+        lets teks = await googleIt(message.client.text);
+        return await client.sendMessage( message.from, { text: teks }, { quoted: message })
+          }
+     }
+);
