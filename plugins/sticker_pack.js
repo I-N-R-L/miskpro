@@ -1,11 +1,18 @@
 const { inrl, dogsticker, lovesticker, cartoonsticker,BufferToFile } = require('../lib');
 const fs = require('fs');
 const Config = require('../config');
+//const Config = require('../congi
 
 inrl({ pattern: ['dogsticker'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
 let secd = await BufferToFile(sticker,'./media/stickers.webp');
-await client.sendMessage( message.from, { sticker: Buffer.from('./media/stickers.webp'), }, { quoted: message } );
+await client.sendFile(message.from, secd, "", message, {
+          asSticker: true,
+          author: Config.STICKER_DATA.split(',')[0],
+          packname: Config.STICKER_DATA.split(',')[1],
+          categories: ["😄", "😊"],
+        });
+//await client.sendMessage( message.from, { sticker: Buffer.from('./media/stickers.webp'), }, { quoted: message } );
 });
 inrl({ pattern: ['dogsticke'], desc: "to get random dog stickers",sucReact: "🐕",  category: ["sticker"]}, async (message, client) => {
 let sticker = await dogsticker();
