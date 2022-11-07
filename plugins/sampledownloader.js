@@ -1,4 +1,4 @@
-const { inrl, isUrl, googleIt, wikiMedia, ringTone, mediaFire, gitClone, happyMod } = require('../lib');
+const { inrl, isUrl, googleIt, wikiMedia, ringTone, gitClone, happyMod } = require('../lib');
 const Config = require('../config');
 const util = require('util');
 
@@ -57,18 +57,17 @@ inrl(
 );
 inrl(
 	   {
-		pattern: ['mediafire'],
+		pattern: ['gitclone'],
 		desc: 'do get dat from media fire',
                 sucReact: "🙃",
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
         if (!isUrl(message.client.args[0]) && !message.client.args[0].includes('mediafire.com')) return await client.sendMessage( message.from, { text :`The link you provided is invalid` })
-      //  if (mediaFire(message.client.text).firstData[0].size.split('MB')[0] >= 999) return await client.sendMessage( message.from, { text :'*File Over Limit* '+util.format(firstData)})
         if(message.client.text){
-console.log("282828828929");console.log("🥲"+mediaFire(message.client.text).result,/*firstData*/);
-        //await client.sendMessage( message.from, { text: await mediaFire(message.client.text).result })
-        //return await client.sendMessage( message.from, { document : { url : await mediaFire(message.client.text).firstData[0].link}, fileName : await mediaFire(message.client.text).firstData[0].nama, mimetype: await mediaFire(message.client.text).firstData[0].mime }, { quoted: message })
+        let filename = await gitClone(message.client.args).filename
+        let url = await gitClone(message.client.args).url
+        return await client.sendMessage( message.from, { document : { url :url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: message })
           }
      }
 );
