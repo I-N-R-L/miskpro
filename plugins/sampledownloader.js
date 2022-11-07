@@ -8,7 +8,7 @@ inrl(
 	   },
 	async (message, client) => {
         if(message.client.text){
-        lets teks = await googleIt(message.client.text);
+        let teks = await googleIt(message.client.text);
         return await client.sendMessage( message.from, { text: teks }, { quoted: message })
           }
      }
