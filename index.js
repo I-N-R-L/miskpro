@@ -147,8 +147,6 @@ if(Config.PM_BLOCK == "true"){
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
-if(Config.READ_CHAT == "true"){ conn.readMessages([m.key]) }
-
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
