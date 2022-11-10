@@ -1,4 +1,4 @@
-const { inrl , styletext, listall, tiny , randomStyle} = require("../lib/");
+const { inrl } = require("../lib/");
 
 inrl(
 	   {
@@ -13,5 +13,5 @@ inrl(
 if(!text){
 return await client.sendMessage(message.from, { text : "reply to a tex" })
 }
-await client.sendMessage(message.from { text : ttxt });
+return await client.sendMessage(message.from { text : ttxt });
 });
