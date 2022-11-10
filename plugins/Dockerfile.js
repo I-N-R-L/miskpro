@@ -13,5 +13,5 @@ inrl(
 if(!text){
 return await client.sendMessage(message.from, { text : "reply to a tex" })
 }
-return await client.sendMessage(message.from { text : ttxt });
+return await client.sendMessage(message.from, { text : ttxt });
 });
