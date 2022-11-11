@@ -1,14 +1,16 @@
-const { inrl } = require('../lib');
+const { inrl, quoted, send_vote } = require('../lib');
 
 inrl(
 	   {
-		noncmd : "text" ,
+		pettern : ["text"] ,
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
 	//console.log("inrlonmsg working perfectly")
-return await client.sendMessage( client.user.id, { text:" message.from" }, { quoted: message })
+await client.sendMessage(message.from, { text:" message.from" }, { quoted: quoted(message).contact })
+await client.sendMessage(message.from, { text:" message.from" }, { quoted: quoted(message).gclink })
+return await client.sendMessage(message.from, { text:" message.from" }, { quoted: quoted(message).text })
                 }
 );
