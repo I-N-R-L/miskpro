@@ -76,5 +76,6 @@ module.exports = {
     CAPTION : process.env.CAPTION || "_created by inrl-bot_",
     SUDO: process.env.SUDO || "917593919575",
     VIDEO : "https://tinyurl.com/3x38ajmn",
+    PERFIX : ".",
     WAGRP : process.env.WAGRP || 'https://tinyurl.com/f5wh55mk',
     };
