@@ -127,7 +127,8 @@ if(Config.PM_BLOCK == "true"){
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-          if (command.pattern[i] == m.client.command || command.pattern == "text"){
+console.log(command.on)
+          if (command.pattern[i] == m.client.command){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
@@ -141,6 +142,7 @@ if(Config.PM_BLOCK == "true"){
             await conn.sendPresenceUpdate("available", m.from);
           }
         }
+
       });
      } catch (e) {
       console.log(e);
