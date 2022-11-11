@@ -2,7 +2,7 @@ const { inrl, quoted, send_vote } = require('../lib');
 
 inrl(
 	   {
-		pettern : ["text"] ,
+		pattern : ["text"] ,
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
