@@ -127,13 +127,14 @@ if(Config.PM_BLOCK == "true"){
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-          if (command.pattern[i] == m.client.command || command.on == "text"){
+consol.log(command.pattern[i])
+          if (command.pattern[i] == m.client.command || command.pattern[i] == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
             await conn.sendPresenceUpdate( inrl.config.auto.presence.value, m.from );
-            try {await command.function(m, conn);}
+            try {await command.function(m, conn, m.client.text, m.client.command);}
             catch (error) { global.catchError = true; console.log(error); }
             if(Config.REACT =='true'){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
