@@ -2,7 +2,7 @@ const { inrl } = require('../lib');
 
 inrl(
 	   {
-		on : "text" ,
+		noncmd : "text" ,
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
