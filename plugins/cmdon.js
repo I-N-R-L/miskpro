@@ -12,7 +12,7 @@ inrl(
                     //      for (let i of data) {
                           // XeonBotInc.sendMessage(i.id, {text: `${ownername}'s Broadcast\n\n${q}` })
 
-  let pollCreation = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+  let pollCreation = generateWAMessageFromContent(message.chat, proto.Message.fromObject({
 "pollCreationMessage": {
 "name": "botname",
 "options": [
