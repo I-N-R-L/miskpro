@@ -27,7 +27,7 @@ console.log(result912.video_1);
 );
 inrl(
 	   {
-		pattern : ["text"] ,
+		pattern : ["textt"] ,
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
