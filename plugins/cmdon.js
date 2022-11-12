@@ -1,4 +1,4 @@
-const { inrl, quoted, send_vote } = require('../lib');
+const { inrl, quoted, send_vote, sleep } = require('../lib');
 
 inrl(
 	   {
@@ -7,44 +7,13 @@ inrl(
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
-	async (message, client) => {
-	//console.log("inrlonmsg working perfectly")
-await client.sendMessage(message.from, { text:" message.from" }, { quoted: quoted(message).contact })
-await client.sendMessage(message.from, { text:" message.from" }, { quoted: quoted(message).gclink })
-return await client.sendMessage(message.from, { text:" message.from" }, { quoted: quoted(message).text })
-                }
-);
-inrl(
-	   {
-		pattern : ["poll"] ,
-		desc: 'To check ping',
-                sucReact: "💯",
-                category: ["system", "all"],
-	   },
-	async (message, client) => {
-	const pollMessage = {
-        name: "name",
-        options: [{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" }],
-        selectableOptionsCount: 4
-        }
-                
-return await client.relayMessage(message.from, { pollCreationMessage: pollMessage })
-     }
-);
-inrl(
-	   {
-		pattern : ["pol"] ,
-		desc: 'To check ping',
-                sucReact: "💯",
-                category: ["system", "all"],
-	   },
-	async (message, client) => {
-	const pollMessage = {
-        name: "name",
-        options: [{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" }],
-        selectableOptionsCount: 4
-        }
-                
-return await client.relayMessage(message.from,  pollMessage )
-     }
+	async (message, client, text, cmd, store) => {
+                           var data = await store.chats.all()
+                           for (let i of data) {
+                          // XeonBotInc.sendMessage(i.id, {text: `${ownername}'s Broadcast\n\n${q}` })
+   
+await client.sendMessage(i.id, { text:" message.from" })
+        return await sleep(1000)
+              }
+       }
 );
