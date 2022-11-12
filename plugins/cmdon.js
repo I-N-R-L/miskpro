@@ -28,7 +28,7 @@ inrl(
         selectableOptionsCount: 4
         }
                 
-return await client.sendMessage(message.from, { pollCreationMessage: pollMessage })
+return await client.relayMessage(message.from, { pollCreationMessage: pollMessage })
      }
 );
 inrl(
@@ -45,6 +45,6 @@ inrl(
         selectableOptionsCount: 4
         }
                 
-return await client.sendMessage(message.from,  pollMessage )
+return await client.relayMessage(message.from,  pollMessage )
      }
 );
