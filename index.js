@@ -18,6 +18,10 @@ const setmension = require('./lib/setmension');
 const { IsMension } = setmension;
 const { IsFake, AllLinkBan, FakeRemove, IsBadWord } = isFubc;
 const { serialize, WAConnection } = Simple;
+let perfiX;
+if(Config.PERFIX == false) perfiX = "";else perfiX = Config.PERFIX;
+
+
 global.mydb = {};
 global.mydb.users = new Array();
 global.mydb.hits = new Number();
@@ -127,7 +131,7 @@ if(Config.PM_BLOCK == "true"){
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-          if (command.pattern[i] == m.client.command){
+          if (perfiX + command.pattern[i] == m.client.command){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
