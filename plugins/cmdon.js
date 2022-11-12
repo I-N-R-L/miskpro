@@ -14,12 +14,13 @@ await send_vote(message, client);
 );
 inrl(
 	   {
-		pattern : ["textt"] ,
+		pattern : ["poll"] ,
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
 	async (message, client, text) => {
+console.log(text);
 await send_poll(message, client, text);
        }
 );
