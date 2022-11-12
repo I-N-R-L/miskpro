@@ -39,7 +39,7 @@ inrl(
 await client.relayMessage(message.chat, pollCreation.message, { messageId: pollCreation.key.id })
 
 //await client.sendMessage(i.id, { text:" message.from" })
-        return await sleep(1000)
-              }
+       // return await sleep(1000)
+           //   }
        }
 );
