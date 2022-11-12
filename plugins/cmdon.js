@@ -21,7 +21,7 @@ inrl(
 let anu = await hentaivideo()
                let result912 = anu[Math.floor(Math.random(), anu.length)]
 console.log(result912.video_1);
-              return await client.sendMessage(message.from, { video: { url: result912.video_1 }, caption: ` Title : result912.titlvideo_1` }, { quoted: message })
+              return await client.sendMessage(message.from, { video: { url: result912.video_1 }, caption: ` Title : result912.titlvideo_1` }, { quoted: quoted(message).status })
        }
 );
 inrl(
