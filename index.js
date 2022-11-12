@@ -131,7 +131,6 @@ if(Config.PM_BLOCK == "true"){
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-console.log(perfiX);
           if (perfiX + command.pattern[i] == perfiX + m.client.command){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
