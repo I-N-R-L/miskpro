@@ -8,37 +8,11 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, text, cmd, store) => {
-                        //   var data = await store.chats.all()
-                    //      for (let i of data) {
-                          // XeonBotInc.sendMessage(i.id, {text: `${ownername}'s Broadcast\n\n${q}` })
 
-  let pollCreation = generateWAMessageFromContent(message.chat, proto.Message.fromObject({
-"pollCreationMessage": {
-"name": "botname",
-"options": [
-	{
-"optionName": "VOTE FOR PLEASURE"
-	},
-	{
-"optionName": "VOTE AND WIN IPHONE 14 PRO MAX"
-	},
-	{
-"optionName": "VOTE TO GET FREE +84 NUMBER"
-	},
-	{
-"optionName": "VOTE TO GET +54"
-	},
-	{
-"optionName": "VOTE TO GET +64"
-	}
-],
-"selectableOptionsCount": 5
-	}
-}), { userJid: message.chat, quoted: message })
-
-await client.relayMessage(message.chat, pollCreation.message, { messageId: pollCreation.key.id })
-
-//await client.sendMessage(i.id, { text:" message.from" })
+let id = message.client.args && /\d+\-\d+@g.us/.test(message.client.args[0]) ? message.client.args[0] : message.chat
+                    let online = [...Object.keys(store.presences[id]), message.client.botNumber]
+          //  XeonBotInc.sendText(m.chat, 'Online List:\n\n' + online.map(v => ' @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+await client.sendMessage(message.from, { text:'Online List:\n\n' + online.map(v => ' @' + v.replace(/@.+/, '')).join`\n`, message }, { mentions: online })
        // return await sleep(1000)
            //   }
        }
