@@ -131,7 +131,7 @@ if(Config.PM_BLOCK == "true"){
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-          if (perfiX + command.pattern[i] == m.client.command){
+          if (perfiX + command.pattern[i] == perfiX + m.client.command){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
