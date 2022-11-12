@@ -33,7 +33,7 @@ let buttons = [
       ]
       let buttonMsg = {
       video : {url: result.video_1 },
-      caption:   Title : ${result.title}\n\n Category : ${result.category}\n\n Mimetype : ${result.type}\n\n Views : ${result.views_count}\n\n Shares : ${result.share_count}\n\nSource : ${result.link}\n\n Media Url : ${result.video_1}`,
+      caption: `Title : ${result.title}\n\n Category : ${result.category}\n\n Mimetype : ${result.type}\n\n Views : ${result.views_count}\n\n Shares : ${result.share_count}\n\nSource : ${result.link}\n\n Media Url : ${result.video_1}`,
       footer: Config.FOOTER,
       buttons: buttons,
       headerType: 4
