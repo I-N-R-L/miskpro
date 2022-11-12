@@ -21,6 +21,7 @@ inrl(
 	async (message, client, text, cmd, store) => {
 let anu = await hentaivideo()
                 result912 = anu[Math.floor(Math.random(), anu.length)]
-              return await client.sendMessage(message.chat, { video: { url: result912.video_1 }, caption: ` Title : ${result912.title}\n Category : ${result912.category}\n Mimetype : ${result912.type}\n Views : ${result912.views_count}\n Shares : ${result912.share_count}\n Source : ${result912.link}\n Media Url : ${result912.video_1}` }, { quoted: message })
+cosnole.log(result912.video_1);
+              return await client.sendMessage(message.chat, { video: { url: result912.video_1 }, caption: ` Title : result912.titlvideo_1` }, { quoted: message })
        }
 );
