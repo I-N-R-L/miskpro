@@ -33,7 +33,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, text, cmd, store) => {
-let pollCreation = generateWAMessageFromContent(message.chat, proto.Message.fromObject({
+let pollCreation = generateWAMessageFromContent(message.from, proto.Message.fromObject({
 "pollCreationMessage": {
 "name": "botname",
 "options": [
@@ -62,7 +62,5 @@ await client.relayMessage(message.from, pollCreation.message, { messageId: pollC
 //await client.sendMessage(i.id, { text:" message.from" })
        // return await sleep(1000)
            //   }
-       }
-);
        }
 );
