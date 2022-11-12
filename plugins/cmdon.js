@@ -25,7 +25,7 @@ await send_poll(message, client, text);
 );
 inrl({ pattern: ['hentaivideo'], desc: "thus send random anime hot videos, asure thets bad",sucReact: "😕",  category: ["anime","18+"],}, async (message, client) => {
 //if(checkPass === crtPass && message.client.isCreator){
-rslt = await hentaivideo()()
+rslt = await hentaivideo();
 result = rslt[Math.floor(Math.random(), rslt.length)]
 
 let buttons = [
