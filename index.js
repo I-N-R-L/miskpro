@@ -70,25 +70,6 @@ fs.readdirSync("./plugins").forEach((plugin) => {
       console.log("plugin installed successfully☑️");
 console.log(chalk.green("💖 Login successful! \n bot working now💗"));
 }
-    else if (connection == "close") {
-      let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
-      if (reason === DisconnectReason.badSession) { console.log(chalk.red(`💥 Bad Session File, Please Delete Session and Scan Again`)); conn.logout(); } 
-      else if (reason === DisconnectReason.connectionClosed) { console.log(chalk.red("💥 Connection closed, reconnecting....")); WhatsBotConnect(); } 
-      else if (reason === DisconnectReason.connectionLost) { console.log(chalk.red("💥 Connection Lost from Server, reconnecting...")); WhatsBotConnect(); } 
-      else if (reason === DisconnectReason.connectionReplaced) { console.log(chalk.red("💥 Connection Replaced, Another New Session Opened, Please Close Current Session First")); conn.logout(); } 
-      else if (reason === DisconnectReason.loggedOut) { console.log(chalk.red(`💥 Device Logged Out, Please Scan Again And Run.`)); process.exit(0); } 
-      else if (reason === DisconnectReason.restartRequired) { console.log(chalk.red("💥 Restart Required, Restarting...")); WhatsBotConnect(); } 
-      else if (reason === DisconnectReason.timedOut) { console.log(chalk.red("💥 Connection TimedOut, Reconnecting...")); WhatsBotConnect(); } 
-      else conn.end(chalk.red(`💥 Unknown DisconnectReason: ${reason}|${connection}`));
-    } else if (isOnline === true) console.log(chalk.blue("💖 Online."));
-    else if (isOnline === false) console.log(chalk.red("💖 Offine."));
-    else if (receivedPendingNotifications === true) console.log(chalk.blue("💖 Received Pending Notifications."));
-    else if (receivedPendingNotifications === false) console.log(chalk.red("💖 Not Received Pending Notifications."));
-    else if (isNewLogin === true) console.log(chalk.blue("💖 New Login."));
-    else if (isNewLogin === false) console.log(chalk.red("💖 Not New Login."));
-    else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
-    else console.log("💖 Connection...", update);
-   });
   conn.ev.on("group-participants.update", async (m) => { if (inrl.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
   conn.ev.on("messages.upsert", async (chatUpdate) => {
     global.isInCmd = false;
@@ -131,12 +112,12 @@ if(Config.PM_BLOCK == "true"){
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-          if (perfiX + command.pattern[i] == perfiX + m.client.command){
+          if (command.pattern[i] == m.client.command){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
-            await conn.sendPresenceUpdate( inrl.config.auto.presence.value, m.from );
+            await conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
             try {await command.function(m, conn, m.client.text, m.client.command, store);}
             catch (error) { global.catchError = true; console.log(error); }
             if(Config.REACT =='true'){
@@ -145,13 +126,31 @@ if(Config.PM_BLOCK == "true"){
             await conn.sendPresenceUpdate("available", m.from);
           }
         }
-
       });
      } catch (e) {
       console.log(e);
       sendErrorMessage(m.from,e,m.key,m,[],false);
     }
   });
+if (connection == "close") {
+      let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
+      if (reason === DisconnectReason.badSession) { console.log(chalk.red(`💥 Bad Session File, Please Delete Session and Scan Again`)); conn.logout(); } 
+      else if (reason === DisconnectReason.connectionClosed) { console.log(chalk.red("💥 Connection closed, reconnecting....")); WhatsBotConnect(); } 
+      else if (reason === DisconnectReason.connectionLost) { console.log(chalk.red("💥 Connection Lost from Server, reconnecting...")); WhatsBotConnect(); } 
+      else if (reason === DisconnectReason.connectionReplaced) { console.log(chalk.red("💥 Connection Replaced, Another New Session Opened, Please Close Current Session First")); conn.logout(); } 
+      else if (reason === DisconnectReason.loggedOut) { console.log(chalk.red(`💥 Device Logged Out, Please Scan Again And Run.`)); process.exit(0); } 
+      else if (reason === DisconnectReason.restartRequired) { console.log(chalk.red("💥 Restart Required, Restarting...")); WhatsBotConnect(); } 
+      else if (reason === DisconnectReason.timedOut) { console.log(chalk.red("💥 Connection TimedOut, Reconnecting...")); WhatsBotConnect(); } 
+      else conn.end(chalk.red(`💥 Unknown DisconnectReason: ${reason}|${connection}`));
+    } else if (isOnline === true) console.log(chalk.blue("💖 Online."));
+    else if (isOnline === false) console.log(chalk.red("💖 Offine."));
+    else if (receivedPendingNotifications === true) console.log(chalk.blue("💖 Received Pending Notifications."));
+    else if (receivedPendingNotifications === false) console.log(chalk.red("💖 Not Received Pending Notifications."));
+    else if (isNewLogin === true) console.log(chalk.blue("💖 New Login."));
+    else if (isNewLogin === false) console.log(chalk.red("💖 Not New Login."));
+    else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
+    else console.log("💖 Connection...", update);
+   });
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
