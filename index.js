@@ -137,7 +137,7 @@ if(Config.PM_BLOCK == "true"){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
             await conn.sendPresenceUpdate( inrl.config.auto.presence.value, m.from );
-            try {await command.function(m, conn, m.client.text, m.client.command);}
+            try {await command.function(m, conn, m.client.text, m.client.command, store);}
             catch (error) { global.catchError = true; console.log(error); }
             if(Config.REACT =='true'){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
