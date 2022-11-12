@@ -16,13 +16,18 @@ return await client.sendMessage(message.from, { text:" message.from" }, { quoted
 );
 inrl(
 	   {
-		pattern : ["audio"] ,
+		pattern : ["poll"] ,
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-	//console.log("inrlonmsg working perfectly")
-return await client.sendMessage(message.from, { audio: { url: "https://i.imgur.com/2AbxJCd.mp4" }, mimetype: 'audio/mp4', fileName: "text}.mp3" }, { quoted: quoted(message).audio })
+	const pollMessage = {
+        name: "name",
+        options: [{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" }]
+                    selectableOptionsCount: 4
+        }
+                
+return await client.relayMessage(message.from, { pollCreationMessage: pollMessage }, { quoted: quoted(message).audio })
      }
 );
