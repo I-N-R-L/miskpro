@@ -28,6 +28,23 @@ inrl(
         selectableOptionsCount: 4
         }
                 
-return await client.relayMessage(message.from, { pollCreationMessage: pollMessage }, { quoted: quoted(message).audio })
+return await client.sendMessage(message.from, { pollCreationMessage: pollMessage })
+     }
+);
+inrl(
+	   {
+		pattern : ["pol"] ,
+		desc: 'To check ping',
+                sucReact: "💯",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+	const pollMessage = {
+        name: "name",
+        options: [{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" }],
+        selectableOptionsCount: 4
+        }
+                
+return await client.sendMessage(message.from,  pollMessage )
      }
 );
