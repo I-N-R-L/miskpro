@@ -24,8 +24,8 @@ inrl(
 	async (message, client) => {
 	const pollMessage = {
         name: "name",
-        options: [{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" }]
-                    selectableOptionsCount: 4
+        options: [{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" },{ optionName: "poll[i]" }],
+        selectableOptionsCount: 4
         }
                 
 return await client.relayMessage(message.from, { pollCreationMessage: pollMessage }, { quoted: quoted(message).audio })
