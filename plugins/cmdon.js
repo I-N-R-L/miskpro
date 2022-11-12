@@ -8,6 +8,6 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, text, cmd, store) => {
-
+await send_vote(message, client);
        }
 );
