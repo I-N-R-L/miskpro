@@ -32,7 +32,7 @@ inrl(
         title:"inrl4",
         body:"md",
         showAdAttribution: true,
-        mediaType:4,
+        mediaType:2,
         jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
         mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
         sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: message})
