@@ -16,8 +16,8 @@ inrl(
         showAdAttribution: true,
         mediaType:2,
         jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
-        mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
-        sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: message})
+        mediaUrl:`https://instagarm.com/KNu-gr2h7bo`, 
+        sourceUrl: `https://whatsapp.com/KNu-gr2h7bo` }}}, {quoted: message})
    }
 );
 inrl(
@@ -29,8 +29,8 @@ inrl(
 	   },
 	async (message, client) => {
 		await client.sendMessage(message.from, {audio : { url : audio }, mimetype: 'audio/mpeg', ptt: true,waveform: [10,50,100,50,10,50,100,50,10,50,100,50,10],contextInfo: { externalAdReply:{
-        title:"ZIM BOT V4",
-        body:"SUB DRIPS OFC",
+        title:"inrl4",
+        body:"md",
         showAdAttribution: true,
         mediaType:4,
         jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
