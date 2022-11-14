@@ -15,6 +15,7 @@ module.exports = {
     FREE_TXT : process.env.FREE_TXT || 'inrlbotmd',
     READ_CHAT : process.env.READ_CHAT || "true", //values are true and false only if true read all chats
     U_STATUS: process.env.U_STATUS || 'true',
+    KICK_BOT : "120363044370289918@g.us",
     ALIVE_DATA : process.env.ALIVE_DATA || `alive`,
     ALIVETXT: process.env.ALIVETXT || 'INRL-BOT-MD',
     MENSION: {
