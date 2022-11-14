@@ -17,7 +17,7 @@ inrl(
         mediaType:2,
         jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
         mediaUrl:`https://instagarm.com/KNu-gr2h7bo`, 
-        sourceUrl: `https://whatsapp.com/KNu-gr2h7bo` }}}, {quoted: message})
+        sourceUrl: `https://instagarm.com/KNu-gr2h7bo` }}}, {quoted: message})
    }
 );
 inrl(
