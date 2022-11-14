@@ -1,5 +1,5 @@
 const { inrl, getBuffer } = require('../lib');
-//const audio = getBuffer("https://i.imgur.com/e2PKT60.mp4");
+const audio = getBuffer("https://i.imgur.com/e2PKT60.mp4");
 const fs = require('fs');
 
 inrl(
