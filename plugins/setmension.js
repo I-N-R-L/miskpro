@@ -1,5 +1,5 @@
-const { inrl } = require('../lib');
-//const img = require();
+const { inrl, getBuffer } = require('../lib');
+//const audio = getBuffer("https://i.imgur.com/e2PKT60.mp4");
 const fs = require('fs');
 
 inrl(
@@ -10,7 +10,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-		await client.sendMessage(message.from, {image: fs.readFileSync('./media/imagee.jpg'), caption: '*Truth*\n\n+ ttrth', quoted: message,contextInfo: { externalAdReply:{
+		await client.sendMessage(message.from, {audio : audio, mimetype: 'audio/mpeg', ptt: true }, caption: '*Truth*\n\n+ ttrth', quoted: message,contextInfo: { externalAdReply:{
         title:"ZIM BOT V4",
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
