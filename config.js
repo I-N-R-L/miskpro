@@ -20,7 +20,7 @@ module.exports = {
     MENSION: {
         MENSION_AUDIO : process.env.MENSION_AUDIO || 'https://i.imgur.com/5NZDe8m.mp4,https://i.imgur.com/c6wEqlx.mp4,https://i.imgur.com/5lniXiJ.mp4,https://i.imgur.com/kYzbJbx.mp4',
         MENSION_IMG : process.env.MENSION_IMG || 'https://imgur.com/ggvhL6C.jpg, https://i.imgur.com/DyLAuEh.jpg, https://imgur.com/AelfUJg.jpg',
-        MENSION_TEXT : process.env.MENSION_TEXT || '𝙳𝚘𝚗𝚝 𝚌𝚘𝚖𝚙𝚊𝚛𝚎 𝚖𝚎 𝚠𝚒𝚝𝚑 𝚊𝚞𝚝𝚑𝚎𝚛𝚜, 𝚒𝚝𝚜𝚖𝚎 𝚒𝚗𝚛𝚕, 𝚑𝚝𝚝𝚙𝚜:𝚑𝚞𝚑𝚒'
+        MENSION_TEXT : process.env.MENSION_TEXT || '𝙳𝚘𝚗𝚝 𝚌𝚘𝚖𝚙𝚊𝚛𝚎 𝚖𝚎 𝚠𝚒𝚝𝚑 𝚊𝚞𝚝𝚑𝚎𝚛𝚜, 𝚒𝚝𝚜𝚖𝚎 𝚒𝚗𝚛𝚕, https://www.instagram.com/reel/CkH8SbUJP16/?igshid=YmMyMTA2M2Y='
     },
     BOT_INFO : process.env.BOT_INFO || "INRL-BOT-MD,INRL,https://i.imgur.com/DyLAuEh.jpg",
     BGMBOT : process.env.BGMBOT || 'false',
