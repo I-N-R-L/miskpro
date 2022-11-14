@@ -10,7 +10,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-		await client.sendMessage(message.from, {audio : audio, mimetype: 'audio/mpeg', ptt: true, quoted: message } ,contextInfo: { externalAdReply:{
+		await client.sendMessage(message.from, {audio : audio, mimetype: 'audio/mpeg', ptt: true,contextInfo: { externalAdReply:{
         title:"ZIM BOT V4",
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
