@@ -10,7 +10,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-		await client.sendMessage(message.from, {image: fs.readFileSync(img), caption: '*Truth*\n\n+ ttrth,' quoted: message,contextInfo: { externalAdReply:{
+		await client.sendMessage(message.from, {image: fs.readFileSync(img), caption: '*Truth*\n\n+ ttrth', quoted: message,contextInfo: { externalAdReply:{
         title:"ZIM BOT V4",
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
