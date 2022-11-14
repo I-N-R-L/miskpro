@@ -1,10 +1,10 @@
 const { inrl } = require('../lib');
-consg img = require('../media/imagee.jpg');
+const img = require('../media/imagee.jpg');
 const fs = require('fs');
 
 inrl(
 	   {
-		pattern: ['jid'],
+		pattern: ['jidd'],
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
