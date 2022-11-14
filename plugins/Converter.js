@@ -64,9 +64,9 @@ let _message = message.quoted.stickerMessage ;
    await exec(`ffmpeg -i ${media} ${ran}`, (err) => {
   
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
-  let buffer = fs.readFileSync(ran)
-  client.sendMessage(message.from, { image:  buffer , caption: bots.config.exif.cap }, { quoted: message });
-  unlinkSync(ran,media)
+  let buffer = await readFileSync(ran)
+ await client.sendMessage(message.from, { image:  buffer , caption: bots.config.exif.cap }, { quoted: message });
+  return await unlinkSync(ran,media)
    })
  });
  inrl({ pattern: ['video','tomp4'], desc: "to convert webp to mp4",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
