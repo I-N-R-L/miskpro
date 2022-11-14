@@ -16,8 +16,8 @@ inrl(
         showAdAttribution: true,
         mediaType:2,
         jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
-        mediaUrl:`https://instagarm.com/KNu-gr2h7bo`, 
-        sourceUrl: `https://instagarm.com/KNu-gr2h7bo` }}}, {quoted: message})
+        mediaUrl:`https://www.instagram.com/reel/CkH8SbUJP16/?igshid=YmMyMTA2M2Y=`, 
+        sourceUrl: `https://www.instagram.com/reel/CkH8SbUJP16/?igshid=YmMyMTA2M2Y=` }}}, {quoted: message})
    }
 );
 inrl(
@@ -34,7 +34,7 @@ inrl(
         showAdAttribution: true,
         mediaType:2,
         jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
-        mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
-        sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: message})
+        mediaUrl:`https://www.instagram.com/reel/CkH8SbUJP16/?igshid=YmMyMTA2M2Y=`, 
+        sourceUrl: `https://www.instagram.com/reel/CkH8SbUJP16/?igshid=YmMyMTA2M2Y=` }}}, {quoted: message})
    }
 );
