@@ -15,7 +15,25 @@ inrl(
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
         mediaType:2,
-        jpegThumbnail : fs.readFileSync('./media/imagee.jpg') ,
+        jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
+        mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
+        sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: message})
+   }
+);
+inrl(
+	   {
+		pattern: ['jidddd'],
+		desc: 'To check ping',
+                sucReact: "💯",
+                category: ["system", "all"],
+	   },
+	async (message, client) => {
+		await client.sendMessage(message.from, {audio : { url : audio }, mimetype: 'audio/mpeg', ptt: true,waveform: [10,50,100,50,10,50,100,50,10,50,100,50,10],contextInfo: { externalAdReply:{
+        title:"ZIM BOT V4",
+        body:"SUB DRIPS OFC",
+        showAdAttribution: true,
+        mediaType:4,
+        jpegThumbnail : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
         mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
         sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: message})
    }
