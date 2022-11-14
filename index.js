@@ -13,10 +13,10 @@ const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
-const isFubc = require('./lib/ToSetAntiFake');
+const isFubc = require('./lib/fake_remove');
 const setmension = require('./lib/setmension');
 const { IsMension } = setmension;
-const { IsFake, AllLinkBan, checkBot, FakeRemove, IsBadWord } = isFubc;
+const { IsFake, AllLinkBan, FakeRemove, IsBadWord } = isFubc;
 const { serialize, WAConnection } = Simple;
 global.mydb = {};
 global.mydb.users = new Array();
@@ -92,8 +92,9 @@ console.log(chalk.green("💖 Login successful! \n bot working now💗"));
     if ((inrl.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     await upsert(conn, m);  await chatting(m, conn);
-    await IsFake(m, conn); await AllLinkBan(m, conn); await checkBot(m, conn);
+    await IsFake(m, conn); await AllLinkBan(m, conn);
     await FakeRemove(m, conn); await IsBadWord(m, conn); await IsMension(m, conn);
+
 //inrl bot call block speciol func!🥵//
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
