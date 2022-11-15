@@ -97,7 +97,6 @@ if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
-let FinelImg = await BufferToFile(NextImg, "./media/mensiosn.jpeg");
-return FinelImg
+return NextImg
 }
 module.exports = { mensionMp3 , mensionImg }
