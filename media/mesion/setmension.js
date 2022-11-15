@@ -50,7 +50,7 @@ let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
 return NextMp3
 };
 
-function mensionImg(jPg){
+async function mensionImg(jPg){
 let StoreImg = [];
 var split = jPg.split(',')
 if(split[0]){ StoreImg.push(split[0]) }
