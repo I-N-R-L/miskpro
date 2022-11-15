@@ -97,6 +97,6 @@ if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
-return NextImg
+return getBuffer(NextImg);
 }
 module.exports = { mensionMp3 , mensionImg }
