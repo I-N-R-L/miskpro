@@ -1,4 +1,4 @@
-const { getBuffer } = require('../../lib/cloud');
+const { getBuffer, BufferToFile } = require('../../lib/');
 
 function mensionMp3(mP3){
 let StoreMp3 = [];
@@ -97,7 +97,7 @@ if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
-let FinelImg = getBuffer(NextImg)
+let FinelImg = BufferToFile(NextImg, "./media/mensiosn.jpg");
 return FinelImg
 }
 module.exports = { mensionMp3 , mensionImg }
