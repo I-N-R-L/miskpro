@@ -47,7 +47,7 @@ if(split[40]){ StoreMp3.push(split[40]) }
 if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
-return NextMp3
+return getBuffer(NextMp3)
 };
 
 async function mensionImg(jPg){
