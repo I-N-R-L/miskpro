@@ -15,7 +15,7 @@ inrl(
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
         mediaType:2,
-        thumbanil : getBuffer('https://i.imgur.com/DyLAuEh.jpg') ,
+        thumbanil : { url : 'https://i.imgur.com/DyLAuEh.jpg'} ,
         mediaUrl:`https://www.instagram.com/reel/CkH8SbUJP16/?igshid=YmMyMTA2M2Y=`, 
         sourceUrl: `https://www.instagram.com/reel/CkH8SbUJP16/?igshid=YmMyMTA2M2Y=` }}}, {quoted: message})
    }
