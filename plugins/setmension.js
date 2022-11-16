@@ -1,5 +1,5 @@
 const { inrl, getBuffer } = require('../lib');
-const audio = "https://i.imgur.com/e2PKT60.mp4"
+const audio = getBuffer("https://i.imgur.com/e2PKT60.mp4");
 const fs = require('fs');
 
 inrl(
@@ -15,7 +15,7 @@ inrl(
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
         mediaType:3,
-        thumbnail: fs.readFileSync('./media/imagee.jpg') ,
+        thumbnail: audio,//fs.readFileSync('./media/imagee.jpg') ,
         mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
         sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: message})
    }
