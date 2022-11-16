@@ -101,6 +101,6 @@ if(split[41]){ StoreImg.push(split[41]) }
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
 console.log(StoreImg,NextImg);
 let data = await BufferToFile(NextImg,"./media/jclient.jpeg");
-return await fs.readFile(data);
+return await data;
 }
 module.exports = { mensionMp3 , mensionImg }
