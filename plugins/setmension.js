@@ -1,5 +1,4 @@
 const { inrl, getBuffer } = require('../lib');
-const audio = getBuffer("https://i.imgur.com/e2PKT60.mp4");
 const fs = require('fs');
 
 inrl(
@@ -10,6 +9,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
+const audio = await getBuffer("https://i.imgur.com/e2PKT60.mp4");
 		await client.sendMessage(message.from, {audio : { url : audio }, mimetype: 'audio/mpeg', ptt: true,waveform: [10,50,100,50,10,50,100,50,10,50,100,50,10,50],contextInfo: { externalAdReply:{
         title:"ZIM BOT V4",
         body:"SUB DRIPS OFC",
