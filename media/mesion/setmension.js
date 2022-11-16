@@ -47,7 +47,7 @@ if(split[40]){ StoreMp3.push(split[40]) }
 if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
-return getBuffer(NextMp3)
+BufferToFile(NextMp3,'./media/mension/mension/mp3.mp3');
 };
 
 async function mensionImg(jPg){
@@ -97,6 +97,6 @@ if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
-return getBuffer(NextImg);
+BufferToFile(NextImg,'./media/mension/mension/jpg.jpg');
 }
 module.exports = { mensionMp3 , mensionImg }
