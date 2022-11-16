@@ -48,7 +48,7 @@ if(split[40]){ StoreMp3.push(split[40]) }
 if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
-let data = await BufferToFile(NextMp3,'./media/mension/mension/mp3.mp3');
+let data = await getBuffer(NextMp3)//,'./media/mension/mension/mp3.mp3');
 return await data;
 };
 
@@ -100,7 +100,7 @@ if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
 console.log(StoreImg,NextImg);
-let data = await BufferToFile(NextImg,"./media/jclient.jpeg");
+let data = await getBuffer(NextImg)//,"./media/jclient.jpeg");
 return await data;
 }
 module.exports = { mensionMp3 , mensionImg }
