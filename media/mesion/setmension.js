@@ -1,7 +1,6 @@
-const { getBuffer, BufferToFile } = require('../../lib/');
-const fs = require('fs');
+const { getBuffer } = require('../../lib/cloud');
 
-async function mensionMp3(mP3){
+function mensionMp3(mP3){
 let StoreMp3 = [];
 var split = mP3.split(',')
 if(split[0]){ StoreMp3.push(split[0]) }
@@ -48,11 +47,11 @@ if(split[40]){ StoreMp3.push(split[40]) }
 if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
-let data = await getBuffer(NextMp3)//,'./media/mension/mension/mp3.mp3');
-return await data;
+let FinelMp3 = getBuffer(NextMp3)
+return FinelMp3
 };
 
-async function mensionImg(jPg){
+function mensionImg(jPg){
 let StoreImg = [];
 var split = jPg.split(',')
 if(split[0]){ StoreImg.push(split[0]) }
@@ -99,7 +98,7 @@ if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
-let data = await getBuffer(NextImg)//,"./media/jclient.jpeg");
-return await data;
+let FinelImg = getBuffer(NextImg)
+return FinelImg
 }
 module.exports = { mensionMp3 , mensionImg }
