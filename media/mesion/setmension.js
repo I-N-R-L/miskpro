@@ -1,6 +1,7 @@
 const { getBuffer, BufferToFile } = require('../../lib/');
+const fs = require('fs');
 
-function mensionMp3(mP3){
+async function mensionMp3(mP3){
 let StoreMp3 = [];
 var split = mP3.split(',')
 if(split[0]){ StoreMp3.push(split[0]) }
@@ -47,7 +48,8 @@ if(split[40]){ StoreMp3.push(split[40]) }
 if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
-BufferToFile(NextMp3,'./media/mension/mension/mp3.mp3');
+let data = await BufferToFile(NextMp3,'./media/mension/mension/mp3.mp3');
+return await fs.readFileSync(data);
 };
 
 async function mensionImg(jPg){
@@ -97,6 +99,7 @@ if(split[40]){ StoreImg.push(split[40]) }
 if(split[41]){ StoreImg.push(split[41]) }
 
 let NextImg = StoreImg[Math.floor(Math.random() * StoreImg.length)]
-BufferToFile(NextImg,'./media/mension/mension/jpg.jpg');
+let data = await BufferToFile(NextImg,'./media/mension/mension/jpg.jpg');
+return await fs.readFileSync(data);
 }
 module.exports = { mensionMp3 , mensionImg }
