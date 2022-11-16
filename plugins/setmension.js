@@ -16,7 +16,7 @@ const audio = await getBuffer("https://i.imgur.com/ROjayUX.mp4");
         title:"ZIM BOT V4",
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
-        mediaType:3,
+        mediaType:2,
         thumbnail: img,//fs.readFileSync('./media/imagee.jpg') ,
         mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
         sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: message})
