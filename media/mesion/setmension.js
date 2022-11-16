@@ -49,7 +49,7 @@ if(split[41]){ StoreMp3.push(split[41]) }
 
 let NextMp3 = StoreMp3[Math.floor(Math.random() * StoreMp3.length)]
 let data = await BufferToFile(NextMp3,'./media/mension/mension/mp3.mp3');
-return await fs.readFileSync(data);
+return await data;
 };
 
 async function mensionImg(jPg){
