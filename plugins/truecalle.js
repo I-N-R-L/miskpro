@@ -38,7 +38,7 @@ let GetRandom = img[Math.floor(Math.random(), img.length)]
       ]
       let buttonMsg = {
       image : {url: GetRandom },
-      caption:`${data.titile}`,
+      caption:`${data.title}`,
       footer: Config.FOOTER,
       buttons: buttons,
       headerType: 4
