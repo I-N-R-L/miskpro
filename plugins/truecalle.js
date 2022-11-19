@@ -1,4 +1,4 @@
-const { inrl } = require('../lib/');
+const { inrl, truecaller } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 const got = require('got');
 
@@ -13,19 +13,7 @@ inrl(
 if(match){
 let True = match.includes('@') ? match.split('@')[1] : match;
 let rslt = await got(`https://inrl-web.vercel.app/api/truecaller?number=${True}`);
-const outPut = JSON.parse(rslt.body);
-let msg =`╭────────────────────╮
-│ name : ${outPut.name}
-│ score : ${outPut.score}
-│ anName : ${outPut.alternativeName}
-│ access : ${outPut.access}
-│ type : ${outPut.type}
-│ country : ${outPut.country}
-│ carrier : ${outPut.carrier}
-│ city : ${outPut.city}
-│ timeZone : ${outPut.timeZone}
-│ format : ${outPut.format}
-╰────────────────────╯`
+let msg = await truecaller(rslt);
 		return await client.sendMessage( message.from, { text: msg }, { quoted: message })
                 }
         }
