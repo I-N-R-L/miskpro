@@ -29,7 +29,7 @@ inrl(
   async (message, client, match) => {
 if(match){
 if(match.match("photo")){
-let data = await stickersearch(match.replace("sticker",""))
+let data = await stickersearch(match.replace("photo",""))
 let img = data.sticker_url;
 let GetRandom = img[Math.floor(Math.random(), img.length)]
  let buttons = [
