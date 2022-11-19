@@ -1,7 +1,7 @@
 const { inrl, truecaller, stickersearch } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 const got = require('got');
-const Config = require('../Config');
+const Config = require('../config');
 
 inrl(
 	   {
