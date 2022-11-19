@@ -29,8 +29,8 @@ inrl(
 if(match){
 if(match.match("sticker")){
 let data = await stickersearch(match.replace("sticker",""))
-console.log(data);
-    await client.sendMessage(message.from,{ text :"result\n\n"+data }, { quoted: message });
+console.log(data.sticker_url);
+    await client.sendMessage(message.from,{ text :"result\n\n"+data.sticker_url }, { quoted: message });
     }
   }
 });
