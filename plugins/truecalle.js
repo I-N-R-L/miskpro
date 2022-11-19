@@ -11,9 +11,8 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-console.log(message.quoted.sender)
 if(match){
-let True = match.includes('@') ? match.split('@')[1] : match;
+let True = message.quoted.sender.split("@s.whatsapp.net")[0] || match.includes('@') ? match.split('@')[1] : match;
 let rslt = await got(`https://inrl-web.vercel.app/api/truecaller?number=${True}`);
 let msg = await truecaller(rslt);
 		return await client.sendMessage( message.from, { text: msg }, { quoted: message })
