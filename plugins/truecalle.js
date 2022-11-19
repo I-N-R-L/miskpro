@@ -10,7 +10,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-let rslt = got(`https://inrl-web.vercel.app/api/truecaller?number=${match}`);
+let rslt = await got(`https://inrl-web.vercel.app/api/truecaller?number=${match}`);
 console.log(rslt);
 const outPut = JSON.parse(rslt);
 		return await client.sendMessage( message.from, { text: outPut }, { quoted: message })
