@@ -18,3 +18,19 @@ let msg = await truecaller(rslt);
                 }
         }
 );
+inrl(
+  {
+    pattern: ["search"],
+    desc: "to serch  datas as you want",
+    sucReact: "🥰",
+    category: ["system", "all"],
+  },
+  async (message, client, match) => {
+if(match){
+if(match.match("sticker")){
+let data = await stickersearch(match.replace("sticker","")
+console.log(data);
+    await client.sendMessage(message.from,{ text : data }, { quoted: message });
+    }
+  }
+});
