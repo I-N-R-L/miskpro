@@ -30,7 +30,7 @@ if(match){
 if(match.match("sticker")){
 let data = await stickersearch(match.replace("sticker",""))
 console.log(data);
-    await client.sendMessage(message.from,{ text : data }, { quoted: message });
+    await client.sendMessage(message.from,{ text :"result\n\n"+data }, { quoted: message });
     }
   }
 });
