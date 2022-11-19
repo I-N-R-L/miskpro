@@ -31,9 +31,10 @@ if(match){
 if(match.match("photo")){
 let data = await stickersearch(match.replace("photo",""))
 let img = data.sticker_url;
+console.log(data);
 let GetRandom = img[Math.floor(Math.random(), img.length)]
  let buttons = [
-        {buttonId:'.search `{match}`', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
+        {buttonId:`.search ${match}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
       let buttonMsg = {
       image : {url: GetRandom },
