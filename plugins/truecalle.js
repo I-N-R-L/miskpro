@@ -11,7 +11,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-if(match){
+if(match || message.quoted){
 let sender = message.quoted.sender.split("@s.whatsapp.net")[0];
 let True = match.includes('@') ? match.split('@')[1] : match;
 let search = sender || True;
