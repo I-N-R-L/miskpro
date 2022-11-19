@@ -1,6 +1,6 @@
 const { inrl } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
-const got = ('got');
+const got = require('got');
 
 inrl(
 	   {
