@@ -1,6 +1,7 @@
 const { inrl, truecaller, stickersearch } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 const got = require('got');
+const Config = require('../Config');
 
 inrl(
 	   {
@@ -27,9 +28,21 @@ inrl(
   },
   async (message, client, match) => {
 if(match){
-if(match.match("sticker")){
+if(match.match("photo")){
 let data = await stickersearch(match.replace("sticker",""))
- await client.sendMessage(message.from,{ text :"result\n\n"+data.sticker_url }, { quoted: message });
+let img = data.sticker_url;
+let GetRandom = img[Math.floor(Math.random(), img.length)]
+ let buttons = [
+        {buttonId:'.search `{match}`', buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
+      ]
+      let buttonMsg = {
+      image : {url: GetRandom },
+      caption:`${data.titile}`,
+      footer: Config.FOOTER,
+      buttons: buttons,
+      headerType: 4
+      }
+await client.sendMessage(message.from, buttonMsg, {quoted: message})
     }
   }
 });
