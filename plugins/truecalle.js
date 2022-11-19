@@ -1,4 +1,4 @@
-const { inrl, truecaller } = require('../lib/');
+const { inrl, truecaller, stickersearch } = require('../lib/');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 const got = require('got');
 
@@ -28,7 +28,7 @@ inrl(
   async (message, client, match) => {
 if(match){
 if(match.match("sticker")){
-let data = await stickersearch(match.replace("sticker","")
+let data = await stickersearch(match.replace("sticker",""))
 console.log(data);
     await client.sendMessage(message.from,{ text : data }, { quoted: message });
     }
