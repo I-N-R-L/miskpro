@@ -10,7 +10,8 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-let rslt = await got(`https://inrl-web.vercel.app/api/truecaller?number=${match}`);
+let true = match.includes('@') ? match.split('@')[1] : match;
+let rslt = await got(`https://inrl-web.vercel.app/api/truecaller?number=${true}`);
 const outPut = JSON.parse(rslt.body);
 console.log(outPut)
 let msg =`╭────────────────────╮
