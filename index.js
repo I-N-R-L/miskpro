@@ -107,7 +107,7 @@ if(Config.CALL_BLOCK == "true"){
 console.log("installing plugins🔘")
 fs.readdirSync("./plugins").forEach((plugin) => {
         if (path.extname(plugin).toLowerCase() == ".js") {
-          require("./plugins/" + plugin), console.log(plugin) function(m, conn);
+          require("./plugins/" + plugin), console.log(plugin); function(m, conn);
         }
       });
       console.log("plugin installed successfully☑️");
