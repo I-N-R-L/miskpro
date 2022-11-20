@@ -9,7 +9,20 @@ inrl(
 	   async (message, client) => {
 for(let key in message) {
 	console.log(key + ":", message[key]);
-await client.sendMessage(message.from, { text : `key + ":", message[key]` });
+await client.sendMessage(message.from, { text : message[key] });
+      }
+   }
+);
+inrl(
+	{
+		pattern: ['logs'],
+       desc: 'to convert image/sticker to url',
+       sucReact: "⛰️",
+       category: ["all"]
+    },
+	   async (message, client) => {
+for(let key in message) {
+await client.sendMessage(message.from, { text : key });
       }
    }
 );
