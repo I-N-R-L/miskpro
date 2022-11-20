@@ -7,7 +7,7 @@ inrl(
        category: ["all"]
     },
 	   async (message, client) => {
-let obj = str = JSON.stringify(message);
+let obj = JSON.stringify(message);
 console.log(obj);
 await client.sendMessage(message.from, { text : obj });
     }
