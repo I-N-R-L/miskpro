@@ -9,7 +9,7 @@ inrl(
 	   async (message, client) => {
 for(let key in message) {
 	let data = (key.quoted, message[key]);
-await client.sendMessage(message.from, { text : data });
+await client.sendMessage(message.from, { text : "rslt"+data });
       }
    }
 );
@@ -23,7 +23,7 @@ inrl(
 	   async (message, client) => {
 for(let key in message) {
 let data = (key, message[key]);
-await client.sendMessage(message.from, { text : data });
+await client.sendMessage(message.from, { text : "rslt"+data });
       }
    }
 );
@@ -37,7 +37,7 @@ inrl(
 	   async (message, client) => {
 for(let key in message) {
 	let data = (key.quoted, message[key.quoted]);
-await client.sendMessage(message.from, { text : data });
+await client.sendMessage(message.from, { text : "rslt"+data });
       }
    }
 );
