@@ -7,8 +7,9 @@ inrl(
        category: ["all"]
     },
 	   async (message, client) => {
-let obj = JSON.stringify(message);
-console.log(obj);
-await client.sendMessage(message.from, { text : obj });
-    }
+for(let key in message) {
+	console.log(key + ":", message[key]);
+await client.sendMessage(message.from, { text : `key + ":", message[key]` });
+      }
+   }
 );
