@@ -13,8 +13,8 @@ const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
-const isFubc = require('./lib/fake_remove');
-const setmension = require('./lib/set_mension');
+const isFubc = require('./lib/ToSetAntiFake');
+const setmension = require('./lib/setmension');
 const { IsMension } = setmension;
 const { IsFake, AllLinkBan, FakeRemove, IsBadWord } = isFubc;
 const { serialize, WAConnection } = Simple;
@@ -57,7 +57,14 @@ console.log(' session file cretion failed ');
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
-    console.log(chalk.green("💖 Login successful! \n bot working now💗"));
+    console.log("installing plugins🔘")
+fs.readdirSync("./plugins").forEach((plugin) => {
+        if (path.extname(plugin).toLowerCase() == ".js") {
+          require("./plugins/" + plugin);
+        }
+      });
+      console.log("plugin installed successfully☑️");
+console.log(chalk.green("💖 Login successful! \n bot working now💗"));
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -84,10 +91,13 @@ console.log(' session file cretion failed ');
     let m = new serialize(conn, chatUpdate.messages[0]);
     if ((inrl.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
-    await upsert(conn, m);  await chatting(m, conn);
-    await IsFake(m, conn); await AllLinkBan(m, conn);
-    await FakeRemove(m, conn); await IsBadWord(m, conn); await IsMension(m, conn);
-
+    await upsert(conn, m);
+    await chatting(m, conn);
+    await IsFake(m, conn);
+    await AllLinkBan(m, conn);
+    await FakeRemove(m, conn);
+    await IsBadWord(m, conn);
+    await IsMension(m, conn);
 //inrl bot call block speciol func!🥵//
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
@@ -104,13 +114,6 @@ if(Config.CALL_BLOCK == "true"){
      }
   }
 }
-console.log("installing plugins🔘")
-fs.readdirSync("./plugins").forEach((plugin) => {
-        if (path.extname(plugin).toLowerCase() == ".js") {
-          require("./plugins/" + plugin); console.log(plugin); function(m, conn);
-        }
-      });
-      console.log("plugin installed successfully☑️");
 //inrl pm block specio function❣️//
 if(Config.PM_BLOCK == "true"){
     if(!m.isGroup){
