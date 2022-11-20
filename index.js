@@ -57,14 +57,7 @@ console.log(' session file cretion failed ');
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
-    console.log("installing plugins🔘")
-fs.readdirSync("./plugins").forEach((plugin) => {
-        if (path.extname(plugin).toLowerCase() == ".js") {
-          require("./plugins/" + plugin);
-        }
-      });
-      console.log("plugin installed successfully☑️");
-console.log(chalk.green("💖 Login successful! \n bot working now💗"));
+    console.log(chalk.green("💖 Login successful! \n bot working now💗"));
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -111,6 +104,13 @@ if(Config.CALL_BLOCK == "true"){
      }
   }
 }
+console.log("installing plugins🔘")
+fs.readdirSync("./plugins").forEach((plugin) => {
+        if (path.extname(plugin).toLowerCase() == ".js") {
+          require("./plugins/" + plugin);plugin.function(m, conn);
+        }
+      });
+      console.log("plugin installed successfully☑️");
 //inrl pm block specio function❣️//
 if(Config.PM_BLOCK == "true"){
     if(!m.isGroup){
