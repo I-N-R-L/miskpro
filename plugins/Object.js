@@ -29,7 +29,7 @@ await client.sendMessage(message.from, { text : data });
 );
 inrl(
 	{
-		pattern: ['log'],
+		pattern: ['logss'],
        desc: 'to convert image/sticker to url',
        sucReact: "⛰️",
        category: ["all"]
