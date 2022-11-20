@@ -22,7 +22,7 @@ inrl(
     },
 	   async (message, client) => {
 for(let key in message) {
-await client.sendMessage(message.from, { text : key });
+await client.sendMessage(message.from, { text : key, message[key] });
       }
    }
 );
