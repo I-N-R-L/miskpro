@@ -257,6 +257,6 @@ inrl({ pattern: ["pp"],desc: 'set  profile picture of bot', sucReact: "😁",  c
 	async (message, client) => {
 	//let _message = message.quoted.imageMessage || message.client.text;
 		let download = await message.quoted.download();
-		await client.updateProfilePicture({ renderLargerThumbnail : true },message.client.botNumber,download ).catch((err) => fs.unlinkSync(download))
+		await client.updateProfilePicture(message.client.botNumber,download,{ renderLargerThumbnail : true } ).catch((err) => fs.unlinkSync(download))
       }
 );
