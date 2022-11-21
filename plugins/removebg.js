@@ -43,7 +43,7 @@ inrl(
     if (!text) {
       return await client.sendMessage( message.from, { text: bots.errorMessage('Enter Text') }, { quoted: message } );
     }
-let img = serchimg(text);
+let img = await serchimg(text);
 let buttons = [
         {buttonId:`img ${text}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
@@ -53,5 +53,5 @@ let buttons = [
       footer: Config.FOOTER,
       buttons: buttons
       }
-await client.sendMessage(message.from, buttonMsg, {quoted: message})
+return await client.sendMessage(message.from, buttonMsg, {quoted: message})
 });
