@@ -42,14 +42,13 @@ inrl(
           let data = results.length
           let img = results[Math.floor(data * Math.random())]
 let buttons = [
-        {buttonId:`img ${match}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
+        {buttonId:`img ${text}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
       let buttonMsg = {
       image: {url:img.url},
       caption:  `HeHe!`,
       footer: Config.FOOTER,
-      buttons: buttons,
-      headerType: 4
+      buttons: buttons
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
             global.catchError = false;
