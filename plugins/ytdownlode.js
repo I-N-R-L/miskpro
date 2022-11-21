@@ -108,6 +108,7 @@ if(message.client.text.includes("https://youtube.com")){
     try {
       let quality = message.client.args[1] ? message.client.args[1] : "320kbps";
       let media = await yta(message.client.args[0], quality);
+       console.log(media);
       if (media.filesize >= 999999) { global.catchError = true; return await client.sendErrorMessage( message.from, "File Over Limit " + util.format(media), message.key, message ); }
       let caption = `♻ ᴛɪᴛɪʟᴇ : ${media.title}\n♻ ꜱɪᴢᴇ : ${media.filesizeF}\n♻ ᴜʀʟ : ${message.client.args[0]}\n♻ ᴏᴜᴛ : mp3\n♻ ʀᴇꜱᴏʟᴜᴛɪᴏɴ : ${message.client.args[1] || "320kbps"}\n\n${bots.config.exif.cap}`;
       await client.sendMessage( message.from, { image: { url: media.thumb }, caption }, { quoted: message } );
