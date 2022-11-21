@@ -9,10 +9,13 @@ if (!message.quoted) return await client.sendMessage(message.from, { text :"repl
 let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = await getRandom('.png')
-  let photo = exec(`ffmpeg -i ${media} ${ran}`, async(err) => {
+  let photo = ffmpeg(savedFile)
+            .fromFormat('webp_pipe')
+            .save('output.png')
+            .on('end', async () => {
   //fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: "err"+err }, { quoted: message });
-  let buffer = await readFile(ran)
+  let buffer = readFileSync('output.png')
   client.sendMessage(message.from, { image:  buffer , caption: "config.exif.cap" }, { quoted: message });
 
    })
