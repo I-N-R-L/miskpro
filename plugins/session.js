@@ -1,7 +1,7 @@
 const { inrl, getRandom, config} = require('../lib');
 const ffmpeg = require('fluent-ffmpeg')
 const {readFile,unlink} = require('fs').promises;
-const fs = require('fs');
+const fs = require('fs').promises;
 const { exec, spawn, execSync } = require('child_process')
 
 inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
