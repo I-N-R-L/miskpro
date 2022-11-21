@@ -23,8 +23,7 @@ await fs.unlinkSync(img);//return await fs.unlinkSync(rmbg);
 async function serchimg(text){
     gis(text, async (error, results) => {
         if (error) {
-          global.catchError = true;
-          return await client.sendErrorMessage( message.from, error, message.key, message );
+console.log(error);
         } else {
           let data = results.length
           let img = results[Math.floor(data * Math.random())]
