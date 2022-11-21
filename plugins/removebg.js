@@ -45,8 +45,5 @@ console.log(img.url, data);
             await client.sendMessage( message.from, { image: { url: img.url }, caption: config.exif.cap,}, { quoted: message, });
             global.catchError = false;
         }
-      }).catch(async (err) => {
-        (global.catchError = true),
-          await client.sendErrorMessage( message.from, err, message.key, message );
-      });
+   })
 });
