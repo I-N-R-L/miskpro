@@ -1,4 +1,5 @@
 const { inrl, remove, unscreen } = require('../lib/');
+let gis = require("g-i-s");
 const fs = require('fs');
 const Config = require('../config');
 
@@ -40,8 +41,8 @@ inrl(
         } else {
           let data = results.length
           let img = results[Math.floor(data * Math.random())]
-console.log(img.url);
-            await client.sendMessage( message.from, { image: { url: results[i].url }, caption: bots.config.exif.cap,}, { quoted: message, });
+console.log(img.url, data);
+            await client.sendMessage( message.from, { image: { url: img.url }, caption: bots.config.exif.cap,}, { quoted: message, });
             global.catchError = false;
         }
     
