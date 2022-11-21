@@ -17,3 +17,25 @@ let _message = message.quoted.audioMessage;
         await client.reply("res.link");
    });
 });
+inrl(
+  { 
+    pattern: ["reply"], 
+    desc: "you can dowloade audio from youtube", 
+    usage: '<url|query>',
+    sucReact: "🔎", 
+    category: ["search"] 
+},
+  async (message, client) => {
+await client.reply("res.link");
+   });
+inrl(
+  { 
+    pattern: ["sendd"], 
+    desc: "you can dowloade audio from youtube", 
+    usage: '<url|query>',
+    sucReact: "🔎", 
+    category: ["search"] 
+},
+  async (message, client) => {
+await client.send("res.link");
+   });
