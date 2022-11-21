@@ -3,7 +3,8 @@ const ffmpeg = require('fluent-ffmpeg');
 
 inrl(
   { 
-    pattern: ["jimu"], 
+    pattern: ["jimu"],
+    fromMe : true,
     desc: "you can dowloade audio from youtube", 
     usage: '<url|query>',
     sucReact: "🔎", 
