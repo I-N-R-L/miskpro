@@ -27,7 +27,7 @@ console.log(error);
         } else {
           let data = results.length
           let img = results[Math.floor(data * Math.random())]
-return img;
+return img.url;
        }
    })
 }
@@ -43,12 +43,12 @@ inrl(
     if (!text) {
       return await client.sendMessage( message.from, { text: bots.errorMessage('Enter Text') }, { quoted: message } );
     }
-let img = await serchimg(text);
+let imag = await serchimg(text);
 let buttons = [
         {buttonId:`img ${text}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
       let buttonMsg = {
-      image: {url:img.url},
+      image: { url : imag },
       caption:  `HeHe!`,
       footer: Config.FOOTER,
       buttons: buttons
