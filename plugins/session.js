@@ -9,7 +9,7 @@ return new Promise(async(resolve,reject) => {
   //fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: "err"+err }, { quoted: message });
   buffer = fs.readFileSync(ran)
-  
+  resolve 
    })
 resolve buffer;
  })
