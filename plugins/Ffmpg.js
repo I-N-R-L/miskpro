@@ -39,5 +39,5 @@ inrl(
     category: ["search"] 
 },
   async (message, client) => {
-console.log(message.fromMe)
+console.log(message.client.isCreator)
    });
