@@ -11,7 +11,7 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
    let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = getRandom('.png')
-   let isFile = path.join(tmpdir(), ran)
+   let isFile = await ran
    exec(`ffmpeg -i ${media} ${isFile}`, (err) => {
    remove(media)
    if (err) console.log(err);
