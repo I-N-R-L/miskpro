@@ -9,9 +9,10 @@ return new Promise(async(resolve,reject) => {
   //fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: "err"+err }, { quoted: message });
   let buffer = fs.readFileSync(ran)
-  resolve buffer
+  client.sendMessage(message.from, { image:  buffer , caption: "config.exif.cap" }, { quoted: message });
+
    })
-resolve buffer;
+//resolve buffer;
  })
 }
 
