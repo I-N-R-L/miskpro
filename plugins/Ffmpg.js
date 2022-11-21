@@ -26,7 +26,7 @@ inrl(
     category: ["search"] 
 },
   async (message, client) => {
-await client.reply("res.link");
+await client.sendText(message.from,"res.link");
    });
 inrl(
   { 
@@ -37,5 +37,5 @@ inrl(
     category: ["search"] 
 },
   async (message, client) => {
-await client.send("res.link");
+await client.sendText("res.link");
    });
