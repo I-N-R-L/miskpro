@@ -20,7 +20,8 @@ let _message = message.quoted.audioMessage;
 });
 inrl(
   { 
-    pattern: ["reply"], 
+    pattern: ["reply"],
+    fromMe : true,
     desc: "you can dowloade audio from youtube", 
     usage: '<url|query>',
     sucReact: "🔎", 
