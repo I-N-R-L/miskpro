@@ -25,7 +25,7 @@ module.exports = {
     },
     BOT_INFO : process.env.BOT_INFO || "INRL-BOT-MD,INRL,https://i.imgur.com/DyLAuEh.jpg",
     BGMBOT : process.env.BGMBOT || 'false',
-    WORKTYPE: process.env.WORKTYPE || 'public',
+    WORKTYPE: process.env.WORKTYPE || 'privet',
     LANG :process.env.LANG || 'EN', //values are ml, en only
     OWNER : process.env.OWNER || "917593919575",
     BRANCH: 'master',
