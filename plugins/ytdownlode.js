@@ -56,8 +56,8 @@ bots.inrl(
         footer: bots.config.exif.footer,
         buttons: buttons,
       };
-
-      await client.sendMessage(message.from, Message, { quoted: message});
+console.log(result);
+      await client.sendMessage(message.from, {text:"inrl"+result} , { quoted: message});
     } catch (error) { global.catchError = true; return await client.sendErrorMessage( message.from, error, message.key, message ); }
   }
 );
