@@ -10,7 +10,8 @@ return new Promise(async(resolve,reject) => {
   if (err) client.sendMessage(message.from, { text: "err"+err }, { quoted: message });
   buffer = fs.readFileSync(ran)
   await resolve buffer;
-  })
+   })
+ })
 }
 
 inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
