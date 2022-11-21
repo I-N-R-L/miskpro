@@ -255,6 +255,6 @@ inrl({ pattern: ["invite-info"], sucReact: "🆗", category: ["group", "all"], }
 // this actul not a grp function but me😹
 inrl({ pattern: ["pp"],desc: 'set  profile picture of bot', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
-      	await client.updateProfilePicture(client.downloadMediaMessage(message.quoted.imageMessage),client.user.id,{ renderLargerThumbnail : true })
+      	await client.updateProfilePicture(client.user.id,(client.downloadMediaMessage(message.quoted.imageMessage)),{ renderLargerThumbnail : true })
       }
 );
