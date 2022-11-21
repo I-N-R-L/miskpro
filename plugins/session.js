@@ -11,9 +11,8 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
    let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = getRandom('.png')
-  async exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+   exec(`ffmpeg -i ${media} ${ran}`, async() => {
    remove(media)
-   if (err) console.log(err);
    buffer = await read(ran)
    client.sendMessage(message.from, { image:  buffer , caption: "config.exif.cap" }, { quoted: message });
    remove(ran)
