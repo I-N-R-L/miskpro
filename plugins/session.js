@@ -1,6 +1,6 @@
 const { inrl, getRandom, config} = require('../lib');
 const ffmpeg = require('fluent-ffmpeg')
-const {readFile} = require('fs').promises;
+const {readFile,unlink} = require('fs').promises;
 const fs = require('fs');
 const { exec, spawn, execSync } = require('child_process')
 
@@ -15,6 +15,6 @@ let _message = message.quoted.stickerMessage ;
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buffer = readFile(ran)
   client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
-  fs.unlinkSync(ran)
+  unlink(ran)
    })
  });
