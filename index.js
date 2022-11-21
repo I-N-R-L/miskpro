@@ -124,9 +124,12 @@ if(Config.PM_BLOCK == "true"){
       }
    }
 };
+let MOD = Config.WORKTYPE;
+let IsTeam = m.client.isCreator;
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
+if(MOD == 'privet' && IsTeam === true){
           if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
@@ -140,6 +143,21 @@ if(Config.PM_BLOCK == "true"){
             }
             await conn.sendPresenceUpdate("available", m.from);
           }
+         } else if(MOD == 'public'){
+          if (command.pattern[i] == m.client.command || command.on == "text"){
+            global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
+            if(Config.REACT =='true'){
+            await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
+            }
+            await conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
+            try {await command.function(m, conn, m.client.text, m.client.command, store);}
+            catch (error) { global.catchError = true; console.log(error); }
+            if(Config.REACT =='true'){
+            global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
+            }
+            await conn.sendPresenceUpdate("available", m.from);
+          }
+         }
         }
       });
      } catch (e) {
