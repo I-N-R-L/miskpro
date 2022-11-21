@@ -13,7 +13,7 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
    exec(`ffmpeg -i ${media} ${ran}`, async (err) => {
   fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
-  let buffer = await readFile(ran)
+  let buffer = await fs.readFileSync(ran)
   client.sendMessage(message.from, { image:  buffer , caption: "config.exif.cap" }, { quoted: message });
   unlink(ran)
    })
