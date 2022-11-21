@@ -1,4 +1,4 @@
-const { inrl, getRandom } = require('../lib');
+const { inrl, getRandom, config} = require('../lib');
 const ffmpeg = require('fluent-ffmpeg')
 const {readFile} = require('fs').promises;
 const fs = require('fs');
@@ -14,7 +14,7 @@ let _message = message.quoted.stickerMessage ;
   fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
   let buffer = readFile(ran)
-  client.sendMessage(message.from, { image:  buffer , caption: bots.config.exif.cap }, { quoted: message });
+  client.sendMessage(message.from, { image:  buffer , caption: config.exif.cap }, { quoted: message });
   fs.unlinkSync(ran)
    })
  });
