@@ -20,15 +20,6 @@ await fs.unlinkSync(img);//return await fs.unlinkSync(rmbg);
                 }
         }
 );
-async function serchimg(text){
-    gis(text, async (error, results) => {
-        if (error) { return;}  else {
-          let data = results.length
-          let img = results[Math.floor(data * Math.random())]
-return img.url;
-       }
-   })
-}
 inrl(
   {
     pattern: ["img"],
@@ -41,17 +32,19 @@ inrl(
     if (!text) {
       return await client.sendMessage( message.from, { text: bots.errorMessage('Enter Text') }, { quoted: message } );
     }
-let imag = await serchimg(text);
-console.log(imag)
+    gis(text, async (error, results) => {
+        if (error) return;
+          let data = await results.length
+          let img = await results[Math.floor(data * Math.random())]
 let buttons = [
         {buttonId:`img ${text}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
       let buttonMsg = {
-      image: { url : imag },
+      image: {url:img.url},
       caption:  `HeHe!`,
       footer: Config.FOOTER,
-      buttons: buttons,
-      headerType: 4
+      buttons: buttons
       }
-return await client.sendMessage(message.from, buttonMsg, {quoted: message})
+await client.sendMessage(message.from, buttonMsg, {quoted: message})
+   })
 });
