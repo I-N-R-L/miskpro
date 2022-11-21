@@ -22,9 +22,7 @@ await fs.unlinkSync(img);//return await fs.unlinkSync(rmbg);
 );
 async function serchimg(text){
     gis(text, async (error, results) => {
-        if (error) {
-console.log(error);
-        } else {
+        if (error) { return;}  else {
           let data = results.length
           let img = results[Math.floor(data * Math.random())]
 return img.url;
@@ -44,6 +42,7 @@ inrl(
       return await client.sendMessage( message.from, { text: bots.errorMessage('Enter Text') }, { quoted: message } );
     }
 let imag = await serchimg(text);
+console.log(imag)
 let buttons = [
         {buttonId:`img ${text}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
@@ -51,7 +50,8 @@ let buttons = [
       image: { url : imag },
       caption:  `HeHe!`,
       footer: Config.FOOTER,
-      buttons: buttons
+      buttons: buttons,
+      headerType: 4
       }
 return await client.sendMessage(message.from, buttonMsg, {quoted: message})
 });
