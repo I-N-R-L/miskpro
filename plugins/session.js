@@ -19,7 +19,7 @@ let _message = message.quoted.stickerMessage ;
 }
 
 inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
-let img = await photoGen(message,client);
-  client.sendMessage(message.from, { image:  img , caption: "config.exif.cap" }, { quoted: message });
+await photoGen(message,client);
+ //client.sendMessage(message.from, { image:  img , caption: "config.exif.cap" }, { quoted: message });
   //unlink(ran)
    })
