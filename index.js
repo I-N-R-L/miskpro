@@ -124,12 +124,12 @@ if(Config.PM_BLOCK == "true"){
       }
    }
 };
-let MOD = Config.WORKTYPE;
+    let MOD = Config.WORKTYPE;
 let IsTeam = m.client.isCreator;
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-if(MOD == 'privet' && IsTeam === true){
+        if(IsTeam === true){
           if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
