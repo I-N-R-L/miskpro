@@ -36,15 +36,6 @@ inrl(
         if (error) return;
           let data = await results.length
           let img = await results[Math.floor(data * Math.random())]
-let buttons = [
-        {buttonId:`img ${text}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
-      ]
-      let buttonMsg = {
-      image: {url:img.url},
-      caption:  `HeHe!`,
-      footer: Config.FOOTER,
-      buttons: buttons
-      }
-await client.sendMessage(message.from, buttonMsg, {quoted: message})
+await client.sendMessage(message.from,{ image : {url : img.url }, caption : Config.CAPTION }, {quoted: message})
    })
 });
