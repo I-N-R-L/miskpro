@@ -5,10 +5,10 @@ const Config = require('../config');
 
 inrl(
 	   {
-		pattern: ['removebg'],
+		pattern: ["removebg", "rmbg"],
 		desc: 'To remove bg of any image',
                 sucReact: "😉",
-                category: ["system", "all"],
+                category: ["system", "all","create","photo","fun"],
 	   },
 	async (message, client) => {
 if(message.quoted.imageMessage){
@@ -27,7 +27,7 @@ inrl(
     sucReact: "🖼",
     category: ["search", "all"],
   },
-  async (message, client) => {
+  async (message, client, match) => {
     const text = message.client.text;
     if (!text) {
       global.catchError = true;
@@ -41,8 +41,17 @@ inrl(
         } else {
           let data = results.length
           let img = results[Math.floor(data * Math.random())]
-console.log(img.url, data);
-            await client.sendMessage( message.from, { image: { url: img.url }, caption: config.exif.cap,}, { quoted: message, });
+let buttons = [
+        {buttonId:`img ${match}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
+      ]
+      let buttonMsg = {
+      image: {url:img.url},
+      caption:  `HeHe!`,
+      footer: Config.FOOTER,
+      buttons: buttons,
+      headerType: 4
+      }
+await client.sendMessage(message.from, buttonMsg, {quoted: message})
             global.catchError = false;
         }
    })
