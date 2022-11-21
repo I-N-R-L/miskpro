@@ -1,4 +1,6 @@
 const { inrl } = require('../lib');
+const ffmpeg = require('fluent-ffmpeg');
+
 inrl(
   { 
     pattern: ["jimu"], 
