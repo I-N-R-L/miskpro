@@ -11,10 +11,10 @@ let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = await getRandom('.png')
    exec(`ffmpeg -i ${media} ${ran}`, (err) => {
-  fs.unlinkSync(media)
-  if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
-  let buffer = fs.readFileSync(ran)
+  //fs.unlinkSync(media)
+  if (err) client.sendMessage(message.from, { text: "err"+err }, { quoted: message });
+  let buffer = readFile(ran)
   client.sendMessage(message.from, { image:  buffer , caption: "config.exif.cap" }, { quoted: message });
-  unlink(ran)
+  //unlink(ran)
    })
  });
