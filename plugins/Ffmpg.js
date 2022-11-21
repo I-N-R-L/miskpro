@@ -39,5 +39,5 @@ inrl(
     category: ["search"] 
 },
   async (message, client) => {
-await client.sendText("res.link");
+console.log(message.fromMe)
    });
