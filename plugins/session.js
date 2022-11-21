@@ -10,10 +10,10 @@ inrl({ pattern: ['photo','toimg'], desc: "to convert webp to img",sucReact: "⚒
    let _message = message.quoted.stickerMessage ;
    let media = await client.downloadAndSaveMediaMessage(_message);
    let ran = getRandom('.png')
-   exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+   exec(`ffmpeg -i ${media} ${ran}`, async (err) => {
   fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: err }, { quoted: message });
-  let buffer = fs.readFileSync(ran)
+  let buffer = await readFile(ran)
   client.sendMessage(message.from, { image:  buffer , caption: "config.exif.cap" }, { quoted: message });
   unlink(ran)
    })
