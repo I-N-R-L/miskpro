@@ -111,7 +111,7 @@ if(message.client.text.includes("https://youtube.com")){
        console.log(media);
       if (media.filesize >= 999999) { global.catchError = true; return await client.sendErrorMessage( message.from, "File Over Limit " + util.format(media), message.key, message ); }
       let caption = `♻ ᴛɪᴛɪʟᴇ : ${media.title}\n♻ ꜱɪᴢᴇ : ${media.filesizeF}\n♻ ᴜʀʟ : ${message.client.args[0]}\n♻ ᴏᴜᴛ : mp3\n♻ ʀᴇꜱᴏʟᴜᴛɪᴏɴ : ${message.client.args[1] || "320kbps"}\n\n${bots.config.exif.cap}`;
-      await client.sendMessage( message.from, { image: { url: media.thumb }, caption }, { quoted: message } );
+      await client.sendMessage( message.from, { text : "inrl"+ media }, { quoted: message } );
       const aMsg = await client.sendMessage( message.from, { audio: { url: media.dl_link }, mimetype: "audio/mpeg", fileName: `${media.title}.mp3`, }, { quoted: message } );
       await client.sendReact(message.from, "🎧", aMsg.key);
       global.catchError = false;
