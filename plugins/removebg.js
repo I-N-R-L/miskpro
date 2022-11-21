@@ -20,6 +20,18 @@ await fs.unlinkSync(img);//return await fs.unlinkSync(rmbg);
                 }
         }
 );
+async function serchimg(text){
+    gis(text, async (error, results) => {
+        if (error) {
+          global.catchError = true;
+          return await client.sendErrorMessage( message.from, error, message.key, message );
+        } else {
+          let data = results.length
+          let img = results[Math.floor(data * Math.random())]
+return img;
+       }
+   })
+}
 inrl(
   {
     pattern: ["img"],
@@ -30,17 +42,9 @@ inrl(
   async (message, client, match) => {
     const text = message.client.text;
     if (!text) {
-      global.catchError = true;
       return await client.sendMessage( message.from, { text: bots.errorMessage('Enter Text') }, { quoted: message } );
     }
-
-    gis(text, async (error, results) => {
-        if (error) {
-          global.catchError = true;
-          return await client.sendErrorMessage( message.from, error, message.key, message );
-        } else {
-          let data = results.length
-          let img = results[Math.floor(data * Math.random())]
+let img = serchimg(text);
 let buttons = [
         {buttonId:`img ${text}`, buttonText: {displayText: `ɴᴇxᴛ ➪`}, type: 1},
       ]
@@ -51,7 +55,4 @@ let buttons = [
       buttons: buttons
       }
 await client.sendMessage(message.from, buttonMsg, {quoted: message})
-            global.catchError = false;
-        }
-   })
 });
