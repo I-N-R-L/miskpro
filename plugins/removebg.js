@@ -28,11 +28,10 @@ inrl(
     category: ["search", "all"],
   },
   async (message, client, match) => {
-    const text = message.client.text;
-    if (!text) {
+    if (!match) {
       return await client.sendMessage( message.from, { text: bots.errorMessage('Enter Text') }, { quoted: message } );
     }
-    gis(text, async (error, results) => {
+    gis(match, async (error, results) => {
         if (error) return;
           let data = await results.length
           let img = await results[Math.floor(data * Math.random())]
