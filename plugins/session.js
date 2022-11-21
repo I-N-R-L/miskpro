@@ -8,8 +8,8 @@ return new Promise(async(resolve,reject) => {
   let photo = exec(`ffmpeg -i ${media} ${ran}`, (err) => {
   //fs.unlinkSync(media)
   if (err) client.sendMessage(message.from, { text: "err"+err }, { quoted: message });
-  buffer = fs.readFileSync(ran)
-  resolve 
+  let buffer = fs.readFileSync(ran)
+  resolve buffer
    })
 resolve buffer;
  })
