@@ -3,7 +3,7 @@ const { getYtV } = require('../lib/youtube');
 //const { getLastMessageInChat } = require('@adiwajshing/baileys');
 inrl(
 	   {
-		pattern: ['jid'],
+		pattern: ['ytv'],
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
