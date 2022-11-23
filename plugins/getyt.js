@@ -9,6 +9,6 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-await getYtV(m, c)
+await getYtV(message, client)
          }
 );
