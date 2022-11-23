@@ -22,7 +22,7 @@ inrl(
 	   },
 	async (message, client,match) => {
 if(!match.includes('http')){
-await getYtVA(message, client)
+await getYtA(message, client)
 }
          }
 );
