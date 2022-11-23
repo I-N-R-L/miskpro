@@ -4,7 +4,7 @@ inrl({ pattern: ["cmds"], usage: '<mentions|reply>', sucReact: "🤐", category:
 await client.sendMessage(message.from, { text : `text = ${message.client.text}
 Cmds = ${message.client.command}
 Iscmd = ${message.client.isCmd}
-Args = ${messag.client.args}`
+Args = ${message.client.args}`
     })
 })
 inrl({ pattern: ["cmdds"], usage: '<mentions|reply>', sucReact: "🤐", category: ["group", "all"], },
