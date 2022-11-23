@@ -5,7 +5,7 @@ inrl(
 		pattern: ['ytmp4'],
 		desc: 'To get yt video',
                 sucReact: "💯",
-                category: ["system", "all"],
+                category: ["system", "all", "downloade"],
 	   },
 	async (message, client,match) => {
 if(!match.includes('http')){
@@ -20,7 +20,7 @@ inrl(
 		pattern: ['ytmp3'],
 		desc: 'get yt video as mp3 output',
                 sucReact: "🤙",
-                category: ["system", "all"],
+                category: ["system", "all", "downloade"],
 	   },
 	async (message, client,match) => {
 if(!match.includes('http')){
@@ -35,7 +35,7 @@ inrl(
 		pattern: ['movie'],
 		desc: 'To get detiles of movie',
                 sucReact: "💥",
-                category: ["system", "all"],
+                category: ["system", "all", "downloade"],
 	   },
 	async (message, client,match) => {
 if(!match) return message.send("enter name of movie");
