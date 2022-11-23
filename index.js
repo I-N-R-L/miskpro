@@ -134,10 +134,9 @@ if(Config.PM_BLOCK == "true"){
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
-let perfix = Config.PERFIX.replaceAll(" ","");
 //STARTING PERFIX MANAGER
-
-ENDING PERFIX MANEGER
+let perfix = Config.PERFIX.replaceAll(" ","");
+//ENDING PERFIX MANEGER
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
