@@ -134,16 +134,11 @@ if(Config.PM_BLOCK == "true"){
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
-//STARTING PERFIX MANAGER
-let perfix = Config.PERFIX.replaceAll(" ","");
-//ENDING PERFIX MANEGER
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
         if(MOD == 'privet' && IsTeam === true){
-let testcmd = perfix+command.pattern[i];
-let matchcmd = perfix+m.client.command;
-          if (testcmd == matchcmd || command.on == "text"){
+          if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
@@ -157,7 +152,7 @@ let matchcmd = perfix+m.client.command;
             await conn.sendPresenceUpdate("available", m.from);
           }
          } else if(MOD == 'public'){
-          if (testcmd == matchcmd || command.on == "text"){
+          if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
