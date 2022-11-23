@@ -128,12 +128,13 @@ if(Config.PM_BLOCK == "true"){
     let mode = Config.WORKTYPE.toLowerCase();
     let MOD;
     if(mode.includes('public')){
-    mod = "public"
+    MOD = "public"
     } else if(mode.includes('privet')){
-    mod = "privet"
-    } else mod = "privet"
+    MOD = "privet"
+    } else MOD = "privet"
     let IsTeam = m.client.isCreator;
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
+let perfix = Config.PERFIX.replaceAll(" ","");
 //STARTING PERFIX MANAGER
 
 ENDING PERFIX MANEGER
@@ -141,7 +142,9 @@ ENDING PERFIX MANEGER
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
         if(MOD == 'privet' && IsTeam === true){
-          if (command.pattern[i] == m.client.command || command.on == "text"){
+let testcmd = perfix+command.pattern[i];
+let matchcmd = perfix+m.client.command;
+          if (testcmd == matchcmd || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
@@ -155,7 +158,7 @@ ENDING PERFIX MANEGER
             await conn.sendPresenceUpdate("available", m.from);
           }
          } else if(MOD == 'public'){
-          if (command.pattern[i] == m.client.command || command.on == "text"){
+          if (testcmd == matchcmd || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
