@@ -124,8 +124,19 @@ if(Config.PM_BLOCK == "true"){
       }
    }
 };
-    let MOD = Config.WORKTYPE.toLowerCase();
-let IsTeam = m.client.isCreator;
+//MODE MANAGER
+    let mode = Config.WORKTYPE.toLowerCase();
+    let MOD;
+    if(mode.includes('public')){
+    mod = "public"
+    } else if(mode.includes('privet')){
+    mod = "privet"
+    } else mod = "privet"
+    let IsTeam = m.client.isCreator;
+//MODEMANAGER RESPOSBLE OUTPUT ENDED
+//STARTING PERFIX MANAGER
+
+ENDING PERFIX MANEGER
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
