@@ -62,6 +62,7 @@
     "xfarr-api": "^1.0.2",
     "imgbb-uploader": "^1.4.0",
     "yargs": "^17.4.0",
+    "ytdl-core":"4.11.2",
     "yt-search": "^2.10.2"
   },
   "devDependencies": {
