@@ -1,6 +1,5 @@
-const { inrl } = require('../lib/');
-const { getYtV } = require('../lib/youtube');
-//const { getLastMessageInChat } = require('@adiwajshing/baileys');
+const { inrl, getYtV, getYtA } = require('../lib/');
+
 inrl(
 	   {
 		pattern: ['ytmp4'],
