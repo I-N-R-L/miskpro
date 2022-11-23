@@ -11,7 +11,7 @@ inrl(
 if(!match.includes('http')){
 await getYtV(message, client)
 }else if(match.includes('http')){
-await ytmp4(match)
+await ytmp4(message, client)
 }
          }
 );
