@@ -1,4 +1,4 @@
-const { inrl, getYtV, getYtA } = require('../lib/');
+const { inrl, getYtV, getYtA, ytmp4 } = require('../lib/');
 
 inrl(
 	   {
@@ -10,6 +10,8 @@ inrl(
 	async (message, client,match) => {
 if(!match.includes('http')){
 await getYtV(message, client)
+}else if(match.includes('http')){
+await ytmp4(match)
 }
          }
 );
