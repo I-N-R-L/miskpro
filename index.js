@@ -64,7 +64,8 @@ fs.readdirSync("./plugins").forEach((plugin) => {
         }
       });
       console.log("plugin installed successfully☑️");
-console.log(chalk.green("💖 Login successful! \n bot working now💗"));
+console.log("💖 Login successful! \n bot working now💗");
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our suppoer group```"+`*mode : ${Condig.WORKTYPE}*` });
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -138,7 +139,7 @@ if(Config.PM_BLOCK == "true"){
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
         if(MOD == 'privet' && IsTeam === true){
-          if(command.pattern[i] == m.client.command){
+          if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
@@ -150,33 +151,9 @@ if(Config.PM_BLOCK == "true"){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
             }
             await conn.sendPresenceUpdate("available", m.from);
-            }else if(command.on == "text"){
-            global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
-            if(Config.REACT =='true'){
-            await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
-            }
-            await conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            try {await command.function(m, conn, m.client.text, m.client.command, store);}
-            catch (error) { global.catchError = true; console.log(error); }
-            if(Config.REACT =='true'){
-            global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
-            }
-            await conn.sendPresenceUpdate("available", m.from);
-            }
-            } else if(MOD == 'public'){
-            if(command.pattern[i] == m.client.command){
-            global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
-            if(Config.REACT =='true'){
-            await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
-            }
-            await conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            try {await command.function(m, conn, m.client.text, m.client.command, store);}
-            catch (error) { global.catchError = true; console.log(error); }
-            if(Config.REACT =='true'){
-            global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
-            }
-            await conn.sendPresenceUpdate("available", m.from);
-            }else if(command.on == "text"){
+          }
+         } else if(MOD == 'public'){
+          if (command.pattern[i] == m.client.command || command.on == "text"){
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
