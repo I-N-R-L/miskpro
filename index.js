@@ -65,7 +65,7 @@ fs.readdirSync("./plugins").forEach((plugin) => {
       });
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our suppoer group```"+`*mode : ${Condig.WORKTYPE}*` });
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our suppoer group```"+`*mode : ${Config.WORKTYPE}*` });
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
