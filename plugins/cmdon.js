@@ -15,14 +15,13 @@ await send_vote(message, client);
 );
 inrl(
 	   {
-		pattern : ["poll"] ,
                 on : "text",
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
 	async (message, client, text) => {
-console.log(text);
+console.log("inrp md commanidonworking checking ❣️❣️❣️❣️");
        }
 );
 inrl({ pattern: ['hentaivideo'], desc: "thus send random anime hot videos, asure thets bad",sucReact: "😕",  category: ["anime","18+"],}, async (message, client) => {
