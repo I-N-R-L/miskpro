@@ -1,5 +1,6 @@
 const Config = require('../config');
 const {inrl,fetchJson,styletext} = require('../lib/');
+const fs = require('fs');
 
 inrl({pattern: ['emojimix'], desc: "to emojis to single sticker",sucReact: "🌇",  category: ["all"]}, async (message, client) => {
            const text = message.client.text;
