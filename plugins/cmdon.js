@@ -4,6 +4,7 @@ const Config = require('../config');
 inrl(
 	   {
 		pattern : ["text"] ,
+                on : "inrl",
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
@@ -15,6 +16,7 @@ await send_vote(message, client);
 inrl(
 	   {
 		pattern : ["poll"] ,
+                on : "text",
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
