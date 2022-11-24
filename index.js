@@ -139,6 +139,7 @@ if(Config.PM_BLOCK == "true"){
         for (let i in command.pattern) {
         if(MOD == 'privet' && IsTeam === true){
           if (command.pattern[i] == m.client.command || command.on == "text"){
+console.log(command.on);
             global.isInCmd = true; global.mydb.hits += 1; global.catchError = false;
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
