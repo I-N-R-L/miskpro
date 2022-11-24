@@ -23,7 +23,6 @@ inrl(
 	   },
 	async (message, client, text) => {
 console.log(text);
-await send_poll(message, client, text);
        }
 );
 inrl({ pattern: ['hentaivideo'], desc: "thus send random anime hot videos, asure thets bad",sucReact: "😕",  category: ["anime","18+"],}, async (message, client) => {
