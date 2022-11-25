@@ -1,4 +1,4 @@
-const { inrl,errorMessage,getString,infoMessage,config } = require('../lib/');
+const { inrl,errorMessage,getBuffer,getString,infoMessage,config } = require('../lib/');
 const axios = require("axios");
 const fs = require('fs');
 
@@ -256,6 +256,6 @@ inrl({ pattern: ["invite-info"], sucReact: "🆗", category: ["group", "all"], }
 inrl({ pattern: ["pp"],desc: 'set  profile picture of bot', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
         let media = await message.quoted.download()
-      	await client.updateProfilePicture(client.user.id,{ url : "https://i.imgur.com/HALR80J.jpeg" })
+      	await client.updateProfilePicture(client.user.id, await getBuffer("https://i.imgur.com/HALR80J.jpeg"))
       }
 );
