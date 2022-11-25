@@ -7,7 +7,7 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-console.log(message.quoted.msg);
+console.log(message.quoted.msg.caption,message.quoted.text);
 		//return await client.sendMessage( message.from, { text: message.quoted }, { quoted: message })
                 }
 );
