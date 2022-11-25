@@ -256,6 +256,6 @@ inrl({ pattern: ["invite-info"], sucReact: "🆗", category: ["group", "all"], }
 inrl({ pattern: ["pp"],desc: 'set  profile picture of bot', sucReact: "😁",  category: ["all", "create"], },
 	async (message, client) => {
         let media = await client.downloadAndSaveMediaMessage(message.quoted)
-      	await client.updateProfilePicture(client.user.id, {url:media}))
+      	await client.updateProfilePicture(client.user.id, {url:media})
       }
 );
