@@ -11,6 +11,7 @@ module.exports = {
     SESSION_ID: process.env.SESSION_ID || 'inrl~jBXClBr6wZOD1OTowD//OCeai4oQ+seP',
     PASSWORD: process.env.PASSWORD || 'inrl-bot~md',
     REACT : process.env.REACT || 'false',
+    WELCOME_SET : "true",
     GROUP_CHAT : process.env.GROUP_CHAT || 'false',
     FREE_TXT : process.env.FREE_TXT || 'inrlbotmd',
     READ_CHAT : process.env.READ_CHAT || "true", //values are true and false only if true read all chats
