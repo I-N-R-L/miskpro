@@ -99,7 +99,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     await FakeRemove(m, conn);
     await IsBadWord(m, conn);
     await IsMension(m, conn);
-global.inrl = (m, conn);
+global.inrl = (m, conn) =>{}
 //inrl bot call block speciol func!🥵//
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
