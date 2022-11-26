@@ -12,5 +12,4 @@ inrl(
         lastMessages: [{ key: message.key, messageTimestamp:message.messageTimestamp }]
       },message.from)
     return await message.send("_Chat cleared!_")  
-   }));
 });
