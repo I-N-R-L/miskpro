@@ -9,7 +9,7 @@ inrl(
 	async (message, client) => {
     await client.chatModify({
         delete: true,
-        lastMessages: [{ key: message.key, messageTimestamp:message.messageTimestamp }]
+        lastMessages: [{ key: message.key, messageTimestamp:message.data.messageTimestamp }]
       },message.from)
     return await message.send("_Chat cleared!_")  
 });
