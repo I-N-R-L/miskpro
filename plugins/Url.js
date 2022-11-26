@@ -41,11 +41,3 @@ let imgForUdio = await urlBufferToImgFile(img,'./media/imagForAudio.jpg');
 //return await fs.unlinkSync(dltImg)
 
 })
-inrl({ pattern: ['clear'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, (async (message, client) => {
-     await client.sendMessage(message.from, {text : "```cleaning chat...```"});
-    await client.modifyChat (message.from, ChatModification.delete);
-    await client.sendMessage(message.from, {text:'```🏳 Chat cleared 🏳```'});
-}))
-inrl({ pattern: ['aliv'], desc: "to get web screenshot",sucReact: "⚒️",  category: ["all"],}, (async (message, client) => {
-     await send_alive(message, client);
-}))
