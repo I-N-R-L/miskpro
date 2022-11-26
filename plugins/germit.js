@@ -1,13 +1,16 @@
 const { inrl } = require('../lib/');
 inrl(
 	   {
-		pattern: ['qu'],
+		pattern: ['clear'],
 		desc: 'To check ping',
                 sucReact: "💯",
                 category: ["system", "all"],
 	   },
 	async (message, client) => {
-console.log(message.quoted.msg.caption,message.quoted.text);
-		//return await client.sendMessage( message.from, { text: message.quoted }, { quoted: message })
-                }
-);
+    await client.chatModify({
+        delete: true,
+        lastMessages: [{ key: message.key, messageTimestamp:message.messageTimestamp }]
+      },message.from)
+    return await message.send("_Chat cleared!_")  
+   }));
+});
