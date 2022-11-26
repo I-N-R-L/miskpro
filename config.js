@@ -12,6 +12,7 @@ module.exports = {
     PASSWORD: process.env.PASSWORD || 'inrl-bot~md',
     REACT : process.env.REACT || 'false',
     WELCOME_SET : "true",
+    EXIT_MSG : "true",
     GROUP_CHAT : process.env.GROUP_CHAT || 'false',
     FREE_TXT : process.env.FREE_TXT || 'inrlbotmd',
     READ_CHAT : process.env.READ_CHAT || "true", //values are true and false only if true read all chats
