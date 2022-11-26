@@ -36,10 +36,10 @@ var decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
   .then(async function smile(data) {
-   fs.writeFileSync("./session.json" , data);
+   fs.writeFileSync(__dirname + '/lib/database/baileys/creds.json', data, "utf8");
 });
 const WhatsBotConnect = async () => {
-const { state, saveCreds } = await useMultiFileAuthState('./session.json');
+const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/database/baileys/')
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
