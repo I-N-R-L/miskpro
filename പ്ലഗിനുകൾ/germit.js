@@ -7,7 +7,8 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-    let match = match || " ";
-    await cleint.updateProfileName(match)
-    return await message.send("Name Changed!")  
+if(message.client.isCreater && !message.IsGroup) {
+    await client.updateProfileName(match)
+    return await message.send("Name Changed!") 
+     }
 });
