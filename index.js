@@ -39,7 +39,7 @@ pastebin
    fs.writeFileSync("./session.json" , data);
 });
 const WhatsBotConnect = async () => {
-const { state, saveState } = useSingleFileAuthState("./session.json");
+const { state, saveCreds } = await useMultiFileAuthState('./session.json');
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
@@ -52,7 +52,7 @@ console.log(' session file cretion failed ');
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
- conn.ev.on("creds.update", saveState);
+ conn.ev.on('creds.update', saveCreds);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
