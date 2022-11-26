@@ -7,8 +7,8 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-if(message.client.isCreater && !message.IsGroup) {
+//if(message.client.isCreater && !message.IsGroup) {
     await client.updateProfileName(match)
     return await message.send("Name Changed!") 
-     }
+   //  }
 });
