@@ -189,14 +189,6 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
-setTimeout(() => {
-WhatsBotConnect();
-},2000);
-app.use(WhatsBotConnect())
-})
-app.listen(port, () => {
-    console.log(`Inrl Md Bot Running on port ${port}`)
-       });
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
@@ -204,3 +196,10 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+setTimeout(() => {
+WhatsBotConnect();
+},2000);
+app.use(WhatsBotConnect())
+app.listen(port, () => {
+    console.log(`Inrl Md Bot Running on port ${port}`)
+       });
