@@ -203,5 +203,4 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
-WhatsBotConnect();
 },2000);
