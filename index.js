@@ -194,8 +194,8 @@ if(Config.U_STATUS =='true'){
      WhatsBotConnect()
      }, 2000);
 });
-app.listen(PORT, () => {
-    console.log(`Server Run on port ${PORT}`)
+app.listen(port, () => {
+    console.log(`Inrl Md Bot Running on port ${port}`)
 });
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
