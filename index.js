@@ -197,13 +197,8 @@ fs.watchFile(file, () => {
 	require(file)
 })
 setTimeout(() => {
-WhatsBotConnect();
-//app.use(WhatsBotConnect())
-router.get("/", async(req, res) => {
-res.end(WhatsBotConnect());
-})
-//app.get("/", (req, res) => res.send(WhatsBotConnect()));
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
     });
+WhatsBotConnect().listen(port)
 },2000);
