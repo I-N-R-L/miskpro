@@ -193,6 +193,9 @@ if(Config.U_STATUS =='true'){
      WhatsBotConnect()
      }, 2000);
 });
+app.listen(PORT, () => {
+    console.log(`Server Run on port ${PORT}`)
+});
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
