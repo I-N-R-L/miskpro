@@ -9,7 +9,6 @@ const app = express();
 const yargs = require('yargs/yargs')
 const path = require("path");
 const port = 3001 || 5000 || 9786 || 1283;
-const router = express.Router();
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, sleep,tiny } = require("./lib");
 const inrlspfunc = require("./lib/Message")
@@ -42,7 +41,7 @@ pastebin
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
 });
-router.get("/", async(req, res) => {
+app.get("/", async(req, res) => {
 const WhatsBotConnect = async () => {
 const { state, saveState } = useSingleFileAuthState("./session.json");
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
