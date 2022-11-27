@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const yargs = require('yargs/yargs')
 const path = require("path");
+const port = 3001 || 5000 || 9786 ||1283
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, sleep,tiny } = require("./lib");
 const inrlspfunc = require("./lib/Message")
@@ -188,8 +189,8 @@ if(Config.U_STATUS =='true'){
           };
      };
 
-app.get("/", (req, res) => res.type('html').send(html));
-app.listen(port, () => console.log(`Secktor Server listening on port http://localhost:${port}!`));
+app.get("/", (req, res) => res.res.json({ message: "Hello From Inrl Express App" }));
+app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}!`));
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
