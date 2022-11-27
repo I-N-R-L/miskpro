@@ -192,7 +192,7 @@ if(Config.U_STATUS =='true'){
 setTimeout(() => {
 WhatsBotConnect();
 },2000);
-app.get(WhatsBotConnect())
+app.use(WhatsBotConnect())
 })
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
