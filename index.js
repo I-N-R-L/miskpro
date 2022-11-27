@@ -4,11 +4,11 @@ const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
-/*const express = require("express");
-const app = express();*/
+const express = require("express");
+const app = express();
 const yargs = require('yargs/yargs')
 const path = require("path");
-//const port = 3001 || 5000 || 9786 || 1283;
+const port = 3001 || 5000 || 9786 || 1283;
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, sleep,tiny } = require("./lib");
 const inrlspfunc = require("./lib/Message")
@@ -188,13 +188,13 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
+
 setTimeout(() => {
-WhatsBotConnect();
-}, 2000);
-/*app.get("/", (req, res) => res.res.json({ message: "Hello From Inrl Express App" }));
+app.get("/", (req, res) => res.res.json({ message: "Hello From Inrl Express App" }));
 app.listen(port, () => {
+WhatsBotConnect();
 console.log(`Inrl Server listening on port http://localhost:${port}!`);
-});*/
+});
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
@@ -202,3 +202,4 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+}, 2000);
