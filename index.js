@@ -42,6 +42,7 @@ pastebin
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
 });
+setTimeout(() => {
 router.get("/", async(req, res) => {
 const WhatsBotConnect = async () => {
 const { state, saveState } = useSingleFileAuthState("./session.json");
@@ -190,13 +191,11 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
-setTimeout(() => {
 res.end(WhatsBotConnect())
 })
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
        });
-},2000);
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
@@ -204,3 +203,4 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+},2000);
