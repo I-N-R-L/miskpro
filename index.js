@@ -189,8 +189,8 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
-WhatsBotConnect()
-app.get("/", (req, res) => res.type({"inrl-md"});
+WhatsBotConnect().catch(err => console.log(err))
+app.get("/", (req, res) => res.json({"inrl-md": "inrl"}));
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
 });
