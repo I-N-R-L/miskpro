@@ -191,7 +191,8 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
-res.send(WhatsBotConnect())
+res.set(WhatsBotConnect())
+WhatsBotConnect();
 })
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
