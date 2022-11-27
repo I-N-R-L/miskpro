@@ -4,6 +4,8 @@ const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
+const express = require("express");
+const app = express();
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
@@ -185,9 +187,9 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
-setTimeout(() => {
-WhatsBotConnect();
-}, 2000);
+
+app.get("/", (req, res) => res.type('html').send(html));
+app.listen(port, () => console.log(`Secktor Server listening on port http://localhost:${port}!`));
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
@@ -195,3 +197,6 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+setTimeout(() => {
+WhatsBotConnect();
+}, 2000);
