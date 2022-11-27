@@ -6,9 +6,10 @@ const chalk = require("chalk");
 const pino = require("pino");
 const express = require("express");
 const app = express();
+const port = process.env.port || 8080;
+const router = express.Router();
 const yargs = require('yargs/yargs')
 const path = require("path");
-const port = 3001 || 5000 || 9786 || 1283;
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, sleep,tiny } = require("./lib");
 const inrlspfunc = require("./lib/Message")
@@ -41,6 +42,7 @@ pastebin
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
 });
+router.get("/", async(req, res) => {
 setTimeout(() => {
 const WhatsBotConnect = async () => {
 const { state, saveState } = useSingleFileAuthState("./session.json");
@@ -189,8 +191,9 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
-//.catch(err => console.log(err))
-app.use("/", WhatsBotConnect());//(req, res) => res.json({"inrl-md": "inrl"}));
+res.end(WhatsBotConnect())
+    },2000);
+})
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
 });
@@ -201,4 +204,3 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
-}, 2000);
