@@ -8,7 +8,7 @@ const DATABASE_URL =
 		: process.env.DATABASE_URL
 module.exports = {
     VERSION: 'V 1.0.0',
-    SESSION_ID: process.env.SESSION_ID || 'inrl~jBXClBr6wZOD1OTowD//OCeai4oQ+seP',
+    SESSION_ID: process.env.SESSION_ID || 'inrl~UVb2lsaxmA2rPUJyiGTh7FG8ksvJleJe',
     PASSWORD: process.env.PASSWORD || 'inrl-bot~md',
     REACT : process.env.REACT || 'false',
     WELCOME_SET : "true",
