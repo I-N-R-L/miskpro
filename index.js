@@ -42,8 +42,6 @@ pastebin
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
 });
-setTimeout(() => {
-router.get("/", async(req, res) => {
 const WhatsBotConnect = async () => {
 const { state, saveState } = useSingleFileAuthState("./session.json");
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
@@ -191,7 +189,10 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
-res.get(WhatsBotConnect())
+setTimeout(() => {
+WhatsBotConnect();
+},2000);
+app.get(WhatsBotConnect())
 })
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
@@ -203,4 +204,3 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
-},2000);
