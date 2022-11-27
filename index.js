@@ -191,7 +191,6 @@ if(Config.U_STATUS =='true'){
 
 app.get("/", (req, res) => res.res.json({ message: "Hello From Inrl Express App" }));
 app.listen(port, () => {
-WhatsBotConnect();
 console.log(`Inrl Server listening on port http://localhost:${port}!`);
 });
 let file = require.resolve(__filename)
