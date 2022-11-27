@@ -9,6 +9,7 @@ const app = express();
 const yargs = require('yargs/yargs')
 const path = require("path");
 const port = 3001 || 5000 || 9786 || 1283;
+const router = express.Router();
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, sleep,tiny } = require("./lib");
 const inrlspfunc = require("./lib/Message")
