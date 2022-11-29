@@ -2,7 +2,7 @@ var NewGen, templateButtons;
 const got = require('got');
 const os = require("os");
 const speed = require("performance-now");
-const  { inrl , config, inrlQuita, insult , randomStyle, styletext, send_alive, send_menu }= require('../lib/')
+const  { inrl , tiny, getBuffer, config, inrlQuita, insult , randomStyle, styletext, send_alive, send_menu }= require('../lib/')
 const Config = require("../config");
 const cheerio = require('cheerio');
 const axios = require('axios');
