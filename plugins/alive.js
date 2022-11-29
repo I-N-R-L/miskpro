@@ -53,6 +53,7 @@ inrl(
 	   },
 	async (message, client, match) => {
           let url = await Insta(match);
+console.log(url, url[0])
 await client.sendMessage(message.from, { video : { url : url[0] },caption : Config.CAPTION });
 	 }
 );
