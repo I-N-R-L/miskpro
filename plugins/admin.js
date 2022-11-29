@@ -16,7 +16,7 @@ if(!admins) return;
 if(admins.includes(message.sender)) {
 await client.sendMessage(message.from, {
 		delete: {
-			remoteJid: message.chat,
+			remoteJid: message.from,
 			fromMe: message.quoted.fromMe,
 			id: message.quoted.id,
 			participant: message.quoted.sender
