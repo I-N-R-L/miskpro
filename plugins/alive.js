@@ -114,7 +114,7 @@ let buttonMessage = {
                 },
             },
         };
-console.log(await Insta(match), json.stargazers_count,json.owner.avatar_url,json.name,json.description,json.forks_count);
+console.log(await Insta(match)[0], json.stargazers_count,json.owner.avatar_url,json.name,json.description,json.forks_count);
     await client.sendMessage(message.from, buttonMessage, { quoted: message });
 });
     
