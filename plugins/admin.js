@@ -11,7 +11,16 @@ inrl(
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
 
-console.log(admins, message.sender)
-if(admins.includes(message.sender)) console.log("trt");
-if(!admins) console.log("fals");
+console.log(admins, message.sender, message.chat)
+if(!admins) return;
+if(admins.includes(message.sender)) {
+await client.sendMessage(message.from, {
+		delete: {
+			remoteJid: message.chat,
+			fromMe: message.quoted.fromMe,
+			id: message.quoted.id,
+			participant: message.quoted.sender
+            }
+     })
+}
 });
