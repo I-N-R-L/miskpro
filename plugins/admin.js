@@ -11,7 +11,7 @@ inrl(
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
 
-console.log("adm"+admins)
+console.log("adm"+admins, message)
 if(admins) console.log("trt");
 if(!admins) console.log("fals");
 });
