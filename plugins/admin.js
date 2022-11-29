@@ -11,6 +11,6 @@ inrl(
 	const participants = message.isGroup ? await groupMetadata.participants : ''
         const groupAdmins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
 	return message.isGroup ? groupAdmins.includes(message.user_id) : false
-console.log(groupAdmins,participants);
-console.log(message.groupAdmins)
+console.log("adm"+groupAdmins,"adm"+participants);
+console.log("adm"+message.groupAdmins)
 });
