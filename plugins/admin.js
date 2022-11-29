@@ -13,4 +13,5 @@ inrl(
 	return message.isGroup ? groupAdmins.includes(message.user_id) : false
 console.log("adm"+groupAdmins,"adm"+participants);
 console.log("adm"+message.groupAdmins)
+if(groupAdmins) console.log("trt");
 });
