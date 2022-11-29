@@ -52,9 +52,9 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-   //       let url = await Insta(match);
-console.log(await Insta(match))
-await client.sendMessage(message.from, { video : { url : url[0] },caption : Config.CAPTION });
+         let url = await Insta(match);
+//console.log(await Insta(match))
+retunr await client.sendMessage(message.from, { video : { url : url[0] },caption : Config.CAPTION });
 	 }
 );
 inrl({ pattern: ['del'], desc: "to create to delete unwanted grp msg by admins",sucReact: "⚒️",  category: ["all"]}, async (message, client) => {
