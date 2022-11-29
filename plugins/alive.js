@@ -1,8 +1,28 @@
 var NewGen, templateButtons;
+const got = require('got');
 const os = require("os");
 const speed = require("performance-now");
 const  { inrl , config, inrlQuita, insult , randomStyle, styletext, send_alive, send_menu }= require('../lib/')
 const Config = require("../config");
+const cheerio = require('cheerio');
+const axios = require('axios');
+async function Insta(match) {
+const result = []
+				const form = {
+					url: match,
+					submit: '',
+				}
+				const { data } = await axios(`https://downloadgram.org/`, {
+					method: 'POST',
+					data: form
+				})
+				const $ = cheerio.load(data)
+                $('#downloadhere > a').each(function (a,b) {
+				const url = $(b).attr('href')
+				if (url) result.push(url)
+			})
+            return result
+}
 
 inrl(
 	   {
@@ -49,25 +69,42 @@ inrl(
     sucReact: "🥵",
     category: ["system", "all"],
   },
-  async (message, client) => {
-      const Message = {
-      image: { url: Config.BOT_INFO.split(",")[2] },
-      caption: `╭═══〘${Config.BOT_INFO.split(",")[0]}〙═══⊷❍
+  async (message, client, match) => {
+      const response = await got("https://api.github.com/repos/inrl-official/inrl-bot-md")
+      const json = JSON.parse(response.body);
+      let captIon = `╭═══〘${Config.BOT_INFO.split(",")[0]}〙═══⊷❍
 ┃☯︎╭──────────────
 ┃☯︎│
-┃☯︎│ ᴏᴡɴᴇʀ :${Config.BOT_INFO.split(",")[1]}
-┃☯︎│ ᴜꜱᴇʀ : ${message.client.pushName}
-┃☯︎│ ᴠᴇʀꜱɪᴏɴ : ${Config.VERSION}
-┃☯︎│ ɢɪᴛʜᴜʙ :`+Config.GIT+`
-┃☯︎│ ᴡᴇʙꜱɪᴛᴇ :`+Config.WEB+`
-┃☯︎│ ᴛᴜʀᴛᴏʀɪᴀʟ :`+Config.VIDEO+`
-┃☯︎│ yᴏᴜᴛᴜʙᴇ :`+Config.YT+`
+┃☯︎│ ᴜꜱᴇʀ : _${message.client.pushName}_
+┃☯︎│ ᴠᴇʀꜱɪᴏɴ : ${tiny(Config.VERSION)}
+┃☯︎│ ɢɪᴛʜᴜʙ : _${Config.GIT}_
+┃☯︎│ ᴛᴜʀᴛᴏʀɪᴀʟ : _${Config.VIDEO}_
+┃☯︎│ ᴛᴏᴛᴇʟ ꜱᴛᴀʀᴇꜱ :* ${json.stargazers_count} stars
+┃☯︎│ ꜰᴏʀᴋꜱ:* ${json.forks_count} forks
 ┃☯︎│
 ┃☯︎╰───────────────
 ╰═════════════════⊷`
-    };
-    await client.sendMessage(message.from, Message, { quoted: message });
+ 
+let buttonMessage = {
+            image: { url: json.avatar_url },
+            caption: captIon,
+            footer: Config.FOOTER,
+            headerType: 4,
+            contextInfo: {
+                externalAdReply: {
+                    title: json.name,
+                    body: json.description ,
+                    thumbnail: await getBuffer(Config.BOT_INFO.split(',')[2]),
+                    mediaType: 2,
+                    mediaUrl: Config.INSTAGRAM,
+                    sourceUrl: Config.GIT,
+                },
+            },
+        };
+console.log(await Insta(match), json);
+    await client.sendMessage(message.from, buttonMessage, { quoted: message });
 });
+    
 const bots = require("../lib/perfix");
 const Lang = bots.getString("_whats");
 // const fs = require("fs");
