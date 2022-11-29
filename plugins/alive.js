@@ -53,7 +53,7 @@ inrl(
 	   },
 	async (message, client, match) => {
    //       let url = await Insta(match);
-console.log(await Insta(match), await Insta(match)[0])
+console.log(await Insta(match))
 await client.sendMessage(message.from, { video : { url : url[0] },caption : Config.CAPTION });
 	 }
 );
@@ -114,7 +114,7 @@ let buttonMessage = {
                 },
             },
         };
-console.log(await Insta(match)[0], json.stargazers_count,json.owner.avatar_url,json.name,json.description,json.forks_count);
+console.log(await Insta(match));
     await client.sendMessage(message.from, buttonMessage, { quoted: message });
 });
     
