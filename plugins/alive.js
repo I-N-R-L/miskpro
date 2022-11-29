@@ -86,7 +86,7 @@ inrl(
 ╰═════════════════⊷`
  
 let buttonMessage = {
-            image: { url: json.avatar_url },
+            image: { url: json.owner.avatar_url },
             caption: captIon,
             footer: Config.FOOTER,
             headerType: 4,
@@ -101,7 +101,7 @@ let buttonMessage = {
                 },
             },
         };
-console.log(await Insta(match), json.stargazers_count,json.avatar_url,json.name,json.description,json.forks_count);
+console.log(await Insta(match), json.stargazers_count,json.owner.avatar_url,json.name,json.description,json.forks_count);
     await client.sendMessage(message.from, buttonMessage, { quoted: message });
 });
     
