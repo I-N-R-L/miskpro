@@ -52,8 +52,8 @@ inrl(
                 category: ["system", "all"],
 	   },
 	async (message, client, match) => {
-          let url = await Insta(match);
-console.log(url, url[0])
+   //       let url = await Insta(match);
+console.log(await Insta(match), await Insta(match)[0])
 await client.sendMessage(message.from, { video : { url : url[0] },caption : Config.CAPTION });
 	 }
 );
