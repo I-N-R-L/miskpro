@@ -42,7 +42,7 @@ pastebin
   .getPaste(decryptedPlainText)
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
-   resolve ('./session.json")
+   resolve ('./session.json')
    });
  })
 }
