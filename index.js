@@ -27,13 +27,14 @@ global.mydb.users = new Array();
 global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
+//To Convert session ID  To Session File
+async function getssfile(ssid){
+return new Promise(async(resolve,reject) => {
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
-const mddc=(Config.SESSION_ID);
-var m = (mddc);
-let mdm = m.replaceAll("inrl~", "");
+let mdm = ssid.replaceAll("inrl~", "");
 var key = 'k!t';
 var plaintext = (mdm);
 var decryptedPlainText = aes256.decrypt(key, plaintext);
@@ -41,9 +42,14 @@ pastebin
   .getPaste(decryptedPlainText)
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
-});
+   resolve ('./session.json")
+   });
+ })
+}
+// ending thets function 
 const WhatsBotConnect = async () => {
-const { state, saveState } = useSingleFileAuthState("./session.json");
+let session = await getssfile(Config.SESSION_ID)
+const { state, saveState } = await useSingleFileAuthState(session)
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
@@ -196,9 +202,9 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
-setTimeout(() => {
+//setTimeout(() => {
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
     });
 WhatsBotConnect();
-},2000);
+//},2000);
