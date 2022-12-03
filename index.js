@@ -7,7 +7,6 @@ const pino = require("pino");
 const express = require("express");
 const app = express();
 const port = process.env.port || 8080;
-const router = express.Router();
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
@@ -181,8 +180,8 @@ if(Config.U_STATUS =='true'){
           };
      };
 setTimeout(() => {
+WhatsBotConnect();
+},2000);
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
     });
-WhatsBotConnect();
-},2000);
