@@ -7,6 +7,7 @@ const pino = require("pino");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
+const router = express.Router();
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
@@ -41,6 +42,7 @@ pastebin
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
 });
+router.get('/', function (req, res, next) {
 const WhatsBotConnect = async () => {
 const { state, saveState } = useSingleFileAuthState("./session.json");
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
@@ -182,6 +184,9 @@ if(Config.U_STATUS =='true'){
 setTimeout(() => {
 WhatsBotConnect();
 },2000);
+})
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
     });
+
+module.exports = router;
