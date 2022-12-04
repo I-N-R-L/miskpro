@@ -181,10 +181,12 @@ if(Config.U_STATUS =='true'){
           };
      };
 setTimeout(() => {
-WhatsBotConnect();
+WhatsBotConnect().catch(err => console.log(err));
 },2000);
 router.get('/', function (req, res, next) {
 res.json({ "status":true,"response":port,"devoleper":"inrl"})
+})
+app.get("/", (req, res) => { res.json({ "status":true,"response":port,"devoleper":"inrl"})
 })
 app.listen(port, () => {
     console.log(`Inrl Md Bot Running on port ${port}`)
