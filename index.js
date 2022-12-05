@@ -1,3 +1,4 @@
+process.on('uncaughtException', console.error) //Safe Log Error
 require("./global");
 const fs = require("fs");
 const Config = require('./config');
