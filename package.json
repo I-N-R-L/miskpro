@@ -69,13 +69,6 @@
     "yt-search": "^2.10.3",
     "express": "latest"
   },
-  "devDependencies": {
-    "@hapi/boom": "^9.1.4",
-    "jimp": "^0.16.1",
-    "link-preview-js": "^2.1.19",
-    "pino": "^7.6.5",
-    "qrcode-terminal": "^0.12.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/inrl-official/inrl-bot-md.git"
@@ -89,5 +82,4 @@
   "bugs": {
     "url": "https://github.com/inrl-official/inrl-bot-md/issues"
   },
-  "homepage": "https://zeqanpx.github.io/WhatsBot_V2"
 }
