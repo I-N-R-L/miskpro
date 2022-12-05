@@ -7,7 +7,6 @@ const pino = require("pino");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
-const router = express.Router();
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
@@ -183,13 +182,3 @@ if(Config.U_STATUS =='true'){
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
 },2000);
-router.get('/', function (req, res, next) {
-res.json({ "status":true,"response":port,"devoleper":"inrl"})
-})
-app.get("/", (req, res) => { res.json({ "status":true,"response":port,"devoleper":"inrl"})
-})
-app.listen(port, () => {
-    console.log(`Inrl Md Bot Running on port ${port}`)
-    });
-
-module.exports = router;
