@@ -94,8 +94,8 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
    });
-  conn.ev.on("group-participants.update", async (m) => { if (inrl.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
-  conn.ev.on("messages.upsert", async (chatUpdate) => {
+  conn.ev.process("group-participants.update", async (m) => { if (inrl.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
+  conn.ev.process("messages.upsert", async (chatUpdate) => {
     let m = new serialize(conn, chatUpdate.messages[0]);
     if ((inrl.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
