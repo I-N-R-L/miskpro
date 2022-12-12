@@ -1,4 +1,3 @@
-process.on('uncaughtException', console.error) //Safe Log Error
 require("./global");
 const fs = require("fs");
 const Config = require('./config');
@@ -43,18 +42,26 @@ pastebin
    fs.writeFileSync("./session.json" , data);
 });
 const WhatsBotConnect = async () => {
-const { state, saveState } = useSingleFileAuthState("./session.json");
+const { state, saveCreds } = await useMultiFileAuthState('session')
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
   let { version, isLatest } = await fetchLatestBaileysVersion();
-  connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
+  connOptions = { markOnlineOnConnect: true,
+		        linkPreviewImageThumbnailWidth: 500,
+			printQRInTerminal: true,
+			browser: ["inrl", "Safari", "4.0.0"],
+			logger: pino({ level: "silent" }),
+			auth: {
+			creds: state.creds,
+			keys: makeCacheableSignalKeyStore(state.keys, logger),
+		        }, version, };
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
-  conn.ev.on("creds.update", saveState);
-  conn.ev.on("connection.update", async (update) => {
+  conn.ev.process("creds.update", saveState());
+  conn.ev.process("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
