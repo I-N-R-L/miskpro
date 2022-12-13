@@ -180,7 +180,6 @@ if(Config.U_STATUS =='true'){
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
-     };
 //auto update checker
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
@@ -202,6 +201,8 @@ const templateButtons = {
 await conn.sendMessage(m.from,templateButtons, { quoted: m });
 }
 // end updater function
+     }// function closing
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
