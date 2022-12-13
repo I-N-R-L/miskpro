@@ -200,6 +200,7 @@ const templateButtons = {
       buttons,
     };
 await conn.sendMessage(m.from,templateButtons, { quoted: m });
+}
 // end updater function
 app.get("/", (req, res) => {
   res.send("Hello World!");
