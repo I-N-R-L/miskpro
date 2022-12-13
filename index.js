@@ -1,5 +1,7 @@
 require("./global");
 const fs = require("fs");
+const simpleGit = require('simple-git');
+const git = simpleGit();
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
@@ -42,26 +44,18 @@ pastebin
    fs.writeFileSync("./session.json" , data);
 });
 const WhatsBotConnect = async () => {
-const { state, saveCreds } = await useMultiFileAuthState('session')
+const { state, saveState } = useSingleFileAuthState("./session.json");
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
   let { version, isLatest } = await fetchLatestBaileysVersion();
-  connOptions = { markOnlineOnConnect: true,
-		        linkPreviewImageThumbnailWidth: 500,
-			printQRInTerminal: true,
-			browser: ["inrl", "Safari", "4.0.0"],
-			logger: pino({ level: "silent" }),
-			auth: {
-			creds: state.creds,
-			keys: makeCacheableSignalKeyStore(state.keys, logger),
-		        }, version, };
+  connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
-  conn.ev.process("creds.update", saveState());
-  conn.ev.process("connection.update", async (update) => {
+  conn.ev.on("creds.update", saveState);
+  conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
@@ -94,8 +88,8 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
    });
-  conn.ev.process("group-participants.update", async (m) => { if (inrl.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
-  conn.ev.process("messages.upsert", async (chatUpdate) => {
+  conn.ev.on("group-participants.update", async (m) => { if (inrl.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
+  conn.ev.on("messages.upsert", async (chatUpdate) => {
     let m = new serialize(conn, chatUpdate.messages[0]);
     if ((inrl.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
@@ -187,6 +181,26 @@ if(Config.U_STATUS =='true'){
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
      };
+//auto update checker
+    await git.fetch();
+    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    if(!commits.total === 0){
+let degisiklikler = "```"+"    new update   "+"```";
+        commits['all'].map(
+            (commit) => {
+                degisiklikler += '_' + commit.date.substring(0, 10) + '_' + commit.message + '```' + commit.author_name + '```\n';
+            }
+        );
+const buttons = [
+        { buttonId: "updatenow", buttonText: { displayText: "update 💥"}, type: 1, }
+]
+const templateButtons = {
+      caption: degisiklikler,
+      footer: Config.FOOTER,
+      buttons,
+    };
+await conn.sendMessage(m.from,templateButtons, { quoted: m });
+// end updater function
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
