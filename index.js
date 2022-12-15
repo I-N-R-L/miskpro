@@ -40,8 +40,9 @@ try{
 	} catch {
 		console.log('Could not connect with Mongoose DB')
 }
+const { cmdDB } = require('./lib/database/cmddb');
 //mongoose connection function end!
-var aes256 = require('aes256');
+const aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
@@ -157,12 +158,26 @@ if(Config.PM_BLOCK == "true"){
     MOD = "privet"
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
+    let botcmd =  m.client.command;
+  //Check if cmd exist on media
+    
+    if(m.client.isMedia){
+      if(m.msg.fileSha256){
+    	let sha257 = identityBotID+m.msg.fileSha256.join("")
+       await cmdDB.findOne({ id: sha257 }).then(async(cmdName) => {
+    	if(cmdName) {
+    	botcmd = cmdName.cmd;
+              }
+         })
+    }
+}
+//end
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
         if(MOD == 'privet' && IsTeam === true){
-          if (command.pattern[i] == m.client.command || command.on == "text"){
+          if (command.pattern[i] == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
@@ -175,7 +190,7 @@ if(Config.PM_BLOCK == "true"){
             await conn.sendPresenceUpdate("available", m.from);
           }
          } else if(MOD == 'public'){
-          if (command.pattern[i] == m.client.command || command.on == "text"){
+          if (command.pattern[i] == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
