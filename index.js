@@ -8,7 +8,7 @@ const chalk = require("chalk");
 const pino = require("pino");
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
@@ -23,26 +23,47 @@ const setmension = require('./lib/set_mension');
 const { IsMension } = setmension;
 const { IsFake, AllLinkBan, FakeRemove, IsBadWord } = isFubc;
 const { serialize, WAConnection } = Simple;
-global.mydb = {};
-global.mydb.users = new Array();
-global.mydb.hits = new Number();
-global.isInCmd = false;
-global.catchError = false;
+const Levels = require("discord-xp");
+const mongoose = require("mongoose")
+//connecting to inrlDb
+try {
+    Levels.setURL("mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority");
+    console.log("Connected to Inrl DB")
+} catch {
+    console.log("Could not connect with Mongodb please provide accurate uri!")
+    process.exit(0)
+}
+
+try{
+        mongoose.connect("mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority");
+  console.log("connected to Mongoose Db")
+	} catch {
+		console.log('Could not connect with Mongoose DB')
+}
+//mongoose connection function end!
 var aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
     pastebin = new PastebinAPI({
       'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
 const mddc=(Config.SESSION_ID);
-var m = (mddc);
+let m = (mddc);
 let mdm = m.replaceAll("inrl~", "");
-var key = 'k!t';
-var plaintext = (mdm);
-var decryptedPlainText = aes256.decrypt(key, plaintext);
+let key = 'k!t';
+let plaintext = (mdm);
+let decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
   .then(async function smile(data) {
    fs.writeFileSync("./session.json" , data);
 });
+let identityBotID = decryptedPlainText;
+//gloab set
+global.BotID = identityBotID;
+global.mydb = {};
+global.mydb.users = new Array();
+global.mydb.hits = new Number();
+global.isInCmd = false;
+global.catchError = false;
 const WhatsBotConnect = async () => {
 const { state, saveState } = useSingleFileAuthState("./session.json");
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
@@ -67,7 +88,7 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
       });
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our suppoer group```"+`*mode : ${Config.WORKTYPE}*` });
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group``` *mode : "+Config.WORKTYPE });
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -93,6 +114,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     let m = new serialize(conn, chatUpdate.messages[0]);
     if ((inrl.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
+//add Your lib Functions
     await upsert(conn, m);
     await chatting(m, conn);
     await IsFake(m, conn);
@@ -100,6 +122,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     await FakeRemove(m, conn);
     await IsBadWord(m, conn);
     await IsMension(m, conn);
+//end
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
@@ -173,9 +196,9 @@ if(Config.PM_BLOCK == "true"){
   });
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
-    var utch = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
-    var ov_time = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
-    const biography = "📅 " + utch + "\n⌚ " + ov_time + `${Config.PROCFILE_DATA}`;
+    let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
+    var psnewt = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
+    const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${Config.PROCFILE_DATA}`;
     await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
@@ -198,10 +221,10 @@ const templateButtons = {
       footer: Config.FOOTER,
       buttons,
     };
-await conn.sendMessage(m.from,templateButtons, { quoted: m });
+await conn.sendMessage(conn.user.id,templateButtons);
 }
 // end updater function
-     }// function closing
+}// function closing
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
