@@ -41,6 +41,7 @@ try{
 		console.log('Could not connect with Mongoose DB')
 }
 const { cmdDB } = require('./lib/database/cmddb');
+const { plugins } = require('./lib/database/json/db/plugins');
 //mongoose connection function end!
 const aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
@@ -124,6 +125,27 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     await IsBadWord(m, conn);
     await IsMension(m, conn);
 //end
+//auto update checker
+    await git.fetch();
+    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    if(!commits.total === 0){
+let degisiklikler = "```"+"    new update   "+"```";
+        commits['all'].map(
+            (commit) => {
+                degisiklikler += '_' + commit.date.substring(0, 10) + '_' + commit.message + '```' + commit.author_name + '```\n';
+            }
+        );
+const buttons = [
+        { buttonId: "updatenow", buttonText: { displayText: "update 💥"}, type: 1, }
+]
+const templateButtons = {
+      caption: degisiklikler,
+      footer: Config.FOOTER,
+      buttons,
+    };
+await conn.sendMessage(conn.user.id,templateButtons);
+}
+// end updater function
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
@@ -188,9 +210,9 @@ if(Config.PM_BLOCK == "true"){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
             }
             await conn.sendPresenceUpdate("available", m.from);
-          }
-         } else if(MOD == 'public'){
-          if (command.pattern[i] == botcmd || command.on == "text"){
+            }
+            } else if(MOD == 'public'){
+            if (command.pattern[i] == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
@@ -218,27 +240,6 @@ if(Config.U_STATUS =='true'){
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
-//auto update checker
-    await git.fetch();
-    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
-    if(!commits.total === 0){
-let degisiklikler = "```"+"    new update   "+"```";
-        commits['all'].map(
-            (commit) => {
-                degisiklikler += '_' + commit.date.substring(0, 10) + '_' + commit.message + '```' + commit.author_name + '```\n';
-            }
-        );
-const buttons = [
-        { buttonId: "updatenow", buttonText: { displayText: "update 💥"}, type: 1, }
-]
-const templateButtons = {
-      caption: degisiklikler,
-      footer: Config.FOOTER,
-      buttons,
-    };
-await conn.sendMessage(conn.user.id,templateButtons);
-}
-// end updater function
 }// function closing
 
 app.get("/", (req, res) => {
