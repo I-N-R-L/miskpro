@@ -2,7 +2,6 @@ require("./global");
 const fs = require("fs");
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const got = require('got');
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
@@ -125,27 +124,6 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     await IsBadWord(m, conn);
     await IsMension(m, conn);
 //end
-//auto update checker
-    await git.fetch();
-    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
-    if(!commits.total === 0){
-let degisiklikler = "```"+"    new update   "+"```";
-        commits['all'].map(
-            (commit) => {
-                degisiklikler += '_' + commit.date.substring(0, 10) + '_' + commit.message + '```' + commit.author_name + '```\n';
-            }
-        );
-const buttons = [
-        { buttonId: "updatenow", buttonText: { displayText: "update 💥"}, type: 1, }
-]
-const templateButtons = {
-      caption: degisiklikler,
-      footer: Config.FOOTER,
-      buttons,
-    };
-await conn.sendMessage(conn.user.id,templateButtons);
-}
-// end updater function
 if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
@@ -181,7 +159,8 @@ if(Config.PM_BLOCK == "true"){
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
     let botcmd =  m.client.command;
-    //Check if cmd exist on media
+  //Check if cmd exist on media
+    
     if(m.client.isMedia){
       if(m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
@@ -194,36 +173,42 @@ if(Config.PM_BLOCK == "true"){
 }
 //end
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
+    try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
         if(MOD == 'privet' && IsTeam === true){
           if (command.pattern[i] == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
-            await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
+            conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
-            await conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            await command.function(m, conn, m.client.text, m.client.command, store);}
+            conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
+            try { command.function(m, conn, m.client.text, m.client.command, store);}
+            catch (error) { global.catchError = true; m.send(error); }
             if(Config.REACT =='true'){
-            global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
+            global.catchError ? conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : conn.sendReact(m.from, command.sucReact, m.key);
             }
-            await conn.sendPresenceUpdate("available", m.from);
+            conn.sendPresenceUpdate("available", m.from);
             }
             } else if(MOD == 'public'){
-            if (command.pattern[i] == botcmd || command.on == "text"){
+            if(command.pattern[i] == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
-            await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
+            conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
-            await conn.sendPresenceUpdate(Config.BOT_PRESENCE, m.from );
-            await command.function(m, conn, m.client.text, m.client.command, store);}
+            conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
+            try { command.function(m, conn, m.client.text, m.client.command, store);}
+            catch (error) { global.catchError = true; m.send(error); }
             if(Config.REACT =='true'){
-            global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
+            global.catchError ? conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : conn.sendReact(m.from, command.sucReact, m.key);
             }
-            await conn.sendPresenceUpdate("available", m.from);
-            }
+            conn.sendPresenceUpdate("available", m.from);
           }
+         }
         }
-    });
- });
+      });
+     } catch (e) {
+      conn.sendMessage(m.from, { text : '_' + e + '_'});
+    }
+  });
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
@@ -233,6 +218,27 @@ if(Config.U_STATUS =='true'){
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
+//auto update checker
+    await git.fetch();
+    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    if(!commits.total === 0){
+let degisiklikler = "```"+"    new update   "+"```";
+        commits['all'].map(
+            (commit) => {
+                degisiklikler += '_' + commit.date.substring(0, 10) + '_' + commit.message + '```' + commit.author_name + '```\n';
+            }
+        );
+const buttons = [
+        { buttonId: "updatenow", buttonText: { displayText: "update 💥"}, type: 1, }
+]
+const templateButtons = {
+      caption: degisiklikler,
+      footer: Config.FOOTER,
+      buttons,
+    };
+await conn.sendMessage(conn.user.id,templateButtons);
+}
+// end updater function
 }// function closing
 
 app.get("/", (req, res) => {
