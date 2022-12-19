@@ -3,7 +3,7 @@ const fs = require("fs");
 const simpleGit = require('simple-git');
 const git = simpleGit();
 const Config = require('./config');
-const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
+const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
 const express = require("express");
@@ -56,7 +56,7 @@ let decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
   .then(async function smile(data) {
-   fs.writeFileSync("./session.json" , data);
+   fs.writeFileSync("./session/creds.json" , data);
 });
 let identityBotID = decryptedPlainText;
 //gloab set
@@ -67,7 +67,7 @@ global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
 const WhatsBotConnect = async () => {
-const { state, saveState } = useSingleFileAuthState("./session.json");
+const { state, saveCreds } = useMultiFileAuthState("./session/");
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
@@ -77,7 +77,7 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
-  conn.ev.on("creds.update", saveState);
+  conn.ev.on('creds.update', saveCreds);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
