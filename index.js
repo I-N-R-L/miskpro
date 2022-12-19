@@ -2,8 +2,9 @@ require("./global");
 const fs = require("fs");
 const simpleGit = require('simple-git');
 const git = simpleGit();
+const got = require('got');
 const Config = require('./config');
-const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
+const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
 const express = require("express");
@@ -41,7 +42,6 @@ try{
 		console.log('Could not connect with Mongoose DB')
 }
 const { cmdDB } = require('./lib/database/cmddb');
-const { plugins } = require('./lib/database/json/db/plugins');
 //mongoose connection function end!
 const aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
@@ -56,7 +56,7 @@ let decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
   .then(async function smile(data) {
-   fs.writeFileSync("./session/creds.json" , data);
+   fs.writeFileSync("./session.json" , data);
 });
 let identityBotID = decryptedPlainText;
 //gloab set
@@ -67,7 +67,7 @@ global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
 const WhatsBotConnect = async () => {
-const { state, saveCreds } = useMultiFileAuthState("./session/");
+const { state, saveState } = useSingleFileAuthState("./session.json");
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
@@ -77,7 +77,7 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
-  conn.ev.on('creds.update', saveCreds);
+  conn.ev.on("creds.update", saveState);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
@@ -181,8 +181,7 @@ if(Config.PM_BLOCK == "true"){
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
     let botcmd =  m.client.command;
-  //Check if cmd exist on media
-    
+    //Check if cmd exist on media
     if(m.client.isMedia){
       if(m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
@@ -195,7 +194,6 @@ if(Config.PM_BLOCK == "true"){
 }
 //end
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
-    try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
         if(MOD == 'privet' && IsTeam === true){
@@ -204,8 +202,7 @@ if(Config.PM_BLOCK == "true"){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
             await conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            try {await command.function(m, conn, m.client.text, m.client.command, store);}
-            catch (error) { global.catchError = true; console.log(error); }
+            await command.function(m, conn, m.client.text, m.client.command, store);}
             if(Config.REACT =='true'){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
             }
@@ -216,21 +213,17 @@ if(Config.PM_BLOCK == "true"){
             if(Config.REACT =='true'){
             await conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
-            await conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            try {await command.function(m, conn, m.client.text, m.client.command, store);}
-            catch (error) { global.catchError = true; console.log(error); }
+            await conn.sendPresenceUpdate(Config.BOT_PRESENCE, m.from );
+            await command.function(m, conn, m.client.text, m.client.command, store);}
             if(Config.REACT =='true'){
             global.catchError ? await conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : await conn.sendReact(m.from, command.sucReact, m.key);
             }
             await conn.sendPresenceUpdate("available", m.from);
+            }
           }
-         }
         }
-      });
-     } catch (e) {
-      console.log(e);
-    }
-  });
+    });
+ });
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
