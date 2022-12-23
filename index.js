@@ -34,9 +34,9 @@ try {
 
 try{
         mongoose.connect("mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority");
-  console.log("connected to Mongoose Db")
+        console.log("connected to Mongoose Db")
 	} catch {
-		console.log('Could not connect with Mongoose DB')
+	console.log('Could not connect with Mongoose DB')
 }
 const { cmdDB } = require('./lib/database/cmddb');
 //mongoose connection function end!
@@ -168,7 +168,7 @@ startCmd = handler;
     let IsTeam = m.client.isCreator;
 
 //PERFIX ACCESSIBLIE MANAGMENT
-  if(m.client.body.startsWith(startCmd){
+  if(m.client.body.startsWith(startCmd)){
   botcmd =  startCmd+m.client.command;
 } else {
 botcmd = m.client.command;
