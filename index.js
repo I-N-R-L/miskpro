@@ -149,7 +149,7 @@ if(Config.PM_BLOCK == "true"){
 };
 
 //CHECK AND CREATE HANDLERS
-let startCmd,EventCmd;
+let startCmd,EventCmd,botcmd ='';
 let handler = Config.PERFIX ? Config.PERFIX.trim() : 'false';
 if(handler == 'false'){
 startCmd = '';
@@ -166,7 +166,13 @@ startCmd = handler;
     MOD = "privet"
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
-    let botcmd =  (startCmd+m.client.command);
+
+//PERFIX ACCESSIBLIE MANAGMENT
+  if(m.client.body.startsWith(startCmd){
+  botcmd =  startCmd+m.client.command;
+}else {
+botcmd = m.client.command;
+}
 
   //Check if cmd exist on media
     if(m.client.isMedia){
@@ -185,7 +191,7 @@ startCmd = handler;
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
-        EventCmd = (startCmd+command.pattern[i])
+        EventCmd = startCmd+command.pattern[i];
         if(MOD == 'privet' && IsTeam === true){
           if (EventCmd == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
