@@ -129,7 +129,7 @@ if(Config.CALL_BLOCK == "true"){
     conn.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
-    conn.sendMessage(callerId, { text: `iam already bussy bro! \nThen fans like as you calling?!\nhow i can response`})
+    conn.sendMessage(callerId, { text: "calling to this number is't allowed"})
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
            }
@@ -142,8 +142,8 @@ if(Config.PM_BLOCK == "true"){
     if(!m.isGroup){
     let users = Config.OWNER.replace(/[^0-9]/g, '')+'@s.whatsapp.net';
     if(m.from !== users){
+    conn.sendMessage(m.from, { text: "pm msg is't allowed"})
     conn.updateBlockStatus(m.from, "block")
-    conn.sendMessage(m.from, { text: `hey bro!\nyou note thet i am bussy person!\nevery day we got 139,28,287😌 msgs on PM🤭\nHow i can response!?😹`})
       }
    }
 };
@@ -170,17 +170,17 @@ startCmd = handler;
 //PERFIX ACCESSIBLIE MANAGMENT
   if(m.client.body.startsWith(startCmd){
   botcmd =  startCmd+m.client.command;
-}else {
+} else {
 botcmd = m.client.command;
 }
 
-  //Check if cmd exist on media
+//Check if cmd exist on media
     if(m.client.isMedia){
       if(m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
        await cmdDB.findOne({ id: sha257 }).then(async(cmdName) => {
     	if(cmdName) {
-    	botcmd = cmdName.cmd;
+    	botcmd = startCmd+cmdName.cmd;
               }
          })
     }
