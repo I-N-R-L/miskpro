@@ -1,7 +1,5 @@
 require("./global");
 const fs = require("fs");
-const simpleGit = require('simple-git');
-const git = simpleGit();
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
@@ -149,6 +147,16 @@ if(Config.PM_BLOCK == "true"){
       }
    }
 };
+
+//CHECK AND CREATE HANDLERS
+let startCmd,EventCmd;
+let handler = Config.PERFIX ? Config.PERFIX.trim() : 'false';
+if(handler == 'false'){
+startCmd = '';
+} else if(handler !== 'false'){
+startCmd = handler;
+}
+
 //MODE MANAGER
     let mode = Config.WORKTYPE.toLowerCase();
     let MOD;
@@ -158,9 +166,9 @@ if(Config.PM_BLOCK == "true"){
     MOD = "privet"
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
-    let botcmd =  m.client.command;
+    let botcmd =  (startCmd+m.client.command);
+
   //Check if cmd exist on media
-    
     if(m.client.isMedia){
       if(m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
@@ -172,12 +180,14 @@ if(Config.PM_BLOCK == "true"){
     }
 }
 //end
+
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
     try {
      inrl.commands.map(async (command) => {
         for (let i in command.pattern) {
+        EventCmd = (startCmd+command.pattern[i])
         if(MOD == 'privet' && IsTeam === true){
-          if (command.pattern[i] == botcmd || command.on == "text"){
+          if (EventCmd == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
             conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
@@ -190,7 +200,7 @@ if(Config.PM_BLOCK == "true"){
             conn.sendPresenceUpdate("available", m.from);
             }
             } else if(MOD == 'public'){
-            if(command.pattern[i] == botcmd || command.on == "text"){
+            if(EventCmd == botcmd || command.on == "text"){
             if(Config.REACT =='true'){
             conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
@@ -218,27 +228,6 @@ if(Config.U_STATUS =='true'){
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
           };
-//auto update checker
-    await git.fetch();
-    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
-    if(!commits.total === 0){
-let degisiklikler = "```"+"    new update   "+"```";
-        commits['all'].map(
-            (commit) => {
-                degisiklikler += '_' + commit.date.substring(0, 10) + '_' + commit.message + '```' + commit.author_name + '```\n';
-            }
-        );
-const buttons = [
-        { buttonId: "updatenow", buttonText: { displayText: "update 💥"}, type: 1, }
-]
-const templateButtons = {
-      caption: degisiklikler,
-      footer: Config.FOOTER,
-      buttons,
-    };
-await conn.sendMessage(conn.user.id,templateButtons);
-}
-// end updater function
 }// function closing
 
 app.get("/", (req, res) => {
