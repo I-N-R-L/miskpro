@@ -186,7 +186,9 @@ startCmd = handler;
 
 //automatic reaction
             if(Config.REACT =='true' && m){
-            conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
+            let reactArray = ["INFO","SUCCESS","ERROR"];
+            let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
+            conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
             }
 
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
