@@ -226,7 +226,7 @@ if(Config.U_STATUS =='true'){
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
     var psnewt = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
-    const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${Config.PROCFILE_DATA}`;
+    const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${Config.PROFILE_STATUS}`;
     await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 10);
   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
