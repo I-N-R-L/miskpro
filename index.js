@@ -184,43 +184,36 @@ startCmd = handler;
 }
 //end
 
-//MODEMANAGER RESPOSBLE OUTPUT ENDED
-    try {
-     inrl.commands.map(async (command) => {
-        for (let i in command.pattern) {
-        EventCmd = startCmd+command.pattern[i];
-        if(MOD == 'privet' && IsTeam === true){
-          if (EventCmd == botcmd || command.on == "text"){
-            if(Config.REACT =='true'){
+//automatic reaction
+            if(Config.REACT =='true' && m){
             conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
             }
+
+//MODEMANAGER RESPOSBLE OUTPUT ENDED
+    inrl.commands.map(async (command) => {
+      for (let i in command.pattern) {
+        EventCmd = startCmd+command.pattern[i];
+          if(MOD == 'privet' && IsTeam === true){
+            if (EventCmd == botcmd){
+            command.function(m, conn, m.client.text, m.client.command, store);
             conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            try { command.function(m, conn, m.client.text, m.client.command, store);}
-            catch (error) { global.catchError = true; m.send(error); }
             if(Config.REACT =='true'){
-            global.catchError ? conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : conn.sendReact(m.from, command.sucReact, m.key);
+            conn.sendReact(m.from, command.sucReact, m.key);
             }
             conn.sendPresenceUpdate("available", m.from);
             }
             } else if(MOD == 'public'){
             if(EventCmd == botcmd || command.on == "text"){
-            if(Config.REACT =='true'){
-            conn.sendReact(m.from, await inrl.reactArry("INFO"), m.key);
-            }
+            command.function(m, conn, m.client.text, m.client.command, store);
             conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            try { command.function(m, conn, m.client.text, m.client.command, store);}
-            catch (error) { global.catchError = true; m.send(error); }
             if(Config.REACT =='true'){
-            global.catchError ? conn.sendReact( m.from, await inrl.reactArry("ERROR"), m.key ) : conn.sendReact(m.from, command.sucReact, m.key);
+            conn.sendReact(m.from, command.sucReact, m.key);
             }
             conn.sendPresenceUpdate("available", m.from);
+            }
           }
-         }
         }
-      });
-     } catch (e) {
-      conn.sendMessage(m.from, { text : '_' + e + '_'});
-    }
+     });
   });
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
