@@ -1,7 +1,7 @@
 require("./global");
 const fs = require("fs");
 const Config = require('./config');
-const { default: WASocket, DisconnectReason, useSingleFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
+const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
 const express = require("express");
@@ -53,7 +53,7 @@ let decryptedPlainText = aes256.decrypt(key, plaintext);
 pastebin
   .getPaste(decryptedPlainText)
   .then(async function smile(data) {
-   fs.writeFileSync("./session.json" , data);
+   fs.writeFileSync("./lib/auth_info_baileys/creds.json" , data);
 });
 let identityBotID = decryptedPlainText;
 //gloab set
@@ -64,7 +64,7 @@ global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
 const WhatsBotConnect = async () => {
-const { state, saveState } = useSingleFileAuthState("./session.json");
+const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
@@ -74,7 +74,7 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
-  conn.ev.on("creds.update", saveState);
+  conn.ev.on("creds.update", saveCreds);
   conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
@@ -177,20 +177,12 @@ startCmd = handler;
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
         await cmdDB.findOne({ id: sha257 }).then(async(cmdName) => {
     	if(cmdName) {
-    	botcmd = startCmd+cmdName.cmd;
+    	botcmd = startCmd+cmdName.cmd.replaceAll(" ","");;
               }
          })
     }
 }
 //end
-
-//automatic reaction
-            if(Config.REACT =='true' && m){
-            let reactArray = ["INFO","SUCCESS","ERROR"];
-            let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
-            conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
-            }
-
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
     inrl.commands.map(async (command) => {
       for (let i in command.pattern) {
@@ -217,6 +209,12 @@ startCmd = handler;
         }
      });
   });
+  //automatic reaction
+            if(Config.REACT =='true' && m){
+            let reactArray = ["INFO","SUCCESS","ERROR"];
+            let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
+            conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
+            }
 if(Config.U_STATUS =='true'){
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
