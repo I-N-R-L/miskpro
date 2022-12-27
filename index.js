@@ -87,7 +87,7 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
       });
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group``` *mode : "+Config.WORKTYPE });
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\n mode : ```"+Config.WORKTYPE+"```\nperfix :```"+Config.PERFIX});
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -197,7 +197,7 @@ startCmd = handler;
             conn.sendPresenceUpdate("available", m.from);
             }
             } else if(MOD == 'public'){
-            if(EventCmd == botcmd || command.on == "text"){
+            if(EventCmd == botcmd){
             command.function(m, conn, m.client.text, m.client.command, store);
             conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
             if(Config.REACT =='true'){
