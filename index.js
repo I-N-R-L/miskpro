@@ -4,6 +4,7 @@ const Config = require('./config');
 const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
+const got = require('got');
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
@@ -39,6 +40,7 @@ try{
 	console.log('Could not connect with Mongoose DB')
 }
 const { cmdDB } = require('./lib/database/cmddb');
+const { getListOfPlugin } = require('./lib/database/pluginsdb');
 //mongoose connection function end!
 const aes256 = require('aes256');
 let PastebinAPI = require('pastebin-js'),
@@ -87,7 +89,7 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
       });
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\n mode : ```"+Config.WORKTYPE+"```\nperfix :```"+Config.PERFIX});
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+Config.WORKTYPE+"```\nperfix :```"+Config.PERFIX});
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -144,7 +146,21 @@ if(Config.PM_BLOCK == "true"){
     conn.updateBlockStatus(m.from, "block")
     }
 };
-
+//IT CHECK AND INSTALL EXTERNEL PLUGINS
+if(m){
+let list = await getListOfPlugin();
+for (let i=0;i<list.length;i++) {
+name = list[i].name;
+urls = list[i].url;
+  let { body } = await got(list[i].url)
+  await fs.writeFileSync('./plugins/'+list[i].name+'.js', body);
+   }
+fs.readdirSync("./plugins").forEach((plugin) => {
+        if (path.extname(plugin).toLowerCase() == ".js") {
+          require("./plugins/" + plugin);
+        }
+   });
+}
 //CHECK AND CREATE HANDLERS
 let startCmd,EventCmd,botcmd ='';
 let handler = Config.PERFIX ? Config.PERFIX.trim() : 'false';
@@ -172,7 +188,6 @@ startCmd = handler;
 }
 
 //Check if cmd exist on media
-    if(m.client.isMedia){
         if(m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
         await cmdDB.findOne({ id: sha257 }).then(async(cmdName) => {
@@ -181,7 +196,6 @@ startCmd = handler;
               }
          })
     }
-}
 //end
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
     inrl.commands.map(async (command) => {
