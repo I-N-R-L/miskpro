@@ -17,10 +17,8 @@ const Welcome = require("./lib/Welcome");
 const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
-const isFubc = require('./lib/fake_remove');
-const setmension = require('./lib/set_mension');
-const { IsMension } = setmension;
-const { IsFake, AllLinkBan, FakeRemove, IsBadWord } = isFubc;
+const { AllLinkBan,removeByWord,actByPdm,isFakeNumber } = require('./lib/fake_remove');
+const { IsMension }= require('./lib/set_mension');
 const { serialize, WAConnection } = Simple;
 const Levels = require("discord-xp");
 const mongoose = require("mongoose")
@@ -110,21 +108,28 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
     });
-    conn.ev.on("group-participants.update", async (m) => { if (inrl.config.setting.blockchat.includes(m.id)) return; else Welcome(conn, m);});
+    // simple function
+    let BLOCKCHAT = Config.BLOCKCHAT || 'your jid';
+    if(Config.BLOCKCHAT.includes(',')){
+    BLOCKCHAT = Config.BLOCKCHAT.split(',');
+    }
+    //ending thets function
+    conn.ev.on("group-participants.update", async (m) => {
+    if(BLOCKCHAT.includes(m.id)) return; else Welcome(conn, m); await actByPdm(m, conn)
+    });
     conn.ev.on("messages.upsert", async (chatUpdate) => {
     let m = new serialize(conn, chatUpdate.messages[0]);
     if(Config.STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }
-    if ((inrl.config.setting.blockchat.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
+    if ((BLOCKCHAT.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
     await chatting(m, conn);
-    await IsFake(m, conn);
     await AllLinkBan(m, conn);
-    await FakeRemove(m, conn);
-    await IsBadWord(m, conn);
+    await removeByWord(m, conn);
+    await isFakeNumber(m, conn);
     await IsMension(m, conn);
     //end
     if(Config.CALL_BLOCK == "true"){
