@@ -1,4 +1,3 @@
-require("./global");
 const fs = require("fs");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
@@ -57,7 +56,6 @@ pastebin
 });
 let identityBotID = decryptedPlainText;
 //gloab set
-global.BotID = identityBotID;
 global.mydb = {};
 global.mydb.users = new Array();
 global.mydb.hits = new Number();
@@ -110,8 +108,8 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     });
     // simple function
     let BLOCKCHAT = Config.BLOCKCHAT || 'your jid';
-    if(Config.BLOCKCHAT.includes(',')){
-    BLOCKCHAT = Config.BLOCKCHAT.split(',');
+    if(BLOCKCHAT.includes(',')){
+    BLOCKCHAT = BLOCKCHAT.split(',');
     }
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => {
