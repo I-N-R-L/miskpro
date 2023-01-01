@@ -13,7 +13,6 @@ const { Boom } = require("@hapi/boom");
 const { Simple, upsert, sleep,tiny } = require("./lib");
 const inrlspfunc = require("./lib/Message")
 const Welcome = require("./lib/Welcome");
-const jsoConfig = JSON.parse(fs.readFileSync("./lib/database/config.json"));
 const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
 const { AllLinkBan,removeByWord,actByPdm,isFakeNumber } = require('./lib/fake_remove');
@@ -68,7 +67,7 @@ const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream
 store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
   let { version, isLatest } = await fetchLatestBaileysVersion();
-  connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["WhatsBixby", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
+  connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["inrl", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
   conn = WASocket(connOptions);
   conn = new WAConnection(conn);
   store.bind(conn.ev);
