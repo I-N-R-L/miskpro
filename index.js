@@ -1,4 +1,5 @@
 const fs = require("fs");
+const speed = require('performance-now')
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
@@ -15,6 +16,7 @@ const inrlspfunc = require("./lib/Message")
 const Welcome = require("./lib/Welcome");
 const inrl = require("./lib/perfix");
 const { chatting } = inrlspfunc;
+const { smsg } = require('./lib/infos/info');
 const { AllLinkBan,removeByWord,actByPdm,isFakeNumber } = require('./lib/fake_remove');
 const { IsMension }= require('./lib/set_mension');
 const { serialize, WAConnection } = Simple;
@@ -188,9 +190,17 @@ startCmd = handler;
   } else {
   botcmd = m.client.command;
 }
+//MAKE FUNCTION WITHOUT EVENTS
+let msg = smsg(conn, chatUpdate.messages[0], store)
+fs.readdirSync("./plugins").map((a)=>{
+    let file =  require("./plugins/" + a);
+      if (file.constructor.name === 'AsyncFunction') {
+        file(msg, conn, m)
+      }
+  })
 
 //Check if cmd exist on media
-        if(m.msg.fileSha256){
+        if(m.msg && m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
         await cmdDB.findOne({ id: sha257 }).then(async(cmdName) => {
     	if(cmdName) {
