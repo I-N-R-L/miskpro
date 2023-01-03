@@ -1,7 +1,7 @@
 const fs = require("fs");
 const speed = require('performance-now')
 const Config = require('./config');
-const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, } = require("@adiwajshing/baileys");
+const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, jidDecode, proto } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
 const pino = require("pino");
 const got = require('got');
@@ -12,10 +12,9 @@ const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
 const { Simple, upsert, sleep,tiny } = require("./lib");
-const inrlspfunc = require("./lib/Message")
 const Welcome = require("./lib/Welcome");
 const inrl = require("./lib/perfix");
-const { chatting } = inrlspfunc;
+const PhoneNumber = require('awesome-phonenumber')
 const { smsg } = require('./lib/infos/info');
 const { AllLinkBan,removeByWord,actByPdm,isFakeNumber } = require('./lib/fake_remove');
 const { IsMension }= require('./lib/set_mension');
@@ -125,7 +124,6 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
-    await chatting(m, conn);
     await AllLinkBan(m, conn);
     await removeByWord(m, conn);
     await isFakeNumber(m, conn);
@@ -195,7 +193,7 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
 fs.readdirSync("./plugins").map((a)=>{
     let file =  require("./plugins/" + a);
       if (file.constructor.name === 'AsyncFunction') {
-        file(msg, conn, m)
+        file(msg, conn, m, store)
       }
   })
 
@@ -235,6 +233,97 @@ fs.readdirSync("./plugins").map((a)=>{
         }
      });
   });
+  conn.ev.on('contacts.update', update => {
+        for (let contact of update) {
+            let id = conn.decodeJid(contact.id)
+            if (store && store.contacts) store.contacts[id] = { id, name: contact.notify }
+        }
+    })
+  // support functions
+  conn.getName = (jid, withoutContact  = false) => {
+        id = conn.decodeJid(jid)
+        withoutContact = conn.withoutContact || withoutContact 
+        let v
+        if (id.endsWith("@g.us")) return new Promise(async (resolve) => {
+            v = store.contacts[id] || {}
+            if (!(v.name || v.subject)) v = conn.groupMetadata(id) || {}
+            resolve(v.name || v.subject || PhoneNumber('+' + id.replace('@s.whatsapp.net', '')).getNumber('international'))
+        })
+        else v = id === '0@s.whatsapp.net' ? {
+            id,
+            name: 'WhatsApp'
+        } : id === conn.decodeJid(conn.user.id) ?
+            conn.user :
+            (store.contacts[id] || {})
+            return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
+    }
+    conn.copyNForward = async (jid, message, forceForward = false, options = {}) => {
+        let vtype
+		if (options.readViewOnce) {
+			message.message = message.message && message.message.ephemeralMessage && message.message.ephemeralMessage.message ? message.message.ephemeralMessage.message : (message.message || undefined)
+			vtype = Object.keys(message.message.viewOnceMessage.message)[0]
+			delete(message.message && message.message.ignore ? message.message.ignore : (message.message || undefined))
+			delete message.message.viewOnceMessage.message[vtype].viewOnce
+			message.message = {
+				...message.message.viewOnceMessage.message
+			}
+		}
+        let mtype = Object.keys(message.message)[0]
+        let content = await generateForwardMessageContent(message, forceForward)
+        let ctype = Object.keys(content)[0]
+		let context = {}
+        if (mtype != "conversation") context = message.message[mtype].contextInfo
+        content[ctype].contextInfo = {
+            ...context,
+            ...content[ctype].contextInfo
+        }
+        const waMessage = await generateWAMessageFromContent(jid, content, options ? {
+            ...content[ctype],
+            ...options,
+            ...(options.contextInfo ? {
+                contextInfo: {
+                    ...content[ctype].contextInfo,
+                    ...options.contextInfo
+                }
+            } : {})
+        } : {})
+        await conn.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
+        return waMessage
+    }
+    conn.cMod = (jid, copy, text = '', sender = conn.user.id, options = {}) => {
+        //let copy = message.toJSON()
+		let mtype = Object.keys(copy.message)[0]
+		let isEphemeral = mtype === 'ephemeralMessage'
+        if (isEphemeral) {
+            mtype = Object.keys(copy.message.ephemeralMessage.message)[0]
+        }
+        let msg = isEphemeral ? copy.message.ephemeralMessage.message : copy.message
+		let content = msg[mtype]
+        if (typeof content === 'string') msg[mtype] = text || content
+		else if (content.caption) content.caption = text || content.caption
+		else if (content.text) content.text = text || content.text
+		if (typeof content !== 'string') msg[mtype] = {
+			...content,
+			...options
+        }
+        if (copy.key.participant) sender = copy.key.participant = sender || copy.key.participant
+		else if (copy.key.participant) sender = copy.key.participant = sender || copy.key.participant
+		if (copy.key.remoteJid.includes('@s.whatsapp.net')) sender = sender || copy.key.remoteJid
+		else if (copy.key.remoteJid.includes('@broadcast')) sender = sender || copy.key.remoteJid
+		copy.key.remoteJid = jid
+		copy.key.fromMe = sender === conn.user.id
+
+        return proto.WebMessageInfo.fromObject(copy)
+    }
+   conn.decodeJid = (jid) => {
+        if (!jid) return jid
+        if (/:\d+@/gi.test(jid)) {
+            let decode = jidDecode(jid) || {}
+            return decode.user && decode.server && decode.user + '@' + decode.server || jid
+        } else return jid
+    }
+   //end suport function
+   
   //automatic reaction
             if(Config.REACT =='true' && m){
             let reactArray = ["INFO","SUCCESS","ERROR"];
