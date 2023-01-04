@@ -115,6 +115,12 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     conn.ev.on("group-participants.update", async (m) => {
     if(BLOCKCHAT.includes(m.id)) return; else Welcome(conn, m); await actByPdm(m, conn)
     });
+    conn.ev.on('contacts.update', update => {
+        for (let contact of update) {
+            let id = conn.decodeJid(contact.id)
+            if (store && store.contacts) store.contacts[id] = { id, name: contact.notify }
+        }
+    })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
     let m = new serialize(conn, chatUpdate.messages[0]);
     if(Config.STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
@@ -154,9 +160,11 @@ let list = await getListOfPlugin();
 for (let i=0;i<list.length;i++) {
 name = list[i].name;
 urls = list[i].url;
+if(name && urls){
   let { body } = await got(list[i].url)
   await fs.writeFileSync('./plugins/'+list[i].name+'.js', body);
-   }
+  }
+}
 fs.readdirSync("./plugins").forEach((plugin) => {
         if (path.extname(plugin).toLowerCase() == ".js") {
           require("./plugins/" + plugin);
@@ -233,12 +241,6 @@ fs.readdirSync("./plugins").map((a)=>{
         }
      });
   });
-  conn.ev.on('contacts.update', update => {
-        for (let contact of update) {
-            let id = conn.decodeJid(contact.id)
-            if (store && store.contacts) store.contacts[id] = { id, name: contact.notify }
-        }
-    })
   // support functions
   conn.getName = (jid, withoutContact  = false) => {
         id = conn.decodeJid(jid)
@@ -337,8 +339,8 @@ if(Config.U_STATUS =='true'){
     const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${Config.PROFILE_STATUS}`;
     await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 10);
-  if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
-          };
+};
+   if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 }// function closing
 
 app.get("/", (req, res) => {
