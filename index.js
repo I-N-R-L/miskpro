@@ -29,31 +29,28 @@ try {
     console.log("Could not connect with Mongodb please provide accurate uri!")
     process.exit(0)
 }
-
-try{
-        mongoose.connect("mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority");
-        console.log("connected to Mongoose Db")
-	} catch {
-	console.log('Could not connect with Mongoose DB')
-}
 const { cmdDB } = require('./lib/database/cmddb');
 const { getListOfPlugin } = require('./lib/database/pluginsdb');
 //mongoose connection function end!
 const aes256 = require('aes256');
-let PastebinAPI = require('pastebin-js'),
-    pastebin = new PastebinAPI({
-      'api_dev_key' : 'u_53edsqmFGKd02RMyQPwONVG0bIPi-R',});
-const mddc=(Config.SESSION_ID);
-let m = (mddc);
-let mdm = m.replaceAll("inrl~", "");
+let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
 let key = 'k!t';
-let plaintext = (mdm);
 let decryptedPlainText = aes256.decrypt(key, plaintext);
-pastebin
-  .getPaste(decryptedPlainText)
-  .then(async function smile(data) {
-   fs.writeFileSync("./lib/auth_info_baileys/creds.json" , data);
-});
+   if(!fs.existsSync(__dirname + '/lib/auth_info_baileys/creds.json')){
+  async function md(){
+   let {body} = await got(`https://inrl-web.vercel.app/api/session?id=${decryptedPlainText}`)
+  let result = JSON.parse(body).result[0].data;
+fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
+   }
+  md();
+}
+try{
+const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority";
+        mongoose.createConnection(MongoUri);
+        console.log("connected to Mongoose Db")
+	} catch {
+	console.log('Could not connect with Mongoose DB')
+}
 let identityBotID = decryptedPlainText;
 //gloab set
 global.mydb = {};
@@ -93,7 +90,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
       else if (reason === DisconnectReason.connectionClosed) { console.log(chalk.red("💥 Connection closed, reconnecting....")); WhatsBotConnect(); } 
       else if (reason === DisconnectReason.connectionLost) { console.log(chalk.red("💥 Connection Lost from Server, reconnecting...")); WhatsBotConnect(); } 
       else if (reason === DisconnectReason.connectionReplaced) { console.log(chalk.red("💥 Connection Replaced, Another New Session Opened, Please Close Current Session First")); conn.logout(); } 
-      else if (reason === DisconnectReason.loggedOut) { console.log(chalk.red(`💥 Device Logged Out, Please Scan Again And Run.`)); process.exit(0); } 
+      else if (reason === DisconnectReason.loggedOut) { console.log(chalk.red(`💥 Device Logged Out, Please Scan Again And Run.`));process.exit(1); } 
       else if (reason === DisconnectReason.restartRequired) { console.log(chalk.red("💥 Restart Required, Restarting...")); WhatsBotConnect(); } 
       else if (reason === DisconnectReason.timedOut) { console.log(chalk.red("💥 Connection TimedOut, Reconnecting...")); WhatsBotConnect(); } 
       else conn.end(chalk.red(`💥 Unknown DisconnectReason: ${reason}|${connection}`));
@@ -202,9 +199,10 @@ fs.readdirSync("./plugins").map((a)=>{
     let file =  require("./plugins/" + a);
       if (file.constructor.name === 'AsyncFunction') {
         file(msg, conn, m, store)
-      }
+      } else if(file.constructor.name === 'Function') {
+        file(msg, conn, m, store)
+        }
   })
-
 //Check if cmd exist on media
         if(m.msg && m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
@@ -216,6 +214,7 @@ fs.readdirSync("./plugins").map((a)=>{
     }
 //end
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
+try { 
     inrl.commands.map(async (command) => {
       for (let i in command.pattern) {
         EventCmd = startCmd+command.pattern[i];
@@ -240,6 +239,9 @@ fs.readdirSync("./plugins").map((a)=>{
           }
         }
      });
+     } catch (e){
+     m.reply((e).toString())
+     }
   });
   // support functions
   conn.getName = (jid, withoutContact  = false) => {
@@ -333,12 +335,16 @@ fs.readdirSync("./plugins").map((a)=>{
             conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
             }
 if(Config.U_STATUS =='true'){
+try{
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
     var psnewt = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
     const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${Config.PROFILE_STATUS}`;
     await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 10);
+  }catch(e){
+  console.log(e)
+  }
 };
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 }// function closing
