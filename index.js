@@ -44,13 +44,6 @@ fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
    }
   md();
 }
-try{
-const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority";
-        mongoose.createConnection(MongoUri);
-        console.log("connected to Mongoose Db")
-	} catch {
-	console.log('Could not connect with Mongoose DB')
-}
 let identityBotID = decryptedPlainText;
 //gloab set
 global.mydb = {};
@@ -59,8 +52,14 @@ global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
 const WhatsBotConnect = async () => {
+try{
+const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority";
+        mongoose.connect(MongoUri);
+        console.log("connected to Mongoose Db")
+	} catch {
+	console.log('Could not connect with Mongoose DB')
+}
 const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
-global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
 store.readFromFile("./lib/database/json/store.json");
 setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
@@ -82,7 +81,7 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
       });
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+Config.WORKTYPE+"```\nperfix :```"+Config.PERFIX});
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+Config.WORKTYPE+"```\nprefix : ```"+Config.PERFIX});
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -127,10 +126,10 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
-    await AllLinkBan(m, conn);
     await removeByWord(m, conn);
     await isFakeNumber(m, conn);
     await IsMension(m, conn);
+    await AllLinkBan(m, conn);
     //end
     if(Config.CALL_BLOCK == "true"){
     if(!m.isGroup && !m.client.isCreator){
@@ -355,4 +354,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
-},4000);
+},5000);
