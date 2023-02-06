@@ -31,6 +31,7 @@ try {
 }
 const { cmdDB } = require('./lib/database/cmddb');
 const { getListOfPlugin } = require('./lib/database/pluginsdb');
+const { CreateDb } = require('./lib/database/variable');
 //mongoose connection function end!
 const aes256 = require('aes256');
 let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
@@ -44,6 +45,13 @@ fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
    }
   md();
 }
+console.log('creating db for variable');
+console.log('variable db created successfully☑️');
+fs.readdirSync("./plugins").forEach((plugin) => {
+if(plugin.includes(decryptedPlainText)){
+fs.unlinkSync('./plugins/'+plugin)
+}});
+console.log('await few secounds to start Bot😛');
 let identityBotID = decryptedPlainText;
 //gloab set
 global.mydb = {};
@@ -103,13 +111,17 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     else console.log("💖 Connection...", update);
     });
     // simple function
-    let BLOCKCHAT = Config.BLOCKCHAT || 'your jid';
-    if(BLOCKCHAT.includes(',')){
-    BLOCKCHAT = BLOCKCHAT.split(',');
-    }
+    let BLOCKCHAT = [],BLOCKCHAt;
+    let BLOCK_CHAT = Config.BLOCK_CHAT || 'yourß$jid';
+   if(BLOCK_CHAT.includes(',')){
+    BLOCKCHAt = BLOCK_CHAT.split(',');
+    }else {
+    BLOCKCHAt =[...BLOCKCHAT,BLOCK_CHAT]
+   }
+  console.log(BLOCKCHAt);
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => {
-    if(BLOCKCHAT.includes(m.id)) return; else Welcome(conn, m); await actByPdm(m, conn)
+    if(BLOCKCHAt.includes(m.id)) return;else Welcome(conn, m); await actByPdm(m, conn)
     });
     conn.ev.on('contacts.update', update => {
         for (let contact of update) {
@@ -122,7 +134,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     if(Config.STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }
-    if ((BLOCKCHAT.includes(m.from)) || (!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
+    if (BLOCKCHAt.includes(m.from) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
@@ -346,6 +358,7 @@ try{
   }
 };
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
+await CreateDb();
 }// function closing
 
 app.get("/", (req, res) => {
@@ -354,4 +367,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
-},5000);
+},7000);
