@@ -7,7 +7,7 @@ const pino = require("pino");
 const got = require('got');
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
@@ -20,7 +20,7 @@ const { AllLinkBan,removeByWord,actByPdm,isFakeNumber } = require('./lib/fake_re
 const { IsMension }= require('./lib/set_mension');
 const { serialize, WAConnection } = Simple;
 const Levels = require("discord-xp");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 //connecting to inrlDb
 try {
     Levels.setURL("mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority");
@@ -110,15 +110,19 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
     });
+    await CreateDb();
+    const {getVar} = require('./lib/database/variable');
+    let data = await getVar();
+    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS}=data.data[0];
     // simple function
-    let BLOCKCHAT = [],BLOCKCHAt;
-    let BLOCK_CHAT = Config.BLOCK_CHAT || 'yourß$jid';
-   if(BLOCK_CHAT.includes(',')){
-    BLOCKCHAt = BLOCK_CHAT.split(',');
+    let BLOCKCHaT = [],BLOCKCHAt;
+    let BLOCKCHAT = BLOCK_CHAT || 'yourß$jid';
+   if(BLOCKCHAT.includes(',')){
+    BLOCKCHAt = BLOCKCHAT.split(',');
     }else {
-    BLOCKCHAt =[...BLOCKCHAT,BLOCK_CHAT]
+    BLOCKCHAt =[...BLOCKCHaT,BLOCKCHAT]
    }
-  console.log(BLOCKCHAt);
+
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => {
     if(BLOCKCHAt.includes(m.id)) return;else Welcome(conn, m); await actByPdm(m, conn)
@@ -131,7 +135,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
     let m = new serialize(conn, chatUpdate.messages[0]);
-    if(Config.STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
+    if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }
     if (BLOCKCHAt.includes(m.from) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
@@ -143,7 +147,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     await IsMension(m, conn);
     await AllLinkBan(m, conn);
     //end
-    if(Config.CALL_BLOCK == "true"){
+    if(CALL_BLOCK == "true"){
     if(!m.isGroup && !m.client.isCreator){
     conn.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
@@ -156,7 +160,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
      }
   };
 //inrl pm block specio function❣️//
-if(Config.PM_BLOCK == "true"){
+if(PM_BLOCK == "true"){
     if(!m.isGroup && !m.client.isCreator){
     conn.sendMessage(m.from, { text: "pm msg is't allowed"})
     conn.updateBlockStatus(m.from, "block")
@@ -181,7 +185,7 @@ fs.readdirSync("./plugins").forEach((plugin) => {
 }
 //CHECK AND CREATE HANDLERS
 let startCmd,EventCmd,botcmd ='';
-let handler = Config.PERFIX ? Config.PERFIX.trim() : 'false';
+let handler = PREFIX ? PREFIX.trim() : 'false';
 if(handler == 'false'){
 startCmd = '';
 } else if(handler !== 'false'){
@@ -189,7 +193,7 @@ startCmd = handler;
 }
 
 //MODE MANAGER
-    let mode = Config.WORKTYPE.toLowerCase();
+    let mode = WORKTYPE.toLowerCase();
     let MOD;
     if(mode.includes('public')){
     MOD = "public"
@@ -225,6 +229,7 @@ fs.readdirSync("./plugins").map((a)=>{
     }
 //end
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
+conn.sendPresenceUpdate("available", m.from);
 try { 
     inrl.commands.map(async (command) => {
       for (let i in command.pattern) {
@@ -232,20 +237,18 @@ try {
           if(MOD == 'privet' && IsTeam === true){
             if (EventCmd == botcmd){
             command.function(m, conn, m.client.text, m.client.command, store);
-            conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            if(Config.REACT =='true'){
+            conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
+            if(REACT =='true'){
             conn.sendReact(m.from, command.sucReact, m.key);
             }
-            conn.sendPresenceUpdate("available", m.from);
             }
             } else if(MOD == 'public'){
             if(EventCmd == botcmd){
             command.function(m, conn, m.client.text, m.client.command, store);
-            conn.sendPresenceUpdate( Config.BOT_PRESENCE, m.from );
-            if(Config.REACT =='true'){
+            conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
+            if(REACT =='true'){
             conn.sendReact(m.from, command.sucReact, m.key);
             }
-            conn.sendPresenceUpdate("available", m.from);
             }
           }
         }
@@ -340,12 +343,12 @@ try {
    //end suport function
    
   //automatic reaction
-            if(Config.REACT =='true' && m){
+            if(REACT =='true' && m){
             let reactArray = ["INFO","SUCCESS","ERROR"];
             let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
             conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
             }
-if(Config.U_STATUS =='true'){
+if(U_STATUS =='true'){
 try{
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
@@ -358,7 +361,6 @@ try{
   }
 };
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
-await CreateDb();
 }// function closing
 
 app.get("/", (req, res) => {
