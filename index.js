@@ -67,17 +67,20 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
 	} catch {
 	console.log('Could not connect with Mongoose DB')
 }
-const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
-const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
-store.readFromFile("./lib/database/json/store.json");
-setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
-  let { version, isLatest } = await fetchLatestBaileysVersion();
-  connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["inrl", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
-  conn = WASocket(connOptions);
-  conn = new WAConnection(conn);
-  store.bind(conn.ev);
-  conn.ev.on("creds.update", saveCreds);
-  conn.ev.on("connection.update", async (update) => {
+    await CreateDb();
+    const {getVar} = require('./lib/database/variable');
+    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS}=await getVar();
+    const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
+    const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
+    store.readFromFile("./lib/database/json/store.json");
+    setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
+    let { version, isLatest } = await fetchLatestBaileysVersion();
+    connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["inrl", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
+    conn = WASocket(connOptions);
+    conn = new WAConnection(conn);
+    store.bind(conn.ev);
+    conn.ev.on("creds.update", saveCreds);
+    conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
@@ -89,7 +92,8 @@ setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1
       });
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+Config.WORKTYPE+"```\nprefix : ```"+Config.PERFIX});
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+WORKTYPE+"```\nprefix : ```"+PREFIX});
+conn.sendMessage(conn.user.id, {text:'⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️'})
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -110,22 +114,14 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
     });
-    await CreateDb();
-    const {getVar} = require('./lib/database/variable');
-    let data = await getVar();
-    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS}=data.data[0];
     // simple function
-    let BLOCKCHaT = [],BLOCKCHAt;
-    let BLOCKCHAT = BLOCK_CHAT || 'yourß$jid';
-   if(BLOCKCHAT.includes(',')){
-    BLOCKCHAt = BLOCKCHAT.split(',');
-    }else {
-    BLOCKCHAt =[...BLOCKCHaT,BLOCKCHAT]
-   }
-
+    let BLOCKCHAT = "917593919575"
+    BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
+    console.log(BLOCKCHAT);
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => {
-    if(BLOCKCHAt.includes(m.id)) return;else Welcome(conn, m); await actByPdm(m, conn)
+console.log(m.id)
+    if(BLOCKCHAT.includes(m.id.split('@')[0])) return;else Welcome(conn, m); await actByPdm(m, conn)
     });
     conn.ev.on('contacts.update', update => {
         for (let contact of update) {
@@ -138,7 +134,7 @@ conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choos
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }
-    if (BLOCKCHAt.includes(m.from) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
+    if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
