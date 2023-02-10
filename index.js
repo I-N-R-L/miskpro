@@ -69,7 +69,7 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
 }
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
-    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS}=await getVar();
+    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS}=await getVar();
     const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
     store.readFromFile("./lib/database/json/store.json");
@@ -117,10 +117,8 @@ conn.sendMessage(conn.user.id, {text:'⚠️use getvar cmd to get variables of b
     // simple function
     let BLOCKCHAT = "917593919575"
     BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
-    console.log(BLOCKCHAT);
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => {
-console.log(m.id)
     if(BLOCKCHAT.includes(m.id.split('@')[0])) return;else Welcome(conn, m); await actByPdm(m, conn)
     });
     conn.ev.on('contacts.update', update => {
@@ -162,6 +160,12 @@ if(PM_BLOCK == "true"){
     conn.updateBlockStatus(m.from, "block")
     }
 };
+  //automatic reaction
+            if(REACT =='true'&&m){
+            let reactArray = ["INFO","SUCCESS","ERROR"];
+            let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
+            conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
+            }
 //IT CHECK AND INSTALL EXTERNEL PLUGINS
 if(m){
 let list = await getListOfPlugin();
@@ -337,19 +341,13 @@ try {
         } else return jid
     }
    //end suport function
-   
-  //automatic reaction
-            if(REACT =='true' && m){
-            let reactArray = ["INFO","SUCCESS","ERROR"];
-            let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
-            conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
-            }
+
 if(U_STATUS =='true'){
 try{
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
     var psnewt = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
-    const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${Config.PROFILE_STATUS}`;
+    const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${PROFILE_STATUS}`;
     await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 10);
   }catch(e){
