@@ -37,14 +37,12 @@ const aes256 = require('aes256');
 let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
 let key = 'k!t';
 let decryptedPlainText = aes256.decrypt(key, plaintext);
-   if(!fs.existsSync(__dirname + '/lib/auth_info_baileys/creds.json')){
   async function md(){
    let {body} = await got(`https://inrl-web.vercel.app/api/session?id=${decryptedPlainText}`)
   let result = JSON.parse(body).result[0].data;
 fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
    }
   md();
-}
 console.log('creating db for variable');
 console.log('variable db created successfully☑️');
 fs.readdirSync("./plugins").forEach((plugin) => {
