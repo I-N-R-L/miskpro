@@ -70,13 +70,14 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
     let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS}=await getVar();
     const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
-    store.readFromFile("./lib/database/json/store.json");
-    setInterval(() => { store.writeToFile("./lib/database/json/store.json")}, 30 * 1000);
     let { version, isLatest } = await fetchLatestBaileysVersion();
     connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["inrl", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
     conn = WASocket(connOptions);
     conn = new WAConnection(conn);
     store.bind(conn.ev);
+    setInterval(() => {
+    store.writeToFile("./lib/database/json/store.json")
+    }, 30 * 1000);
     conn.ev.on("creds.update", saveCreds);
     conn.ev.on("connection.update", async (update) => {
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
