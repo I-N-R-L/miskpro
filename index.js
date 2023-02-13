@@ -83,7 +83,16 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
     const { lastDisconnect, connection, isNewLogin, isOnline, qr, receivedPendingNotifications, } = update;
     if (connection == "connecting") console.log(chalk.yellow("💖 Connecting to WhatsApp...🥳"));
     else if (connection == "open") {
-    console.log("installing plugins🔘")
+    console.log("installing plugins🔘");
+    let list = await getListOfPlugin();
+    for (let i=0;i<list.length;i++) {
+    name = list[i].name;
+    urls = list[i].url;
+    if(name && urls){
+    let { body } = await got(list[i].url)
+    await fs.writeFileSync('./plugins/'+list[i].name+'.js', body);
+    }
+ }
     fs.readdirSync("./plugins").forEach((plugin) => {
         if (path.extname(plugin).toLowerCase() == ".js") {
           require("./plugins/" + plugin);
@@ -91,8 +100,8 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
       });
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+WORKTYPE+"```\nprefix : ```"+PREFIX});
-conn.sendMessage(conn.user.id, {text:'⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️'})
+conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+WORKTYPE+"```\nprefix : ```"+PREFIX);
+conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️'+'```'})
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -165,23 +174,6 @@ if(PM_BLOCK == "true"){
             let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
             conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
             }
-//IT CHECK AND INSTALL EXTERNEL PLUGINS
-if(m){
-let list = await getListOfPlugin();
-for (let i=0;i<list.length;i++) {
-name = list[i].name;
-urls = list[i].url;
-if(name && urls){
-  let { body } = await got(list[i].url)
-  await fs.writeFileSync('./plugins/'+list[i].name+'.js', body);
-  }
-}
-fs.readdirSync("./plugins").forEach((plugin) => {
-        if (path.extname(plugin).toLowerCase() == ".js") {
-          require("./plugins/" + plugin);
-        }
-   });
-}
 //CHECK AND CREATE HANDLERS
 let startCmd,EventCmd,botcmd ='';
 let handler = PREFIX ? PREFIX.trim() : 'false';
