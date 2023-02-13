@@ -123,7 +123,7 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     else console.log("💖 Connection...", update);
     });
     // simple function
-    let BLOCKCHAT = "917593919575"
+    let BLOCKCHAT = "919191919090"
     BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => {
@@ -140,7 +140,7 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }
-    if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message)) return;
+    if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast"))) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
@@ -210,7 +210,7 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
         file(msg, conn, m, store)
         }
   } catch(e){
-cosnole.log(e);
+console.log(e);
   }
 })
 //Check if cmd exist on media
@@ -249,7 +249,7 @@ try {
         }
      });
      } catch (e){
-     m.reply((e).toString())
+     console.log(e);
      }
   });
   // support functions
