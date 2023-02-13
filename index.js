@@ -45,10 +45,6 @@ fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
   md();
 console.log('creating db for variable');
 console.log('variable db created successfully☑️');
-fs.readdirSync("./plugins").forEach((plugin) => {
-if(plugin.includes(decryptedPlainText)){
-fs.unlinkSync('./plugins/'+plugin)
-}});
 console.log('await few secounds to start Bot😛');
 let identityBotID = decryptedPlainText;
 //gloab set
@@ -58,6 +54,10 @@ global.mydb.hits = new Number();
 global.isInCmd = false;
 global.catchError = false;
 const WhatsBotConnect = async () => {
+fs.readdirSync("./plugins").forEach((plugin) => {
+if(plugin.includes(decryptedPlainText)){
+fs.unlinkSync('./plugins/'+plugin)
+}});
 try{
 const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority";
         mongoose.connect(MongoUri);
@@ -208,15 +208,19 @@ startCmd = handler;
   botcmd = m.client.command;
 }
 //MAKE FUNCTION WITHOUT EVENTS
-let msg = smsg(conn, chatUpdate.messages[0], store)
 fs.readdirSync("./plugins").map((a)=>{
+try {
+let msg = smsg(conn, chatUpdate.messages[0], store)
     let file =  require("./plugins/" + a);
       if (file.constructor.name === 'AsyncFunction') {
         file(msg, conn, m, store)
       } else if(file.constructor.name === 'Function') {
         file(msg, conn, m, store)
         }
-  })
+  } catch(e){
+cosnole.log(e);
+  }
+})
 //Check if cmd exist on media
         if(m.msg && m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
