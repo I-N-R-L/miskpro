@@ -131,7 +131,7 @@ conn.sendMessage(conn.user.id, {text:'⚠️use getvar cmd to get variables of b
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }
-    if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast") || (m.key.id.startsWith("BAE5") && m.key.id.length == 16)) return;
+    if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
