@@ -7,7 +7,7 @@ const pino = require("pino");
 const got = require('got');
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
@@ -67,7 +67,7 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
 }
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
-    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS}=await getVar();
+    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE}=await getVar();
     const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
     let { version, isLatest } = await fetchLatestBaileysVersion();
@@ -126,7 +126,9 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     let BLOCKCHAT = "919191919090"
     BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
     //ending thets function
-    conn.ev.on("group-participants.update", async (m) => {
+    conn.ev.on("group-participants.update", async (m) => { 
+if(m.participants[0]==conn.user.jid)
+process.exit(0);
     if(BLOCKCHAT.includes(m.id.split('@')[0])) return;else Welcome(conn, m); await actByPdm(m, conn)
     });
     conn.ev.on('contacts.update', update => {
@@ -136,10 +138,15 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
         }
     })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
+    try {
     let m = new serialize(conn, chatUpdate.messages[0]);
+    } catch(e){
+    process.exit(0)
+    }
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }
+    
     if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
@@ -192,6 +199,7 @@ startCmd = handler;
     MOD = "privet"
     } else MOD = "privet"
     let IsTeam = m.client.isCreator;
+//MODEMANAGER RESPOSBLE OUTPUT ENDED
 
 //PERFIX ACCESSIBLIE MANAGMENT
   if(m.client.body.startsWith(startCmd)){
@@ -210,7 +218,7 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
         file(msg, conn, m, store)
         }
   } catch(e){
-console.log(e);
+process.exit(0);
   }
 })
 //Check if cmd exist on media
@@ -223,8 +231,20 @@ console.log(e);
          })
     }
 //end
-//MODEMANAGER RESPOSBLE OUTPUT ENDED
+
+//check and work ith always online!.
+if(ALLWAYS_ONLINE===undefined){
+  ALLWAYS_ONLINE=false
+} else if(ALLWAYS_ONLINE=='false'){
+  ALLWAYS_ONLINE=false
+} else if(ALLWAYS_ONLINE=='true'){
+ ALLWAYS_ONLINE=true
+}
+if(ALLWAYS_ONLINE===true){
 conn.sendPresenceUpdate("available", m.from);
+} else {
+conn.sendPresenceUpdate("unavailable", m.from);
+}
 try { 
     inrl.commands.map(async (command) => {
       for (let i in command.pattern) {
@@ -350,6 +370,10 @@ try{
   }
 };
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
+  process.on("uncaughtException", async (err) => {
+    let error = err.message;
+    await conn.sendMessage(conn.user.jid, { text: error });
+  });
 }// function closing
 
 app.get("/", (req, res) => {
