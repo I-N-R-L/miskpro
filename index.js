@@ -138,15 +138,15 @@ process.exit(0);
         }
     })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
+    let m;
     try {
-    let m = new serialize(conn, chatUpdate.messages[0]);
+    m = new serialize(conn, chatUpdate.messages[0]);
     } catch(e){
     process.exit(0)
     }
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
-    }
-    
+    }   
     if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
     if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
