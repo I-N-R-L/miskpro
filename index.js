@@ -138,17 +138,12 @@ process.exit(0);
         }
     })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
-    let m;
-    try {
-    m = new serialize(conn, chatUpdate.messages[0]);
-    } catch(e){
-    process.exit(0)
-    }
+    let m = new serialize(conn, chatUpdate.messages[0]);
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }   
-    if (BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
-    if (global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
+    if(BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
+    if(global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     //add Your lib Functions
     await upsert(conn, m);
     await removeByWord(m, conn);
@@ -209,17 +204,13 @@ startCmd = handler;
 }
 //MAKE FUNCTION WITHOUT EVENTS
 fs.readdirSync("./plugins").map((a)=>{
-try {
 let msg = smsg(conn, chatUpdate.messages[0], store)
     let file =  require("./plugins/" + a);
       if (file.constructor.name === 'AsyncFunction') {
         file(msg, conn, m, store)
       } else if(file.constructor.name === 'Function') {
         file(msg, conn, m, store)
-        }
-  } catch(e){
-process.exit(0);
-  }
+      }
 })
 //Check if cmd exist on media
         if(m.msg && m.msg.fileSha256){
@@ -358,21 +349,17 @@ try {
    //end suport function
 
 if(U_STATUS =='true'){
-try{
   setInterval(async () => {
     let pstime = new Date().toLocaleDateString("EN", { weekday: "long", year: "numeric", month: "long", day: "numeric", });
     var psnewt = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
     const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${PROFILE_STATUS}`;
     await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 10);
-  }catch(e){
-  console.log(e)
-  }
 };
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
   process.on("uncaughtException", async (err) => {
     let error = err.message;
-    await conn.sendMessage(conn.user.jid, { text: error });
+    await conn.sendMessage(conn.user.jid, { text: error }, {quoted:m});
   });
 }// function closing
 
