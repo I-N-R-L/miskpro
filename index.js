@@ -178,13 +178,12 @@ if(PM_BLOCK == "true"){
             }
 //CHECK AND CREATE HANDLERS
 let startCmd,EventCmd,botcmd ='';
-let handler = PREFIX ? PREFIX.trim() : 'false';
+let handler = PREFIX == 'false'? 'false' : PREFIX.trim();
 if(handler == 'false'){
 startCmd = '';
 } else if(handler !== 'false'){
 startCmd = handler;
 }
-
 //MODE MANAGER
     let mode = WORKTYPE.toLowerCase();
     let MOD;
@@ -198,7 +197,7 @@ startCmd = handler;
 
 //PERFIX ACCESSIBLIE MANAGMENT
   if(m.client.body.startsWith(startCmd)){
-  botcmd = startCmd+m.client.command;
+  botcmd = startCmd+m.client.command.replace(startCmd,'');
   } else {
   botcmd = m.client.command;
 }
@@ -222,7 +221,6 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
          })
     }
 //end
-
 //check and work ith always online!.
 if(ALLWAYS_ONLINE===undefined){
   ALLWAYS_ONLINE=false
@@ -236,7 +234,6 @@ conn.sendPresenceUpdate("available", m.from);
 } else {
 conn.sendPresenceUpdate("unavailable", m.from);
 }
-try { 
     inrl.commands.map(async (command) => {
       for (let i in command.pattern) {
         EventCmd = startCmd+command.pattern[i];
@@ -259,10 +256,11 @@ try {
           }
         }
      });
-     } catch (e){
-     console.log(e);
-     }
-  });
+      process.on("uncaughtException",async (err) => {
+    let error = err.message;
+    return await conn.sendMessage(conn.user.jid, { text: error }, { quoted: m });
+      });
+});
   // support functions
   conn.getName = (jid, withoutContact  = false) => {
         id = conn.decodeJid(jid)
@@ -357,10 +355,6 @@ if(U_STATUS =='true'){
   }, 1000 * 10);
 };
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
-  process.on("uncaughtException", async (err) => {
-    let error = err.message;
-    await conn.sendMessage(conn.user.jid, { text: error }, {quoted:m});
-  });
 }// function closing
 
 app.get("/", (req, res) => {
