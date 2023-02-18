@@ -43,6 +43,24 @@ let decryptedPlainText = aes256.decrypt(key, plaintext);
 fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
    }
   md();
+//sudo manager function
+function insertSudo(OWNER,SUDO){
+    let CreaterAr = [];
+    CreaterAr.push(OWNER+'@s.whatsapp.net');
+  if(SUDO.includes(',')){
+  let sudok = SUDO.replaceAll(' ','');
+  a = sudok.split(' ');
+  a.map((t)=>{
+  t = t+'@s.whatsapp.net';
+  CreaterAr.push(t);
+          })
+        } else {
+  IsSudo = SUDO.trim()+'@s.whatsapp.net';
+  CreaterAr.push(IsSudo);
+     }
+    return CreaterAr;
+  }
+//end!
 console.log('creating db for variable');
 console.log('variable db created successfully☑️');
 console.log('await few secounds to start Bot😛');
@@ -67,7 +85,7 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
 }
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
-    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE}=await getVar();
+    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER}=await getVar();
     const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
     let { version, isLatest } = await fetchLatestBaileysVersion();
@@ -122,13 +140,14 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     else if (qr) console.log(chalk.magenta("Qr: "), chalk.magentaBright(qr));
     else console.log("💖 Connection...", update);
     });
+// defination B!
+    let createrS = insertSudo(OWNER,SUDO);
+/close function B!
     // simple function
     let BLOCKCHAT = "919191919090"
     BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => { 
-if(m.participants[0]==conn.user.jid)
-process.exit(0);
     if(BLOCKCHAT.includes(m.id.split('@')[0])) return;else Welcome(conn, m); await actByPdm(m, conn)
     });
     conn.ev.on('contacts.update', update => {
@@ -138,7 +157,7 @@ process.exit(0);
         }
     })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
-    let m = new serialize(conn, chatUpdate.messages[0]);
+    let m = new serialize(conn, chatUpdate.messages[0],createrS);
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
     }   
