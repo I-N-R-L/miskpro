@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const speed = require('performance-now')
 const Config = require('./config');
@@ -50,7 +49,7 @@ function insertSudo(OWNER,SUDO){
     CreaterAr.push(OWNER+'@s.whatsapp.net');
   if(SUDO.includes(',')){
   let sudok = SUDO.replaceAll(' ','');
-  a = sudok.split(' ');
+  a = sudok.split(',');
   a.map((t)=>{
   t = t+'@s.whatsapp.net';
   CreaterAr.push(t);
@@ -143,7 +142,6 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     });
 // defination B!
     let createrS = await insertSudo(OWNER,SUDO);
-console.log(createrS)
 //close function B!
     // simple function
     let BLOCKCHAT = "919191919090"
