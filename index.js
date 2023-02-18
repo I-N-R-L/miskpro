@@ -1,3 +1,4 @@
+
 const fs = require("fs");
 const speed = require('performance-now')
 const Config = require('./config');
@@ -141,8 +142,9 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     else console.log("💖 Connection...", update);
     });
 // defination B!
-    let createrS = insertSudo(OWNER,SUDO);
-/close function B!
+    let createrS = await insertSudo(OWNER,SUDO);
+console.log(createrS)
+//close function B!
     // simple function
     let BLOCKCHAT = "919191919090"
     BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
