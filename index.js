@@ -85,7 +85,7 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
 }
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
-    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER}=await getVar();
+    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG}=await getVar();
     const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
     let { version, isLatest } = await fetchLatestBaileysVersion();
@@ -175,7 +175,7 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     conn.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
-    conn.sendMessage(callerId, { text: "calling to this number is't allowed"})
+    conn.sendMessage(callerId, { text: PMBC_MSG})
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
            }
@@ -185,7 +185,7 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
 //inrl pm block specio function❣️//
 if(PM_BLOCK == "true"){
     if(!m.isGroup && !m.client.isCreator){
-    conn.sendMessage(m.from, { text: "pm msg is't allowed"})
+    conn.sendMessage(m.from, { text:PMB_MSG})
     conn.updateBlockStatus(m.from, "block")
     }
 };
@@ -277,7 +277,7 @@ conn.sendPresenceUpdate("unavailable", m.from);
      });
       process.on("uncaughtException",async (err) => {
     let error = err.message;
-    return await conn.sendMessage(conn.user.jid, { text: error }, { quoted: m });
+    return await conn.sendMessage(conn.user.jid, { text: error });
       });
 });
   // support functions
