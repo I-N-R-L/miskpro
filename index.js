@@ -1,5 +1,6 @@
-const fs = require("fs");
+
 const speed = require('performance-now')
+const fs = require("fs");
 const Config = require('./config');
 const { default: WASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion, jidNormalizedUser, makeInMemoryStore, DEFAULT_CONNECTION_CONFIG, DEFAULT_LEGACY_CONNECTION_CONFIG, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, jidDecode, proto } = require("@adiwajshing/baileys");
 const chalk = require("chalk");
@@ -11,24 +12,15 @@ const port = process.env.PORT || 8000;
 const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
-const { Simple, upsert, sleep,tiny } = require("./lib");
+const { serialize, WAConnection } = require('./lib');
+const { upsert, sleep,tiny } = require("./lib/");
 const Welcome = require("./lib/Welcome");
 const inrl = require("./lib/perfix");
 const PhoneNumber = require('awesome-phonenumber')
 const { smsg } = require('./lib/infos/info');
 const { AllLinkBan,removeByWord,actByPdm,isFakeNumber } = require('./lib/fake_remove');
 const { IsMension }= require('./lib/set_mension');
-const { serialize, WAConnection } = Simple;
-const Levels = require("discord-xp");
 const mongoose = require("mongoose");
-//connecting to inrlDb
-try {
-    Levels.setURL("mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority");
-    console.log("Connected to Inrl DB")
-} catch {
-    console.log("Could not connect with Mongodb please provide accurate uri!")
-    process.exit(0)
-}
 const { cmdDB } = require('./lib/database/cmddb');
 const { getListOfPlugin } = require('./lib/database/pluginsdb');
 const { CreateDb } = require('./lib/database/variable');
@@ -76,13 +68,11 @@ fs.readdirSync("./plugins").forEach((plugin) => {
 if(plugin.includes(decryptedPlainText)){
 fs.unlinkSync('./plugins/'+plugin)
 }});
-try{
 const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority";
-        mongoose.connect(MongoUri);
-        console.log("connected to Mongoose Db")
-	} catch {
-	console.log('Could not connect with Mongoose DB')
-}
+mongoose.set("strictQuery", false);
+mongoose
+  .connect(MongoUri).then(()=>{console.log('Mongo DataBase Connected')})
+.catch((err) => {console.log('Mongoose Connection Failed', err)})
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
     let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG}=await getVar();
@@ -116,10 +106,12 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
           require("./plugins/" + plugin);
         }
       });
+      let TUTORIAL = Config.TUTORIAL || 'URL',
+            WAGRP = Config.WAGRP|| 'Wa_Group_Url';
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-conn.sendMessage(conn.user.id, { text : "```bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ```"+WORKTYPE+"```\nprefix : ```"+PREFIX});
-conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️'+'```'})
+await conn.sendMessage(conn.user.id, { text : '```'+`bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ${WORKTYPE}\nprefix : ${PREFIX}\ntutorial :${TUTORIAL}\ngroupLink :${WAGRP}`+'```'});
+await conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️'+'```'})
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -144,7 +136,7 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     let createrS = await insertSudo(OWNER,SUDO);
 //close function B!
     // simple function
-    let BLOCKCHAT = "919191919090"
+    let BLOCKCHAT = "120363040291283569@g.us"
     BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => { 
@@ -189,12 +181,6 @@ if(PM_BLOCK == "true"){
     conn.updateBlockStatus(m.from, "block")
     }
 };
-  //automatic reaction
-            if(REACT =='true'&&m){
-            let reactArray = ["INFO","SUCCESS","ERROR"];
-            let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
-            conn.sendReact(m.from, await inrl.reactArry(getType), m.key);
-            }
 //CHECK AND CREATE HANDLERS
 let startCmd,EventCmd,botcmd ='';
 let handler = PREFIX == 'false'? 'false' : PREFIX.trim();
@@ -275,10 +261,12 @@ conn.sendPresenceUpdate("unavailable", m.from);
           }
         }
      });
-      process.on("uncaughtException",async (err) => {
-    let error = err.message;
-    return await conn.sendMessage(conn.user.jid, { text: error });
-      });
+        //automatic reaction
+            if(REACT =='true'&&m){
+            let reactArray = [ "🕐", "🕑", "🕒", "🕚", "🕙", "🕘", "🕗", "🕖", "🕕", "🕔", "🕓", "🕛", "🕜", "🕝", "🕞", "🕟", "🕠", "🕡", "🕢", "🕧", "🕦", "🕤", "🕥", "🕣", "👁‍🗨", "🔵", "❤", "🖤", "🤎", "💜", "💙", "💚", "💛", "🧡", "🤍", "❣", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟", "💌", "✅", "🟢", "✔", "⭕", "😋", "😍", "😘", "🥰", "🤪", "😇", "🥳","💔", "☣", "⚠", "❌", "🛑", "❗", "‼", "⁉", "❓", "🔴", "😥", "😪", "😫", "😴", "🤐", "😤", "😟", "😖", "😞", "🙁", "☹", "😰", "🥵", "🥶", "😱", "🥴", "👺", "👽", "🤕", "🤒", "😷", "😎", "😼", "🙀", "🥺", "🤫" ]
+            let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
+            conn.sendReact(m.from, getType, m.key);
+            }
 });
   // support functions
   conn.getName = (jid, withoutContact  = false) => {
@@ -371,7 +359,7 @@ if(U_STATUS =='true'){
     var psnewt = new Date().toLocaleString("LK", { timeZone: "Asia/Colombo" }).split(" ")[1];
     const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${PROFILE_STATUS}`;
     await conn.updateProfileStatus(tiny(biography));
-  }, 1000 * 10);
+  }, 1000 * 60);
 };
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 }// function closing
@@ -382,4 +370,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
-},7000);
+},8000);
