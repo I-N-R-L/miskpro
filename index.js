@@ -1,4 +1,3 @@
-
 const speed = require('performance-now')
 const fs = require("fs");
 const Config = require('./config');
@@ -110,8 +109,8 @@ mongoose
             WAGRP = Config.WAGRP|| 'Wa_Group_Url';
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
-await conn.sendMessage(conn.user.id, { text : '```'+`bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ${WORKTYPE}\nprefix : ${PREFIX}\ntutorial :${TUTORIAL}\ngroupLink :${WAGRP}`+'```'});
-await conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️'+'```'})
+conn.sendMessage(conn.user.id, { text : '```'+`bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ${WORKTYPE}\nprefix : ${PREFIX}\ntutorial :${TUTORIAL}\ngroupLink :${WAGRP}`+'```'});
+conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️'+'```'})
 }
     else if (connection == "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
@@ -260,7 +259,18 @@ conn.sendPresenceUpdate("unavailable", m.from);
             }
           }
         }
-     });
+        for (let i in command.on) {
+        if(command.on[i] =="text" && m.client.displayText){
+        command.function(m, conn, m.client.text, m.client.command, store);
+        } else if(command.on[i] =="sticker" && m.type == "stickerMessage"){
+        command.function(m, conn, m.client.text, m.client.command, store);
+        } else if(command.on[i] =="image" && m.type == "imageMessage"){
+        command.function(m, conn, m.client.text, m.client.command, store);
+        } else if(command.on[i] =="video" && m.type == "videoMessage"){
+        command.function(m, conn, m.client.text, m.client.command, store);
+        } 
+     }
+});
         //automatic reaction
             if(REACT =='true'&&m){
             let reactArray = [ "🕐", "🕑", "🕒", "🕚", "🕙", "🕘", "🕗", "🕖", "🕕", "🕔", "🕓", "🕛", "🕜", "🕝", "🕞", "🕟", "🕠", "🕡", "🕢", "🕧", "🕦", "🕤", "🕥", "🕣", "👁‍🗨", "🔵", "❤", "🖤", "🤎", "💜", "💙", "💚", "💛", "🧡", "🤍", "❣", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟", "💌", "✅", "🟢", "✔", "⭕", "😋", "😍", "😘", "🥰", "🤪", "😇", "🥳","💔", "☣", "⚠", "❌", "🛑", "❗", "‼", "⁉", "❓", "🔴", "😥", "😪", "😫", "😴", "🤐", "😤", "😟", "😖", "😞", "🙁", "☹", "😰", "🥵", "🥶", "😱", "🥴", "👺", "👽", "🤕", "🤒", "😷", "😎", "😼", "🙀", "🥺", "🤫" ]
