@@ -257,6 +257,8 @@ conn.sendPresenceUpdate("unavailable", m.from);
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on ==="video" && m.type === "videoMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
+        } else if(command.on ==="audio" && m.type === "audioMessage"){
+        command.function(m, conn, m.client.text, m.client.command, store);
         }
   });
 //MAKE FUNCTION WITHOUT EVENTS
