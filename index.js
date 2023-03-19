@@ -380,4 +380,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
-},9000);
+},10000);
