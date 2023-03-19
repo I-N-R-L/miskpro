@@ -29,7 +29,7 @@ let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
 let key = 'k!t';
 let decryptedPlainText = aes256.decrypt(key, plaintext);
   async function md(){
-   let {body} = await got(`https://inrl-web.vercel.app/api/session?id=${decryptedPlainText}`)
+   let {body} = await got(`${Config.BASE_URL}api/session?id=${decryptedPlainText}`)
   let result = JSON.parse(body).result[0].data;
 fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
    }
@@ -205,16 +205,6 @@ startCmd = handler;
   } else {
   botcmd = m.client.command;
 }
-//MAKE FUNCTION WITHOUT EVENTS
-fs.readdirSync("./plugins").map((a)=>{
-let msg = smsg(conn, chatUpdate.messages[0], store)
-    let file =  require("./plugins/" + a);
-      if (file.constructor.name === 'AsyncFunction') {
-        file(msg, conn, m, store)
-      } else if(file.constructor.name === 'Function') {
-        file(msg, conn, m, store)
-      }
-})
 //Check if cmd exist on media
         if(m.msg && m.msg.fileSha256){
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
@@ -272,6 +262,16 @@ conn.sendPresenceUpdate("unavailable", m.from);
         command.function(m, conn, m.client.text, m.client.command, store);
         } 
      }
+//MAKE FUNCTION WITHOUT EVENTS
+fs.readdirSync("./plugins").map((a)=>{
+let msg = smsg(conn, chatUpdate.messages[0], store)
+    let file =  require("./plugins/" + a);
+      if (file.constructor.name === 'AsyncFunction') {
+        file(msg, conn, m, store)
+      } else if(file.constructor.name === 'Function') {
+        file(msg, conn, m, store)
+      }
+})
 });
         //automatic reaction
             if(REACT =='true'&&m){
