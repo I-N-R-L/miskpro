@@ -70,8 +70,8 @@ fs.unlinkSync('./plugins/'+plugin)
 const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nxp4il6.mongodb.net/?retryWrites=true&w=majority";
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(MongoUri).then(()=>{console.log('Mongo DataBase Connected')})
-.catch((err) => {console.log('Mongoose Connection Failed', err)})
+  .connect(MongoUri).then(()=>{console.log('Connected To Mongo DataBase')})
+  .catch((err) => {console.log('Mongoose Connection Failed', err)})
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
     let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG}=await getVar();
@@ -260,7 +260,9 @@ conn.sendPresenceUpdate("unavailable", m.from);
           }
         }
         for (let i in command.on) {
-        if(command.on[i] =="text" && m.client.displayText){
+        if(command.on[i] =="all" && m){
+        command.function(m, conn, m.client.text, m.client.command, store);
+        } else if(command.on[i] =="text" && m.client.displayText){
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on[i] =="sticker" && m.type == "stickerMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
