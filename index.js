@@ -247,17 +247,18 @@ conn.sendPresenceUpdate("unavailable", m.from);
             }
             }
           }
-        if(command.on =="all" && m){
+        if(command.on === "all" && m){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on =="text" && m.client.displayText){
+        } else if(command.on ==="text" && m.client.displayText){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on =="sticker" && m.type == "stickerMessage"){
+        } else if(command.on ==="sticker" && m.type === "stickerMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on =="image" && m.type == "imageMessage"){
+        } else if(command.on ==="image" && m.type === "imageMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on =="video" && m.type == "videoMessage"){
+        } else if(command.on ==="video" && m.type === "videoMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
         }
+  });
 //MAKE FUNCTION WITHOUT EVENTS
 fs.readdirSync("./plugins").map((a)=>{
 let msg = smsg(conn, chatUpdate.messages[0], store)
@@ -267,7 +268,6 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
       } else if(file.constructor.name === 'Function') {
         file(msg, conn, m, store)
       }
-})
 });
         //automatic reaction
             if(REACT =='true'&&m){
