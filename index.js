@@ -106,7 +106,7 @@ mongoose
         }
       });
       let TUTORIAL = Config.TUTORIAL || 'URL',
-            WAGRP = Config.WAGRP|| 'Wa_Group_Url';
+          WAGRP = Config.WAGRP|| 'Wa_Group_Url';
       console.log("plugin installed successfully☑️");
 console.log("💖 Login successful! \n bot working now💗");
 conn.sendMessage(conn.user.id, { text : '```'+`bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ${WORKTYPE}\nprefix : ${PREFIX}\ntutorial :${TUTORIAL}\ngroupLink :${WAGRP}`+'```'});
@@ -229,8 +229,7 @@ conn.sendPresenceUpdate("available", m.from);
 conn.sendPresenceUpdate("unavailable", m.from);
 }
     inrl.commands.map(async (command) => {
-      for (let i in command.pattern) {
-        EventCmd = startCmd+command.pattern[i];
+        EventCmd = startCmd+command.pattern;
           if(MOD == 'privet' && IsTeam === true){
             if (EventCmd == botcmd){
             command.function(m, conn, m.client.text, m.client.command, store);
@@ -248,17 +247,15 @@ conn.sendPresenceUpdate("unavailable", m.from);
             }
             }
           }
-        }
-        for (let i in command.on) {
-        if(command.on[i] =="all" && m){
+        if(command.on =="all" && m){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on[i] =="text" && m.client.displayText){
+        } else if(command.on =="text" && m.client.displayText){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on[i] =="sticker" && m.type == "stickerMessage"){
+        } else if(command.on =="sticker" && m.type == "stickerMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on[i] =="image" && m.type == "imageMessage"){
+        } else if(command.on =="image" && m.type == "imageMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
-        } else if(command.on[i] =="video" && m.type == "videoMessage"){
+        } else if(command.on =="video" && m.type == "videoMessage"){
         command.function(m, conn, m.client.text, m.client.command, store);
         } 
      }
