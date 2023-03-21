@@ -229,6 +229,7 @@ conn.sendPresenceUpdate("available", m.from);
 conn.sendPresenceUpdate("unavailable", m.from);
 }
     inrl.commands.map(async (command) => {
+        for (let i in command.pattern) {
         EventCmd = startCmd+command.pattern;
           if(MOD == 'privet' && IsTeam === true){
             if (EventCmd == botcmd){
@@ -247,6 +248,7 @@ conn.sendPresenceUpdate("unavailable", m.from);
             }
             }
           }
+        }
         if(command.on === "all" && m){
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on ==="text" && m.client.displayText){
@@ -380,4 +382,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
-},10000);
+},12000);
