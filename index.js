@@ -229,8 +229,8 @@ conn.sendPresenceUpdate("available", m.from);
 conn.sendPresenceUpdate("unavailable", m.from);
 }
     inrl.commands.map(async (command) => {
-        for (let i in command.pattern) {
-        EventCmd = startCmd+command.pattern;
+      for (let i in command.pattern) {
+        EventCmd = startCmd+command.pattern[i];
           if(MOD == 'privet' && IsTeam === true){
             if (EventCmd == botcmd){
             command.function(m, conn, m.client.text, m.client.command, store);
