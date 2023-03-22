@@ -52,6 +52,34 @@ function insertSudo(OWNER,SUDO){
     return CreaterAr;
   }
 //end!
+//dlet unwanted storage as it free
+function removeFile(FilePath){
+const tmpFiless = fs.readdirSync('./'+FilePath)
+  tmpFiless.map((tmpFiles)=>{
+    if(path.extname(tmpFiles).toLowerCase() == ".mp4"){
+      fs.unlinkSync('./' + tmpFiles)
+    }
+    if(path.extname(tmpFiles).toLowerCase() == ".png"){
+      fs.unlinkSync('./' + tmpFiles)
+    }
+  if(path.extname(tmpFiles).toLowerCase() == ".webp"){
+    fs.unlinkSync('./' + tmpFiles)
+  }
+  if(path.extname(tmpFiles).toLowerCase() == ".jpg"){
+    fs.unlinkSync('./' + tmpFiles)
+  }
+    if(path.extname(tmpFiles).toLowerCase() == ".jpeg") {
+      fs.unlinkSync('./' + tmpFiles)
+    }
+    if(path.extname(tmpFiles).toLowerCase() == ".mp3") {
+      fs.unlinkSync('./' + tmpFiles)
+    }
+    if(path.extname(tmpFiles).toLowerCase() == ".wav") {
+      fs.unlinkSync('./' + tmpFiles)
+    }
+  });
+};
+// end
 console.log('creating db for variable');
 console.log('variable db created successfully☑️');
 console.log('await few secounds to start Bot😛');
@@ -373,6 +401,10 @@ if(U_STATUS =='true'){
     await conn.updateProfileStatus(tiny(biography));
   }, 1000 * 60);
 };
+setInterval(async () => {
+await removeFile("");
+await removeFile("media");
+  }, 1000 * 700);
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 }// function closing
 
