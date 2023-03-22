@@ -241,7 +241,12 @@ startCmd = handler;
     	let sha257 = identityBotID+m.msg.fileSha256.join("")
         await cmdDB.findOne({ id: sha257 }).then(async(cmdName) => {
     	if(cmdName) {
-    	botcmd = startCmd+cmdName.cmd.replaceAll(" ","");;
+    	botcmd = startCmd+cmdName
+        .cmd
+        .trim()
+        .split(/ +/)
+        .shift()
+        .toLowerCase();
               }
          })
     }
@@ -329,37 +334,6 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
-  conn.getFile = async (PATH, returnAsFilename) => {
-      let res, filename;
-      let data = Buffer.isBuffer(PATH)
-        ? PATH
-        : /^data:.*?\/.*?;base64,/i.test(PATH)
-        ? Buffer.from(PATH.split`,`[1], "base64")
-        : /^https?:\/\//.test(PATH)
-        ? await (res = await fetch(PATH)).buffer()
-        : fs.existsSync(PATH)
-        ? ((filename = PATH), fs.readFileSync(PATH))
-        : typeof PATH === "string"
-        ? PATH
-        : Buffer.alloc(0);
-      if (!Buffer.isBuffer(data)) return;
-      let type = (await fromBuffer(data)) || {
-        mime: "application/octet-stream",
-        ext: ".bin",
-      };
-      if (data && returnAsFilename && !filename)
-        (filename = path.join(
-          __dirname,
-          "./media" + new Date() * 1 + "." + type.ext
-        )),
-          await fs.promises.writeFile(filename, data);
-      return {
-        res,
-        filename,
-        ...type,
-        data,
-      };
-    };
   conn.sendFromUrl = async (
       path,
       filename = "",
