@@ -326,6 +326,7 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
+
     conn.copyNForward = async (jid, message, forceForward = false, options = {}) => {
         let vtype
 		if (options.readViewOnce) {
@@ -402,8 +403,8 @@ if(U_STATUS =='true'){
   }, 1000 * 60);
 };
 setInterval(async () => {
-await removeFile("");
-await removeFile("media");
+await removeFile("").catch((e)=>console.log(e));
+await removeFile("media").catch((e)=>console.log(e));
   }, 1000 * 700);
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 }// function closing
