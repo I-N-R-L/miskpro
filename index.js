@@ -77,6 +77,9 @@ const tmpFiless = fs.readdirSync('./'+FilePath)
     if(path.extname(tmpFiles).toLowerCase() == ".wav") {
       fs.unlinkSync('./' + tmpFiles)
     }
+    if(path.extname(tmpFiles).toLowerCase() == ".bin") {
+      fs.unlinkSync('./' + tmpFiles)
+    }
   });
 };
 // end
@@ -326,7 +329,92 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
-
+  conn.getFile = async (PATH, returnAsFilename) => {
+      let res, filename;
+      let data = Buffer.isBuffer(PATH)
+        ? PATH
+        : /^data:.*?\/.*?;base64,/i.test(PATH)
+        ? Buffer.from(PATH.split`,`[1], "base64")
+        : /^https?:\/\//.test(PATH)
+        ? await (res = await fetch(PATH)).buffer()
+        : fs.existsSync(PATH)
+        ? ((filename = PATH), fs.readFileSync(PATH))
+        : typeof PATH === "string"
+        ? PATH
+        : Buffer.alloc(0);
+      if (!Buffer.isBuffer(data)) return;
+      let type = (await fromBuffer(data)) || {
+        mime: "application/octet-stream",
+        ext: ".bin",
+      };
+      if (data && returnAsFilename && !filename)
+        (filename = path.join(
+          __dirname,
+          "./media" + new Date() * 1 + "." + type.ext
+        )),
+          await fs.promises.writeFile(filename, data);
+      return {
+        res,
+        filename,
+        ...type,
+        data,
+      };
+    };
+  conn.sendFromUrl = async (
+      path,
+      filename = "",
+      caption = "",
+      quoted,
+      ptt = false,
+      options = {}
+    ) => {
+      let type = await conn.getFile(path, true);
+      let { res, data: file, filename: pathFile } = type;
+      if ((res && res.status !== 200) || file.length <= 65536) {
+        try {
+         return { json: JSON.parse(file.toString()) };
+        } catch (e) {
+          if (e.json) return e.json;
+        }
+      }
+      let opt = { filename };
+      if (quoted) opt.quoted = quoted;
+      if (!type) if (options.asDocument) options.asDocument = true;
+      let mtype = "",
+        mimetype = type.mime;
+      let naem = (a) => "./media/" + Date.now() + "." + a;
+      if (/webp/.test(type.mime)) mtype = "sticker";
+      else if (/image/.test(type.mime)) mtype = "image";
+      else if (/video/.test(type.mime)) mtype = "video";
+      else if (/audio/.test(type.mime))
+        (ss = await (ptt ? toPTT : toAudio2)(file, type.ext)),
+          (skk = await require("file-type").fromBuffer(ss.data)),
+          (ty = naem(skk.ext)),
+          require("fs").writeFileSync(ty, ss.data),
+          (pathFile = ty),
+          (mtype = "audio"),
+          (mimetype = "audio/mpeg");
+      else mtype = "document";
+      conn
+        .sendMessage(
+          m.from,
+          {
+            ...options,
+            caption,
+            ptt,
+            fileName: filename,
+            [mtype]: { url: pathFile },
+            mimetype,
+          },
+          {
+            ...opt,
+            ...options,
+          }
+        )
+        .then(() => {
+          fs.unlinkSync(pathFile);
+        });
+    };
     conn.copyNForward = async (jid, message, forceForward = false, options = {}) => {
         let vtype
 		if (options.readViewOnce) {
