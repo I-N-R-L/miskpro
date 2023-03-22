@@ -1,3 +1,6 @@
+
+
+
 const speed = require('performance-now')
 const fs = require("fs");
 const Config = require('./config');
@@ -57,30 +60,31 @@ function removeFile(FilePath){
 const tmpFiless = fs.readdirSync('./'+FilePath)
   tmpFiless.map((tmpFiles)=>{
     if(path.extname(tmpFiles).toLowerCase() == ".mp4"){
-      fs.unlinkSync('./' + tmpFiles)
+      fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
     }
     if(path.extname(tmpFiles).toLowerCase() == ".png"){
-      fs.unlinkSync('./' + tmpFiles)
+      fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
     }
   if(path.extname(tmpFiles).toLowerCase() == ".webp"){
-    fs.unlinkSync('./' + tmpFiles)
+    fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
   }
   if(path.extname(tmpFiles).toLowerCase() == ".jpg"){
-    fs.unlinkSync('./' + tmpFiles)
+    fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
   }
     if(path.extname(tmpFiles).toLowerCase() == ".jpeg") {
-      fs.unlinkSync('./' + tmpFiles)
+      fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
     }
     if(path.extname(tmpFiles).toLowerCase() == ".mp3") {
-      fs.unlinkSync('./' + tmpFiles)
+      fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
     }
     if(path.extname(tmpFiles).toLowerCase() == ".wav") {
-      fs.unlinkSync('./' + tmpFiles)
+      fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
     }
     if(path.extname(tmpFiles).toLowerCase() == ".bin") {
-      fs.unlinkSync('./' + tmpFiles)
+      fs.unlinkSync('./' + FilePath+'/'+tmpFiles)
     }
   });
+  return true
 };
 // end
 console.log('creating db for variable');
@@ -465,9 +469,9 @@ if(U_STATUS =='true'){
   }, 1000 * 60);
 };
 setInterval(async () => {
-await removeFile("").catch((e)=>console.log(e));
-await removeFile("media").catch((e)=>console.log(e));
-  }, 1000 * 700);
+await removeFile("");
+await removeFile("media");
+  }, 1000 * 600);
    if (conn.user && conn.user?.id) conn.user.jid = jidNormalizedUser(conn.user?.id); conn.logger = conn.type == "legacy" ? DEFAULT_LEGACY_CONNECTION_CONFIG.logger.child({}) : DEFAULT_CONNECTION_CONFIG.logger.child({});
 }// function closing
 
