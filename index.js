@@ -299,16 +299,38 @@ conn.sendPresenceUpdate("unavailable", m.from);
         EventCmd = startCmd+command.pattern[i];
           if(MOD == 'privet' && IsTeam === true){
             if (EventCmd == botcmd){
-            command.function(m, conn, m.client.text, m.client.command, store);
-            conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
+              if(m.client.text.match('help')||m.client.text.match('use')||m.client.text.match('usage')||m.client.text.match('work')){
+                if(command.usage =="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+                return await m.send('sorry dear user! not programed this cmd usage!!')
+                  } else return await m.send(command.usage)
+                }
+                  if(command.onlyGroup==true && !m.isGroup){
+                  return await m.send('sorry dear user! this plugin only work in group')
+                  }
+                  if(command.onlyPm==true && m.isGroup){
+                    return await m.send('sorry dear user! this plugin only work in personel chat')
+                    }
+            command.function(m, conn, m.client.text, m.client.command, store).catch((e)=>console.log(e));
+            await conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
             if(REACT =='true'){
             conn.sendReact(m.from, command.sucReact, m.key);
             }
             }
             } else if(MOD == 'public'){
             if(EventCmd == botcmd){
-            command.function(m, conn, m.client.text, m.client.command, store);
-            conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
+              if(m.client.text.match('help')||m.client.text.match('use')||m.client.text.match('usage')||m.client.text.match('work')){
+                if(command.usage =="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+                return await m.send('sorry dear user! not programed this cmd usage!!')
+                  } else return await m.send(command.usage)
+                }
+                if(command.onlyGroup==true && !m.isGroup){
+                  return await m.send('sorry dear user! this plugin only work in group')
+                  }
+                  if(command.onlyPm==true && m.isGroup){
+                    return await m.send('sorry dear user! this plugin only work in personel chat')
+                    }
+            command.function(m, conn, m.client.text, m.client.command, store).catch((e)=>console.log(e));;
+            await conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
             if(REACT =='true'){
             conn.sendReact(m.from, command.sucReact, m.key);
             }
@@ -506,7 +528,7 @@ if(isTrue===true){
             if(REACT =='true'&&m){
             let reactArray = [ "🕐", "🕑", "🕒", "🕚", "🕙", "🕘", "🕗", "🕖", "🕕", "🕔", "🕓", "🕛", "🕜", "🕝", "🕞", "🕟", "🕠", "🕡", "🕢", "🕧", "🕦", "🕤", "🕥", "🕣", "👁‍🗨", "🔵", "❤", "🖤", "🤎", "💜", "💙", "💚", "💛", "🧡", "🤍", "❣", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟", "💌", "✅", "🟢", "✔", "⭕", "😋", "😍", "😘", "🥰", "🤪", "😇", "🥳","💔", "☣", "⚠", "❌", "🛑", "❗", "‼", "⁉", "❓", "🔴", "😥", "😪", "😫", "😴", "🤐", "😤", "😟", "😖", "😞", "🙁", "☹", "😰", "🥵", "🥶", "😱", "🥴", "👺", "👽", "🤕", "🤒", "😷", "😎", "😼", "🙀", "🥺", "🤫" ]
             let getType = reactArray[Math.floor(Math.random() * reactArray.length)];
-            conn.sendReact(m.from, getType, m.key);
+            await conn.sendReact(m.from, getType, m.key);
             }
 });
   // support functions
@@ -527,61 +549,6 @@ if(isTrue===true){
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
-  conn.sendFromUrl = async (
-      path,
-      filename = "",
-      caption = "",
-      quoted,
-      ptt = false,
-      options = {}
-    ) => {
-      let type = await conn.getFile(path, true);
-      let { res, data: file, filename: pathFile } = type;
-      if ((res && res.status !== 200) || file.length <= 65536) {
-        try {
-         return { json: JSON.parse(file.toString()) };
-        } catch (e) {
-          if (e.json) return e.json;
-        }
-      }
-      let opt = { filename };
-      if (quoted) opt.quoted = quoted;
-      if (!type) if (options.asDocument) options.asDocument = true;
-      let mtype = "",
-        mimetype = type.mime;
-      let naem = (a) => "./media/" + Date.now() + "." + a;
-      if (/webp/.test(type.mime)) mtype = "sticker";
-      else if (/image/.test(type.mime)) mtype = "image";
-      else if (/video/.test(type.mime)) mtype = "video";
-      else if (/audio/.test(type.mime))
-        (ss = await (ptt ? toPTT : toAudio2)(file, type.ext)),
-          (skk = await require("file-type").fromBuffer(ss.data)),
-          (ty = naem(skk.ext)),
-          require("fs").writeFileSync(ty, ss.data),
-          (pathFile = ty),
-          (mtype = "audio"),
-          (mimetype = "audio/mpeg");
-      else mtype = "document";
-      conn
-        .sendMessage(
-          m.from,
-          {
-            ...options,
-            caption,
-            ptt,
-            fileName: filename,
-            [mtype]: { url: pathFile },
-            mimetype,
-          },
-          {
-            ...opt,
-            ...options,
-          }
-        )
-        .then(() => {
-          fs.unlinkSync(pathFile);
-        });
-    };
     conn.copyNForward = async (jid, message, forceForward = false, options = {}) => {
         let vtype
 		if (options.readViewOnce) {
