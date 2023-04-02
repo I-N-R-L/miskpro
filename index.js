@@ -31,7 +31,7 @@ let decryptedPlainText = aes256.decrypt(key, plaintext);
   let result = JSON.parse(body).result[0].data;
 fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
    }
-  //md();
+md();
 //admin pannel
 async function isADmin(m,conn){
 if(!m.isGroup) return false;
@@ -117,9 +117,27 @@ mongoose
     let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG,READ_CHAT,MENSION_TEXT,MENSION_IMG, MENSION_AUDIO}=await getVar();
     const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
-    let { version, isLatest } = await fetchLatestBaileysVersion();
-    connOptions = { markOnlineOnConnect: true, linkPreviewImageThumbnailWidth: 500, printQRInTerminal: true, browser: ["inrl", "Safari", "4.0.0"], logger: pino({ level: "silent" }), auth: state, version, };
-    conn = WASocket(connOptions);
+    conn = WASocket({
+            logger: pino({ level: 'fatal' }),
+            printQRInTerminal: false,
+            browser: ['inrl', 'safari', '1.0.0'],
+            fireInitQueries: false,
+            shouldSyncHistoryMessage: false,
+            downloadHistory: false,
+            syncFullHistory: false,
+            generateHighQualityLinkPreview: true,
+            auth: state,
+            version: [2, 2242, 6],
+            getMessage: async key => {
+                if (store) {
+                    const msg = await store.loadMessage(key.remoteJid, key.id, undefined)
+                    return msg.message || undefined
+                }
+                return {
+                    conversation: 'An Error Occurred, Repeat Command!'
+                }
+            }
+        })
     conn = new WAConnection(conn);
     store.bind(conn.ev);
     setInterval(() => {
