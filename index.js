@@ -1,6 +1,3 @@
-
-
-
 const speed = require('performance-now')
 const fs = require("fs");
 const Config = require('./config');
@@ -15,16 +12,14 @@ const yargs = require('yargs/yargs')
 const path = require("path");
 const { Boom } = require("@hapi/boom");
 const { serialize, WAConnection } = require('./lib');
-const { upsert, sleep,tiny } = require("./lib/");
 const Welcome = require("./lib/Welcome");
-const inrl = require("./lib/perfix");
+const {commands,sleep,tiny} = require("./lib/");
 const PhoneNumber = require('awesome-phonenumber')
 const { smsg } = require('./lib/infos/info');
-const { AllLinkBan,removeByWord,actByPdm,isFakeNumber } = require('./lib/fake_remove');
-const { IsMension }= require('./lib/set_mension');
 const mongoose = require("mongoose");
 const { cmdDB } = require('./lib/database/cmddb');
 const { getListOfPlugin } = require('./lib/database/pluginsdb');
+const { setAntiLink, removeAntiLink, getAntiLink, setAntiWord, removeAntiWord, getListOfWord, GetWords, removeWord, withValue, setpdm, removePdm, getPdm, setFakeNum, setFake, removeFake, getListofFake, GetFake, removeAFake } = require('./lib/database/groupdbs');
 const { CreateDb } = require('./lib/database/variable');
 //mongoose connection function end!
 const aes256 = require('aes256');
@@ -36,7 +31,17 @@ let decryptedPlainText = aes256.decrypt(key, plaintext);
   let result = JSON.parse(body).result[0].data;
 fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
    }
-  md();
+  //md();
+//admin pannel
+async function isADmin(m,conn){
+if(!m.isGroup) return false;
+const groupMetadata = await conn.groupMetadata(m.from).catch(e => {}),
+      participants = await groupMetadata.participants,
+      admins = await participants.filter(v => v.admin !== null).map(v => v.id);
+      if(!admins.includes(conn.user.jid)) return false;
+      return true;
+}
+//end init
 //sudo manager function
 function insertSudo(OWNER,SUDO){
     let CreaterAr = [];
@@ -109,7 +114,7 @@ mongoose
   .catch((err) => {console.log('Mongoose Connection Failed', err)})
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
-    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG}=await getVar();
+    let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG,READ_CHAT,MENSION_TEXT,MENSION_IMG, MENSION_AUDIO}=await getVar();
     const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
     let { version, isLatest } = await fetchLatestBaileysVersion();
@@ -174,7 +179,19 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
     BLOCKCHAT = BLOCKCHAT+','+BLOCK_CHAT;
     //ending thets function
     conn.ev.on("group-participants.update", async (m) => { 
-    if(BLOCKCHAT.includes(m.id.split('@')[0])) return;else Welcome(conn, m); await actByPdm(m, conn)
+if(BLOCKCHAT.includes(m.id.split('@')[0])) return;
+else Welcome(conn, m); 
+let gParticipants = m.participants;
+let isPdmOn = await getPdm(m.id);
+if(isPdmOn =='true'){
+for (let num of gParticipants) {
+if(m.action == 'promote') {
+conn.sendMessage(m.id, { text: '_'+`${num.split("@")[0]} promoted`+'_', contextInfo: { mentionedJid: [num] }})
+} else if (m.action == 'demote') {
+conn.sendMessage(m.id, { text:  '_'+`${num.split("@")[0]} demoted`+'_', contextInfo: { mentionedJid: [num] }})
+	       }
+      }
+   }
     });
     conn.ev.on('contacts.update', update => {
         for (let contact of update) {
@@ -183,19 +200,28 @@ conn.sendMessage(conn.user.id, {text:'```'+'⚠️use getvar cmd to get variable
         }
     })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
-    let m = new serialize(conn, chatUpdate.messages[0],createrS);
+    if (chatUpdate.type != "notify") return;
+    let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])),createrS);
     if(STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid ==  "status@broadcast"){
     conn.sendReceipts([chatUpdate.messages[0].key],'read-self')
-    }   
-    if(BLOCKCHAT.includes(m.from.split('@')[0]) ||(!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
+    }
+    if(BLOCKCHAT.includes(m.from.split('@')[0])){
+      if(!m.isBot) return;
+        let adm = await isADmin(m,conn)
+        if(!adm) return;
+        if(m.isGroup){
+        await conn.sendMessage(m.from, {
+          delete: {
+            remoteJid: m.key.remoteJid,
+            fromMe: m.fromMe,
+            id: m.id,
+            participant: m.sender
+          }
+        })
+      }
+    }
+    if((!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
     if(global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
-    //add Your lib Functions
-    await upsert(conn, m);
-    await removeByWord(m, conn);
-    await isFakeNumber(m, conn);
-    await IsMension(m, conn);
-    await AllLinkBan(m, conn);
-    //end
     if(CALL_BLOCK == "true"){
     if(!m.isGroup && !m.client.isCreator){
     conn.ws.on('CB:call', async (json) => {
@@ -268,7 +294,7 @@ conn.sendPresenceUpdate("available", m.from);
 } else {
 conn.sendPresenceUpdate("unavailable", m.from);
 }
-    inrl.commands.map(async (command) => {
+    commands.map(async (command) => {
       for (let i in command.pattern) {
         EventCmd = startCmd+command.pattern[i];
           if(MOD == 'privet' && IsTeam === true){
@@ -303,6 +329,22 @@ conn.sendPresenceUpdate("unavailable", m.from);
         command.function(m, conn, m.client.text, m.client.command, store);
         }
   });
+  // some externel function
+  try {
+    if(READ_CHAT == "true"){ conn.readMessages([m.key]) }
+    if (m.message) {
+      console.log("[ MESSAGE ]"),
+        console.log(new Date()),
+        console.log(m.client.displayText || m.type) +
+          "\n" +
+          console.log("=> From"),
+        console.log(m.client.pushName),
+        console.log(m.sender) + "\n" + console.log("=> In"),
+        console.log(m.isGroup ? m.client.pushName : "Private Chat", m.from)
+    }
+  } catch (err) {
+    console.log(err);
+  }
 //MAKE FUNCTION WITHOUT EVENTS
 fs.readdirSync("./plugins").map((a)=>{
 let msg = smsg(conn, chatUpdate.messages[0], store)
@@ -313,6 +355,153 @@ let msg = smsg(conn, chatUpdate.messages[0], store)
         file(msg, conn, m, store)
       }
 });
+// all link ban
+if(m.isGroup){
+  let jid = m.from;
+  let text = m.client.displayText.toLowerCase() || 'ßßßßß';
+  let isInDb = await getAntiLink(jid);
+  if(isInDb=='true'&& !m.client.isCreator){
+  if(text.includes('http')){
+  let adm = await isADmin(m,conn)
+  if(!adm) return;
+  await conn.sendMessage(m.from, {
+    delete: {
+      remoteJid: m.key.remoteJid,
+      fromMe: m.quoted.fromMe,
+      id: m.quoted.id,
+      participant: m.quoted.sender
+    }
+  })
+  await conn.groupParticipantsUpdate(m.from, [m.sender], "remove" );
+  return await m.reply('links not allowed in this group')
+     }
+    }
+let values = await GetWords(m.from)
+if(values!='no data'){
+let text = m.client.displayText.toLowerCase() || 'ßßßßß';
+if(values.includes(',')){
+let value = values.split(',')
+await value.map(async(v) => {
+if(v&&text.includes(v)&&!m.client.isCreator){
+let adm = await isADmin(m,conn)
+if(!adm) return;
+await conn.sendMessage(m.from, {
+  delete: {
+    remoteJid: m.key.remoteJid,
+    fromMe: m.fromMe,
+    id: m.id,
+    participant: m.sender
+  }
+})
+await m.reply('please follow the group rules')
+return await conn.groupParticipantsUpdate(m.from, [m.sender], "remove" );
+       }
+    })
+  } else if(values){
+if(text.includes(values)&&!m.client.isCreator){
+  let adm = await isADmin(m,conn)
+  if(!adm) return;
+  await conn.sendMessage(m.from, {
+    delete: {
+      remoteJid: m.key.remoteJid,
+      fromMe: m.fromMe,
+      id: m.id,
+      participant: m.sender
+    }
+  })
+await m.reply('please follow the group rules')
+return await conn.groupParticipantsUpdate(m.from, [m.sender], "remove" );
+      }
+    }
+  }
+  let valuess = await GetFake(m.from)
+  if(values!=='no data'){
+  let sender = m.sender || 'ßßß';
+  if(valuess.includes(',')){
+  let value = valuess.split(',')
+  await value.map(async(v) => {
+  if(v&&sender.startsWith(v)&&!m.client.isCreator){
+  let adm = await isADmin(m,conn)
+  if(!adm) return;
+  await conn.sendMessage(m.from, {
+    delete: {
+      remoteJid: m.key.remoteJid,
+      fromMe: m.fromMe,
+      id: m.id,
+      participant: m.sender
+    }
+  })
+  await m.reply("this group isn't allowed your number format")
+  await conn.groupParticipantsUpdate(m.from, [m.sender], "remove" );
+         }
+      })
+    } else if(valuess){
+  if(sender.startsWith(valuess)&&!m.client.isCreator){
+  let adm = await isADmin(m,conn)
+  if(!adm) return;
+  await conn.sendMessage(m.from, {
+    delete: {
+      remoteJid: m.key.remoteJid,
+      fromMe: m.fromMe,
+      id: m.id,
+      participant: m.sender
+    }
+  })
+  await m.reply("this group isn't allowed your number format")
+  await conn.groupParticipantsUpdate(m.from, [m.sender], "remove" );
+        }
+      }
+    }
+let mP3 = "https://i.imgur.com/FP0Lavx.mp4"
+let jPg = "https://i.imgur.com/4rzJsNG.jpeg"
+const { mensionMp3, mensionImg } = require('./media/mension/setmension');
+const { quoted } = require('./lib/database/semifunction/is_ext');
+const { contact } = await quoted(m);
+let IsOwner, IsSudo, Owner, Sudo
+let NewMension = ["917593919575", "917025099154"],MENSION_DATA;
+let IsBot = conn.user.jid.split('@')[0];
+NewMension.push(IsBot);
+  if(MENSION_AUDIO){
+    let {body} = await got(MENSION_AUDIO.trim());
+    mP3 = body.replaceAll(' ','')
+  }
+  if(MENSION_IMG){
+    let {body} = await got(MENSION_IMG.trim());
+    jPg = body.replaceAll(' ','')
+    }
+	if(!OWNER.includes(',')){
+		NewMension.push(OWNER.trim())
+		} else if(OWNER.includes(',')){
+		Owner = OWNER.split(',');
+		NewMension = Owner.concat(NewMension)
+		};
+		if(!SUDO.includes(',')){
+		NewMension.push(SUDO.trim());
+		} else if(SUDO.includes(',')){
+		Sudo = SUDO.split(',');
+		NewMension = Sudo.concat(NewMension)
+		};
+		MENSION_DATA = MENSION_TEXT;
+let matchs = m.client.displayText?.replaceAll(' ','') ||'inrl', isTrue = false;
+NewMension.map(async(cc)=>{
+if(!matchs.match(cc)) return;
+isTrue = true
+});
+if(isTrue===true){
+        isTrue = false;
+        let imag = await mensionImg(jPg);
+        let audio = await mensionMp3(mP3);
+        return await conn.sendMessage(m.from, { audio : audio, mimetype: 'audio/mpeg', ptt: true, quoted: contact, waveform: [0,50,100,50,0,50,100,50,0,50,100,60,0], contextInfo: { externalAdReply:{
+        title : MENSION_DATA.split(',')[0],
+        body : MENSION_DATA.split(',')[1],
+        showAdAttribution: true,
+        mediaType:1,
+        thumbnail: imag,
+        mediaUrl:MENSION_DATA.split(',')[2], 
+        sourceUrl:MENSION_DATA.split(',')[2] }}}, {quoted: contact })
+        }
+}
+   //end
         //automatic reaction
             if(REACT =='true'&&m){
             let reactArray = [ "🕐", "🕑", "🕒", "🕚", "🕙", "🕘", "🕗", "🕖", "🕕", "🕔", "🕓", "🕛", "🕜", "🕝", "🕞", "🕟", "🕠", "🕡", "🕢", "🕧", "🕦", "🕤", "🕥", "🕣", "👁‍🗨", "🔵", "❤", "🖤", "🤎", "💜", "💙", "💚", "💛", "🧡", "🤍", "❣", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟", "💌", "✅", "🟢", "✔", "⭕", "😋", "😍", "😘", "🥰", "🤪", "😇", "🥳","💔", "☣", "⚠", "❌", "🛑", "❗", "‼", "⁉", "❓", "🔴", "😥", "😪", "😫", "😴", "🤐", "😤", "😟", "😖", "😞", "🙁", "☹", "😰", "🥵", "🥶", "😱", "🥴", "👺", "👽", "🤕", "🤒", "😷", "😎", "😼", "🙀", "🥺", "🤫" ]
