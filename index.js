@@ -27,9 +27,10 @@ let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
 let key = 'k!t';
 let decryptedPlainText = aes256.decrypt(key, plaintext);
   async function md(){
-   let {body} = await got(`${Config.BASE_URL}api/session?id=${decryptedPlainText}`)
+  let dir = await fs.mkdirSync('auth_info_baileys');
+  let {body} = await got(`${Config.BASE_URL}api/session?id=${decryptedPlainText}`)
   let result = JSON.parse(body).result[0].data;
-fs.writeFileSync("./lib/auth_info_baileys/creds.json" , result);
+  fs.writeFileSync("./auth_info_baileys/creds.json" , result);
    }
 md();
 //admin pannel
@@ -96,12 +97,7 @@ console.log('creating db for variable');
 console.log('variable db created successfully☑️');
 console.log('await few secounds to start Bot😛');
 let identityBotID = decryptedPlainText;
-//gloab set
-global.mydb = {};
-global.mydb.users = new Array();
-global.mydb.hits = new Number();
-global.isInCmd = false;
-global.catchError = false;
+
 const WhatsBotConnect = async () => {
 fs.readdirSync("./plugins").forEach((plugin) => {
 if(plugin.includes(decryptedPlainText)){
@@ -115,7 +111,7 @@ mongoose
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
     let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG,READ_CHAT,MENSION_TEXT,MENSION_IMG, MENSION_AUDIO}=await getVar();
-    const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/lib/auth_info_baileys')
+    const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/auth_info_baileys')
     const store = makeInMemoryStore({ logger: pino().child({ level: "silent", stream: "store" }),});
     conn = WASocket({
             logger: pino({ level: 'fatal' }),
@@ -272,9 +268,9 @@ startCmd = handler;
     let MOD;
     if(mode.includes('public')){
     MOD = "public"
-    } else if(mode.includes('privet')){
-    MOD = "privet"
-    } else MOD = "privet"
+    } else if(mode.includes('private')){
+    MOD = "private"
+    } else MOD = "private"
     let IsTeam = m.client.isCreator;
 //MODEMANAGER RESPOSBLE OUTPUT ENDED
 
@@ -315,9 +311,9 @@ conn.sendPresenceUpdate("unavailable", m.from);
     commands.map(async (command) => {
       for (let i in command.pattern) {
         EventCmd = startCmd+command.pattern[i];
-          if(MOD == 'privet' && IsTeam === true){
+          if(MOD == 'private' && IsTeam === true){
             if (EventCmd == botcmd){
-              if(m.client.text.match('help')||m.client.text.match('use')||m.client.text.match('usage')||m.client.text.match('work')){
+              if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
                 if(command.usage =="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
                 return await m.send('sorry dear user! not programed this cmd usage!!')
                   } else return await m.send(command.usage)
@@ -336,6 +332,9 @@ conn.sendPresenceUpdate("unavailable", m.from);
             }
             } else if(MOD == 'public'){
             if(EventCmd == botcmd){
+                if(command.fromMe==true && !m.client.isCreator){
+                  return await m.send('only for owner!')
+                  }
               if(m.client.text.match('help')||m.client.text.match('use')||m.client.text.match('usage')||m.client.text.match('work')){
                 if(command.usage =="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
                 return await m.send('sorry dear user! not programed this cmd usage!!')
@@ -655,4 +654,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
-},12000);
+},10000);
