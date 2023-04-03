@@ -323,6 +323,17 @@ conn.sendPresenceUpdate("unavailable", m.from);
                   if(command.onlyPm==true && m.isGroup){
                     return await m.send('sorry dear user! this plugin only work in personel chat')
                     }
+        if(command.media =="text" && !m.client.displayText){
+        return await m.send('this plugin only response when data as text');
+        } else if(command.media =="sticker" && m.type != "stickerMessage"){
+        return await m.send('this plugin only response when data as sticker');
+        } else if(command.media =="image" && m.type != "imageMessage"){
+        return await m.send('this plugin only response when data as image');
+        } else if(command.media =="video" && m.type != "videoMessage"){
+        return await m.send('this plugin only response when data as video');
+        } else if(command.media =="audio" && m.type != "audioMessage"){
+        return await m.send('this plugin only response when data as audio');
+        }
             command.function(m, conn, m.client.text, m.client.command, store).catch((e)=>console.log(e));
             await conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
             if(REACT =='true'){
@@ -345,6 +356,17 @@ conn.sendPresenceUpdate("unavailable", m.from);
                   if(command.onlyPm==true && m.isGroup){
                     return await m.send('sorry dear user! this plugin only work in personel chat')
                     }
+        if(command.media =="text" && !m.client.displayText){
+        return await m.send('this plugin only response when data as text');
+        } else if(command.media =="sticker" && m.type != "stickerMessage"){
+        return await m.send('this plugin only response when data as sticker');
+        } else if(command.media =="image" && m.type != "imageMessage"){
+        return await m.send('this plugin only response when data as image');
+        } else if(command.media =="video" && m.type != "videoMessage"){
+        return await m.send('this plugin only response when data as video');
+        } else if(command.media =="audio" && m.type != "audioMessage"){
+        return await m.send('this plugin only response when data as audio');
+        }
             command.function(m, conn, m.client.text, m.client.command, store).catch((e)=>console.log(e));;
             await conn.sendPresenceUpdate(BOT_PRESENCE, m.from );
             if(REACT =='true'){
