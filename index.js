@@ -335,9 +335,9 @@ conn.sendPresenceUpdate("unavailable", m.from);
                 if(command.fromMe==true && !m.client.isCreator){
                   return await m.send('only for owner!')
                   }
-              if(m.client.text.match('help')||m.client.text.match('use')||m.client.text.match('usage')||m.client.text.match('work')){
+              if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
                 if(command.usage =="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
-                return await m.send('sorry dear user! not programed this cmd usage!!')
+                return await m.send('sorry dear! dev not programed this cmd usage!!')
                   } else return await m.send(command.usage)
                 }
                 if(command.onlyGroup==true && !m.isGroup){
