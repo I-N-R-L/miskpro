@@ -235,7 +235,6 @@ conn.sendMessage(m.id, { text:  '_'+`${num.split("@")[0]} demoted`+'_', contextI
       }
     }
     if((!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
-    if(global.mydb.users.indexOf(m.sender) == -1) global.mydb.users.push(m.sender);
     if(CALL_BLOCK == "true"){
     if(!m.isGroup && !m.client.isCreator){
     conn.ws.on('CB:call', async (json) => {
