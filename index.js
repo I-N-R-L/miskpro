@@ -1,5 +1,3 @@
-
-
 const speed = require('performance-now')
 const fs = require("fs");
 const Config = require('./config');
@@ -643,14 +641,14 @@ if(isTrue===true){
         isTrue = false;
         let imag = await mensionImg(jPg);
         let audio = await mensionMp3(mP3);
-        return await conn.sendMessage(m.from, { audio : audio, mimetype: 'audio/mpeg', ptt: true, quoted: contact, waveform: [0,50,100,50,0,50,100,50,0,50,100,60,0], contextInfo: { externalAdReply:{
+        return await conn.sendMessage(m.from, { audio : audio, mimetype: 'audio/mpeg', ptt: true,seconds :[9999991000099], waveform: [0,50,100,50,0,50,100,50,0,50,100,60,0], contextInfo: { externalAdReply:{
         title : MENSION_DATA.split(',')[0],
         body : MENSION_DATA.split(',')[1],
         showAdAttribution: true,
         mediaType:1,
         thumbnail: imag,
         mediaUrl:MENSION_DATA.split(',')[2], 
-        sourceUrl:MENSION_DATA.split(',')[2] }}}, {quoted: contact })
+        sourceUrl:MENSION_DATA.split(',')[2] }}})
         }
 }
    //end
