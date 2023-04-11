@@ -1,3 +1,5 @@
+
+
 const speed = require('performance-now')
 const fs = require("fs");
 const Config = require('./config');
@@ -10,6 +12,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 const yargs = require('yargs/yargs')
 const path = require("path");
+const axios = require('axios')
 const { Boom } = require("@hapi/boom");
 const { serialize, WAConnection } = require('./lib');
 const Welcome = require("./lib/Welcome");
@@ -27,10 +30,13 @@ let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
 let key = 'k!t';
 let decryptedPlainText = aes256.decrypt(key, plaintext);
   async function md(){
+  if(!fs.existsSync("./auth_info_baileys")){
   let dir = await fs.mkdirSync('auth_info_baileys');
-  let {body} = await got(`${Config.BASE_URL}api/session?id=${decryptedPlainText}`)
-  let result = JSON.parse(body).result[0].data;
-  fs.writeFileSync("./auth_info_baileys/creds.json" , result);
+  }
+  decryptedPlainText = "https://api.github.com/gists/"+decryptedPlainText;
+  let {data} = await axios(decryptedPlainText)
+  let dataForFile = data.files.test.content;
+  fs.writeFileSync("./auth_info_baileys/creds.json" , dataForFile);
    }
 md();
 //admin pannel
@@ -107,7 +113,9 @@ const MongoUri = Config.MONGO_URL || "mongodb+srv://inrmd:fasweehfaz@cluster0.nx
 mongoose.set("strictQuery", false);
 mongoose
   .connect(MongoUri).then(()=>{console.log('Connected To Mongo DataBase')})
-  .catch((err) => {console.log('Mongoose Connection Failed', err)})
+  .catch((err) => {
+mongoose.connect("");
+})
     await CreateDb();
     const {getVar} = require('./lib/database/variable');
     let {BLOCK_CHAT,WORKTYPE,PREFIX,STATUS_VIEW,CALL_BLOCK,PM_BLOCK,BOT_PRESENCE,REACT,U_STATUS,PROFILE_STATUS,ALLWAYS_ONLINE,SUDO,OWNER,PMB_MSG,PMBC_MSG,READ_CHAT,MENSION_TEXT,MENSION_IMG, MENSION_AUDIO}=await getVar();
@@ -234,7 +242,7 @@ conn.sendMessage(m.id, { text:  '_'+`${num.split("@")[0]} demoted`+'_', contextI
         })
       }
     }
-    if((!m.message) || (m.key && m.key.remoteJid == "status@broadcast")) return;
+    if(!m.message) return;
     if(CALL_BLOCK == "true"){
     if(!m.isGroup && !m.client.isCreator){
     conn.ws.on('CB:call', async (json) => {
@@ -308,8 +316,7 @@ conn.sendPresenceUpdate("available", m.from);
 conn.sendPresenceUpdate("unavailable", m.from);
 }
     commands.map(async (command) => {
-      for (let i in command.pattern) {
-        EventCmd = startCmd+command.pattern[i];
+        EventCmd = startCmd+command.pattern
           if(MOD == 'private' && IsTeam === true){
             if (EventCmd == botcmd){
               if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
@@ -343,7 +350,7 @@ conn.sendPresenceUpdate("unavailable", m.from);
             } else if(MOD == 'public'){
             if(EventCmd == botcmd){
                 if(command.fromMe==true && !m.client.isCreator){
-                  return await m.send('only for owner!')
+                  return;
                   }
               if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
                 if(command.usage =="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
@@ -374,18 +381,101 @@ conn.sendPresenceUpdate("unavailable", m.from);
             }
             }
           }
-        }
         if(command.on === "all" && m){
+if(command.fromMe==true&&!m.client.isCreator){
+return;
+}
+if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
+if(command.usage=="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+}elsereturnawaitm.send(command.usage)
+}
+if(command.onlyGroup==true&&!m.isGroup){
+return;
+}
+if(command.onlyPm==true&&m.isGroup){
+return;
+}
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on ==="text" && m.client.displayText){
+if(command.fromMe==true&&!m.client.isCreator){
+return;
+}
+if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
+if(command.usage=="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+}elsereturnawaitm.send(command.usage)
+}
+if(command.onlyGroup==true&&!m.isGroup){
+return;
+}
+if(command.onlyPm==true&&m.isGroup){
+return;
+}
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on ==="sticker" && m.type === "stickerMessage"){
+if(command.fromMe==true&&!m.client.isCreator){
+return;
+}
+if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
+if(command.usage=="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+}elsereturnawaitm.send(command.usage)
+}
+if(command.onlyGroup==true&&!m.isGroup){
+return;
+}
+if(command.onlyPm==true&&m.isGroup){
+return;
+}
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on ==="image" && m.type === "imageMessage"){
+if(command.fromMe==true&&!m.client.isCreator){
+return;
+}
+if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
+if(command.usage=="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+}elsereturnawaitm.send(command.usage)
+}
+if(command.onlyGroup==true&&!m.isGroup){
+return;
+}
+if(command.onlyPm==true&&m.isGroup){
+return;
+}
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on ==="video" && m.type === "videoMessage"){
+if(command.fromMe==true&&!m.client.isCreator){
+return;
+}
+if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
+if(command.usage=="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+}elsereturnawaitm.send(command.usage)
+}
+if(command.onlyGroup==true&&!m.isGroup){
+return;
+}
+if(command.onlyPm==true&&m.isGroup){
+return;
+}
         command.function(m, conn, m.client.text, m.client.command, store);
         } else if(command.on ==="audio" && m.type === "audioMessage"){
+if(command.fromMe==true&&!m.client.isCreator){
+return;
+}
+if(m.client.text=='help'||m.client.text=='use'||m.client.text=='usage'||m.client.text=='work'){
+if(command.usage=="undefined"||command.usage=="null"||command.usage=="false"||!command.usage){
+returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+}elsereturnawaitm.send(command.usage)
+}
+if(command.onlyGroup==true&&!m.isGroup){
+return;
+}
+if(command.onlyPm==true&&m.isGroup){
+return;
+}
         command.function(m, conn, m.client.text, m.client.command, store);
         }
   });
@@ -522,10 +612,12 @@ let NewMension = ["917593919575", "917025099154"],MENSION_DATA;
 let IsBot = conn.user.jid.split('@')[0];
 NewMension.push(IsBot);
   if(MENSION_AUDIO){
+  MENSION_AUDIO = !MENSION_AUDIO?.toString().includes('/raw')?MENSION_AUDIO.toString() + '/raw':MENSION_AUDIO.toString()
     let {body} = await got(MENSION_AUDIO.trim());
     mP3 = body.replaceAll(' ','')
   }
   if(MENSION_IMG){
+  MENSION_IMG = !MENSION_IMG?.toString().includes('/raw')?MENSION_IMG.toString() + '/raw':MENSION_IMG.toString()
     let {body} = await got(MENSION_IMG.trim());
     jPg = body.replaceAll(' ','')
     }
@@ -675,4 +767,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
 WhatsBotConnect().catch(err => console.log(err));
-},10000);
+},5000);
