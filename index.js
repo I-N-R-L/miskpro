@@ -603,8 +603,6 @@ return await conn.groupParticipantsUpdate(m.from, [m.sender], "remove" );
 let mP3 = "https://i.imgur.com/FP0Lavx.mp4"
 let jPg = "https://i.imgur.com/4rzJsNG.jpeg"
 const { mensionMp3, mensionImg } = require('./media/mension/setmension');
-const { quoted } = require('./lib/database/semifunction/is_ext');
-const { contact } = await quoted(m);
 let IsOwner, IsSudo, Owner, Sudo
 let NewMension = ["917593919575", "917025099154"],MENSION_DATA;
 let IsBot = conn.user.jid.split('@')[0];
