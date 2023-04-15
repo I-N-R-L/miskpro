@@ -325,12 +325,12 @@ const WhatsBotConnect = async () => {
             for (let num of gParticipants) {
                 if (m.action == 'promote') {
                     conn.sendMessage(m.id, {
-                        text: '_' + `${num.split("@")[0]} promoted` + '_',
+                        text: '_' + `@${num.split("@")[0]} promoted` + '_',
                         mentions: [num]
                     })
                 } else if (m.action == 'demote') {
                     conn.sendMessage(m.id, {
-                        text: '_' + `${num.split("@")[0]} demoted` + '_',
+                        text: '_' + `@${num.split("@")[0]} demoted` + '_',
                         mentions: [num]
                     })
                 }
