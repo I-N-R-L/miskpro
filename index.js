@@ -347,7 +347,6 @@ const WhatsBotConnect = async () => {
         }
     })
     conn.ev.on("messages.upsert", async (chatUpdate) => {
-        if (chatUpdate.type != "notify") return;
         let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
         if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
             conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
