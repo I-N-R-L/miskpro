@@ -30,15 +30,13 @@ const axios = require('axios')
 const {
     Boom
 } = require("@hapi/boom");
-const {
-    serialize,
-    WAConnection
-} = require('./lib');
 const Welcome = require("./lib/Welcome");
 const {
     commands,
     sleep,
-    tiny
+    tiny,
+    serialize,
+    WAConnection
 } = require("./lib/");
 const PhoneNumber = require('awesome-phonenumber')
 const {
@@ -630,7 +628,7 @@ const WhatsBotConnect = async () => {
         }
         //MAKE FUNCTION WITHOUT EVENTS
         fs.readdirSync("./plugins").map((a) => {
-            let msg = smsg(conn, chatUpdate.messages[0], store)
+            let msg = smsg(conn, chatUpdate.messages[0])
             let file = require("./plugins/" + a);
             if (file.constructor.name === 'AsyncFunction') {
                 file(msg, conn, m, store)
