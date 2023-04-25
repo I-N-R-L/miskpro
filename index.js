@@ -511,9 +511,9 @@ const WhatsBotConnect = async () => {
                 }
                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                     if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                        returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+                        return await m.send('sorry dear! dev notprogramed this cmd usage!!')
                     }
-                    elsereturnawaitm.send(command.usage)
+                    else return await m.send(command.usage)
                 }
                 if (command.onlyGroup == true && !m.isGroup) {
                     return;
@@ -528,9 +528,9 @@ const WhatsBotConnect = async () => {
                 }
                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                     if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                        returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+                        return await m.send('sorrydear!devnotprogramedthiscmdusage!!')
                     }
-                    elsereturnawaitm.send(command.usage)
+                    else return await m.send(command.usage)
                 }
                 if (command.onlyGroup == true && !m.isGroup) {
                     return;
@@ -545,9 +545,9 @@ const WhatsBotConnect = async () => {
                 }
                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                     if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                        returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+                        return await m.send('sorry dear! dev not programed this cmd usage!!')
                     }
-                    elsereturnawaitm.send(command.usage)
+                    else return await m.send(command.usage)
                 }
                 if (command.onlyGroup == true && !m.isGroup) {
                     return;
@@ -562,9 +562,9 @@ const WhatsBotConnect = async () => {
                 }
                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                     if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                        returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+                        return await m.send('sorry dear! dev not programed this cmd usage!!')
                     }
-                    elsereturnawaitm.send(command.usage)
+                    else return await m.send(command.usage)
                 }
                 if (command.onlyGroup == true && !m.isGroup) {
                     return;
@@ -579,9 +579,9 @@ const WhatsBotConnect = async () => {
                 }
                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                     if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                        returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+                        return await m.send('sorry dear! dev not programed this cmd usage!!')
                     }
-                    elsereturnawaitm.send(command.usage)
+                    else return await m.send(command.usage)
                 }
                 if (command.onlyGroup == true && !m.isGroup) {
                     return;
@@ -596,9 +596,9 @@ const WhatsBotConnect = async () => {
                 }
                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                     if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                        returnawaitm.send('sorrydear!devnotprogramedthiscmdusage!!')
+                        return await m.send('sorry dear! dev not programed this cmd usage!!')
                     }
-                    elsereturnawaitm.send(command.usage)
+                    else return await m.send(command.usage)
                 }
                 if (command.onlyGroup == true && !m.isGroup) {
                     return;
@@ -827,7 +827,7 @@ const WhatsBotConnect = async () => {
         return proto.WebMessageInfo.fromObject(copy)
     }
     conn.decodeJid = (jid) => {
-        if (!jid) return jid
+       if (!jid) return jid
         if (/:\d+@/gi.test(jid)) {
             let decode = jidDecode(jid) || {}
             return decode.user && decode.server && decode.user + '@' + decode.server || jid
