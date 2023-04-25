@@ -271,7 +271,7 @@ const WhatsBotConnect = async () => {
             console.log("plugin installed successfully☑️");
             console.log("💖 Login successful! \n bot working now💗");
             conn.sendMessage(conn.user.id, {
-                text: '```' + `bot working now 💗thanks for choosing inrlbotmd, if you have face any bug related on our bot please infrom our support group\nmode : ${WORKTYPE}\nprefix : ${PREFIX}\ntutorial :${TUTORIAL}\ngroupLink :${WAGRP}` + '```'
+                text: '```' + `bot working now\n\n\nplugins : ${commands.length.toString()}\nmode : ${WORKTYPE}\nprefix : ${PREFIX}\ntutorial :${TUTORIAL}\ngroupLink :${WAGRP}` + '```'
             });
             conn.sendMessage(conn.user.id, {
                 text: '```' + '⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️' + '```'
@@ -456,13 +456,13 @@ const WhatsBotConnect = async () => {
                     }
                     if (command.media == "text" && !m.client.displayText) {
                         return await m.send('this plugin only response when data as text');
-                    } else if (command.media == "sticker" && m.type != "stickerMessage") {
+                    } else if (command.media == "sticker" && "sticker".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as sticker');
-                    } else if (command.media == "image" && m.type != "imageMessage") {
+                    } else if (command.media == "image" && "image".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as image');
-                    } else if (command.media == "video" && m.type != "videoMessage") {
+                    } else if (command.media == "video" && "video".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as video');
-                    } else if (command.media == "audio" && m.type != "audioMessage") {
+                    } else if (command.media == "audio" && "audio".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as audio');
                     }
                     command.function(m, conn, m.client.text, m.client.command, store).catch((e) => console.log(e));
@@ -489,13 +489,13 @@ const WhatsBotConnect = async () => {
                     }
                     if (command.media == "text" && !m.client.displayText) {
                         return await m.send('this plugin only response when data as text');
-                    } else if (command.media == "sticker" && m.type != "stickerMessage") {
+                    } else if (command.media == "sticker" && "sticker".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as sticker');
-                    } else if (command.media == "image" && m.type != "imageMessage") {
+                    } else if (command.media == "image" && "image".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as image');
-                    } else if (command.media == "video" && m.type != "videoMessage") {
+                    } else if (command.media == "video" && "video".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as video');
-                    } else if (command.media == "audio" && m.type != "audioMessage") {
+                    } else if (command.media == "audio" && "audio".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as audio');
                     }
                     command.function(m, conn, m.client.text, m.client.command, store).catch((e) => console.log(e));;
