@@ -366,7 +366,6 @@ const WhatsBotConnect = async () => {
                 })
             }
         }
-        if (!m.message) return;
         if (CALL_BLOCK == "true") {
             if (!m.isGroup && !m.client.isCreator) {
                 conn.ws.on('CB:call', async (json) => {
