@@ -448,20 +448,20 @@ const WhatsBotConnect = async () => {
                         } else return await m.send(command.usage)
                     }
                     if (command.onlyGroup == true && !m.isGroup) {
-                        return await m.send('sorry dear user! this plugin only work in group')
+                        return await m.send('_this plugin only work in group_')
                     }
                     if (command.onlyPm == true && m.isGroup) {
-                        return await m.send('sorry dear user! this plugin only work in personel chat')
+                        return await m.send('_this plugin only work in personel chat_')
                     }
                     if (command.media == "text" && !m.client.displayText) {
                         return await m.send('this plugin only response when data as text');
-                    } else if (command.media == "sticker" && "sticker".test(message.client.mime)) {
+                    } else if (command.media == "sticker" && !"sticker".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as sticker');
-                    } else if (command.media == "image" && "image".test(message.client.mime)) {
+                    } else if (command.media == "image" && !"image".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as image');
-                    } else if (command.media == "video" && "video".test(message.client.mime)) {
+                    } else if (command.media == "video" && !"video".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as video');
-                    } else if (command.media == "audio" && "audio".test(message.client.mime)) {
+                    } else if (command.media == "audio" && !"audio".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as audio');
                     }
                     command.function(m, conn, m.client.text, m.client.command, store).catch((e) => console.log(e));
@@ -481,20 +481,20 @@ const WhatsBotConnect = async () => {
                         } else return await m.send(command.usage)
                     }
                     if (command.onlyGroup == true && !m.isGroup) {
-                        return await m.send('sorry dear user! this plugin only work in group')
+                        return await m.send('_this plugin only work in group_')
                     }
                     if (command.onlyPm == true && m.isGroup) {
-                        return await m.send('sorry dear user! this plugin only work in personel chat')
+                        return await m.send('_this plugin only work in personel chat_')
                     }
                     if (command.media == "text" && !m.client.displayText) {
                         return await m.send('this plugin only response when data as text');
-                    } else if (command.media == "sticker" && "sticker".test(message.client.mime)) {
+                    } else if (command.media == "sticker" && !"sticker".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as sticker');
-                    } else if (command.media == "image" && "image".test(message.client.mime)) {
+                    } else if (command.media == "image" && !"image".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as image');
-                    } else if (command.media == "video" && "video".test(message.client.mime)) {
+                    } else if (command.media == "video" && !"video".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as video');
-                    } else if (command.media == "audio" && "audio".test(message.client.mime)) {
+                    } else if (command.media == "audio" && !"audio".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as audio');
                     }
                     command.function(m, conn, m.client.text, m.client.command, store).catch((e) => console.log(e));;
@@ -527,7 +527,7 @@ const WhatsBotConnect = async () => {
                 }
                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                     if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                        return await m.send('sorrydear!devnotprogramedthiscmdusage!!')
+                        return await m.send('sorry dear! dev notprogramed this cmd usage!!')
                     }
                     else return await m.send(command.usage)
                 }
