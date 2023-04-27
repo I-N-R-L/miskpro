@@ -436,7 +436,7 @@ const WhatsBotConnect = async () => {
         }
         botcmd = startCmd + botcmd.replace(startCmd,'').trim();
         commands.map(async (command) => { 
-            EventCmd = startCmd + command.pattern
+            EventCmd = startCmd + command.pattern.replace(/[^a-zA-Z0-9]/g,'');
             if (MOD == 'private' && IsTeam === true) {
                 if (botcmd.startsWith(EventCmd) {
                     m.client.command = EventCmd
