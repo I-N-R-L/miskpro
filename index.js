@@ -36,7 +36,8 @@ const {
     sleep,
     tiny,
     serialize,
-    WAConnection
+    WAConnection,
+    connect
 } = require("./lib/");
 const PhoneNumber = require('awesome-phonenumber')
 const {
@@ -77,18 +78,9 @@ const aes256 = require('aes256');
 let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
 let key = 'k!t';
 let decryptedPlainText = aes256.decrypt(key, plaintext);
-async function md() {
-    if (!fs.existsSync("./auth_info_baileys")) {
-        let dir = await fs.mkdirSync('auth_info_baileys');
-    }
-    decryptedPlainText = "https://api.github.com/gists/" + decryptedPlainText;
-    let {
-        data
-    } = await axios(decryptedPlainText)
-    let dataForFile = data.files.test.content;
-    fs.writeFileSync("./auth_info_baileys/creds.json", dataForFile);
-}
-md();
+(async () => {
+await connect(decryptedPlainText);
+})();
 //admin pannel
 async function isAdmin(m, conn) {
     if (!m.isGroup) return false;
