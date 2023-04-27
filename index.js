@@ -408,11 +408,7 @@ const WhatsBotConnect = async () => {
         let IsTeam = m.client.isCreator;
         //MODEMANAGER RESPOSBLE OUTPUT ENDED
         //PERFIX ACCESSIBLIE MANAGMENT
-        if (m.client.body.startsWith(startCmd)) {
-            botcmd = startCmd + m.client.command.replace(startCmd, '');
-        } else {
-            botcmd = m.client.command;
-        }
+        botcmd = m.client.body;
         //Check if cmd exist on media
         if (m.msg && m.msg.fileSha256) {
             let sha257 = identityBotID + m.msg.fileSha256.join("")
@@ -438,10 +434,12 @@ const WhatsBotConnect = async () => {
         } else {
             conn.sendPresenceUpdate("unavailable", m.from);
         }
-        commands.map(async (command) => {
+        commands.map(async (command) => { 
             EventCmd = startCmd + command.pattern
             if (MOD == 'private' && IsTeam === true) {
-                if (EventCmd == botcmd) {
+                if (botcmd.startsWith(EventCmd) {
+                    m.client.command = EventCmd
+                    m.client.text = m.client.body.replace(EventCmd,'').trim();
                     if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                         if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
                             return await m.send('sorry dear user! not programed this cmd usage!!')
@@ -471,7 +469,9 @@ const WhatsBotConnect = async () => {
                     }
                 }
             } else if (MOD == 'public') {
-                if (EventCmd == botcmd) {
+                if (botcmd.startsWith(EventCmd) {
+                    m.client.command = EventCmd
+                    m.client.text = m.client.body.replace(EventCmd,'').trim();
                     if (command.fromMe == true && !m.client.isCreator) {
                         return;
                     }
