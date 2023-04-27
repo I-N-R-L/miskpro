@@ -416,7 +416,7 @@ const WhatsBotConnect = async () => {
                 id: sha257
             }).then(async (cmdName) => {
                 if (cmdName) {
-                    botcmd = startCmd + cmdName.cmd.trim().split(/ +/).shift().toLowerCase();
+                    botcmd = cmdName.cmd.trim().split(/ +/).shift().toLowerCase();
                 }
             })
         }
@@ -434,6 +434,7 @@ const WhatsBotConnect = async () => {
         } else {
             conn.sendPresenceUpdate("unavailable", m.from);
         }
+        botcmd = startCmd + botcmd.replace(startCmd,'').trim();
         commands.map(async (command) => { 
             EventCmd = startCmd + command.pattern
             if (MOD == 'private' && IsTeam === true) {
