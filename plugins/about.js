@@ -13,7 +13,7 @@ const {
     styletext,
     send_alive,
     send_menu
-} = require('../lib/')
+} = require('../lib')
 const Config = require("../config");
 const categories = ["search", "all", "downloade", "chat", "system", 'fun', '18+', 'apk', 'ff', 'owner', 'create', 'group', "logo", "photo", "sticker", "anime"];
 inrl({
@@ -203,36 +203,6 @@ inrl({
     }, {
         quoted: message
     });
-});
-inrl({
-    pattern: 'owner',
-    desc: "to check whether",
-    sucReact: "🥺",
-    category: ['all'],
-    type: 'utility'
-}, async (message, client) => {
-    let data = await getVar();
-    let {
-        FOOTER,
-        BOT_INFO,
-        PREFIX,
-        GIT,
-        OWNER
-    } = data.data[0];
-    let prefix = PREFIX == 'false' ? '' : PREFIX;
-    const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
-        + 'VERSION:3.0\n' + 'FN:' + BOT_INFO.split(",")[0] + '\n' // full name
-        + 'ORG:' + FOOTER + ';\n' // the organization of the contact
-        + 'TEL;type=CELL;type=VOICE;waid=' + OWNER + ':' + OWNER + '\n' // WhatsApp ID + phone number
-        + 'END:VCARD'
-    return await client.sendMessage(message.from, {
-        contacts: {
-            displayName: `${BOT_INFO.split(",")[0]}`,
-            contacts: [{
-                vcard
-            }],
-        }
-    })
 });
 inrl({
     pattern: 'fancy',

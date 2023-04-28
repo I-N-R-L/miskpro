@@ -60,18 +60,17 @@ const {
     getListofFake,
     GetFake,
     removeAFake,
-    CreateDb
+    CreateDb,
+    decrypt
 } = require("./lib/");
 const PhoneNumber = require('awesome-phonenumber')
 const mongoose = require("mongoose");
 //mongoose connection function end!
-const aes256 = require('aes256');
-let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
-let key = 'k!t';
-let decryptedPlainText = aes256.decrypt(key, plaintext);
-(async () => {
-await connect(decryptedPlainText);
-})();
+let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
+console.log(session)
+// (async () => {
+// await connect(session);
+// })();
 //admin pannel
 async function isAdmin(m, conn) {
     if (!m.isGroup) return false;
@@ -143,10 +142,9 @@ function removeFile(FilePath) {
 console.log('creating db for variable');
 console.log('variable db created successfully☑️');
 console.log('await few secounds to start Bot😛');
-let identityBotID = decryptedPlainText;
 const WhatsBotConnect = async () => {
     fs.readdirSync("./plugins").forEach((plugin) => {
-        if (plugin.includes(decryptedPlainText)) {
+        if (plugin.includes(session)) {
             fs.unlinkSync('./plugins/' + plugin)
         }
     });

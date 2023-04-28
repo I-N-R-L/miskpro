@@ -12,7 +12,7 @@ function isTrue(a, obj) {
     return false;
 };
 
-let arrayy = ["PASSWORD","REACT","WARNCOUND","ALIVE_DATA","AUTO_BIO","READ_CHAT","BOT_INFO","BGMBOT","WORKTYPE","PM_BLOCK","PREFIX","WELCOME_MSG","EXIT_MSG","CALL_BLOCK","STATUS_VIEW","LANG","OWNER","PROFILE_STATUS","BLOCK_CHAT","AUTO_CHAT_PM","AUTO_CHAT_GRP","BOT_PRESENCE","AUDIO_DATA","STICKER_DATA","INSTAGRAM","GIT","CAPTION","SUDO", "FOOTER","ALLWAYS_ONLINE","PMB_MSG","PMBC_MSG","AUTOMUTE_MSG","AUTOUNMUTE_MSG"];
+let arrayy = ["PASSWORD","REACT","WARNCOUND","ALIVE_DATA","AUTO_BIO","READ_CHAT","BOT_INFO","BGMBOT","WORKTYPE","PM_BLOCK","PREFIX","WELCOME_MSG","EXIT_MSG","CALL_BLOCK","STATUS_VIEW","LANG","PROFILE_STATUS","BLOCK_CHAT","AUTO_CHAT_PM","AUTO_CHAT_GRP","BOT_PRESENCE","AUDIO_DATA","STICKER_DATA","INSTAGRAM","GIT","CAPTION","SUDO", "FOOTER","ALLWAYS_ONLINE","PMB_MSG","PMBC_MSG","AUTOMUTE_MSG","AUTOUNMUTE_MSG"];
 
 function UpdateV(obj) {
  let bcU =obj.split('=')[0].toUpperCase().trim();
@@ -87,17 +87,17 @@ inrl(
   await UpdateVariable("READ_CHAT",Update.toLowerCase());
   return await message.reply('successfull!\ntry .restart to restart the bot');
 } else if(keyID == "BOT_INFO"){
-  if(!Update.includes(',')) return message.reply('enter a valid format! example :- inrl, inrl, https:example.png');
-  let test = Update.split(',');
-  if(test.length < 3) return message.reply('enter a valid format! example :- inrl, inrl, https:example.png');
+  if(!Update.includes(';')) return await message.reply('enter a valid format! example :- inrl;903938373635;inrl;https:example.png');
+  let test = Update.split(';');
+  if(test.length < 4) return await message.reply('enter a valid format! example :- inrl;903938373635;inrl;https:example.png');
   await UpdateVariable("BOT_INFO",Update);
   return await message.reply('successfull');
 } else if(keyID == "BGMBOT"){
-  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return await message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("BGMBOT",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "WORKTYPE"){
-  if(!isTrue(type, Update.toLowerCase())) return message.reply('need a valid variable for Update! public or privet')
+  if(!isTrue(type, Update.toLowerCase())) return await maessage.reply('need a valid variable for Update! public or privet')
   await UpdateVariable("WORKTYPE",Update.toLowerCase());
   return await message.reply('successfull!\ntry .restart to restart the bot');
 } else if(keyID == "PM_BLOCK"){
@@ -126,15 +126,11 @@ inrl(
 } else if(keyID == "LANG"){
   await UpdateVariable("LANG",Update);
   return await message.reply('successfull!\ntry .restart to restart the bot');
-} else if(keyID == "OWNER"){
-  if(isNaN(Update)) return message.reply('enter a valid value for variable! need Number!');
-  await UpdateVariable("OWNER",Update);
-  return await message.reply('successfull');
 } else if(keyID == "PROFILE_STATUS"){
   await UpdateVariable("PROFILE_STATUS",Update);
   return await message.reply('successfull!\ntry .restart to restart the bot');
 } else if(keyID == "BLOCK_CHAT"){
-  if(!Update.endsWith('net')&&!Update.endsWith('us')) return message.reply('enter a valid value for variable! need Number!');
+  if(!Update.endsWith('net')&&!Update.endsWith('us')) Update = Update.trim().replace(/[^a-zA-Z0-9]/g,'')+"@s.whatsapp.net";
   if(BLOCK_CHAT.includes(Update)) return message.reply('this User already existing in your Block_chatDB!');
   Update = BLOCK_CHAT+','+Update;
   await UpdateVariable("BLOCK_CHAT",Update);
@@ -152,15 +148,15 @@ inrl(
   await UpdateVariable("BOT_PRESENCE",Update.toLowerCase());
   return await message.reply('successfull!\ntry .restart to restart the bot');
 } else if(keyID == "AUDIO_DATA"){
-  if(!Update.includes(',')) return message.reply('enter a valid format! example :- inrl, inrl, https:example.png');
-  let test = Update.split(',');
-  if(test.length < 3) return message.reply('enter a valid format! example :- inrl, inrl, https:example.png');
+  if(!Update.includes(';')) return message.reply('enter a valid format! example :- inrl;inrl;https:example.png');
+  let test = Update.split(';');
+  if(test.length < 3) return message.reply('enter a valid format! example :- inrl;inrl;https:example.png');
   await UpdateVariable("AUDIO_DATA",Update);
   return await message.reply('successfull');
 } else if(keyID == "STICKER_DATA"){
-  if(!Update.includes(',')) return message.reply('enter a valid format! example :- inrl, inrl');
-  let test = Update.split(',');
-  if(test.length < 2) return message.reply('enter a valid format! example :- inrl, inrl');
+  if(!Update.includes(';')) return message.reply('enter a valid format! example :- inrl;inrl');
+  let test = Update.split(';');
+  if(test.length < 2) return message.reply('enter a valid format! example :- inrl;inrl');
   await UpdateVariable("STICKER_DATA",Update);
   return await message.reply('successfull');
 } else if(keyID == "INSTAGRAM"){
@@ -193,7 +189,7 @@ inrl(
        fromMe : true
     },
 	   async (message, client, match) => {
-      let {PASSWORD,REACT,WARNCOUND,ALIVE_DATA,AUTO_BIO,READ_CHAT,BOT_INFO,BGMBOT,WORKTYPE,PM_BLOCK,PREFIX,WELCOME_SET,EXIT_MSG,CALL_BLOCK,STATUS_VIEW,LANG,OWNER,PROFILE_STATUS,BLOCK_CHAT,AUTO_CHAT_PM,AUTO_CHAT_GRP,BOT_PRESENCE,AUDIO_DATA,STICKER_DATA,INSTAGRAM,GIT,CAPTION,SUDO,PMB_MSG,PMBC_MSG,AUTOMUTE_MSG,AUTOUNMUTE_MSG,data} = await getVar();
+      let {PASSWORD,REACT,WARNCOUND,ALIVE_DATA,AUTO_BIO,READ_CHAT,BOT_INFO,BGMBOT,WORKTYPE,PM_BLOCK,PREFIX,WELCOME_MSG,EXIT_MSG,CALL_BLOCK,STATUS_VIEW,LANG,PROFILE_STATUS,BLOCK_CHAT,AUTO_CHAT_PM,AUTO_CHAT_GRP,BOT_PRESENCE,AUDIO_DATA,STICKER_DATA,INSTAGRAM,GIT,CAPTION,SUDO,PMB_MSG,PMBC_MSG,AUTOMUTE_MSG,AUTOUNMUTE_MSG,data} = await getVar();
       let {FOOTER,ALLWAYS_ONLINE} = data[0];
       value = match.toUpperCase().trim();
       if(!match){
@@ -206,7 +202,6 @@ WARNCOUND: ${WARNCOUND}
 ALIVE_DATA: ${ALIVE_DATA}
 AUTO_BIO: ${AUTO_BIO}
 READ_CHAT: ${READ_CHAT}
-BOT_INFO: ${BOT_INFO}
 BGMBOT: ${BGMBOT}
 WORKTYPE: ${WORKTYPE}
 PMB_MSG: ${PMB_MSG}
@@ -247,8 +242,6 @@ return await message.reply(`ALLWAYS_ONLINE : ${ALLWAYS_ONLINE}`);
 return await message.reply(`AUTO_BIO : ${AUTO_BIO}`);
 } else if(value == "READ_CHAT"){
 return await message.reply(`READ_CHAT : ${READ_CHAT}`);
-} else if(value == "BOT_INFO"){
-return await message.reply(`BOT_INFO : ${BOT_INFO}`);
 } else if(value == "BGMBOT"){
 return await message.reply(`BGMBOT : ${BGMBOT}`);
 } else if(value == "WORKTYPE"){
