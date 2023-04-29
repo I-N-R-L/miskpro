@@ -1,6 +1,7 @@
 const speed = require('performance-now')
 const fs = require("fs");
 const Config = require('./config');
+
 const {
     default: WASocket,
     DisconnectReason,
@@ -23,34 +24,24 @@ const pino = require("pino");
 const got = require('got');
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const yargs = require('yargs/yargs')
 const path = require("path");
 const axios = require('axios')
 const {
     Boom
 } = require("@hapi/boom");
-const Welcome = require("./lib/Welcome");
+const Welcome = require("./lib/infos/welcome");
 const {
     commands,
     sleep,
     tiny,
     serialize,
     WAConnection,
-    connect
-} = require("./lib/");
-const PhoneNumber = require('awesome-phonenumber')
-const {
-    smsg
-} = require('./lib/infos/info');
-const mongoose = require("mongoose");
-const {
-    cmdDB
-} = require('./lib/database/cmddb');
-const {
-    getListOfPlugin
-} = require('./lib/database/pluginsdb');
-const {
+    connect,
+    smsg,
+    cmdDB,
+    getListOfPlugin,
     setAntiLink,
     removeAntiLink,
     getAntiLink,
@@ -68,19 +59,19 @@ const {
     removeFake,
     getListofFake,
     GetFake,
-    removeAFake
-} = require('./lib/database/groupdbs');
-const {
-    CreateDb
-} = require('./lib/database/variable');
+    removeAFake,
+    CreateDb,
+    decrypt,
+    getVar
+} = require("./lib/");
+const PhoneNumber = require('awesome-phonenumber')
+const mongoose = require("mongoose");
 //mongoose connection function end!
-const aes256 = require('aes256');
-let plaintext = Config.SESSION_ID.replaceAll("inrl~", "");
-let key = 'k!t';
-let decryptedPlainText = aes256.decrypt(key, plaintext);
-(async () => {
-await connect(decryptedPlainText);
-})();
+let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
+async function toCOnnect(){
+await connect(session);
+}
+toCOnnect()
 //admin pannel
 async function isAdmin(m, conn) {
     if (!m.isGroup) return false;
@@ -152,10 +143,9 @@ function removeFile(FilePath) {
 console.log('creating db for variable');
 console.log('variable db created successfully☑️');
 console.log('await few secounds to start Bot😛');
-let identityBotID = decryptedPlainText;
 const WhatsBotConnect = async () => {
     fs.readdirSync("./plugins").forEach((plugin) => {
-        if (plugin.includes(decryptedPlainText)) {
+        if (plugin.includes(session)) {
             fs.unlinkSync('./plugins/' + plugin)
         }
     });
@@ -167,9 +157,6 @@ const WhatsBotConnect = async () => {
         mongoose.connect("mongodb+srv://inrl:fasweeh@cluster0.l6mj2ez.mongodb.net/?retryWrites=true&w=majority");
     })
     await CreateDb();
-    const {
-        getVar
-    } = require('./lib/database/variable');
     let {
         BLOCK_CHAT,
         WORKTYPE,
@@ -179,17 +166,14 @@ const WhatsBotConnect = async () => {
         PM_BLOCK,
         BOT_PRESENCE,
         REACT,
-        U_STATUS,
+        AUTO_BIO,
         PROFILE_STATUS,
         ALLWAYS_ONLINE,
         SUDO,
-        OWNER,
+        BOT_INFO,
         PMB_MSG,
         PMBC_MSG,
-        READ_CHAT,
-        MENSION_TEXT,
-        MENSION_IMG,
-        MENSION_AUDIO
+        READ_CHAT
     } = await getVar();
     const {
         state,
@@ -227,7 +211,7 @@ const WhatsBotConnect = async () => {
     conn = new WAConnection(conn);
     store.bind(conn.ev);
     setInterval(() => {
-        store.writeToFile("./lib/database/json/store.json")
+        store.writeToFile("./lib/database/store.json")
     }, 30 * 1000);
     conn.ev.on("creds.update", saveCreds);
     conn.ev.on("connection.update", async (update) => {
@@ -302,7 +286,7 @@ const WhatsBotConnect = async () => {
         else console.log("💖 Connection...", update);
     });
     // defination B!
-    let createrS = await insertSudo(OWNER, SUDO);
+    let createrS = await insertSudo(BOT_INFO.split(";")[0], SUDO);
     //close function B!
     // simple function
     let BLOCKCHAT = "120363040291283569@g.us"
@@ -382,7 +366,7 @@ const WhatsBotConnect = async () => {
             }
         };
         //CHECK AND CREATE HANDLERS
-        let startCmd, EventCmd, botcmd = '';
+        let startCmd, EventCmd, botcmd = '',senscmd;
         let handler = PREFIX == 'false' ? 'false' : PREFIX.trim();
         if (handler == 'false') {
             startCmd = '';
@@ -408,31 +392,30 @@ const WhatsBotConnect = async () => {
                 id: sha257
             }).then(async (cmdName) => {
                 if (cmdName) {
-                    botcmd = cmdName.cmd.trim().split(/ +/).shift().toLowerCase();
+                    botcmd  = cmdName.cmd.trim().split(/ +/).shift().toLowerCase(); 
                 }
             })
         }
         //end
-        //check and work ith always online!.
-        if (ALLWAYS_ONLINE === undefined) {
-            ALLWAYS_ONLINE = false
-        } else if (ALLWAYS_ONLINE == 'false') {
-            ALLWAYS_ONLINE = false
-        } else if (ALLWAYS_ONLINE == 'true') {
-            ALLWAYS_ONLINE = true
-        }
-        if (ALLWAYS_ONLINE === true) {
+
+        if (ALLWAYS_ONLINE =="true") {
             conn.sendPresenceUpdate("available", m.from);
         } else {
             conn.sendPresenceUpdate("unavailable", m.from);
         }
-        botcmd = startCmd + botcmd.replace(startCmd,'').trim();
+        if(botcmd.startsWith(startCmd)){
+        botcmd = startCmd + botcmd.replace(m.client.prefix,'').replace(startCmd,'').trim();
+        } else {
+            botcmd = botcmd.replace(m.client.prefix,'').trim();
+        }
+        botcmd = botcmd.toLowerCase();
         commands.map(async (command) => { 
-            EventCmd = startCmd + command.pattern.replace(/[^a-zA-Z0-9]/g,'');
+            if(!command.pattern || m.isBot) return;
+            EventCmd = startCmd + command.pattern.replace(/[^a-zA-Z0-9-+]/g,'')
             if (MOD == 'private' && IsTeam === true) {
-                if (botcmd.startsWith(EventCmd) {
+                if (botcmd.startsWith(EventCmd)) {
                     m.client.command = EventCmd
-                    m.client.text = m.client.body.replace(EventCmd,'').trim();
+                    m.client.text = botcmd.replace(startCmd,'').replace(EventCmd,'').trim();
                     if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                         if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
                             return await m.send('sorry dear user! not programed this cmd usage!!')
@@ -461,16 +444,13 @@ const WhatsBotConnect = async () => {
                         conn.sendReact(m.from, command.sucReact, m.key);
                     }
                 }
-            } else if (MOD == 'public') {
-                if (botcmd.startsWith(EventCmd) {
+            } else if (MOD === 'public') {
+                    if(botcmd.startsWith(EventCmd.trim())) {
                     m.client.command = EventCmd
-                    m.client.text = m.client.body.replace(EventCmd,'').trim();
-                    if (command.fromMe == true && !m.client.isCreator) {
-                        return;
-                    }
+                    m.client.text = botcmd.replace(startCmd,'').replace(EventCmd,'').trim();
                     if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                         if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
-                            return await m.send('sorry dear! dev not programed this cmd usage!!')
+                            return await m.send('sorry dear user! not programed this cmd usage!!')
                         } else return await m.send(command.usage)
                     }
                     if (command.onlyGroup == true && !m.isGroup) {
@@ -490,7 +470,7 @@ const WhatsBotConnect = async () => {
                     } else if (command.media == "audio" && !"audio".test(message.client.mime)) {
                         return await m.send('this plugin only response when data as audio');
                     }
-                    command.function(m, conn, m.client.text, m.client.command, store).catch((e) => console.log(e));;
+                    command.function(m, conn, m.client.text, m.client.command, store).catch((e) => console.log(e));
                     await conn.sendPresenceUpdate(BOT_PRESENCE, m.from);
                     if (REACT == 'true') {
                         conn.sendReact(m.from, command.sucReact, m.key);
@@ -826,7 +806,7 @@ const WhatsBotConnect = async () => {
         } else return jid
     }
     //end suport function
-    if (U_STATUS == 'true') {
+    if (AUTO_BIO == 'true') {
         setInterval(async () => {
             let pstime = new Date().toLocaleDateString("EN", {
                 weekday: "long",
@@ -854,4 +834,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Inrl Server listening on port http://localhost:${port}`));
 setTimeout(() => {
     WhatsBotConnect().catch(err => console.log(err));
-}, 5000);
+}, 3000);
