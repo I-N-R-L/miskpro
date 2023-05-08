@@ -387,12 +387,12 @@ const WhatsBotConnect = async () => {
         botcmd = m.client.body;
         //Check if cmd exist on media
         if (m.msg && m.msg.fileSha256) {
-            let sha257 = identityBotID + m.msg.fileSha256.join("")
+            let sha257 = session + m.msg.fileSha256.join("")
             await cmdDB.findOne({
                 id: sha257
             }).then(async (cmdName) => {
                 if (cmdName) {
-                    botcmd  = cmdName.cmd.trim().split(/ +/).shift().toLowerCase(); 
+                    botcmd  = startCmd + cmdName.cmd.trim().split(/ +/).shift().toLowerCase(); 
                 }
             })
         }
@@ -408,6 +408,7 @@ const WhatsBotConnect = async () => {
         } else {
             botcmd = botcmd.replace(m.client.prefix,'').trim();
         }
+        let cmmdd = botcmd;
         botcmd = botcmd.toLowerCase();
         commands.map(async (command) => { 
             if(!command.pattern || m.isBot) return;
@@ -415,7 +416,7 @@ const WhatsBotConnect = async () => {
             if (MOD == 'private' && IsTeam === true) {
                 if (botcmd.startsWith(EventCmd)) {
                     m.client.command = EventCmd
-                    m.client.text = botcmd.replace(startCmd,'').replace(EventCmd,'').trim();
+                    m.client.text = cmmdd.replace(startCmd,'').slice(EventCmd.length).trim();
                     if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                         if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
                             return await m.send('sorry dear user! not programed this cmd usage!!')
@@ -447,7 +448,7 @@ const WhatsBotConnect = async () => {
             } else if (MOD === 'public') {
                     if(botcmd.startsWith(EventCmd.trim())) {
                     m.client.command = EventCmd
-                    m.client.text = botcmd.replace(startCmd,'').replace(EventCmd,'').trim();
+                    m.client.text = cmmdd.replace(startCmd,'').slice(EventCmd.length).trim();
                     if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
                         if (command.usage == "undefined" || command.usage == "null" || command.usage == "false" || !command.usage) {
                             return await m.send('sorry dear user! not programed this cmd usage!!')
