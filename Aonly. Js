@@ -1,0 +1,33 @@
+>let media = await m.quoted.download()
+c.relayMessage(m.from, {
+  extendedTextMessage: {
+    text: 'inrl',
+   quoted :m,
+    contextInfo: {
+quotedMessage: {
+    key: {
+                fromMe: false,
+                participant: "0@s.whatsapp.net",
+                remoteJid: "status@broadcast"
+            },
+            message: {
+			'contactMessage': {
+				'displayName': `me`, //ADD `me` TO DISPLAY CLIENT USER NAME.
+				'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;me,;;;\nFN:me,\nitem1.TEL;waid=909090:90909099\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+				'jpegThumbnail': media
+			}
+            }
+  },
+       externalAdReply:{
+showAdAttribution: true,
+thumbnail :media,
+renderLargerThumbnail:true, 
+title :"inrl",
+body :"inrlmemsmsm",
+mediaType:1,
+mediaUrl: "https://chat.whatsapp.com/EznQoeFnVxM8lgF1hraL7K",
+sourceUrl:"https://chat.whatsapp.com/EznQoeFnVxM8lgF1hraL7K"
+       },
+  }}
+}, { messageId: m.key.id }, {quoted :m});
+return chatUpdate.messages[0]
