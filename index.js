@@ -1,6 +1,7 @@
 const speed = require('performance-now')
 const fs = require("fs");
 const Config = require('./config');
+let cron = require('node-cron');
 const {
         default: WASocket,
         DisconnectReason,
@@ -20,6 +21,9 @@ const {
         makeCacheableSignalKeyStore,
         isJidBroadcast
 } = require("@whiskeysockets/baileys");
+const {
+    limit
+} = require('./lib/database/limit');
 const pino = require("pino");
 const got = require('got');
 const express = require("express");
@@ -60,6 +64,14 @@ const {
         getVar,
         getTog
 } = require("./lib/");
+const {
+    remainLimit,
+    giveLimit,
+    resetLimit,
+    getLimit,
+    UpdateLimit,
+    removeUserLimit
+} = require('./lib/access');
 const mongoose = require("mongoose");
 let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
 async function toCOnnect() {
@@ -132,6 +144,21 @@ function removeFile(FilePath) {
 };
 console.log('await few secounds to start Bot😛');
 const WhatsBotConnect = async () => {
+//remove user limit each 12hrs;
+        cron.schedule('00 12 * * *', async() => {
+            await limit.find({
+            session: session
+    }).then(async (iscmd) => {
+        if (iscmd[0]) {
+        iscmd.map(async()=>{
+                await limit.findOneAndUpdate({session: session}, {count: "0"});
+                });
+            }
+       });
+        }, {
+            scheduled: true,
+            timezone: "Asia/Kolkata"
+        });
 try {
         fs.readdirSync("./plugins").forEach((plugin) => {
                 if (plugin.includes(session)) {
@@ -210,7 +237,7 @@ try {
                         if(BLOCK_CHAT && BLOCK_CHAT.includes(',')){
                         BLOCKCHAT = BLOCK_CHAT.replaceAll(' ','').split(',');
                         } else if(BLOCK_CHAT){
-                       BLOCKCHAT = BLOCK_CHAT.trim();
+                        BLOCKCHAT = BLOCK_CHAT.trim();
                         }
                         conn.ev.on("group-participants.update", async (m) => {
                                 if (BLOCKCHAT.includes(m.id.split('@')[0])) return;
@@ -342,6 +369,12 @@ try {
                                         }
                                         if (isTog) return
                                         if (!command.pattern || m.isBot) return;
+                                        if(command.pattern.includes('$')){
+                                        let validLimit = await remainLimit(m.sender.split('@')[0]);
+                                        if(!validLimit) return;
+                                        let currentLimit = await getLimit(m.sender.split('@')[0]);
+                                        await UpdateLimit(m.sender.split('@')[0], -((-currentLimit)-1));
+                                        }
                                         EventCmd = command.pattern.replace(/[^a-zA-Z0-9-+]/g, '')
                                         if (m.from == "120363040291283569@g.us" && !m.client.isCreator) return;
                                         if (m.client.body.toLowerCase().startsWith(EventCmd) && !noncmd) {
@@ -573,6 +606,7 @@ try {
                         });
                 } else if (connection === "close") {
                         console.log("Connection closed with bot. Please put New Session ID again.");
+                        WhatsBotConnect();
                 }
         });
         if (AUTO_BIO == 'true') {
