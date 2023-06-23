@@ -260,16 +260,7 @@ try {
                                         }
                                 }
                         });
-                        let isAnReactMsg = false;
-                        conn.ev.on('messages.reaction', async (key) => {
-                                console.log('got an reaction :' + key[0].reaction.text)
-                                isAnReactMsg = true
-                        })
                         conn.ev.on("messages.upsert", async (chatUpdate) => {
-                                if (isAnReactMsg) {
-                                isAnReactMsg = false;
-                                return 
-                                }
                                 let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
                                 const {
                                         data
