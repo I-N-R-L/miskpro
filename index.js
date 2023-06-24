@@ -360,15 +360,15 @@ try {
                                         }
                                         if (isTog) return
                                         if (!command.pattern || m.isBot) return;
-                                        if(command.pattern.includes('$') && !m.client.isCreator){
-                                        let validLimit = await remainLimit(m.sender.split('@')[0]);
-                                        if(!validLimit) return;
-                                        let currentLimit = await getLimit(m.sender.split('@')[0]);
-                                        await UpdateLimit(m.sender.split('@')[0], -((-currentLimit)-1).toString());
-                                        }
                                         EventCmd = command.pattern.replace(/[^a-zA-Z0-9-+]/g, '')
                                         if (m.from == "120363040291283569@g.us" && !m.client.isCreator) return;
                                         if (m.client.body.toLowerCase().startsWith(EventCmd) && !noncmd) {
+                                                                 if(command.pattern.includes('$') && !m.client.isCreator){
+                                                                 let validLimit = await remainLimit(m.sender.split('@')[0]);
+                                                                 if(!validLimit) return;
+                                                                 let currentLimit = await getLimit(m.sender.split('@')[0]);
+                                                                 await UpdateLimit(m.sender.split('@')[0], -((-currentLimit)-1).toString());
+                                                }                                        
                                                 m.client.command = handler + EventCmd
                                                 m.client.text = m.client.body.slice(EventCmd.length).trim();
                                                 if (m.client.text == 'help' || m.client.text == 'use' || m.client.text == 'usage' || m.client.text == 'work') {
