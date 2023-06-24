@@ -62,16 +62,14 @@ const {
         CreateDb,
         decrypt,
         getVar,
-        getTog
+        getTog,
+        remainLimit,
+        giveLimit,
+        resetLimit,
+        getLimit,
+        UpdateLimit,
+        removeUserLimit
 } = require("./lib/");
-const {
-    remainLimit,
-    giveLimit,
-    resetLimit,
-    getLimit,
-    UpdateLimit,
-    removeUserLimit
-} = require('./lib/access');
 const mongoose = require("mongoose");
 let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
 async function toCOnnect() {
