@@ -277,7 +277,7 @@ try {
                                         ALLWAYS_ONLINE,
                                         PMB_MSG,
                                         PMBC_MSG,
-                                        READ_CHAT
+                                        READ_CHAT,
                                         ANTI_SPAM
                                 } = data[0];
                                 if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
