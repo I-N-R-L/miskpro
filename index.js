@@ -68,7 +68,12 @@ const {
         resetLimit,
         getLimit,
         UpdateLimit,
-        removeUserLimit
+        removeUserLimit,
+        isFiltered,
+        addFilter,
+        isFilter,
+        sendFilterMessage,
+        filterDB
 } = require("./lib/");
 const mongoose = require("mongoose");
 let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
@@ -273,10 +278,29 @@ try {
                                         PMB_MSG,
                                         PMBC_MSG,
                                         READ_CHAT
+                                        ANTI_SPAM
                                 } = data[0];
                                 if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
                                         conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
                                 }
+                                let filterText = false;
+                                if(await isFilter(m.from)){
+                                await sendFilterMessage(m.from,m.client.body, m);
+                                await filterDB.find({
+                                session: session, jid: m.from 
+                                }).then(async (iscmd) => {
+                                if (iscmd[0]) {
+                                iscmd.map(({
+                                prefix,
+                                chat,
+                                type
+                                }) => {
+                                if (m.client.body.includes(prefix) && type == "text") {
+                                filterText = chat;
+                                }});
+                                }});
+                                }
+                                if(ANTI_SPAM == "true" && isFiltered() && !m.client.isCreator) return;
                                 if (BLOCKCHAT.includes(m.from.split('@')[0])) {
                                         if (!m.isBot) return;
                                         let adm = await isADmin(m, conn)
@@ -333,6 +357,7 @@ try {
                                                 }
                                         })
                                 }
+                                if(filterText) m.client.body = filterText; noncmd = false;
                                 if (ALLWAYS_ONLINE == "true") {
                                         conn.sendPresenceUpdate("available", m.from);
                                 } else {
@@ -394,6 +419,7 @@ try {
                                                 } else if (command.media == "audio" && !/audio/.test(m.client.mime)) {
                                                         return await m.send('this plugin only response when data as audio');
                                                 }
+                                                if(ANTI_SPAM == "true") addFilter(m.from);
                                                 command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]).catch((e) => console.log(e));
                                                 await conn.sendPresenceUpdate(BOT_PRESENCE, m.from);
                                                 if (REACT == 'true') {
