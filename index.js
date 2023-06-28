@@ -200,8 +200,7 @@ try {
                         creds: state.creds,
                         keys: makeCacheableSignalKeyStore(state.keys, logger),
                 },
-                generateHighQualityLinkPreview: true,
-                shouldIgnoreJid: (jid) => isJidBroadcast(jid),
+                generateHighQualityLinkPreview: true
         });
         conn.ev.on("creds.update", saveCreds);
         conn = new WAConnection(conn);
