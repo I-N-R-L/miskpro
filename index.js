@@ -349,8 +349,8 @@ const WhatsBotConnect = async () => {
                         }
                     };
                     const togcmds = await getTog();
-                    let handler = PREFIX == 'false' ? 'false' : PREFIX.trim()
-                    let noncmd = handler == 'false' ? false : true;
+                    let handler = PREFIX == 'false' ? false : PREFIX.trim()
+                    let noncmd = handler == false ? false : true;
                     if (handler != false && m.client.body.startsWith(handler)) {
                         m.client.body = m.client.body.replace(handler, '').trim()
                         noncmd = false
@@ -370,6 +370,7 @@ const WhatsBotConnect = async () => {
                     if (filterText != false) {
                         m.client.body = filterText;
                         noncmd = false;
+                        m.isBot = false;
                     }
                     const resWithText = false;
                     if (m.quoted && m.quoted.text) {
@@ -385,8 +386,11 @@ const WhatsBotConnect = async () => {
                         }
                       }
                     }
-                    return resWithText
-                    if (resWithText != false) m.client.body = resWithText;
+                    if (resWithText != false) {
+                    m.client.body = resWithText
+                    noncmd = false;
+                    m.isBot = false;
+                    }
                     if (ALLWAYS_ONLINE == "true") {
                         conn.sendPresenceUpdate("available", m.from);
                     } else {
