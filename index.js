@@ -374,6 +374,7 @@ const WhatsBotConnect = async () => {
                     const resWithText = false;
                     if (m.quoted && m.quoted.text) {
                         let textformat = m.quoted.text.split('\n');
+                        if(textformat[0]){
                         textformat.map((s) => {
                             if (s.includes('```') && s.split('```').length == 3 && s.match(n)) {
                                 resWithText += s.split('```')[1];
@@ -382,6 +383,7 @@ const WhatsBotConnect = async () => {
                         if (m.quoted.text.includes('*') && m.quoted.text.split('*').length == 3) {
                             resWithText += m.quoted.text.split('*')[1];
                         }
+                      }
                     }
                     return resWithText
                     if (resWithText != false) m.client.body = resWithText;
