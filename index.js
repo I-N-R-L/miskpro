@@ -373,11 +373,11 @@ const WhatsBotConnect = async () => {
                         m.isBot = false;
                     }
                     const resWithText = false;
-                    if (m.quoted && m.quoted.text && m.client.text && !isNaN(m.client.text)) {
+                    if (m.quoted && m.quoted.text && m.client.body && !isNaN(m.client.body)) {
                         let textformat = m.quoted.text.split('\n');
                         if(textformat[0]){
                         textformat.map((s) => {
-                            if (s.includes('```') && s.split('```').length == 3 && s.match(m.client.text)) {
+                            if (s.includes('```') && s.split('```').length == 3 && s.match(m.client.body)) {
                                 resWithText += s.split('```')[1];
                             }
                         });
