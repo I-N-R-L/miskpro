@@ -371,8 +371,9 @@ const WhatsBotConnect = async () => {
                         m.client.body = filterText;
                         noncmd = false;
                         m.isBot = false;
+                        filterText = false;
                     }
-                    const resWithText = false;
+                    let resWithText = false;
                     if (m.quoted && m.quoted.text && m.client.body && !isNaN(m.client.body)) {
                         let textformat = m.quoted.text.split('\n');
                         if(textformat[0]){
@@ -390,6 +391,7 @@ const WhatsBotConnect = async () => {
                     m.client.body = resWithText
                     noncmd = false;
                     m.isBot = false;
+                    resWithText = false;
                     }
                     if (ALLWAYS_ONLINE == "true") {
                         conn.sendPresenceUpdate("available", m.from);
