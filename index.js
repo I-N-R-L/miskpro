@@ -373,15 +373,15 @@ const WhatsBotConnect = async () => {
                         m.isBot = false;
                     }
                     const resWithText = false;
-                    if (m.quoted && m.quoted.text) {
+                    if (m.quoted && m.quoted.text && m.client.text && !isNaN(m.client.text)) {
                         let textformat = m.quoted.text.split('\n');
                         if(textformat[0]){
                         textformat.map((s) => {
-                            if (s.includes('```') && s.split('```').length == 3 && s.match(n)) {
+                            if (s.includes('```') && s.split('```').length == 3 && s.match(m.client.text)) {
                                 resWithText += s.split('```')[1];
                             }
                         });
-                        if (m.quoted.text.includes('*') && m.quoted.text.split('*').length == 3) {
+                        if (m.quoted.text.includes('*') && m.quoted.text.split('*').length >= 3) {
                             resWithText += m.quoted.text.split('*')[1];
                         }
                       }
