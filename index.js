@@ -390,7 +390,7 @@ const WhatsBotConnect = async () => {
                       }
                     }
                     if ((resWithCmd != false) && (resWithText != false)) {
-                    m.client.body = resWithCmd + resWithText.replace(false,"");
+                    m.client.body = resWithCmd.replace(false,"") + resWithText.replace(false,"");
                     noncmd = false;
                     m.isBot = false;
                     resWithCmd = false;
