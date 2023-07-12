@@ -21,9 +21,6 @@ const {
     makeCacheableSignalKeyStore,
     isJidBroadcast
 } = require("@whiskeysockets/baileys");
-const {
-    limit
-} = require('./lib/database/limit');
 const pino = require("pino");
 const got = require('got');
 const express = require("express");
@@ -73,7 +70,8 @@ const {
     addFilter,
     isFilter,
     sendFilterMessage,
-    filterDB
+    filterDB,
+    limit
 } = require("./lib/");
 const mongoose = require("mongoose");
 let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
@@ -291,7 +289,7 @@ const WhatsBotConnect = async () => {
                         conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
                     }
                     let filterText = false;
-                    if (await isFilter(m.from)) {
+                    if (!m.client.body.includes('filter') && m.IsGroup && await isFilter(m.from)) {
                         await sendFilterMessage(m.from, m.client.body, m);
                         await filterDB.find({
                             session: session,
@@ -374,16 +372,19 @@ const WhatsBotConnect = async () => {
                         filterText = false;
                     }
                     let resWithText = false;
-                    if (m.quoted && m.quoted.text && m.client.body && !isNaN(m.client.body)) {
+                    if (m.quoted && m.quoted.fromMe && m.quoted.text && m.client.body && !isNaN(m.client.body)) {
                         let textformat = m.quoted.text.split('\n');
                         if(textformat[0]){
                         textformat.map((s) => {
-                            if (s.includes('```') && s.split('```').length == 3 && s.match(m.client.body)) {
-                                resWithText += s.split('```')[1];
+                            if (s.includes('```') && s.split('```').length == 3) {
+                                const num = s.replace(/[^0-9]/g,'')
+                                if(num && (num == m.client.body)){
+                                   resWithText += s.split('```')[1];
+                                }
                             }
                         });
-                        if (m.quoted.text.includes('*') && m.quoted.text.split('*').length >= 3) {
-                            resWithText += m.quoted.text.split('*')[1];
+                        if (m.quoted.text.includes('*_')&&m.quoted.text.includes('_*')) {
+                           resWithText += " "+m.quoted.text.split('*_')[1].split('_*')[0]
                         }
                       }
                     }
@@ -416,6 +417,7 @@ const WhatsBotConnect = async () => {
                                 }
                             });
                         }
+                        if(command.DismissPrefix) noncmd = false;
                         if (isTog) return
                         if (!command.pattern || m.isBot) return;
                         EventCmd = command.pattern.replace(/[^a-zA-Z0-9-+]/g, '')
