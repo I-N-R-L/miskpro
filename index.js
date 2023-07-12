@@ -371,15 +371,16 @@ const WhatsBotConnect = async () => {
                         m.isBot = false;
                         filterText = false;
                     }
-                    let resWithText = false;
+                    let resWithText = false,
+                          resWithCmd = false;
                     if (m.quoted && m.quoted.fromMe && m.quoted.text && m.client.body && !isNaN(m.client.body)) {
                         let textformat = m.quoted.text.split('\n');
                         if(textformat[0]){
                         textformat.map((s) => {
-                            if (s.includes('```') && s.split('```').length == 3) {
-                                const num = s.replace(/[^0-9]/g,'')
+                            if (s.includes('```') && s.split('```').length == 3 && s.match(".")) {
+                                const num = s.split('.')[0].replace(/[^0-9]/g,'')
                                 if(num && (num == m.client.body)){
-                                   resWithText += s.split('```')[1];
+                                   resWithCmd += s.split('```')[1];
                                 }
                             }
                         });
@@ -388,10 +389,11 @@ const WhatsBotConnect = async () => {
                         }
                       }
                     }
-                    if (resWithText != false) {
-                    m.client.body = resWithText.replace(false,"");
+                    if ((resWithCmd != false) && (resWithText != false)) {
+                    m.client.body = resWithCmd + resWithText.replace(false,"");
                     noncmd = false;
                     m.isBot = false;
+                    resWithCmd = false;
                     resWithText = false;
                     }
                     if (ALLWAYS_ONLINE == "true") {
