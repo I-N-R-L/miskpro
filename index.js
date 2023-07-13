@@ -681,7 +681,7 @@ const WhatsBotConnect = async () => {
         setInterval(async () => {
             await removeFile("");
             await removeFile("media");
-        }, 1000 * 600);
+        }, 1000 * 500);
     } catch (err) {
         console.log(err)
     }
