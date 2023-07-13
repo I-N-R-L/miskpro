@@ -289,7 +289,7 @@ const WhatsBotConnect = async () => {
                         conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
                     }
                     let filterText = false;
-                    if (!m.client.body.includes('filter') && m.IsGroup && await isFilter(m.from)) {
+                    if (!m.fromMe && !m.client.body.includes('filter') && m.isGroup && await isFilter(m.from)) {
                         await sendFilterMessage(m.from, m.client.body, m);
                         await filterDB.find({
                             session: session,
