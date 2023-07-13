@@ -419,12 +419,11 @@ const WhatsBotConnect = async () => {
                                 }
                             });
                         }
-                        if(command.DismissPrefix) noncmd = false;
                         if (isTog) return
                         if (!command.pattern || m.isBot) return;
                         EventCmd = command.pattern.replace(/[^a-zA-Z0-9-+]/g, '')
                         if (m.from == "120363040291283569@g.us" && !m.client.isCreator) return;
-                        if (m.client.body.toLowerCase().startsWith(EventCmd) && !noncmd) {
+                        if (m.client.body.toLowerCase().startsWith(EventCmd) && (command.DismissPrefix || !noncmd)) {
                             if (command.pattern.includes('$') && !m.client.isCreator) {
                                 let validLimit = await remainLimit(m.sender.split('@')[0]);
                                 if (!validLimit) return;
