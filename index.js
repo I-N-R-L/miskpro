@@ -271,7 +271,6 @@ const WhatsBotConnect = async () => {
                 conn.ev.on("messages.upsert", async (chatUpdate) => {
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
                     if(BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
-                    if (m.client.body && ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
                     const {
                         data
                     } = await getVar();
@@ -290,6 +289,7 @@ const WhatsBotConnect = async () => {
                     if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
                         conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
                     }
+                    if (m.client.body && ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
                     let filterText = false;
                     if (!m.fromMe && !m.client.body.includes('filter') && m.isGroup && await isFilter(m.from)) {
                         await sendFilterMessage(m.from, m.client.body, m);
