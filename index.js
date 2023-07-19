@@ -200,7 +200,7 @@ const WhatsBotConnect = async () => {
             logger,
             browser: Browsers.macOS("Desktop"),
             syncFullHistory: true,
-            version: [2, 2323, 4],
+            version: Config.VERSION || [2, 2323, 4],
             printQRInTerminal: true,
             auth: {
                 creds: state.creds,
@@ -245,10 +245,10 @@ const WhatsBotConnect = async () => {
                 if (BLOCK_CHAT && BLOCK_CHAT.includes(',')) {
                     BLOCKCHAT = BLOCK_CHAT.replaceAll(' ', '').split(',');
                 } else if (BLOCK_CHAT) {
-                    BLOCKCHAT = BLOCK_CHAT.trim();
+                    BLOCKCHAT = [BLOCK_CHAT.trim()]
                 }
                 conn.ev.on("group-participants.update", async (m) => {
-                    if (BLOCKCHAT.includes(m.id.split('@')[0])) return;
+                	if(BLOCKCHAT.join().includes(m.id.split('@')[0])) return;
                     Welcome(conn, m);
                     let gParticipants = m.participants;
                     let isPdmOn = await getPdm(m.id);
@@ -270,6 +270,8 @@ const WhatsBotConnect = async () => {
                 });
                 conn.ev.on("messages.upsert", async (chatUpdate) => {
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
+                    if(BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
+                    if (m.client.body && ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
                     const {
                         data
                     } = await getVar();
@@ -308,8 +310,7 @@ const WhatsBotConnect = async () => {
                             }
                         });
                     }
-                    if (ANTI_SPAM == "true" && isFiltered() && !m.client.isCreator) return;
-                    if (BLOCKCHAT.includes(m.from.split('@')[0])) {
+                    if (BLOCKCHAT.join().includes(m.from.split('@')[0])) {
                         if (!m.isBot) return;
                         let adm = await isADmin(m, conn)
                         if (!adm) return;
@@ -521,6 +522,7 @@ const WhatsBotConnect = async () => {
                     fs.readdirSync("./plugins").map((a) => {
                         let msg = smsg(conn, chatUpdate.messages[0])
                         let file = require("./plugins/" + a);
+                        if (MOD == 'private' && !m.client.isCreator) return;
                         if (file.constructor.name === 'AsyncFunction') {
                             file(msg, conn, m)
                         } else if (file.constructor.name === 'Function') {
@@ -680,7 +682,7 @@ const WhatsBotConnect = async () => {
         setInterval(async () => {
             await removeFile("");
             await removeFile("media");
-        }, 1000 * 500);
+        }, 1000 * 300);
     } catch (err) {
         console.log(err)
     }
