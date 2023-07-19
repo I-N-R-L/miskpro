@@ -28,6 +28,23 @@ const app = express();
 const port = process.env.PORT || 8080;
 const path = require("path");
 const Welcome = require("./lib/infos/welcome");
+const os = require('os')
+optionalDependencies = {
+    "@ffmpeg-installer/darwin-arm64": "4.1.5",
+    "@ffmpeg-installer/darwin-x64": "4.1.0",
+    "@ffmpeg-installer/linux-arm": "4.1.3",
+    "@ffmpeg-installer/linux-arm64": "4.1.4",
+    "@ffmpeg-installer/linux-ia32": "4.1.0",
+    "@ffmpeg-installer/linux-x64": "4.1.0",
+    "@ffmpeg-installer/win32-ia32": "4.1.0",
+    "@ffmpeg-installer/win32-x64": "4.1.0"
+}
+let platform = os.platform() + '-' + os.arch();
+let packageName = '@ffmpeg-installer/' + platform;
+if (optionalDependencies[packageName]) {
+    const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+    ffmpeg.setFfmpegPath(ffmpegPath);
+}
 const {
     commands,
     sleep,
