@@ -29,6 +29,7 @@ const port = process.env.PORT || 8080;
 const path = require("path");
 const Welcome = require("./lib/infos/welcome");
 const os = require('os')
+const ffmpeg = require('fluent-ffmpeg');
 optionalDependencies = {
     "@ffmpeg-installer/darwin-arm64": "4.1.5",
     "@ffmpeg-installer/darwin-x64": "4.1.0",
