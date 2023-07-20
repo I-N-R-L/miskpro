@@ -27,7 +27,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
 const path = require("path");
-const Welcome = require("./lib/infos/welcome");
+const Welcome = require("./lib/greetings");
 const os = require('os')
 const ffmpeg = require('fluent-ffmpeg');
 optionalDependencies = {
@@ -53,7 +53,6 @@ const {
     serialize,
     WAConnection,
     connect,
-    smsg,
     cmdDB,
     getListOfPlugin,
     setAntiLink,
@@ -538,13 +537,12 @@ const WhatsBotConnect = async () => {
                         console.log(err);
                     }
                     fs.readdirSync("./plugins").map((a) => {
-                        let msg = smsg(conn, chatUpdate.messages[0])
                         let file = require("./plugins/" + a);
                         if (MOD == 'private' && !m.client.isCreator) return;
                         if (file.constructor.name === 'AsyncFunction') {
-                            file(msg, conn, m)
+                            file(conn, m, data[0])
                         } else if (file.constructor.name === 'Function') {
-                            file(msg, conn, m)
+                            file(conn, m, data[0])
                         }
                     });
                     // all link ban
