@@ -420,9 +420,6 @@ const WhatsBotConnect = async () => {
                     } else {
                         conn.sendPresenceUpdate("unavailable", m.from);
                     }
-                    if (!m.client.mime) {
-                        m.client.mime = "text"
-                    }
                     let isTog = false,
                         isReact = false;
                     commands.map(async (command) => {
@@ -493,32 +490,32 @@ const WhatsBotConnect = async () => {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]);
+                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
                         } else if (command.on === "text" && m.client.displayText) {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]);
+                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
                         } else if (command.on === "sticker" && m.type === "stickerMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]);
+                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
                         } else if (command.on === "image" && m.type === "imageMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]);
+                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
                         } else if (command.on === "video" && m.type === "videoMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]);
+                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
                         } else if (command.on === "audio" && m.type === "audioMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]);
+                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
                         }
                     });
                     // some externel function
@@ -699,7 +696,7 @@ const WhatsBotConnect = async () => {
         setInterval(async () => {
             await removeFile("");
             await removeFile("media");
-        }, 1000 * 300);
+        }, 1000 * 150);
     } catch (err) {
         console.log(err)
     }
