@@ -286,7 +286,7 @@ const WhatsBotConnect = async () => {
                     }
                 });
                 conn.ev.on("messages.upsert", async (chatUpdate) => {
-                if(chatUpdate.messages[0].message.reactionMessage) return;
+                if(chatUpdate.messages[0]?.message?.reactionMessage) return;
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
                     if(BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
                     const {
