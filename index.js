@@ -203,7 +203,7 @@ const WhatsBotConnect = async () => {
         const logger = pino({
             level: "silent"
         });
-        let conn = WASocket({
+        let conn = await WASocket({
             logger,
             browser: Browsers.macOS("Desktop"),
             syncFullHistory: true,
