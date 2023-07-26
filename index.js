@@ -115,9 +115,8 @@ async function isADmin(m, conn) {
     return true;
 }
 
-function insertSudo(OWNER, SUDO) {
+function insertSudo(SUDO) {
     let CreaterAr = [];
-    CreaterAr.push(OWNER + '@s.whatsapp.net');
     if (SUDO.includes(',')) {
         let sudok = SUDO.replaceAll(' ', '');
         a = sudok.split(',');
@@ -250,14 +249,12 @@ const WhatsBotConnect = async () => {
                         require("./plugins/" + plugin);
                     }
                 });
-                let TUTORIAL = Config.TUTORIAL || 'URL',
-                    WAGRP = Config.WAGRP || 'Wa_Group_Url';
                 console.log("plugin installed successfully☑️");
                 console.log("💖 Login successful! \n bot working now💗");
                 conn.sendMessage(conn.user.id, {
-                    text: '```' + `bot working now\n\n\nplugins : ${commands.length.toString()}\nmode : ${WORKTYPE}\nprefix : ${PREFIX}\ntutorial :${TUTORIAL}\ngroupLink :${WAGRP}\n\n⚠️use getvar cmd to get variables of bot\nuse setvar to change variables\nuse delvar to dlt sudo& bock_chat jids\n\n🪄use restart after this cmd to restart and run with new variables🎗️` + '```'
+                    text: '```' + `bot working now\n\n\nplugins : ${commands.length.toString()}\nmode : ${WORKTYPE}\nprefix : ${PREFIX}`+ '```'
                 })
-                let createrS = await insertSudo(BOT_INFO.split(";")[0], SUDO);
+                let createrS = await insertSudo(SUDO);
                 let BLOCKCHAT = " ";
                 if (BLOCK_CHAT && BLOCK_CHAT.includes(',')) {
                     BLOCKCHAT = BLOCK_CHAT.replaceAll(' ', '').split(',');
