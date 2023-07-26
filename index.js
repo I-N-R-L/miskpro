@@ -246,11 +246,11 @@ const WhatsBotConnect = async () => {
             PROFILE_STATUS
         } = await getVar(conn.user.id.split(':')[0]);
                 console.log('extracting your country code\n please Waite');
-                const contry = await axios(Config.BASE_URL + `api/phone?number=${conn.user.id.split('@')[0]}`);
+                const contry = await axios(Config.BASE_URL + `api/phone?number=${conn.user.id.split(':')[0]}`);
                 console.log(`are you  from ${contry.data.result}\nchecking your TimeZone`);
                 const timezons = await axios(Config.BASE_URL + `api/zone?code=${contry.data.result}`);
                 console.log(`by default you timezone is ${timezons.data.result}`);
-                await UpdateVariable("TIME_ZONE", timezons.data.result, conn.user.id.split('@')[0]);
+                await UpdateVariable("TIME_ZONE", timezons.data.result, conn.user.id.split(':')[0]);
                 if (AUTO_BIO == 'true') {
                     setInterval(async () => {
                         pstime = new Date().toLocaleDateString("EN", {
