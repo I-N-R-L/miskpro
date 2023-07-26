@@ -22,7 +22,7 @@ const {
     isJidBroadcast
 } = require("@whiskeysockets/baileys");
 const pino = require("pino");
-const got = require('got');
+const axios = require('axios');
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
@@ -88,7 +88,8 @@ const {
     isFilter,
     sendFilterMessage,
     filterDB,
-    limit
+    limit,
+    UpdateVariable
 } = require("./lib/");
 const mongoose = require("mongoose");
 let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
@@ -195,16 +196,6 @@ const WhatsBotConnect = async () => {
         }).catch((err) => {
             mongoose.connect("mongodb+srv://inrl:fasweeh@cluster0.l6mj2ez.mongodb.net/?retryWrites=true&w=majority");
         })
-        await CreateDb();
-        const {
-            SUDO,
-            BOT_INFO,
-            WORKTYPE,
-            PREFIX,
-            BLOCK_CHAT,
-            AUTO_BIO,
-            PROFILE_STATUS
-        } = await getVar();
         const {
             state,
             saveCreds
@@ -224,6 +215,16 @@ const WhatsBotConnect = async () => {
             },
             generateHighQualityLinkPreview: true
         });
+        await CreateDb(conn.user.id.split('@')[0]);
+        const {
+            SUDO,
+            BOT_INFO,
+            WORKTYPE,
+            PREFIX,
+            BLOCK_CHAT,
+            AUTO_BIO,
+            PROFILE_STATUS
+        } = await getVar(conn.user.id.split('@')[0]);
         conn.ev.on("creds.update", saveCreds);
         conn = new WAConnection(conn);
         conn.ev.on("connection.update", async (update) => {
@@ -239,11 +240,32 @@ const WhatsBotConnect = async () => {
                     urls = list[i].url;
                     if (name && urls) {
                         let {
-                            body
-                        } = await got(list[i].url)
-                        await fs.writeFileSync('./plugins/' + list[i].name + '.js', body);
+                            data
+                        } = await axios(list[i].url)
+                        await fs.writeFileSync('./plugins/' + list[i].name + '.js', data);
                     }
                 }
+                console.log('extracting your country code\n please Waite');
+                const contry = await axios(Config.BASE_URL + `api/phone?number=${conn.user.id.split('@')[0]}`);
+                console.log(`are you  from ${contry.data.result}\nchecking your TimeZone`);
+                const timezons = await axios(Config.BASE_URL + `api/zone?code=${contry.data.result}`);
+                console.log(`by default you timezone is ${timezons.data.result}`);
+                await UpdateVariable("TIME_ZONE", timezons.data.result, conn.user.id.split('@')[0]);
+                if (AUTO_BIO == 'true') {
+                    setInterval(async () => {
+                        pstime = new Date().toLocaleDateString("EN", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        });
+                        psnewt = new Date().toLocaleString("LK", {
+                            timeZone: timezons.data.result
+                        }).split(" ")[1];
+                        const biography = "💥 " + pstime + "\n🙃 " + psnewt + ` ${PROFILE_STATUS}`;
+                        await conn.updateProfileStatus(tiny(biography));
+                    }, 1000 * 60);
+                };
                 fs.readdirSync("./plugins").forEach((plugin) => {
                     if (path.extname(plugin).toLowerCase() == ".js") {
                         require("./plugins/" + plugin);
@@ -252,7 +274,7 @@ const WhatsBotConnect = async () => {
                 console.log("plugin installed successfully☑️");
                 console.log("💖 Login successful! \n bot working now💗");
                 conn.sendMessage(conn.user.id, {
-                    text: '```' + `bot working now\n\n\nplugins : ${commands.length.toString()}\nmode : ${WORKTYPE}\nprefix : ${PREFIX}`+ '```'
+                    text: '```' + `bot working now\n\n\nplugins : ${commands.length.toString()}\nmode : ${WORKTYPE}\nprefix : ${PREFIX}` + '```'
                 })
                 let createrS = await insertSudo(SUDO);
                 let BLOCKCHAT = " ";
@@ -262,7 +284,7 @@ const WhatsBotConnect = async () => {
                     BLOCKCHAT = [BLOCK_CHAT.trim()]
                 }
                 conn.ev.on("group-participants.update", async (m) => {
-                	if(BLOCKCHAT.join().includes(m.id.split('@')[0])) return;
+                    if (BLOCKCHAT.join().includes(m.id.split('@')[0])) return;
                     Welcome(conn, m);
                     let gParticipants = m.participants;
                     let isPdmOn = await getPdm(m.id);
@@ -283,12 +305,12 @@ const WhatsBotConnect = async () => {
                     }
                 });
                 conn.ev.on("messages.upsert", async (chatUpdate) => {
-                if(chatUpdate.messages[0]?.message?.reactionMessage) return;
+                    if (chatUpdate.messages[0]?.message?.reactionMessage) return;
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
-                    if(BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
+                    if (BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
                     const {
                         data
-                    } = await getVar();
+                    } = await getVar(conn.user.id.split('@')[0]);
                     let {
                         STATUS_VIEW,
                         CALL_BLOCK,
@@ -388,29 +410,29 @@ const WhatsBotConnect = async () => {
                         filterText = false;
                     }
                     let resWithText = false,
-                          resWithCmd = false;
+                        resWithCmd = false;
                     if (m.quoted && m.quoted.fromMe && m.quoted.text && m.client.body && !isNaN(m.client.body)) {
                         let textformat = m.quoted.text.split('\n');
-                        if(textformat[0]){
-                        textformat.map((s) => {
-                            if (s.includes('```') && s.split('```').length == 3 && s.match(".")) {
-                                const num = s.split('.')[0].replace(/[^0-9]/g,'')
-                                if(num && (num == m.client.body)){
-                                   resWithCmd += s.split('```')[1];
+                        if (textformat[0]) {
+                            textformat.map((s) => {
+                                if (s.includes('```') && s.split('```').length == 3 && s.match(".")) {
+                                    const num = s.split('.')[0].replace(/[^0-9]/g, '')
+                                    if (num && (num == m.client.body)) {
+                                        resWithCmd += s.split('```')[1];
+                                    }
                                 }
+                            });
+                            if (m.quoted.text.includes('*_') && m.quoted.text.includes('_*')) {
+                                resWithText += " " + m.quoted.text.split('*_')[1].split('_*')[0]
                             }
-                        });
-                        if (m.quoted.text.includes('*_')&&m.quoted.text.includes('_*')) {
-                           resWithText += " "+m.quoted.text.split('*_')[1].split('_*')[0]
                         }
-                      }
                     }
                     if ((resWithCmd != false) && (resWithText != false)) {
-                    m.client.body = resWithCmd.replace(false,"") + resWithText.replace(false,"");
-                    noncmd = false;
-                    m.isBot = false;
-                    resWithCmd = false;
-                    resWithText = false;
+                        m.client.body = resWithCmd.replace(false, "") + resWithText.replace(false, "");
+                        noncmd = false;
+                        m.isBot = false;
+                        resWithCmd = false;
+                        resWithText = false;
                     }
                     if (ALLWAYS_ONLINE == "true") {
                         conn.sendPresenceUpdate("available", m.from);
@@ -471,7 +493,7 @@ const WhatsBotConnect = async () => {
                                 return await m.send('this plugin only response when data as audio');
                             }
                             if (ANTI_SPAM == "true") addFilter(m.from);
-                            command.function(m, conn, m.client.text, m.client.command, chatUpdate, data[0]).catch((e) => console.log(e));
+                            command.function(m, m.client.text, data[0], m.client.command, chatUpdate).catch((e) => console.log(e));
                             await conn.sendPresenceUpdate(BOT_PRESENCE, m.from);
                             if (REACT == 'true') {
                                 isReact = true;
@@ -487,32 +509,32 @@ const WhatsBotConnect = async () => {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
+                            command.function(m, m.client.text, data[0], m.client.command, chatUpdate);
                         } else if (command.on === "text" && m.client.displayText) {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
+                            command.function(m, m.client.text, data[0], m.client.command, chatUpdate);
                         } else if (command.on === "sticker" && m.type === "stickerMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
+                            command.function(m, m.client.text, data[0], m.client.command, chatUpdate);
                         } else if (command.on === "image" && m.type === "imageMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
+                            command.function(m, m.client.text, data[0], m.client.command, chatUpdate);
                         } else if (command.on === "video" && m.type === "videoMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
+                            command.function(m, m.client.text, data[0], m.client.command, chatUpdate);
                         } else if (command.on === "audio" && m.type === "audioMessage") {
                             if (command.fromMe == true && !m.client.isCreator) return;
                             if (command.onlyGroup == true && !m.isGroup) return;
                             if (command.onlyPm == true && m.isGroup) return;
-                            command.function(m, conn, m.client.text, m.client.command, data[0], chatUpdate);
+                            command.function(m, m.client.text, data[0], m.client.command, chatUpdate);
                         }
                     });
                     // some externel function
@@ -675,21 +697,6 @@ const WhatsBotConnect = async () => {
                 WhatsBotConnect();
             }
         });
-        if (AUTO_BIO == 'true') {
-            setInterval(async () => {
-                pstime = new Date().toLocaleDateString("EN", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                });
-                psnewt = new Date().toLocaleString("LK", {
-                    timeZone: "Asia/Colombo"
-                }).split(" ")[1];
-                const biography = "💥 " + pstime + "\n🙃 " + psnewt + `${PROFILE_STATUS}`;
-                await conn.updateProfileStatus(tiny(biography));
-            }, 1000 * 60);
-        };
         setInterval(async () => {
             await removeFile("");
             await removeFile("media");
