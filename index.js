@@ -215,16 +215,6 @@ const WhatsBotConnect = async () => {
             },
             generateHighQualityLinkPreview: true
         });
-        await CreateDb(conn.user.id.split('@')[0]);
-        const {
-            SUDO,
-            BOT_INFO,
-            WORKTYPE,
-            PREFIX,
-            BLOCK_CHAT,
-            AUTO_BIO,
-            PROFILE_STATUS
-        } = await getVar(conn.user.id.split('@')[0]);
         conn.ev.on("creds.update", saveCreds);
         conn = new WAConnection(conn);
         conn.ev.on("connection.update", async (update) => {
@@ -245,6 +235,16 @@ const WhatsBotConnect = async () => {
                         await fs.writeFileSync('./plugins/' + list[i].name + '.js', data);
                     }
                 }
+        await CreateDb(conn.user.id.split(':')[0]);
+        const {
+            SUDO,
+            BOT_INFO,
+            WORKTYPE,
+            PREFIX,
+            BLOCK_CHAT,
+            AUTO_BIO,
+            PROFILE_STATUS
+        } = await getVar(conn.user.id.split(':')[0]);
                 console.log('extracting your country code\n please Waite');
                 const contry = await axios(Config.BASE_URL + `api/phone?number=${conn.user.id.split('@')[0]}`);
                 console.log(`are you  from ${contry.data.result}\nchecking your TimeZone`);
@@ -310,7 +310,7 @@ const WhatsBotConnect = async () => {
                     if (BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
                     const {
                         data
-                    } = await getVar(conn.user.id.split('@')[0]);
+                    } = await getVar(conn.user.id.split(':')[0]);
                     let {
                         STATUS_VIEW,
                         CALL_BLOCK,
