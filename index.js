@@ -164,25 +164,6 @@ function removeFile(FilePath) {
 };
 console.log('await few secounds to start Bot😛');
 const WhatsBotConnect = async () => {
-    //remove user limit each 12hrs;
-    cron.schedule('00 12 * * *', async () => {
-        await limit.find({
-            session: session
-        }).then(async (iscmd) => {
-            if (iscmd[0]) {
-                iscmd.map(async () => {
-                    await limit.findOneAndUpdate({
-                        session: session
-                    }, {
-                        count: "0"
-                    });
-                });
-            }
-        });
-    }, {
-        scheduled: true,
-        timezone: "Asia/Kolkata"
-    });
     try {
         fs.readdirSync("./plugins").forEach((plugin) => {
             if (plugin.includes(session)) {
@@ -224,7 +205,7 @@ const WhatsBotConnect = async () => {
             if (connection == "connecting") console.log("💖 Connecting to WhatsApp...🥳");
             else if (connection == "open") {
                 console.log("installing plugins🔘");
-                let list = await getListOfPlugin();
+                let list = await getListOfPlugin(conn.user.id.split(':')[0]);
                 for (let i = 0; i < list.length; i++) {
                     name = list[i].name;
                     urls = list[i].url;
@@ -236,6 +217,25 @@ const WhatsBotConnect = async () => {
                     }
                 }
         await CreateDb(conn.user.id.split(':')[0]);
+       //remove user limit each 12hrs;
+    cron.schedule('00 12 * * *', async () => {
+        await limit.find({
+            session: conn.user.id.split(':')[0]
+        }).then(async (iscmd) => {
+            if (iscmd[0]) {
+                iscmd.map(async () => {
+                    await limit.findOneAndUpdate({
+                        session: conn.user.id.split(':')[0]
+                    }, {
+                        count: "0"
+                    });
+                });
+            }
+        });
+    }, {
+        scheduled: true,
+        timezone: "Asia/Kolkata"
+    });
         const {
             SUDO,
             BOT_INFO,
@@ -284,7 +284,9 @@ const WhatsBotConnect = async () => {
                     BLOCKCHAT = [BLOCK_CHAT.trim()]
                 }
                 conn.ev.on("group-participants.update", async (m) => {
+                if(BLOCK_CHAT){
                     if (BLOCKCHAT.join().includes(m.id.split('@')[0])) return;
+                    }
                     Welcome(conn, m);
                     let gParticipants = m.participants;
                     let isPdmOn = await getPdm(m.id);
@@ -307,10 +309,12 @@ const WhatsBotConnect = async () => {
                 conn.ev.on("messages.upsert", async (chatUpdate) => {
                     if (chatUpdate.messages[0]?.message?.reactionMessage) return;
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
+                    if(BLOCK_CHAT){
                     if (BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
+                    }
                     const {
                         data
-                    } = await getVar(conn.user.id.split(':')[0]);
+                    } = await getVar(m.client.user.number);
                     let {
                         STATUS_VIEW,
                         CALL_BLOCK,
@@ -331,7 +335,7 @@ const WhatsBotConnect = async () => {
                     if (!m.fromMe && !m.client.body.includes('filter') && m.isGroup && await isFilter(m.from)) {
                         await sendFilterMessage(m.from, m.client.body, m);
                         await filterDB.find({
-                            session: session,
+                            session: m.client.user.number,
                             jid: m.from
                         }).then(async (iscmd) => {
                             if (iscmd[0]) {
@@ -347,6 +351,7 @@ const WhatsBotConnect = async () => {
                             }
                         });
                     }
+                    if(BLOCK_CHAT){
                     if (BLOCKCHAT.join().includes(m.from.split('@')[0])) {
                         if (!m.isBot) return;
                         let adm = await isADmin(m, conn)
@@ -362,6 +367,7 @@ const WhatsBotConnect = async () => {
                             })
                         }
                     }
+                 }
                     if (CALL_BLOCK == "true") {
                         if (!m.isGroup && !m.client.isCreator) {
                             conn.ws.on('CB:call', async (json) => {
@@ -384,7 +390,7 @@ const WhatsBotConnect = async () => {
                             conn.updateBlockStatus(m.from, "block")
                         }
                     };
-                    const togcmds = await getTog();
+                    const togcmds = await getTog(m.client.user.number);
                     let handler = PREFIX == 'false' ? false : PREFIX.trim()
                     let noncmd = handler == false ? false : true;
                     if (handler != false && m.client.body.startsWith(handler)) {
@@ -393,7 +399,7 @@ const WhatsBotConnect = async () => {
                     }
                     let MOD = WORKTYPE.toLowerCase() == 'public' ? 'public' : 'private';
                     if (m.msg && m.msg.fileSha256) {
-                        let sha257 = session + m.msg.fileSha256.join("")
+                        let sha257 = m.client.user.number + m.msg.fileSha256.join("")
                         await cmdDB.findOne({
                             id: sha257
                         }).then(async (cmdName) => {
@@ -460,10 +466,10 @@ const WhatsBotConnect = async () => {
                         if (m.from == "120363040291283569@g.us" && !m.client.isCreator) return;
                         if (m.client.body.toLowerCase().startsWith(EventCmd) && (command.DismissPrefix || !noncmd)) {
                             if (command.pattern.includes('$') && !m.client.isCreator) {
-                                let validLimit = await remainLimit(m.sender.split('@')[0]);
+                                let validLimit = await remainLimit(m.sender.split('@')[0],m.client.user.number);
                                 if (!validLimit) return;
-                                let currentLimit = await getLimit(m.sender.split('@')[0]);
-                                await UpdateLimit(m.sender.split('@')[0], -((-currentLimit) - 1).toString());
+                                let currentLimit = await getLimit(m.sender.split('@')[0], m.client.user.number);
+                                await UpdateLimit(m.sender.split('@')[0], -((-currentLimit) - 1).toString(),m.client.user.number);
                             }
                             m.client.command = handler + EventCmd
                             m.client.text = m.client.body.slice(EventCmd.length).trim();
@@ -499,7 +505,7 @@ const WhatsBotConnect = async () => {
                                 isReact = true;
                                 await conn.sendMessage(m.from, {
                                     react: {
-                                        text: command.sucReact,
+                                        text: command.react || "🙈",
                                         key: m.key
                                     }
                                 });
