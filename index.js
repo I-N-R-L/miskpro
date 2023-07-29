@@ -318,7 +318,7 @@ const WhatsBotConnect = async () => {
                     }
                     if (m.client.body && ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
                     let filterText = false;
-                    if (!m.fromMe && !m.client.body.includes('filter') && m.isGroup && await isFilter(m.from)) {
+                    if (!m.fromMe && !m.client.body.includes('filter') && m.isGroup && await isFilter(m.from, m.client.user.number)) {
                         await sendFilterMessage(m.from, m.client.body, m, m.client.user.number);
                         await filterDB.find({
                             session: m.client.user.number,
