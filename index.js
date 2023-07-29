@@ -311,7 +311,8 @@ const WhatsBotConnect = async () => {
                         PMB_MSG,
                         PMBC_MSG,
                         READ_CHAT,
-                        ANTI_SPAM
+                        ANTI_SPAM,
+                        WARNCOUND
                     } = data[0];
                     if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
                         conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
@@ -577,9 +578,7 @@ const WhatsBotConnect = async () => {
                                 const g = m.from;
                                 const t = "The law in the group was not accepted";
                                 const d = await setWarn(u, g, t, m.client.user.number)
-                                let count = d.count,
-                                    COUND = WARNCOUND;
-                                let remains = COUND - count;
+                                let remains = WARNCOUND - d.count;
                                 let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
 │ Group:-${d.group}
 │ User :-${d.user}
@@ -622,9 +621,7 @@ const WhatsBotConnect = async () => {
                                         const g = m.from;
                                         const t = "The law in the group was not accepted";
                                         const d = await setWarn(u, g, t, m.client.user.number)
-                                        let count = d.count,
-                                            COUND = WARNCOUND;
-                                        let remains = COUND - count;
+                                        let remains = WARNCOUND - d.count;
                                         let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
 │ Group:-${d.group}
 │ User :-${d.user}
@@ -660,9 +657,7 @@ const WhatsBotConnect = async () => {
                                     const g = m.from;
                                     const t = "The law in the group was not accepted";
                                     const d = await setWarn(u, g, t, m.client.user.number)
-                                    let count = d.count,
-                                        COUND = WARNCOUND;
-                                    let remains = COUND - count;
+                                    let remains = WARNCOUND - d.count;
                                     let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
 │ Group:-${d.group}
 │ User :-${d.user}
