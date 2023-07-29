@@ -89,7 +89,11 @@ const {
     sendFilterMessage,
     filterDB,
     limit,
-    UpdateVariable
+    UpdateVariable,
+    setWarn,
+    ResetWarn,
+    isAdmin,
+    isBotAdmin,
 } = require("./lib/");
 const mongoose = require("mongoose");
 let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
@@ -97,24 +101,6 @@ async function toCOnnect() {
     await connect(session);
 }
 toCOnnect()
-async function isAdmin(m, conn) {
-    if (!m.isGroup) return false;
-    const groupMetadata = await conn.groupMetadata(m.from).catch(e => {});
-    if (!groupMetadata) return false;
-    participants = await groupMetadata.participants,
-        admins = await participants.filter(v => v.admin !== null).map(v => v.id);
-    if (!admins.includes(m.sender)) return false;
-    return true;
-};
-async function isADmin(m, conn) {
-    if (!m.isGroup) return false;
-    const groupMetadata = await conn.groupMetadata(m.from).catch(e => {});
-    if (!groupMetadata) return false;
-    participants = await groupMetadata.participants,
-        admins = await participants.filter(v => v.admin !== null).map(v => v.id);
-    if (!admins.includes(conn.user.jid)) return false;
-    return true;
-}
 
 function insertSudo(SUDO) {
     let CreaterAr = [];
@@ -216,35 +202,35 @@ const WhatsBotConnect = async () => {
                         await fs.writeFileSync('./plugins/' + list[i].name + '.js', data);
                     }
                 }
-        await CreateDb(conn.user.id.split(':')[0]);
-       //remove user limit each 12hrs;
-    cron.schedule('00 12 * * *', async () => {
-        await limit.find({
-            session: conn.user.id.split(':')[0]
-        }).then(async (iscmd) => {
-            if (iscmd[0]) {
-                iscmd.map(async () => {
-                    await limit.findOneAndUpdate({
+                await CreateDb(conn.user.id.split(':')[0]);
+                //remove user limit each 12hrs;
+                cron.schedule('00 12 * * *', async () => {
+                    await limit.find({
                         session: conn.user.id.split(':')[0]
-                    }, {
-                        count: "0"
+                    }).then(async (iscmd) => {
+                        if (iscmd[0]) {
+                            iscmd.map(async () => {
+                                await limit.updateMany({
+                                    session: conn.user.id.split(':')[0]
+                                }, {
+                                    count: "0"
+                                });
+                            });
+                        }
                     });
+                }, {
+                    scheduled: true,
+                    timezone: "Asia/Kolkata"
                 });
-            }
-        });
-    }, {
-        scheduled: true,
-        timezone: "Asia/Kolkata"
-    });
-        const {
-            SUDO,
-            BOT_INFO,
-            WORKTYPE,
-            PREFIX,
-            BLOCK_CHAT,
-            AUTO_BIO,
-            PROFILE_STATUS
-        } = await getVar(conn.user.id.split(':')[0]);
+                const {
+                    SUDO,
+                    BOT_INFO,
+                    WORKTYPE,
+                    PREFIX,
+                    BLOCK_CHAT,
+                    AUTO_BIO,
+                    PROFILE_STATUS
+                } = await getVar(conn.user.id.split(':')[0]);
                 console.log('extracting your country code\n please Waite');
                 const contry = await axios(Config.BASE_URL + `api/phone?number=${conn.user.id.split(':')[0]}`);
                 console.log(`are you  from ${contry.data.result}\nchecking your TimeZone`);
@@ -284,12 +270,12 @@ const WhatsBotConnect = async () => {
                     BLOCKCHAT = [BLOCK_CHAT.trim()]
                 }
                 conn.ev.on("group-participants.update", async (m) => {
-                if(BLOCK_CHAT){
-                    if (BLOCKCHAT.join().includes(m.id.split('@')[0])) return;
+                    if (BLOCK_CHAT) {
+                        if (BLOCKCHAT.join().includes(m.id.split('@')[0])) return;
                     }
                     Welcome(conn, m);
                     let gParticipants = m.participants;
-                    let isPdmOn = await getPdm(m.id);
+                    let isPdmOn = await getPdm(m.id, conn.user.id.split(':')[0]);
                     if (isPdmOn == 'true') {
                         for (let num of gParticipants) {
                             if (m.action == 'promote') {
@@ -309,8 +295,8 @@ const WhatsBotConnect = async () => {
                 conn.ev.on("messages.upsert", async (chatUpdate) => {
                     if (chatUpdate.messages[0]?.message?.reactionMessage) return;
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
-                    if(BLOCK_CHAT){
-                    if (BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
+                    if (BLOCK_CHAT) {
+                        if (BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
                     }
                     const {
                         data
@@ -333,7 +319,7 @@ const WhatsBotConnect = async () => {
                     if (m.client.body && ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
                     let filterText = false;
                     if (!m.fromMe && !m.client.body.includes('filter') && m.isGroup && await isFilter(m.from)) {
-                        await sendFilterMessage(m.from, m.client.body, m);
+                        await sendFilterMessage(m.from, m.client.body, m, m.client.user.number);
                         await filterDB.find({
                             session: m.client.user.number,
                             jid: m.from
@@ -351,23 +337,23 @@ const WhatsBotConnect = async () => {
                             }
                         });
                     }
-                    if(BLOCK_CHAT){
-                    if (BLOCKCHAT.join().includes(m.from.split('@')[0])) {
-                        if (!m.isBot) return;
-                        let adm = await isADmin(m, conn)
-                        if (!adm) return;
-                        if (m.isGroup) {
-                            await conn.sendMessage(m.from, {
-                                delete: {
-                                    remoteJid: m.key.remoteJid,
-                                    fromMe: m.fromMe,
-                                    id: m.id,
-                                    participant: m.sender
-                                }
-                            })
+                    if (BLOCK_CHAT) {
+                        if (BLOCKCHAT.join().includes(m.from.split('@')[0])) {
+                            if (!m.isBot) return;
+                            let adm = await isBotAdmin(m)
+                            if (!adm) return;
+                            if (m.isGroup) {
+                                await conn.sendMessage(m.from, {
+                                    delete: {
+                                        remoteJid: m.key.remoteJid,
+                                        fromMe: m.fromMe,
+                                        id: m.id,
+                                        participant: m.sender
+                                    }
+                                })
+                            }
                         }
                     }
-                 }
                     if (CALL_BLOCK == "true") {
                         if (!m.isGroup && !m.client.isCreator) {
                             conn.ws.on('CB:call', async (json) => {
@@ -466,10 +452,10 @@ const WhatsBotConnect = async () => {
                         if (m.from == "120363040291283569@g.us" && !m.client.isCreator) return;
                         if (m.client.body.toLowerCase().startsWith(EventCmd) && (command.DismissPrefix || !noncmd)) {
                             if (command.pattern.includes('$') && !m.client.isCreator) {
-                                let validLimit = await remainLimit(m.sender.split('@')[0],m.client.user.number);
+                                let validLimit = await remainLimit(m.sender.split('@')[0], m.client.user.number);
                                 if (!validLimit) return;
                                 let currentLimit = await getLimit(m.sender.split('@')[0], m.client.user.number);
-                                await UpdateLimit(m.sender.split('@')[0], -((-currentLimit) - 1).toString(),m.client.user.number);
+                                await UpdateLimit(m.sender.split('@')[0], -((-currentLimit) - 1).toString(), m.client.user.number);
                             }
                             m.client.command = handler + EventCmd
                             m.client.text = m.client.body.slice(EventCmd.length).trim();
@@ -572,12 +558,12 @@ const WhatsBotConnect = async () => {
                     if (m.isGroup) {
                         let jid = m.from;
                         let text = m.client.displayText.toLowerCase() || 'ßßßßß';
-                        let isInDb = await getAntiLink(jid);
+                        let isInDb = await getAntiLink(jid, m.client.user.number);
                         if (isInDb == 'true' && !m.client.isCreator) {
                             if (text.includes('http')) {
-                                let adm = await isADmin(m, conn)
+                                let adm = await isBotAdmin(m)
                                 if (!adm) return;
-                                let admm = await isAdmin(m, conn)
+                                let admm = await isAdmin(m)
                                 if (admm) return;
                                 await conn.sendMessage(m.from, {
                                     delete: {
@@ -587,20 +573,42 @@ const WhatsBotConnect = async () => {
                                         participant: m.sender
                                     }
                                 })
-                                await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
-                                return await m.reply('links not allowed in this group')
+                                const u = m.sender;
+                                const g = m.from;
+                                const t = "The law in the group was not accepted";
+                                const d = await setWarn(u, g, t, m.client.user.number)
+                                let count = d.count,
+                                    COUND = WARNCOUND;
+                                let remains = COUND - count;
+                                let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
+│ Group:-${d.group}
+│ User :-${d.user}
+❏───────────────────❏
+┏─────── INFO ───────❏
+│ Reason :- ${d.reason}
+│ Count :- ${d.count}
+│ Remaining :- ${remains}
+┗•──────────────────❏`
+                                await m.reply(warnmsg)
+                                if (remains <= "0") {
+                                    const d = await ResetWarn(u, g, t, m.client.user.number)
+                                    if (BotAdmin) {
+                                        await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+                                        return await m.reply("_Your warning has been completed and is being removed from the group_")
+                                    };
+                                }
                             }
                         }
-                        let values = await GetWords(m.from)
+                        let values = await GetWords(m.from, m.client.user.number)
                         if (values != 'no data') {
                             let text = m.client.displayText.toLowerCase() || 'ßßßßß';
                             if (values.includes(',')) {
                                 let value = values.split(',')
                                 await value.map(async (v) => {
                                     if (v && text.includes(v) && !m.client.isCreator) {
-                                        let adm = await isADmin(m, conn)
+                                        let adm = await isBotAdmin(m)
                                         if (!adm) return;
-                                        let admm = await isAdmin(m, conn)
+                                        let admm = await isAdmin(m)
                                         if (admm) return;
                                         await conn.sendMessage(m.from, {
                                             delete: {
@@ -610,15 +618,35 @@ const WhatsBotConnect = async () => {
                                                 participant: m.sender
                                             }
                                         })
-                                        await m.reply('please follow the group rules')
-                                        return await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+                                        const u = m.sender;
+                                        const g = m.from;
+                                        const t = "The law in the group was not accepted";
+                                        const d = await setWarn(u, g, t, m.client.user.number)
+                                        let count = d.count,
+                                            COUND = WARNCOUND;
+                                        let remains = COUND - count;
+                                        let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
+│ Group:-${d.group}
+│ User :-${d.user}
+❏───────────────────❏
+┏─────── INFO ───────❏
+│ Reason :- ${d.reason}
+│ Count :- ${d.count}
+│ Remaining :- ${remains}
+┗•──────────────────❏`
+                                        await m.reply(warnmsg)
+                                        if (remains <= "0") {
+                                            const d = await ResetWarn(u, g, t, m.client.user.number)
+                                            await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+                                            return await m.reply("_Your warning has been completed and is being removed from the group_")
+                                        };
                                     }
                                 })
                             } else if (values) {
                                 if (text.includes(values) && !m.client.isCreator) {
-                                    let adm = await isADmin(m, conn)
+                                    let adm = await isBotAdmin(m)
                                     if (!adm) return;
-                                    let admm = await isAdmin(m, conn)
+                                    let admm = await isAdmin(m)
                                     if (admm) return;
                                     await conn.sendMessage(m.from, {
                                         delete: {
@@ -628,21 +656,41 @@ const WhatsBotConnect = async () => {
                                             participant: m.sender
                                         }
                                     })
-                                    await m.reply('please follow the group rules')
-                                    return await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+                                    const u = m.sender;
+                                    const g = m.from;
+                                    const t = "The law in the group was not accepted";
+                                    const d = await setWarn(u, g, t, m.client.user.number)
+                                    let count = d.count,
+                                        COUND = WARNCOUND;
+                                    let remains = COUND - count;
+                                    let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
+│ Group:-${d.group}
+│ User :-${d.user}
+❏───────────────────❏
+┏─────── INFO ───────❏
+│ Reason :- ${d.reason}
+│ Count :- ${d.count}
+│ Remaining :- ${remains}
+┗•──────────────────❏`
+                                    await m.reply(warnmsg)
+                                    if (remains <= "0") {
+                                        const d = await ResetWarn(u, g, t, m.client.user.number)
+                                        await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+                                        return await m.reply("_Your warning has been completed and is being removed from the group_")
+                                    };
                                 }
                             }
                         }
-                        let valuess = await GetFake(m.from)
+                        let valuess = await GetFake(m.from, m.client.user.number)
                         if (values !== 'no data') {
                             let sender = m.sender || 'ßßß';
                             if (valuess.includes(',')) {
                                 let value = valuess.split(',')
                                 await value.map(async (v) => {
                                     if (v && sender.startsWith(v) && !m.client.isCreator) {
-                                        let adm = await isADmin(m, conn)
+                                        let adm = await isBotAdmin(m)
                                         if (!adm) return;
-                                        let admm = await isAdmin(m, conn)
+                                        let admm = await isAdmin(m)
                                         if (admm) return;
                                         await conn.sendMessage(m.from, {
                                             delete: {
@@ -658,9 +706,9 @@ const WhatsBotConnect = async () => {
                                 })
                             } else if (valuess) {
                                 if (sender.startsWith(valuess) && !m.client.isCreator) {
-                                    let adm = await isADmin(m, conn)
+                                    let adm = await isBotAdmin(m)
                                     if (!adm) return;
-                                    let admm = await isAdmin(m, conn)
+                                    let admm = await isAdmin(m)
                                     if (admm) return;
                                     await conn.sendMessage(m.from, {
                                         delete: {
