@@ -296,7 +296,21 @@ const WhatsBotConnect = async () => {
                     if (chatUpdate.messages[0]?.message?.reactionMessage) return;
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
                     if (BLOCK_CHAT) {
-                        if (BLOCKCHAT.join().includes(m.from.split('@')[0])) return;
+                        if (BLOCKCHAT.join().includes(m.from.split('@')[0])) {
+                            if (!m.isBot) return;
+                            let adm = await isBotAdmin(m)
+                            if (!adm) return;
+                            if (m.isGroup) {
+                                return await conn.sendMessage(m.from, {
+                                    delete: {
+                                        remoteJid: m.key.remoteJid,
+                                        fromMe: m.fromMe,
+                                        id: m.id,
+                                        participant: m.sender
+                                    }
+                                })
+                            }
+                        }
                     }
                     const {
                         data
@@ -337,23 +351,6 @@ const WhatsBotConnect = async () => {
                                 });
                             }
                         });
-                    }
-                    if (BLOCK_CHAT) {
-                        if (BLOCKCHAT.join().includes(m.from.split('@')[0])) {
-                            if (!m.isBot) return;
-                            let adm = await isBotAdmin(m)
-                            if (!adm) return;
-                            if (m.isGroup) {
-                                await conn.sendMessage(m.from, {
-                                    delete: {
-                                        remoteJid: m.key.remoteJid,
-                                        fromMe: m.fromMe,
-                                        id: m.id,
-                                        participant: m.sender
-                                    }
-                                })
-                            }
-                        }
                     }
                     if (CALL_BLOCK == "true") {
                         if (!m.isGroup && !m.client.isCreator) {
@@ -580,21 +577,18 @@ const WhatsBotConnect = async () => {
                                 const d = await setWarn(u, g, t, m.client.user.number)
                                 let remains = WARNCOUND - d.count;
                                 let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
-│ Group:-${d.group}
 │ User :-${d.user}
 ❏───────────────────❏
 ┏─────── INFO ───────❏
 │ Reason :- ${d.reason}
 │ Count :- ${d.count}
 │ Remaining :- ${remains}
-┗•──────────────────❏`
+┗•─────────────────❏`
                                 await m.reply(warnmsg)
-                                if (remains <= "0") {
-                                    const d = await ResetWarn(u, g, t, m.client.user.number)
-                                    if (BotAdmin) {
-                                        await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
-                                        return await m.reply("_Your warning has been completed and is being removed from the group_")
-                                    };
+                                if (remains <= 0) {
+                                    const d = await ResetWarn(u, g, m.client.user.number)
+                                    await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+                                    return await m.reply("_Your warning has been completed and is being removed from the group_")
                                 }
                             }
                         }
@@ -623,17 +617,16 @@ const WhatsBotConnect = async () => {
                                         const d = await setWarn(u, g, t, m.client.user.number)
                                         let remains = WARNCOUND - d.count;
                                         let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
-│ Group:-${d.group}
 │ User :-${d.user}
 ❏───────────────────❏
 ┏─────── INFO ───────❏
 │ Reason :- ${d.reason}
 │ Count :- ${d.count}
 │ Remaining :- ${remains}
-┗•──────────────────❏`
+┗•─────────────────❏`
                                         await m.reply(warnmsg)
-                                        if (remains <= "0") {
-                                            const d = await ResetWarn(u, g, t, m.client.user.number)
+                                        if (remains <= 0) {
+                                            const d = await ResetWarn(u, g, m.client.user.number)
                                             await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
                                             return await m.reply("_Your warning has been completed and is being removed from the group_")
                                         };
@@ -659,17 +652,16 @@ const WhatsBotConnect = async () => {
                                     const d = await setWarn(u, g, t, m.client.user.number)
                                     let remains = WARNCOUND - d.count;
                                     let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
-│ Group:-${d.group}
 │ User :-${d.user}
 ❏───────────────────❏
 ┏─────── INFO ───────❏
 │ Reason :- ${d.reason}
 │ Count :- ${d.count}
 │ Remaining :- ${remains}
-┗•──────────────────❏`
+┗•─────────────────❏`
                                     await m.reply(warnmsg)
-                                    if (remains <= "0") {
-                                        const d = await ResetWarn(u, g, t, m.client.user.number)
+                                    if (remains <= 0) {
+                                        const d = await ResetWarn(u, g, m.client.user.number)
                                         await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
                                         return await m.reply("_Your warning has been completed and is being removed from the group_")
                                     };
