@@ -296,7 +296,7 @@ const WhatsBotConnect = async () => {
                     if (chatUpdate.messages[0]?.message?.reactionMessage) return;
                     let m = new serialize(conn, JSON.parse(JSON.stringify(chatUpdate.messages[0])), createrS);
                     if (BLOCK_CHAT) {
-                        if (BLOCKCHAT.join().includes(m.from.split('@')[0])) {
+                        if (BLOCKCHAT.join().includes(m.from.split('@')[0]) && !m.client.body.includes('antibot')) {
                             if (!m.isBot) return;
                             let adm = await isBotAdmin(m)
                             if (!adm) return;
