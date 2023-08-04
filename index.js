@@ -410,7 +410,7 @@ const WhatsBotConnect = async () => {
 							const ttime = new Date().toLocaleString("LK", {
 								timeZone: timezons
 							}).split(" ")[1];
-							let msg = `❒═════❬ *_PM BLOCK_* ❭═════❒\n\n*number* : ${m.client.number}\n*time* : ${ttime}\n*date* : ${tdate}`;
+							let msg = `❒═════❬ *_PM BLOCK_* ❭═════❒\n\n*number* : ${m.client.number}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
 							return await conn.sendMessage(conn.user.id, {
 								text: msg
 							}, {
@@ -544,7 +544,7 @@ const WhatsBotConnect = async () => {
 											timeZone: timezons
 										}).split(" ")[1];
 										await conn.updateBlockStatus(m.jid, "block");
-										let msg = `❒═════❬ *_SPAM BLOCK_* ❭═════❒\n\n*number* : ${m.client.user.number}\n*time* : ${ttime}\n*date* : ${tdate}`;
+										let msg = `❒═════❬ *_SPAM BLOCK_* ❭═════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
 										return await conn.sendMessage(conn.user.id, {
 											text: msg
 										}, {
@@ -812,7 +812,7 @@ const WhatsBotConnect = async () => {
 		setInterval(async () => {
 			await removeFile("");
 			await removeFile("media");
-		}, 1000 * 150);
+		}, 1000 * 30);
 	} catch (err) {
 		console.log(err)
 	}
