@@ -99,6 +99,7 @@ const {
 	ResetWarn,
 	isAdmin,
 	isBotAdmin,
+	badWordDetect
 } = require("./lib/");
 const mongoose = require("mongoose");
 let session = decrypt(Config.SESSION_ID.replace("inrl~", ""))
@@ -106,6 +107,23 @@ async function toCOnnect() {
 	await connect(session);
 }
 toCOnnect()
+
+String.prototype.format = function () {
+    var i = 0, args = arguments;
+    return this.replace(/{}/g, function () {
+      return typeof args[i] != 'undefined' ? args[i++] : '';
+   });
+};
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
 
 function insertSudo(SUDO) {
 	let CreaterAr = [];
@@ -340,7 +358,8 @@ const WhatsBotConnect = async () => {
 						ANTI_SPAM,
 						WARNCOUND,
 						SPAM_BLOCK,
-						REJECT_CALL
+						REJECT_CALL,
+						BADWORD_BLOCK
 					} = data[0];
 					if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
 						conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
@@ -410,7 +429,25 @@ const WhatsBotConnect = async () => {
 							const ttime = new Date().toLocaleString("LK", {
 								timeZone: timezons
 							}).split(" ")[1];
-							let msg = `❒═════❬ *_PM BLOCK_* ❭═════❒\n\n*number* : ${m.client.number}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
+							let msg = `❒═════❬ *_PM BLOCK_* ❭═════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
+							return await conn.sendMessage(conn.user.id, {
+								text: msg
+							}, {
+								quoted: m
+							});
+						}
+						if(BADWORD_BLOCK == "true" && badWordDetect(m.client.body)) {
+						await conn.updateBlockStatus(m.from, "block")
+							const tdate = new Date().toLocaleDateString("EN", {
+								weekday: "long",
+								year: "numeric",
+								month: "long",
+								day: "numeric",
+							});
+							const ttime = new Date().toLocaleString("LK", {
+								timeZone: timezons
+							}).split(" ")[1];
+							let msg = `❒════❬ *_BADWORD BLOCK_* ❭════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.client.body}`;
 							return await conn.sendMessage(conn.user.id, {
 								text: msg
 							}, {
