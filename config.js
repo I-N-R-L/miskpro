@@ -15,6 +15,7 @@ module.exports = {
     AUTOMUTE_MSG : "_group will been muted at @time_",
     AUTOUNMUTE_MSG : "_group will unmute at @time_",
     WA_GRP : process.env.WA_GRP || 'https://chat.whatsapp.com/ECjTvQMK5D6Bayzu6rJ7Ot',
+    REJECT_CALL : process.env.REJECT_CALL || 'false',
     ALLWAYS_ONLINE: toBool(process.env.ALLWAYS_ONLINE || "true"),
     REACT : toBool(process.env.REACT || "false"),
     ANTI_SPAM : toBool(process.env.ANTI_SPAM || "false"),
