@@ -27,6 +27,7 @@ module.exports = {
     ADMIN_SUDO_ACCESS: toBool(process.env.ADMIN_SUDO_ACCESS || "false"),
     READ_COMMANDS : toBool(process.env.READ_COMMANDS || "false"),
     WARN_GROUP_SPAMMERS : toBool(process.env.WARN_GROUP_SPAMMERS || "false"),
+    BAD_WORD_WARN : toBool(process.env.BAD_WORD_WARN || "false"),
     READ_CHAT : toBool(process.env.READ_CHAT ||  "false"),
     AUTO_CHAT_PM : toBool(process.env.AUTO_CHAT_PM || "false"),
     AUTO_CHAT_GRP : toBool(process.env.AUTO_CHAT_GRP || "false"),
