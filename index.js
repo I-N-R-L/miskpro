@@ -86,6 +86,10 @@ const {
 	removeUserLimit,
 	isFiltered,
 	addFilter,
+	isGroupSparmed,
+	addGroupSparmed,
+	userQuickMsgd,
+	addQuickMsgd,
 	SpamAdd,
 	UserSparmed,
 	giveWarn,
@@ -108,21 +112,24 @@ async function toCOnnect() {
 }
 toCOnnect()
 
-String.prototype.format = function () {
-    var i = 0, args = arguments;
-    return this.replace(/{}/g, function () {
-      return typeof args[i] != 'undefined' ? args[i++] : '';
-   });
+String.prototype.format = function() {
+	var i = 0,
+		args = arguments;
+	return this.replace(/{}/g, function() {
+		return typeof args[i] != 'undefined' ? args[i++] : '';
+	});
 };
 Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
+	var what, a = arguments,
+		L = a.length,
+		ax;
+	while (L && this.length) {
+		what = a[--L];
+		while ((ax = this.indexOf(what)) !== -1) {
+			this.splice(ax, 1);
+		}
+	}
+	return this;
 };
 
 function insertSudo(SUDO) {
@@ -359,12 +366,16 @@ const WhatsBotConnect = async () => {
 						WARNCOUND,
 						SPAM_BLOCK,
 						REJECT_CALL,
-						BADWORD_BLOCK
+						BADWORD_BLOCK,
+						READ_COMMANDS,
+						WARN_GROUP_SPAMMERS,
+						BAD_WORD_WARN,
+						BAN_CHAT
 					} = data[0];
 					if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
 						conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
 					}
-					if (m.client.body && ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
+					if (BAN_CHAT && BAN_CHAT.includes(m.sender.replace(/[^0-9]/g, ''))) return;
 					let filterText = false;
 					if (!m.fromMe && !m.client.body.includes('filter') && m.isGroup && await isFilter(m.from, m.client.user.number)) {
 						await sendFilterMessage(m.from, m.client.body.toLowerCase(), m, m.client.user.number);
@@ -385,7 +396,55 @@ const WhatsBotConnect = async () => {
 							}
 						});
 					}
+					if (m.isGroup && !m.client.isCreator) {
+						if (BAD_WORD_WARN == "true" && badWordDetect(m.client.body.toLowerCase())) {
+							let adm = await isBotAdmin(m)
+							if (!adm) return;
+							let admm = await isAdmin(m)
+							if (admm) return;
+							const t = "Bad word detected";
+							const d = await setWarn(m.sender, m.from, t, m.client.user.number)
+							let remains = WARNCOUND - d.count;
+							let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
+│ User :-${d.user}
+❏───────────────────❏
+┏─────── INFO ───────❏
+│ Reason :- ${d.reason}
+│ Count :- ${d.count}
+│ Remaining :- ${remains}
+┗•─────────────────❏`
+							await m.reply(warnmsg)
+							if (remains <= 0) {
+								const d = await ResetWarn(m.sender, m.from, m.client.user.number)
+								await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+								return await m.reply("_Your warning has been completed and is being removed from the group_")
+							};
+						}
+					}
 					if (!m.isGroup && !m.client.isCreator) {
+						if (SPAM_BLOCK == "true" && m.client.body.length > 300) {
+							if (userQuickMsgd(m.from)) {
+								await conn.updateBlockStatus(m.from, "block")
+								const tdate = new Date().toLocaleDateString("EN", {
+									weekday: "long",
+									year: "numeric",
+									month: "long",
+									day: "numeric",
+								});
+								const ttime = new Date().toLocaleString("LK", {
+									timeZone: timezons
+								}).split(" ")[1];
+								let msg = `❒═════❬ *_SPAM BLOCK_* ❭═════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
+								return await conn.sendMessage(conn.user.id, {
+									text: msg
+								}, {
+									quoted: m
+								});
+							} 
+							if (m.client.body.length > 300) {
+								addQuickMsgd(m.from);
+							}
+						}
 						conn.ws.on('CB:call', async (json) => {
 							if (json.content[0].tag == 'offer') {
 								const tdate = new Date().toLocaleDateString("EN", {
@@ -436,8 +495,8 @@ const WhatsBotConnect = async () => {
 								quoted: m
 							});
 						}
-						if(BADWORD_BLOCK == "true" && badWordDetect(m.client.body)) {
-						await conn.updateBlockStatus(m.from, "block")
+						if (BADWORD_BLOCK == "true" && badWordDetect(m.client.body.toLowerCase())) {
+							await conn.updateBlockStatus(m.from, "block")
 							const tdate = new Date().toLocaleDateString("EN", {
 								weekday: "long",
 								year: "numeric",
@@ -564,7 +623,6 @@ const WhatsBotConnect = async () => {
 								} else if (command.media == "audio" && !/audio/.test(m.client.mime)) {
 									return await m.send('this plugin only response when data as audio');
 								}
-								if (ANTI_SPAM == "true") addFilter(m.from);
 								if (SPAM_BLOCK == "true" && !m.isGroup && !m.client.isCreator) {
 									if (!isWarned(m.jid)) {
 										giveWarn(m.jid);
@@ -589,6 +647,39 @@ const WhatsBotConnect = async () => {
 										});
 									}
 									SpamAdd(m.jid);
+								}
+								if (WARN_GROUP_SPAMMERS == "true" && !m.client.isCreator) {
+									let iidd = m.jid + m.sender;
+									if (isGroupSparmed(iidd)) {
+										let adm = await isBotAdmin(m)
+										if (!adm) return;
+										let admm = await isAdmin(m)
+										if (admm) return;
+										const t = "Too many request";
+										const d = await setWarn(m.sender, m.from, t, m.client.user.number)
+										let remains = WARNCOUND - d.count;
+										let warnmsg = `❏─────[ ᴡᴀʀɴɪɴɢ ]─────❏
+│ User :-${d.user}
+❏───────────────────❏
+┏─────── INFO ───────❏
+│ Reason :- ${d.reason}
+│ Count :- ${d.count}
+│ Remaining :- ${remains}
+┗•─────────────────❏`
+										await m.reply(warnmsg)
+										if (remains <= 0) {
+											const d = await ResetWarn(m.sender, m.from, m.client.user.number)
+											await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+											return await m.reply("_Your warning has been completed and is being removed from the group_")
+										};
+									} else {
+										addGroupSparmed(iidd);
+									}
+								}
+								if (ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
+								if (ANTI_SPAM == "true") addFilter(m.from);
+								if (READ_COMMANDS == 'true') {
+									conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
 								}
 								command.function(m, m.client.text, data[0], m.client.command, chatUpdate).catch((e) => console.log(e));
 								await conn.sendPresenceUpdate(BOT_PRESENCE, m.from);
