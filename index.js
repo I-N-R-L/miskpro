@@ -90,6 +90,8 @@ const {
 	addGroupSparmed,
 	userQuickMsgd,
 	addQuickMsgd,
+	userGroupQuickMsgd,
+	addGroupQuickMsgd,
 	SpamAdd,
 	UserSparmed,
 	giveWarn,
@@ -402,6 +404,14 @@ const WhatsBotConnect = async () => {
 							if (!adm) return;
 							let admm = await isAdmin(m)
 							if (admm) return;
+							await conn.sendMessage(m.from, {
+									delete: {
+										remoteJid: m.key.remoteJid,
+										fromMe: m.fromMe,
+										id: m.id,
+										participant: m.sender
+									}
+								})
 							const t = "Bad word detected";
 							const d = await setWarn(m.sender, m.from, t, m.client.user.number)
 							let remains = WARNCOUND - d.count;
@@ -420,9 +430,33 @@ const WhatsBotConnect = async () => {
 								return await m.reply("_Your warning has been completed and is being removed from the group_")
 							};
 						}
+						if (WARN_GROUP_SPAMMERS == "true" && m.client.body.length > 5000) {
+						let iidd = m.jid + m.sender;
+						if (userGroupQuickMsgd(iidd)) {
+								await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
+								const tdate = new Date().toLocaleDateString("EN", {
+									weekday: "long",
+									year: "numeric",
+									month: "long",
+									day: "numeric",
+								});
+								const ttime = new Date().toLocaleString("LK", {
+									timeZone: timezons
+								}).split(" ")[1];
+								let msg = `❒═════❬ *_SPAM BLOCK_* ❭═════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}\n*group* :${m.jid}`;
+								return await conn.sendMessage(conn.user.id, {
+									text: msg
+								}, {
+									quoted: m
+								});
+							} 
+							if (m.client.body.length > 5000) {
+								addGroupQuickMsgd(m.from);
+							}
+					    }
 					}
 					if (!m.isGroup && !m.client.isCreator) {
-						if (SPAM_BLOCK == "true" && m.client.body.length > 300) {
+						if (SPAM_BLOCK == "true" && m.client.body.length > 500) {
 							if (userQuickMsgd(m.from)) {
 								await conn.updateBlockStatus(m.from, "block")
 								const tdate = new Date().toLocaleDateString("EN", {
@@ -441,7 +475,7 @@ const WhatsBotConnect = async () => {
 									quoted: m
 								});
 							} 
-							if (m.client.body.length > 300) {
+							if (m.client.body.length > 500) {
 								addQuickMsgd(m.from);
 							}
 						}
