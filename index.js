@@ -373,7 +373,7 @@ const WhatsBotConnect = async () => {
 						BAN_CHAT
 					} = data[0];
 					if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
-						conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
+						await conn.readMessages([chatUpdate.messages[0].key])
 					}
 					if (BAN_CHAT && BAN_CHAT.includes(m.sender.replace(/[^0-9]/g, ''))) return;
 					let filterText = false;
@@ -565,9 +565,9 @@ const WhatsBotConnect = async () => {
 						resWithText = false;
 					}
 					if (ALLWAYS_ONLINE == "true") {
-						conn.sendPresenceUpdate("available", m.from);
+					        await conn.sendPresenceUpdate("available", m.from);
 					} else {
-						conn.sendPresenceUpdate("unavailable", m.from);
+						await conn.sendPresenceUpdate("unavailable", m.from);
 					}
 					let isTog = false,
 						isReact = false;
@@ -679,7 +679,7 @@ const WhatsBotConnect = async () => {
 								if (ANTI_SPAM == "true" && isFiltered(m.from) && !m.client.isCreator) return;
 								if (ANTI_SPAM == "true") addFilter(m.from);
 								if (READ_COMMANDS == 'true') {
-									conn.sendReceipts([chatUpdate.messages[0].key], 'read-self')
+									await conn.readMessages([chatUpdate.messages[0].key])
 								}
 								command.function(m, m.client.text, data[0], m.client.command, chatUpdate).catch((e) => console.log(e));
 								await conn.sendPresenceUpdate(BOT_PRESENCE, m.from);
