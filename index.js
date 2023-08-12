@@ -996,7 +996,7 @@ const WhatsBotConnect = async () => {
 								}
 							});
 						}
-					} else if (REACT == 'true' && m && REACT_EMOJI == "true" && !isReact) {
+					} else if (REACT != 'true' && m && REACT_EMOJI == "true" && !isReact) {
 						if (m.client.body.match(/\p{EPres}|\p{ExtPict}/gu)) {
 							await conn.sendMessage(m.from, {
 								react: {
