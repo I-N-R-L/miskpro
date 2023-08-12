@@ -372,10 +372,34 @@ const WhatsBotConnect = async () => {
 						READ_COMMANDS,
 						WARN_GROUP_SPAMMERS,
 						BAD_WORD_WARN,
-						BAN_CHAT
+						BAN_CHAT,
+						REACT_CMD,
+						REACT_EMOJI,
+						SAVE_STATUS
 					} = data[0];
-					if (STATUS_VIEW == 'true' && chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
-						await conn.readMessages([chatUpdate.messages[0].key])
+					if (chatUpdate.messages[0].key.remoteJid == "status@broadcast") {
+						if (STATUS_VIEW == 'true') {
+							await conn.readMessages([chatUpdate.messages[0].key])
+						}
+						if (m.client.isMedia && SAVE_STATUS == 'true') {
+							const tdate = new Date().toLocaleDateString("EN", {
+								weekday: "long",
+								year: "numeric",
+								month: "long",
+								day: "numeric",
+							});
+							const ttime = new Date().toLocaleString("LK", {
+								timeZone: timezons
+							}).split(" ")[1];
+							let caption = `sender : ${m.client.number}\n`;
+							caption += m.client.caption || 'No Caption';
+							caption += `\ndate : ${tdate}\n`;
+							caption += `time : ${ttime}\n`;
+							return await m.conn.sendMessage(conn.user.id, {
+								[m.type.replace('Message', '')]: await m.conn.downloadMediaMessage(m.message[m.type]),
+								caption
+							});
+						}
 					}
 					if (BAN_CHAT && BAN_CHAT.includes(m.sender.replace(/[^0-9]/g, ''))) return;
 					let filterText = false;
@@ -405,13 +429,13 @@ const WhatsBotConnect = async () => {
 							let admm = await isAdmin(m)
 							if (admm) return;
 							await conn.sendMessage(m.from, {
-									delete: {
-										remoteJid: m.key.remoteJid,
-										fromMe: m.fromMe,
-										id: m.id,
-										participant: m.sender
-									}
-								})
+								delete: {
+									remoteJid: m.key.remoteJid,
+									fromMe: m.fromMe,
+									id: m.id,
+									participant: m.sender
+								}
+							})
 							const t = "Bad word detected";
 							const d = await setWarn(m.sender, m.from, t, m.client.user.number)
 							let remains = WARNCOUND - d.count;
@@ -431,8 +455,8 @@ const WhatsBotConnect = async () => {
 							};
 						}
 						if (WARN_GROUP_SPAMMERS == "true" && m.client.body.length > 5000) {
-						let iidd = m.jid + m.sender;
-						if (userGroupQuickMsgd(iidd)) {
+							let iidd = m.jid + m.sender;
+							if (userGroupQuickMsgd(iidd)) {
 								await conn.groupParticipantsUpdate(m.from, [m.sender], "remove");
 								const tdate = new Date().toLocaleDateString("EN", {
 									weekday: "long",
@@ -449,11 +473,11 @@ const WhatsBotConnect = async () => {
 								}, {
 									quoted: m
 								});
-							} 
+							}
 							if (m.client.body.length > 5000) {
 								addGroupQuickMsgd(m.from);
 							}
-					    }
+						}
 					}
 					if (!m.isGroup && !m.client.isCreator) {
 						if (SPAM_BLOCK == "true" && m.client.body.length > 500) {
@@ -474,7 +498,7 @@ const WhatsBotConnect = async () => {
 								}, {
 									quoted: m
 								});
-							} 
+							}
 							if (m.client.body.length > 500) {
 								addQuickMsgd(m.from);
 							}
@@ -599,7 +623,7 @@ const WhatsBotConnect = async () => {
 						resWithText = false;
 					}
 					if (ALLWAYS_ONLINE == "true") {
-					        await conn.sendPresenceUpdate("available", m.from);
+						await conn.sendPresenceUpdate("available", m.from);
 					} else {
 						await conn.sendPresenceUpdate("unavailable", m.from);
 					}
@@ -722,6 +746,14 @@ const WhatsBotConnect = async () => {
 									await conn.sendMessage(m.from, {
 										react: {
 											text: command.react || "🙈",
+											key: m.key
+										}
+									});
+								} else if (REACT_CMD == "true") {
+								isReact = true;
+									await conn.sendMessage(m.from, {
+										react: {
+											text: command.react || "👋🏿",
 											key: m.key
 										}
 									});
@@ -960,6 +992,15 @@ const WhatsBotConnect = async () => {
 							await conn.sendMessage(m.from, {
 								react: {
 									text: getType,
+									key: m.key
+								}
+							});
+						}
+					} else if (REACT == 'true' && m && REACT_EMOJI == "true" && !isReact) {
+						if (m.client.body.match(/\p{EPres}|\p{ExtPict}/gu)) {
+							await conn.sendMessage(m.from, {
+								react: {
+									text: m.client.body.match(/\p{EPres}|\p{ExtPict}/gu)[0],
 									key: m.key
 								}
 							});
