@@ -1,0 +1,449 @@
+const en = {
+    LIST: {
+        DESC: "shows list of cmds with description"
+    },
+    ALIVE: {
+        DESC: "to check bot is alive or not",
+        HELP: "*alive get to get alive message*\n\n*_to set alive message_*\n*for normal text message*\n```.alive $text>hey_bro_&sender;\ntime:&time;```\n\n*for image*\n```.alive $iamge>img_url;$text>hey _sis_\ndate&date\speed : &speed;```\n\n*for video*\n```.alive $video>url;```\n\n*message with LinkPrvew*\n```.alive $sticker>url;\n$thumbnail>url;\n$title>text;\n$body>hy;\n$mediatype>1;\n$souceurl>url;\n$mediaurl>url;```"
+    },
+    MENU: {
+        DESC: "to get bot cmds"
+    },
+    CMDS: {
+        DESC: "to show list of cmds"
+    },
+    TTP: {
+        DESC: "create text over image"
+    },
+    ATTP: {
+        DESC: "create animated sticker's"
+    },
+    MEDIA_CMD: {
+        SET_DESC: "set sticker as cmd",
+        DEL_DESC: "remove sticker cmd",
+        GET_DESC: "get sticker cmds",
+        NO_CMD: "*_witch cmd?_*",
+        NOT_A_STICKER: "*reply to a sticker message with cmd*\n\n*Example:* {}",
+        CMD_ERROR: "*_Failed To Save Your Sticker Message!*_",
+        CMD_LIST: "*Total Cmds*\n\n",
+        NOT_FOUND: "_There is no sticker command_"
+    },
+    CONVERTER: {
+        PHOTO_DESC: "convert stciker to image",
+        VIDEO_DESC: "convert animated sticker to video",
+        AUDIO_DESC: "convert audio to ptt",
+        GIF_DESC: "convert animated sticker to gif",
+        AUDIO_DESC: "audio edit",
+        MP3_DESC: "convert video to audio",
+    },
+    WHATSAPP: {
+        DLT_DESC: "deletes group message's by bot",
+        DEL_DESC: "delete messsge thets send by bot",
+        ISWA: {
+            ISWA_DISC: "List number in whatsapp",
+            NO_NUMBER: "_Give me a number_\n*Example* : {}",
+            NOT_VALID: "_Give me number with valid format_\n*Example* :{}",
+            X_LENGTH: "*Limit Error*\n*_you can use X Length max upto 3_*",
+            WAIT: "_Please Wait 25 Seconds_",
+            EXIST: "*Number Existing on Whatsapp* ({}/{})\n\n",
+            PRIVACY: "*Privacy Settings on* ({}/{})\n\n",
+            NOT_FOUND: "Not Found ({}/{})\n\n",
+        },
+        NOWA: {
+            DESC: "List number Thet Not Exist whatsapp",
+            NO_NUMBER: "_Give me a number_\n*Example* : {}",
+            NOT_VALID: "_Give me number with valid format_\n*Example* :{}",
+            X_LENGTH: "*Limit Error*\n*_you can use X Length max upto 3_*",
+            WAIT: "_Please Wait 5 Seconds_",
+            LIST: "*Number Not Exist On whatsApp*\n\n*_total result_*:-{}\n"
+        },
+    },
+    RESTART: {
+        DESC: "restart bot",
+        INFO: "Restarting Please await few secondÂ°s"
+    },
+    EXTERNAL_PLUGIN: {
+        DESC: "install/list external plugins",
+        INALID: "inavlid plugin url",
+        INSTALLED: "_Newly installed plugin are_ :{}",
+        NO_PLUGIN: "_There is no external plugin_",
+        LIST: "List of External Plugin Plugin\n\n",
+        REMOVE_DESC: "remove external plugins",
+        REMOVED: "_plugin removed successfully!, type restart to remove plugin_"
+    },
+    FANCY: {
+        DESC: "Creates fancy text fonts",
+        INFO: "Reply to a text or type text after command with a numeric code\n*Example* : {}"
+    },
+    FILTERS: {
+        DESC: "set/get/remove filteres on group ",
+        NOT_FOUND: "_*there is no filter*_\n *Example* : {}",
+        INVALID: "*may be wrong fromat!*\n*Example* :- *{}/sticker, video, image, audio"
+    },
+    GPT_DESC: "chat with gpt",
+    USER: {
+        JID: "get JID of member or replayed user",
+        BLOCK_DESC: "block a person",
+        UNBLOCK_DESC: "unblock a person",
+        PP: {
+            DESC: "set  profile picture of bot",
+            SUCCESS: "profile picture updated!"
+        },
+        FULL_PP: {
+            DESC: "set  profile picture of bot with any resolution",
+            SUCCESS: "profile picture updated!"
+        }
+    },
+    GROUP: {
+        BOT_ADMIN: "*_Bot must Be Admin_*",
+        PROMOTE: {
+            DESC: "promote user",
+            INFO: "{} Promoted As admin",
+        },
+        DEMOTE: {
+            DESC: "demote user",
+            INFO: "{} Demoted From admin"
+        },
+        KICK: {
+            DESC: "remove user from group",
+            HELP: "for removing members\n*Example:* kick all\nkick _reply to a user_",
+            INFO: "{} kicked From The Group"
+        },
+        ADD: {
+            DESC: "add a person to the group",
+            INVITE: "Couldn't Add Invite Send",
+            NOT_FOUND: "This number doesn't exists on whatsapp",
+            LEFTED: "Couldn't add {} because they left the group recently. Try again later.",
+            BLOCKED: "Couldn't add {} because they blocked Bot number, Try again later.",
+            ADDED: "{} Added To the group",
+            ALLREADY: "{} Already in Group."
+        },
+        GPP: {
+            DESC: "set group icon",
+            INFO: "*_group icon updated!_*",
+        },
+        FULL_GPP: {
+            DESC: "set group icon with full size",
+            INFO: "*_group icon updated!_*",
+        },
+        G_NAME: {
+            DESC: "set group name",
+            LENGTH_OVER: "*_Text is too long_*",
+            SUCCESS: "_group name changed successfully!_"
+        },
+        G_DESC: {
+            DESC: "set group description",
+            LENGTH_OVER: "*_Text is too long_",
+            SUCCESS: "_group description changed successfully!_"
+        },
+        MUTE: {
+            DESC: "mute group",
+            SUCCESS: "_Group Closed_",
+        },
+        UNMUTE: {
+            DESC: "unmute group",
+            SUCCESS: "_Group Opened!_"
+        },
+        LOCK: {
+            DESC: "allows only admins to edit group info",
+            SUCCESS: "_Group Locked!_"
+        },
+        UNLOCK: {
+            DESC: "allows all members to edit group info",
+            SUCCESS: "_Group UnLocked!_",
+        },
+        LEFT: {
+            DESC: "left from group"
+        },
+        INVITE: {
+            DESC: "generate group link",
+            INFO: "Group Link {}"
+        },
+        REVOKE: {
+            DESC: "revoke group link",
+            INFO: "*_Group link revoked._"
+        },
+        ACPT: {
+            DESC: "Join a Group using a Group link",
+            NOT_VALID: "_Enter valid link_"
+        },
+        GET_INFO: {
+            DESC: "get group info by url",
+            GIVE_URL: "_Give me a Goup Url_",
+            INFO: "*id* : {}\n*subject*: {}\n*name* : {}\n*size* : {}\n*restricte* : {}\n*announce* : {}\n*creation* : {}\n*description* : {}"
+        },
+        AMUTE:{
+        	DESC:"auto mute group",
+            NEED_TIME: "_need time (example :- 23:59)_",
+            INVALID_FORMAT: "_Inavlid Format_\n_Example_ :  {}",
+            SUCCESS: "_Group Close @_ {}"
+       },
+       AUTOUNMUTE: {
+       	DESC:"auto unmute group",
+       NEED_TIME: "_need time (example :- 23:59)_",
+            INVALID_FORMAT: "_Inavlid Format_\n_Example_ :  {}",
+            SUCCESS: "_Group Open @_ {}"
+            },
+            PDM: {
+            	DESC:"send promote demote messages",
+            NEED_ACTION: "*_need action!_*\n*_Example:_* {}",
+            INVALID : "*give me a proper action?*\n*_Example:_* {}",,
+            ALREADY_ACTIVATED: "*_already activated!_*",
+            SUCCESS_ON": "*_pdm activated!_*",
+            ALREADY_DEACTIVATED: "*_already deactivated!_*",
+            SUCCESS_OFF: "*_pdm deactivated!_*"
+            },
+            ANTILINK:{
+            	DESC: "antilink action for group",
+            NEED_ACTION: "*_need action!_*\n*_Example:_* {}",
+            INVALID : "*give me a proper action?*\n*_Example:_ {}",
+            ALREADY_ACTIVATED: "*_already activated!_*",
+            SUCCESS_ON": "_successfully set antilink on thi group_",
+            ALREADY_DEACTIVATED: "*_already deactivated!_*",
+            SUCCESS_OFF: "*_successfully removed antilink from this group_"
+            },
+            ANTI_WORD:{
+            	DESC:"antiword action or group",
+            DESC_DEL: "Remove antiword From DB",
+            DESC_GET: "Get List Off word",
+            NEED_WORD: "_need word?!_\nExample: {}",
+            ALLREADY: "_given word already set as antiword_"
+            },
+            ANTI_FAKE : {
+            	DESC_ON:"antifake action for group",
+            DESC_DEL: "Remove fake number number From DB",
+            DESC_GET: "get List of Fake Number",
+            NEED_NUMBER: "_give me the starting of fake Number_\nExample: {}",
+            NO_NUMBER: "*Need Number*",
+            SUCCESS: "_*successfully set fake number!*_",
+            ALLREDY: "_given number already set as antifake_",
+            NO_FAKE: "*_There is fake number_*\n*Example* : {} _to get fake number_\n*{}* _to get list of fake number_",
+            NOT_EXIST: "
+            },
+            
+    },
+}const en = {
+    LIST: {
+        DESC: "shows list of cmds with description"
+    },
+    ALIVE: {
+        DESC: "to check bot is alive or not",
+        HELP: "*alive get to get alive message*\n\n*_to set alive message_*\n*for normal text message*\n```.alive $text>hey_bro_&sender;\ntime:&time;```\n\n*for image*\n```.alive $iamge>img_url;$text>hey _sis_\ndate&date\speed : &speed;```\n\n*for video*\n```.alive $video>url;```\n\n*message with LinkPrvew*\n```.alive $sticker>url;\n$thumbnail>url;\n$title>text;\n$body>hy;\n$mediatype>1;\n$souceurl>url;\n$mediaurl>url;```"
+    },
+    MENU: {
+        DESC: "to get bot cmds"
+    },
+    CMDS: {
+        DESC: "to show list of cmds"
+    },
+    TTP: {
+        DESC: "create text over image"
+    },
+    ATTP: {
+        DESC: "create animated sticker's"
+    },
+    MEDIA_CMD: {
+        SET_DESC: "set sticker as cmd",
+        DEL_DESC: "remove sticker cmd",
+        GET_DESC: "get sticker cmds",
+        NO_CMD: "*_witch cmd?_*",
+        NOT_A_STICKER: "*reply to a sticker message with cmd*\n\n*Example:* {}",
+        CMD_ERROR: "*_Failed To Save Your Sticker Message!*_",
+        CMD_LIST: "*Total Cmds*\n\n",
+        NOT_FOUND: "_There is no sticker command_"
+    },
+    CONVERTER: {
+        PHOTO_DESC: "convert stciker to image",
+        VIDEO_DESC: "convert animated sticker to video",
+        AUDIO_DESC: "convert audio to ptt",
+        GIF_DESC: "convert animated sticker to gif",
+        AUDIO_DESC: "audio edit",
+        MP3_DESC: "convert video to audio",
+    },
+    WHATSAPP: {
+        DLT_DESC: "deletes group message's by bot",
+        DEL_DESC: "delete messsge thets send by bot",
+        ISWA: {
+            ISWA_DISC: "List number in whatsapp",
+            NO_NUMBER: "_Give me a number_\n*Example* : {}",
+            NOT_VALID: "_Give me number with valid format_\n*Example* :{}",
+            X_LENGTH: "*Limit Error*\n*_you can use X Length max upto 3_*",
+            WAIT: "_Please Wait 25 Seconds_",
+            EXIST: "*Number Existing on Whatsapp* ({}/{})\n\n",
+            PRIVACY: "*Privacy Settings on* ({}/{})\n\n",
+            NOT_FOUND: "Not Found ({}/{})\n\n",
+        },
+        NOWA: {
+            DESC: "List number Thet Not Exist whatsapp",
+            NO_NUMBER: "_Give me a number_\n*Example* : {}",
+            NOT_VALID: "_Give me number with valid format_\n*Example* :{}",
+            X_LENGTH: "*Limit Error*\n*_you can use X Length max upto 3_*",
+            WAIT: "_Please Wait 5 Seconds_",
+            LIST: "*Number Not Exist On whatsApp*\n\n*_total result_*:-{}\n"
+        },
+    },
+    RESTART: {
+        DESC: "restart bot",
+        INFO: "Restarting Please await few secondÂ°s"
+    },
+    EXTERNAL_PLUGIN: {
+        DESC: "install/list external plugins",
+        INALID: "inavlid plugin url",
+        INSTALLED: "_Newly installed plugin are_ :{}",
+        NO_PLUGIN: "_There is no external plugin_",
+        LIST: "List of External Plugin Plugin\n\n",
+        REMOVE_DESC: "remove external plugins",
+        REMOVED: "_plugin removed successfully!, type restart to remove plugin_"
+    },
+    FANCY: {
+        DESC: "Creates fancy text fonts",
+        INFO: "Reply to a text or type text after command with a numeric code\n*Example* : {}"
+    },
+    FILTERS: {
+        DESC: "set/get/remove filteres on group ",
+        NOT_FOUND: "_*there is no filter*_\n *Example* : {}",
+        INVALID: "*may be wrong fromat!*\n*Example* :- *{}/sticker, video, image, audio"
+    },
+    GPT_DESC: "chat with gpt",
+    USER: {
+        JID: "get JID of member or replayed user",
+        BLOCK_DESC: "block a person",
+        UNBLOCK_DESC: "unblock a person",
+        PP: {
+            DESC: "set  profile picture of bot",
+            SUCCESS: "profile picture updated!"
+        },
+        FULL_PP: {
+            DESC: "set  profile picture of bot with any resolution",
+            SUCCESS: "profile picture updated!"
+        }
+    },
+    GROUP: {
+        BOT_ADMIN: "*_Bot must Be Admin_*",
+        PROMOTE: {
+            DESC: "promote user",
+            INFO: "{} Promoted As admin",
+        },
+        DEMOTE: {
+            DESC: "demote user",
+            INFO: "{} Demoted From admin"
+        },
+        KICK: {
+            DESC: "remove user from group",
+            HELP: "for removing members\n*Example:* kick all\nkick _reply to a user_",
+            INFO: "{} kicked From The Group"
+        },
+        ADD: {
+            DESC: "add a person to the group",
+            INVITE: "Couldn't Add Invite Send",
+            NOT_FOUND: "This number doesn't exists on whatsapp",
+            LEFTED: "Couldn't add {} because they left the group recently. Try again later.",
+            BLOCKED: "Couldn't add {} because they blocked Bot number, Try again later.",
+            ADDED: "{} Added To the group",
+            ALLREADY: "{} Already in Group."
+        },
+        GPP: {
+            DESC: "set group icon",
+            INFO: "*_group icon updated!_*",
+        },
+        FULL_GPP: {
+            DESC: "set group icon with full size",
+            INFO: "*_group icon updated!_*",
+        },
+        G_NAME: {
+            DESC: "set group name",
+            LENGTH_OVER: "*_Text is too long_*",
+            SUCCESS: "_group name changed successfully!_"
+        },
+        G_DESC: {
+            DESC: "set group description",
+            LENGTH_OVER: "*_Text is too long_",
+            SUCCESS: "_group description changed successfully!_"
+        },
+        MUTE: {
+            DESC: "mute group",
+            SUCCESS: "_Group Closed_",
+        },
+        UNMUTE: {
+            DESC: "unmute group",
+            SUCCESS: "_Group Opened!_"
+        },
+        LOCK: {
+            DESC: "allows only admins to edit group info",
+            SUCCESS: "_Group Locked!_"
+        },
+        UNLOCK: {
+            DESC: "allows all members to edit group info",
+            SUCCESS: "_Group UnLocked!_",
+        },
+        LEFT: {
+            DESC: "left from group"
+        },
+        INVITE: {
+            DESC: "generate group link",
+            INFO: "Group Link {}"
+        },
+        REVOKE: {
+            DESC: "revoke group link",
+            INFO: "*_Group link revoked._"
+        },
+        ACPT: {
+            DESC: "Join a Group using a Group link",
+            NOT_VALID: "_Enter valid link_"
+        },
+        GET_INFO: {
+            DESC: "get group info by url",
+            GIVE_URL: "_Give me a Goup Url_",
+            INFO: "*id* : {}\n*subject*: {}\n*name* : {}\n*size* : {}\n*restricte* : {}\n*announce* : {}\n*creation* : {}\n*description* : {}"
+        },
+        AMUTE:{
+        	DESC:"auto mute group",
+            NEED_TIME: "_need time (example :- 23:59)_",
+            INVALID_FORMAT: "_Inavlid Format_\n_Example_ :  {}",
+            SUCCESS: "_Group Close @_ {}"
+       },
+       AUTOUNMUTE: {
+       	DESC:"auto unmute group",
+       NEED_TIME: "_need time (example :- 23:59)_",
+            INVALID_FORMAT: "_Inavlid Format_\n_Example_ :  {}",
+            SUCCESS: "_Group Open @_ {}"
+            },
+            PDM: {
+            	DESC:"send promote demote messages",
+            NEED_ACTION: "*_need action!_*\n*_Example:_* {}",
+            INVALID : "*give me a proper action?*\n*_Example:_* {}",,
+            ALREADY_ACTIVATED: "*_already activated!_*",
+            SUCCESS_ON": "*_pdm activated!_*",
+            ALREADY_DEACTIVATED: "*_already deactivated!_*",
+            SUCCESS_OFF: "*_pdm deactivated!_*"
+            },
+            ANTILINK:{
+            	DESC: "antilink action for group",
+            NEED_ACTION: "*_need action!_*\n*_Example:_* {}",
+            INVALID : "*give me a proper action?*\n*_Example:_ {}",
+            ALREADY_ACTIVATED: "*_already activated!_*",
+            SUCCESS_ON": "_successfully set antilink on thi group_",
+            ALREADY_DEACTIVATED: "*_already deactivated!_*",
+            SUCCESS_OFF: "*_successfully removed antilink from this group_"
+            },
+            ANTI_WORD:{
+            	DESC:"antiword action or group",
+            DESC_DEL: "Remove antiword From DB",
+            DESC_GET: "Get List Off word",
+            NEED_WORD: "_need word?!_\nExample: {}",
+            ALLREADY: "_given word already set as antiword_"
+            },
+            ANTI_FAKE : {
+            	DESC_ON:"antifake action for group",
+            DESC_DEL: "Remove fake number number From DB",
+            DESC_GET: "get List of Fake Number",
+            NEED_NUMBER: "_give me the starting of fake Number_\nExample: {}",
+            NO_NUMBER: "*Need Number*",
+            SUCCESS: "_*successfully set fake number!*_",
+            ALLREDY: "_given number already set as antifake_",
+            NO_FAKE: "*_There is fake number_*\n*Example* : {} _to get fake number_\n*{}* _to get list of fake number_",
+            NOT_EXIST: "
+            },
+            
+    },
+}
