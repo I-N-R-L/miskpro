@@ -1,0 +1,2684 @@
+const { bot, textMaker } = require('../lib')
+
+bot(
+	{
+		pattern: 'npack ?(.*)',
+		fromMe: true,
+		desc: 'Textmaker Plugin Menu',
+		type: 'textmaker',
+	},async (message, match) => {
+let msg = '```'
+await message.sendMessage(msg +`╔════════════════
+║ 𝑻𝑬𝑿𝑻 𝑴𝑨𝑲𝑬𝑹 𝑷𝑳𝑼𝑮𝑰𝑵 𝑳𝑰𝑺𝑻
+╚═══════════════
+ᴊᴜꜱᴛ ᴀʟʟ ᴛᴇxᴛ ᴍᴀᴋᴇʀ ᴘʟᴜɢɪɴ ᴍᴇɴᴜ
+╔════════════════
+║
+║𝗔𝗩𝗔𝗜𝗟𝗔𝗕𝗟𝗘 𝗢𝗣𝗧𝗜𝗢𝗡𝗦
+╔════════════════
+║ 𝟷) 3dchrome
+║ 𝟸) wood
+║ 𝟹) bagel
+║ 𝟺) biscuit
+║ 𝟻) gold
+║ 𝟼) candy
+║ 𝟽) carbon
+║ 𝟾) 2carbon
+║ 𝟿) 2glitter
+║ 𝟷𝟶) 3glitter
+║ 𝟷𝟷) 4glitter
+║ 𝟷𝟸) 6glitter
+║ 𝟷𝟹) 6glitter
+║ 𝟷𝟺) 7glitter
+║ 𝟷𝟻) 8glitter
+║ 𝟷𝟼) hexagold
+║ 𝟷𝟽) scifi
+║ 𝟷𝟾) 1jewel
+║ 𝟷𝟿) 2jewel
+║ 𝟸𝟶) 3jewel
+║ 𝟸𝟷) 4jewel
+║ 𝟸𝟸) 5jewel
+║ 𝟸𝟹) 6jewel
+║ 𝟸𝟺) 7jewel
+║ 𝟸𝟻) 8jewel
+║ 𝟸𝟼) glowmetal
+║ 𝟸𝟽) blackmetal
+║ 𝟸𝟾) bluemetal
+║ 𝟸𝟿) hotmetal
+║ 𝟹𝟶) shinymetal
+║ 𝟹𝟷) rainbowmetal
+║ 𝟹𝟸) rustymetal
+║ 𝟹𝟹) 3gem
+║ 𝟹𝟺) 4gem
+║ 𝟹𝟻) juice
+║ 𝟹𝟼) frozen
+║ 𝟹𝟽) 1marble
+║ 𝟹𝟾) 2marble
+║ 𝟹𝟿) horror 
+║ 𝟺𝟶) drug
+║ 𝟺𝟷) honey
+║ 𝟺𝟸) gift
+║ 𝟺𝟹) dropwater
+║ 𝟺𝟺) 1neon
+║ 𝟺𝟻) 2neon
+║ 𝟺𝟼) 3neon
+║ 𝟺𝟽) 4neon
+║ 𝟺𝟾) 5neon
+║ 𝟺𝟿) 6neon
+║ 𝟻𝟶) 7neon
+║ 𝟻𝟷) 8neon
+║ 𝟻𝟸) 9neon
+║ 𝟻𝟹) greenneon
+║ 𝟻𝟺) glitchneon
+║ 𝟻𝟻) 3dglue
+║ 𝟻𝟼) circuit 
+║ 𝟻𝟽) bokeh
+║ 𝟻𝟾) steel
+║ 𝟻𝟿) 3dsteel
+║ 𝟼𝟶) 3dbox
+║ 𝟼𝟷) thunder
+║ 𝟼𝟸) 2thunder
+║ 𝟼𝟹) blood
+║ 𝟼𝟺) 2blood
+║ 𝟼𝟻) matrix
+║ 𝟼𝟼) bread
+║ 𝟼𝟽) koifish
+║ 𝟼𝟾) strawberry
+║ 𝟼𝟿) 2chocolate
+║ 𝟽𝟶) decglass
+║ 𝟽𝟷) glass
+║ 𝟽𝟸) 2glass
+║ 𝟽𝟹) 3glass
+║ 𝟽𝟺) 4glass
+║ 𝟽𝟻) 5glass
+║ 𝟽𝟼) 6glass
+║ 𝟽𝟽) 7glass
+║ 𝟽𝟾) 8glass
+║ 𝟽𝟿) 9glass
+║ 𝟾𝟶) sparkling
+║ 𝟾𝟷) 2sparkling
+║ 𝟾𝟸) 3sparkling
+║ 𝟾𝟹) 4sparkling
+║ 𝟾𝟺) 5sparkling
+║ 𝟾𝟻) 6sparkling
+║ 𝟾𝟼) 7sparkling
+║ 𝟾𝟽) toxic
+║ 𝟾𝟾) equalizer
+║ 𝟾𝟿) robot
+║ 𝟿𝟶) captain
+║ 𝟿𝟷) lava
+║ 𝟿𝟸) magma
+║ 𝟿𝟹) rock
+║ 𝟿𝟺) 3dstone
+║ 𝟿𝟻) stone
+║ 𝟿𝟼) 2stone
+║ 𝟿𝟽) decpurple
+║ 𝟿𝟾) decgreen
+║ 𝟿𝟿) ultragloss
+║ 𝟷𝟶𝟶) denim
+║ 𝟷𝟶𝟷) 3balloon
+║ 𝟷𝟶𝟸) 4balloon
+║ 𝟷𝟶𝟹) 5balloon
+║ 𝟷𝟶𝟺) 6balloon
+║ 𝟷𝟶𝟻) 7balloon
+║ 𝟷𝟶𝟼) 8balloon
+║ 𝟷𝟶𝟽) 9balloon
+║ 𝟷𝟶𝟾) 3fabric
+║ 𝟷𝟶𝟿) skeleton
+║ 𝟷𝟷𝟶) 1firework
+║ 𝟷𝟷𝟷) nleaves
+║ 𝟷𝟷𝟸) wicker
+║ 𝟷𝟷𝟹) ninja
+║ 𝟷𝟷𝟺) bwwolf
+║ 𝟷𝟷𝟻) lion
+║ 𝟷𝟷𝟼) darkgold
+║ 𝟷𝟷𝟽) 2darkgold
+║ 𝟷𝟷𝟾) xmas 
+║ 𝟷𝟷𝟿) 2xmas
+║ 𝟷𝟸𝟶) eroded
+║ 𝟷𝟸𝟷) deluxe
+║ 𝟷𝟸𝟸) 2deluxe
+║ 𝟷𝟸𝟹) glossymetal
+║ 𝟷𝟸𝟺) purplemetal
+║ 𝟷𝟸𝟻) marvel
+║ 𝟷𝟸𝟼) 2marvel
+║ 𝟷𝟸𝟽) avengers
+║ 𝟷𝟸𝟾) holotext
+║ 𝟷𝟸𝟿) pornhub
+║ 𝟷𝟹𝟶) minion
+║ 𝟷𝟹𝟷) 1917style
+║ 𝟷𝟹𝟸) glitch
+║ 𝟷𝟹𝟹) 2glitch
+║ 𝟷𝟹𝟺) 3glitch
+║ 𝟷𝟹𝟻) space
+║ 𝟷𝟹𝟼) 2space 
+║ 𝟷𝟹𝟽) beach
+║ 𝟷𝟹𝟾) cracked
+║ 𝟷𝟹𝟿) 2graffiti 
+║ 𝟷𝟺𝟶) 3graffiti
+║ 𝟷𝟺𝟷) 4graffiti
+║ 𝟷𝟺𝟸) 5graffiti
+║ 𝟷𝟺𝟹) 3water
+║ 𝟷𝟺𝟺) watercolor
+║ 𝟷𝟺𝟻) 3dpaper
+║ 𝟷𝟺𝟼) layered
+║ 𝟷𝟺𝟽) berry
+║ 𝟷𝟺𝟾) transformer
+║ 𝟷𝟺𝟿) demon
+║ 𝟷𝟻𝟶) classicgame
+╚════════════════ ` + '```',{quoted: message.data});});
+
+bot(
+	{
+		pattern: '3dchrome ?(.*)',
+		fromMe: true,
+		desc: '3D Chrome Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/3d-chrome-text-effect-827.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'wood ?(.*)',
+		fromMe: true,
+		desc: 'Wood Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/wood-text-effect-856.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'bagel ?(.*)',
+		fromMe: true,
+		desc: 'Bagel Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/bagel-text-effect-857.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'biscuit ?(.*)',
+		fromMe: true,
+		desc: 'Biscuit Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/biscuit-text-effect-858.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'gold ?(.*)',
+		fromMe: true,
+		desc: 'Abstra Gold Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/abstra-gold-text-effect-859.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'candy ?(.*)',
+		fromMe: true,
+		desc: 'Pink Candy Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/pink-candy-text-effect-832.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'carbon ?(.*)',
+		fromMe: true,
+		desc: 'Black Carbon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/carbon-text-effect-833.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'eroded ?(.*)',
+		fromMe: true,
+		desc: 'Eroded Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/eroded-metal-text-effect-834.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2glitter ?(.*)',
+		fromMe: true,
+		desc: 'Bronze Glitter Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/bronze-glitter-text-effect-835.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3glitter ?(.*)',
+		fromMe: true,
+		desc: 'Gold Glitter Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/gold-glitter-text-effect-836.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4glitter ?(.*)',
+		fromMe: true,
+		desc: 'Silver Glitter Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/silver-glitter-text-effect-837.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '5glitter ?(.*)',
+		fromMe: true,
+		desc: 'Green Glitter Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/green-glitter-text-effect-838.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '6glitter ?(.*)',
+		fromMe: true,
+		desc: 'Pink Glitter Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/pink-glitter-text-effect-839.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '7glitter ?(.*)',
+		fromMe: true,
+		desc: 'Purple Glitter Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-glitter-text-effect-840.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '8glitter ?(.*)',
+		fromMe: true,
+		desc: 'Blue Glitter Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blue-glitter-text-effect-841.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'hexagold ?(.*)',
+		fromMe: true,
+		desc: 'Hexa Golden Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/hexa-golden-text-effect-842.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'scifi ?(.*)',
+		fromMe: true,
+		desc: 'Sci-Fi Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/sci-fi-text-effect-855.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '1jewel ?(.*)',
+		fromMe: true,
+		desc: 'Blue Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blue-jewelry-text-effect-844.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2jewel ?(.*)',
+		fromMe: true,
+		desc: 'Cyan Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/cyan-jewelry-text-effect-845.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3jewel ?(.*)',
+		fromMe: true,
+		desc: 'Green Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/green-jewelry-text-effect-846.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4jewel ?(.*)',
+		fromMe: true,
+		desc: 'Orange Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/orange-jewelry-text-effect-847.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '5jewel ?(.*)',
+		fromMe: true,
+		desc: 'Purple Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-jewelry-text-effect-848.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '6jewel ?(.*)',
+		fromMe: true,
+		desc: 'Red Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/red-jewelry-text-effect-849.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '7jewel ?(.*)',
+		fromMe: true,
+		desc: 'Silver Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/silver-jewelry-text-effect-850.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '8jewel ?(.*)',
+		fromMe: true,
+		desc: 'Yellow Jewelry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/yellow-jewelry-text-effect-851.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'glowmetal ?(.*)',
+		fromMe: true,
+		desc: 'Glow Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/3d-glowing-metal-text-effect-828.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)	
+
+bot(
+	{
+		pattern: 'blackmetal ?(.*)',
+		fromMe: true,
+		desc: 'Black Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/black-metal-text-effect-829.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'bluemetal ?(.*)',
+		fromMe: true,
+		desc: 'Blue Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blue-metal-text-effect-831.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'hotmetal ?(.*)',
+		fromMe: true,
+		desc: 'Hot Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/hot-metal-text-effect-843.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'shinymetal ?(.*)',
+		fromMe: true,
+		desc: 'Shiny Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/shiny-metal-text-effect-852.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'rainbowmetal ?(.*)',
+		fromMe: true,
+		desc: 'Rainbow Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/metal-rainbow-text-effect-854.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'rustymetal ?(.*)',
+		fromMe: true,
+		desc: 'Rusty Metal Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/rusty-metal-text-effect-860.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3gem ?(.*)',
+		fromMe: true,
+		desc: 'Blue Gem Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blue-gem-text-effect-830.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4gem ?(.*)',
+		fromMe: true,
+		desc: 'Purple Gem Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-gem-text-effect-853.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'juice ?(.*)',
+		fromMe: true,
+		desc: 'Fruit Juice Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/fruit-juice-text-effect-861.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'frozen ?(.*)',
+		fromMe: true,
+		desc: 'Frozen Ice Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/ice-cold-text-effect-862.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '1marble ?(.*)',
+		fromMe: true,
+		desc: 'Marble Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/marble-text-effect-863.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2marble ?(.*)',
+		fromMe: true,
+		desc: 'Marble Slabs Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/marble-slabs-text-effect-864.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'horror ?(.*)',
+		fromMe: true,
+		desc: 'Horror Gift Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/horror-gift-text-effect-866.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'drug ?(.*)',
+		fromMe: true,
+		desc: 'Plastic Bag Drug Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/plastic-bag-drug-text-effect-867.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'honey ?(.*)',
+		fromMe: true,
+		desc: 'Honey Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/honey-text-effect-868.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'gift ?(.*)',
+		fromMe: true,
+		desc: 'Chrismast Gift Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/chrismast-gift-text-effect-869.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'dropwater ?(.*)',
+		fromMe: true,
+		desc: 'Dropwater Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/dropwater-text-effect-872.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '1neon ?(.*)',
+		fromMe: true,
+		desc: 'Gradient Neon Light Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-gradient-neon-light-text-effect-online-1085.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2neon ?(.*)',
+		fromMe: true,
+		desc: 'Neon Light Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/neon-text-effect-online-879.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3neon ?(.*)',
+		fromMe: true,
+		desc: 'Neon Light Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/neon-light-text-effect-online-882.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4neon ?(.*)',
+		fromMe: true,
+		desc: 'Neon Light Text4 Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/neon-text-effect-online-963.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '5neon ?(.*)',
+		fromMe: true,
+		desc: 'Neon Light Galaxy Style Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/neon-light-text-effect-with-galaxy-style-981.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '6neon ?(.*)',
+		fromMe: true,
+		desc: 'Glowing Neon Light Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-glowing-neon-light-text-effect-online-free-1061.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '7neon ?(.*)',
+		fromMe: true,
+		desc: 'Futuristic Technology Neon Light Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '8neon ?(.*)',
+		fromMe: true,
+		desc: '3D Neon Light Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-3d-neon-light-text-effect-online-1028.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '9neon ?(.*)',
+		fromMe: true,
+		desc: 'Neon Light On Brick Wall Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-neon-light-on-brick-wall-online-1062.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'greenneon ?(.*)',
+		fromMe: true,
+		desc: 'Green Neon Light Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/green-neon-text-effect-874.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'glitchneon ?(.*)',
+		fromMe: true,
+		desc: 'Neon Light Glitch Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/neon-light-glitch-text-generator-online-1063.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'bokeh ?(.*)',
+		fromMe: true,
+		desc: 'Bokeh Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/bokeh-text-effect-876.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'steel ?(.*)',
+		fromMe: true,
+		desc: 'Steel Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/steel-text-effect-online-921.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3dsteel ?(.*)',
+		fromMe: true,
+		desc: '3D Steel Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .3dsteel Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .3dsteel Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/3d-steel-text-effect-877.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3dbox ?(.*)',
+		fromMe: true,
+		desc: 'Simple 3D Box Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/3d-box-text-effect-online-880.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'thunder ?(.*)',
+		fromMe: true,
+		desc: 'Thunder Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-thunder-text-effect-online-881.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2thunder ?(.*)',
+		fromMe: true,
+		desc: 'Thunder Text2 Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/online-thunder-text-effect-generator-1031.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'blood ?(.*)',
+		fromMe: true,
+		desc: 'Horror Blood Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/horror-blood-text-effect-online-883.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2blood ?(.*)',
+		fromMe: true,
+		desc: 'Blood On Frosted Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blood-text-on-the-frosted-glass-941.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'matrix ?(.*)',
+		fromMe: true,
+		desc: 'Matrix Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/matrix-style-text-effect-online-884.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'bread ?(.*)',
+		fromMe: true,
+		desc: 'Bread Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/bread-text-effect-online-887.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'koifish ?(.*)',
+		fromMe: true,
+		desc: 'Koi Fish Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/koi-fish-text-effect-online-888.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'strawberry ?(.*)',
+		fromMe: true,
+		desc: 'Strawberry Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/strawberry-text-effect-online-889.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2chocolate ?(.*)',
+		fromMe: true,
+		desc: 'Chocolate Cake Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/chocolate-cake-text-effect-890.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'decglass ?(.*)',
+		fromMe: true,
+		desc: 'Decorative Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/decorative-glass-text-effect-891.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'glass ?(.*)',
+		fromMe: true,
+		desc: 'Purple Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-glass-text-effect-online-892.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2glass ?(.*)',
+		fromMe: true,
+		desc: 'Purple Shiny Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-shiny-glass-text-effect-906.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3glass ?(.*)',
+		fromMe: true,
+		desc: 'Red Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/red-glass-text-effect-907.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4glass ?(.*)',
+		fromMe: true,
+		desc: 'Blue Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blue-glass-text-effect-908.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '5glass ?(.*)',
+		fromMe: true,
+		desc: 'Cyan Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/cyan-glass-text-effect-909.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '6glass ?(.*)',
+		fromMe: true,
+		desc: 'Green Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/green-glass-text-effect-910.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '7glass ?(.*)',
+		fromMe: true,
+		desc: 'Orange Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/orange-glass-text-effect-911.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '8glass ?(.*)',
+		fromMe: true,
+		desc: 'Purple Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-glass-text-effect-912.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '9glass ?(.*)',
+		fromMe: true,
+		desc: 'Yellow Glass Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/yellow-glass-text-effect-913.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'sparkling ?(.*)',
+		fromMe: true,
+		desc: 'Cyan Sparkling Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/cyan-sparkling-jewelry-text-effect-893.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2sparkling ?(.*)',
+		fromMe: true,
+		desc: 'Red Sparkling Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/red-sparkling-jewelry-text-effect-894.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3sparkling ?(.*)',
+		fromMe: true,
+		desc: 'Gold Sparkling Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/gold-sparkling-jewelry-text-effect-895.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4sparkling ?(.*)',
+		fromMe: true,
+		desc: 'Purple Sparkling Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-sparkling-jewelry-text-effect-896.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '5sparkling ?(.*)',
+		fromMe: true,
+		desc: 'Green Sparkling Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/green-sparkling-jewelry-text-effect-897.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '6sparkling ?(.*)',
+		fromMe: true,
+		desc: 'Blue Sparkling Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blue-sparkling-jewelry-text-effect-898.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '7sparkling ?(.*)',
+		fromMe: true,
+		desc: 'Pink Sparkling Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/pink-sparkling-jewelry-text-effect-899.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+) 
+
+bot(
+	{
+		pattern: 'toxic ?(.*)',
+		fromMe: true,
+		desc: 'Toxic Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/toxic-text-effect-online-901.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'equalizer ?(.*)',
+		fromMe: true,
+		desc: 'Rainbow Equalizer Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/rainbow-equalizer-text-effect-902.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'robot ?(.*)',
+		fromMe: true,
+		desc: 'Robot R2 D2 Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/robot-r2-d2-text-effect-903.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'captain ?(.*)',
+		fromMe: true,
+		desc: 'Captain America Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/captain-america-text-effect-905.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'lava ?(.*)',
+		fromMe: true,
+		desc: 'Lava Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/lava-text-effect-online-914.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'magma ?(.*)',
+		fromMe: true,
+		desc: 'Magma Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-a-magma-hot-text-effect-online-1030.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'rock ?(.*)',
+		fromMe: true,
+		desc: 'Rock Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/rock-text-effect-online-915.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3dstone ?(.*)',
+		fromMe: true,
+		desc: '3D Stone Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'stone ?(.*)',
+		fromMe: true,
+		desc: 'Peridot Stone Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/peridot-stone-text-effect-916.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2stone ?(.*)',
+		fromMe: true,
+		desc: 'Stone Text2 Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .2stone Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .2stone Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-a-stone-text-effect-online-982.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'decpurple ?(.*)',
+		fromMe: true,
+		desc: 'Decorative Purple Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/decorate-purple-text-effect-917.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'decgreen ?(.*)',
+		fromMe: true,
+		desc: 'Decorative Green Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/decorate-green-text-effect-918.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'ultragloss ?(.*)',
+		fromMe: true,
+		desc: 'Ultra Gloss Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/ultra-gloss-text-effect-online-920.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'denim ?(.*)',
+		fromMe: true,
+		desc: 'Denim Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/denim-text-effect-online-919.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3balloon ?(.*)',
+		fromMe: true,
+		desc: 'Gold Foil Balloon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/gold-foil-balloon-text-effect-922.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4balloon ?(.*)',
+		fromMe: true,
+		desc: 'Blue Foil Balloon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/blue-foil-balloon-text-effect-923.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '5balloon ?(.*)',
+		fromMe: true,
+		desc: 'Cyan Foil Balloon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/cyan-foil-balloon-text-effect-924.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '6balloon ?(.*)',
+		fromMe: true,
+		desc: 'Green Foil Balloon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/green-foil-balloon-text-effect-925.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '7balloon ?(.*)',
+		fromMe: true,
+		desc: 'Pink Foil Balloon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/pink-foil-balloon-text-effect-926.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '8balloon ?(.*)',
+		fromMe: true,
+		desc: 'Purple Foil Balloon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/purple-foil-balloon-text-effect-927.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '9balloon ?(.*)',
+		fromMe: true,
+		desc: 'Red Foil Balloon Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/red-foil-balloon-text-effect-928.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3fabric ?(.*)',
+		fromMe: true,
+		desc: 'Fabric Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/fabric-text-effect-online-964.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'skeleton ?(.*)',
+		fromMe: true,
+		desc: 'Skeleton Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/skeleton-text-effect-online-929.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '1firework ?(.*)',
+		fromMe: true,
+		desc: 'Firework Sparkle Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/firework-sparkle-text-effect-930.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'nleaves ?(.*)',
+		fromMe: true,
+		desc: 'Natural Leaves Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/natural-leaves-text-effect-931.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'wicker ?(.*)',
+		fromMe: true,
+		desc: 'Wicker Text Effect',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/wicker-text-effect-online-932.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'ninja ?(.*)',
+		fromMe: true,
+		desc: 'Ninja Logo Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .ninja Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .ninja Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-ninja-logo-online-935.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'bwwolf ?(.*)',
+		fromMe: true,
+		desc: 'Black And White Wolf Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .bwwolf Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .bwwolf Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-wolf-logo-black-white-937.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'lion ?(.*)',
+		fromMe: true,
+		desc: 'Lion Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .lion Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .lion Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-lion-logo-mascot-online-938.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'darkgold ?(.*)',
+		fromMe: true,
+		desc: 'Metal Dark Gold Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/metal-dark-gold-text-effect-online-939.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2darkgold ?(.*)',
+		fromMe: true,
+		desc: 'Metal Dark Gold Text2 Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/metal-dark-gold-text-effect-984.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'xmas ?(.*)',
+		fromMe: true,
+		desc: 'Beautiful Merry Christmas Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/xmas-cards-3d-online-942.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2xmas ?(.*)',
+		fromMe: true,
+		desc: 'Christmas Holiday Snow Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-a-christmas-holiday-snow-text-effect-1007.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2carbon ?(.*)',
+		fromMe: true,
+		desc: 'Glossy Carbon Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/glossy-carbon-text-effect-965.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+) 
+
+bot(
+	{
+		pattern: 'deluxe ?(.*)',
+		fromMe: true,
+		desc: 'Deluxe Gold Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/deluxe-gold-text-effect-966.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2deluxe ?(.*)',
+		fromMe: true,
+		desc: 'Deluxe Silver Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/deluxe-silver-text-effect-970.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'glossymetal ?(.*)',
+		fromMe: true,
+		desc: 'Glossy Metal Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/glossy-blue-metal-text-effect-967.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'purplemetal ?(.*)',
+		fromMe: true,
+		desc: 'Purple Metal Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/metal-purple-dual-effect-973.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'marvel ?(.*)',
+		fromMe: true,
+		desc: 'Marvel Logo Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .marvel Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .marvel Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-logo-style-marvel-studios-online-971.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2marvel ?(.*)',
+		fromMe: true,
+		desc: 'Marvel Logo2 Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .2marvel Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .2marvel Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'avengers ?(.*)',
+		fromMe: true,
+		desc: 'Avengers Logo Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .avengers Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .avengers Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-3d-avengers-logo-online-974.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'holotext ?(.*)',
+		fromMe: true,
+		desc: 'Holographic 3D Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/holographic-3d-text-effect-975.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'pornhub ?(.*)',
+		fromMe: true,
+		desc: 'Pornhub Style Logo Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .pornhub Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .pornhub Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/pornhub-style-logo-online-generator-free-977.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'minion ?(.*)',
+		fromMe: true,
+		desc: 'Minion Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/minion-text-effect-3d-online-978.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '1917style ?(.*)',
+		fromMe: true,
+		desc: '1917 Movie Style Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/1917-style-text-effect-online-980.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'glitch ?(.*)',
+		fromMe: true,
+		desc: 'Glitch Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .glitch Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .glitch Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2glitch ?(.*)',
+		fromMe: true,
+		desc: 'Glitch Text2 Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .2glitch Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .2glitch Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-a-glitch-text-effect-online-free-1026.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3glitch ?(.*)',
+		fromMe: true,
+		desc: 'Glitch Text3 Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-impressive-glitch-text-effects-online-1027.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'space ?(.*)',
+		fromMe: true,
+		desc: '3D Space Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .space Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .space Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-space-3d-text-effect-online-985.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3dglue ?(.*)',
+		fromMe: true,
+		desc: '3D Glue Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'beach ?(.*)',
+		fromMe: true,
+		desc: 'Write in Sand Summer Beach Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/write-in-sand-summer-beach-free-online-991.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'cracked ?(.*)',
+		fromMe: true,
+		desc: 'Embossed Text Effect On Cracked Surface Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-embossed-text-effect-on-cracked-surface-1024.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2graffiti ?(.*)',
+		fromMe: true,
+		desc: 'Cool Wall Graffiti Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .2graffiti Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .2graffiti Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-cool-wall-graffiti-text-effect-online-1009.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3graffiti ?(.*)',
+		fromMe: true,
+		desc: 'Cool Wall Graffiti Text3 Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .3graffiti Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .3graffiti Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '4graffiti ?(.*)',
+		fromMe: true,
+		desc: 'Cool Wall Graffiti Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '5graffiti ?(.*)',
+		fromMe: true,
+		desc: 'Break Wall Graffiti Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/break-wall-text-effect-871.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3water ?(.*)',
+		fromMe: true,
+		desc: '3D Underwater Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/3d-underwater-text-effect-generator-online-1013.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'watercolor ?(.*)',
+		fromMe: true,
+		desc: 'Watercolor Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '3dpaper ?(.*)',
+		fromMe: true,
+		desc: 'Multicolor 3D Paper Cut Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/online-multicolor-3d-paper-cut-text-effect-1016.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'layered ?(.*)',
+		fromMe: true,
+		desc: 'Layered Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .layered Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .layered Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/create-layered-text-effects-online-free-1032.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'berry ?(.*)',
+		fromMe: true,
+		desc: 'Berry Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-berry-text-effect-online-free-1033.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'transformer ?(.*)',
+		fromMe: true,
+		desc: 'Transformers Movie Poster Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-a-transformer-text-effect-online-1035.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'demon ?(.*)',
+		fromMe: true,
+		desc: 'Green Horror Style Text Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-green-horror-style-text-effect-online-1036.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'classicgame ?(.*)',
+		fromMe: true,
+		desc: 'Classic 8-Bit Video Game Text Effect Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match)
+			return await message.sendMessage(
+				'Give me text\nExample .classicgame Text1;Text2'
+			)
+		const [text1, text2] = match.split(';')
+		if (!text1 || !text2)
+			return await message.sendMessage(
+				'Give me text\nExample .classicgame Text1;Text2'
+			)
+		const effect_url = 'https://textpro.me/video-game-classic-8-bit-text-effect-1037.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: '2space ?(.*)',
+		fromMe: true,
+		desc: 'Space Text 2 Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-space-text-effects-online-free-1042.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+)
+
+bot(
+	{
+		pattern: 'circuit ?(.*)',
+		fromMe: true,
+		desc: 'Blue Circuit Style Effect  Maker',
+		type: 'textmaker',
+	},
+	async (message, match) => {
+		if (!match) return await message.sendMessage('Give me text')
+		const effect_url =
+			'https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html'
+		const { status, url } = await textMaker(effect_url, match)
+		if (url) return await message.sendFromUrl(url)
+	}
+) 
+
+//CREATED BY AASHIN
+//THANKS TO MASK SER
