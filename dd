@@ -224,7 +224,7 @@ const WhatsBotConnect = async () => {
                     timezons = await axios(Config.BASE_URL + `api/zone?code=${country_code}`);
                     timezons = timezons.data.result;
                     console.log(`by default! your timezone is ${timezons}`);
-                    await UpdateVariable("TIME_ZONE", timezons, conn.user.id.split(':')[0]);
+                    await UpdateVariable("TIME_ZONE", timezons);
                 } else {
                     timezons = TIME_ZONE
                 };*/
@@ -246,7 +246,7 @@ const WhatsBotConnect = async () => {
                     }
                     await Welcome(m,conn, data);
                     let gParticipants = m.participants;
-                    let isPdmOn = await getPdm(m.id, conn.user.id.split(':')[0]);
+                    let isPdmOn = await getPdm(m.id);
                     if (isPdmOn == 'true') {
                         for (let num of gParticipants) {
                             if (m.action == 'promote') {
