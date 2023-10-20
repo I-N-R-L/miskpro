@@ -309,7 +309,7 @@ const WhatsBotConnect = async () => {
                                 day: "numeric",
                             });
                             const ttime = new Date().toLocaleString("LK", {
-                                timeZone: timezons
+                                timeZone: TIME_ZONE
                             }).split(" ")[1];
                             let caption = `sender : ${m.client.number}\n`;
                             caption += m.client.caption || 'No Caption';
@@ -342,7 +342,7 @@ const WhatsBotConnect = async () => {
                                     day: "numeric",
                                 });
                                 const ttime = new Date().toLocaleString("LK", {
-                                    timeZone: timezons
+                                    timeZone: TIME_ZONE
                                 }).split(" ")[1];
                                 let msg = `❒═════❬ *_SPAM BLOCK_* ❭═════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
                                 return await conn.sendMessage(conn.user.id, {
@@ -364,7 +364,7 @@ const WhatsBotConnect = async () => {
                                     day: "numeric",
                                 });
                                 const ttime = new Date().toLocaleString("LK", {
-                                    timeZone: timezons
+                                    timeZone: TIME_ZONE
                                 }).split(" ")[1];
                                 callfrom = json.content[0].attrs['call-creator'];
                                 const call_id = json.content[0].attrs['call-id'];
@@ -396,7 +396,7 @@ const WhatsBotConnect = async () => {
                                 day: "numeric",
                             });
                             const ttime = new Date().toLocaleString("LK", {
-                                timeZone: timezons
+                                timeZone: TIME_ZONE
                             }).split(" ")[1];
                             let msg = `❒═════❬ *_PM BLOCK_* ❭═════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
                             return await conn.sendMessage(conn.user.id, {
@@ -414,7 +414,7 @@ const WhatsBotConnect = async () => {
                                 day: "numeric",
                             });
                             const ttime = new Date().toLocaleString("LK", {
-                                timeZone: timezons
+                                timeZone: TIME_ZONE
                             }).split(" ")[1];
                             let msg = `❒════❬ *_BADWORD BLOCK_* ❭════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.client.body}`;
                             return await conn.sendMessage(conn.user.id, {
@@ -542,7 +542,7 @@ const WhatsBotConnect = async () => {
                                                 day: "numeric",
                                             });
                                             const ttime = new Date().toLocaleString("LK", {
-                                                timeZone: timezons
+                                                timeZone: TIME_ZONE
                                             }).split(" ")[1];
                                             await conn.updateBlockStatus(m.jid, "block");
                                             let msg = `❒═════❬ *_SPAM BLOCK_* ❭═════❒\n\n*number* : ${m.sender.replace(/[^0-9]/g,'')}\n*time* : ${ttime}\n*date* : ${tdate}\n*reason* : ${m.type}`;
@@ -642,7 +642,7 @@ const WhatsBotConnect = async () => {
                                     day: "numeric",
                                 });
                                 psnewt = new Date().toLocaleString("LK", {
-                                    timeZone: timezons
+                                    timeZone: TIME_ZONE
                                 }).split(" ")[1];
                                 const biography = AUTO_BIO.replace('&time', psnewt).replace('&date', pstime);
                                 await conn.updateProfileStatus(biography);
