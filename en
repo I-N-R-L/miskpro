@@ -1,3 +1,9 @@
 inrl~2282ee503ee8d35ef2040220b69b3de2297d
 
 mongodb://mongo:IjPzlZbCLzjT65YBz3tD@containers-us-west-173.railway.app:6971
+
+
+const jsonString = '{"name": "John", "age": 30, "city": "New York"}';
+const jsonArray = jsonString.match(/({.*?})/g);
+
+console.log(jsonArray);
