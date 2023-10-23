@@ -1,53 +1,13 @@
-inrl~2282ee503ee8d35ef2040220b69b3de2297d
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path
+const ffmpeg = require('fluent-ffmpeg')
+ffmpeg.setFfmpegPath(ffmpegPath)
 
-const a = '.mention https://i.imgur.com/8lya03e.mp4 type/audio { "waveform": [99,0,99,0,99], "contextInfo": { "forwardingScore": 5, "isForwarded": true, "externalAdReply": { "title": "hermit-md", "body": "WhatsApp Bot", "mediaType": 2, "thumbnail": "https://i.imgur.com/kxwRM1c.jpg", "mediaUrl": "", "sourceUrl": "https://github.com/A-d-i-t-h-y-a-n/hermit-md" }}}'
-function MediaUrls(text) {
-    let array = [];
-    const regexp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()'@:%_\+.~#?!&//=]*)/gi;
-    let urls = text.match(regexp);
-    if (urls) {
-            urls.map(url => {
-                    if (['jpg', 'jpeg', 'png', 'gif', 'mp4', 'webp'].includes(url.split('.').pop().toLowerCase())) {
-                            array.push(url);
-                    }
-            });
-            return array;
-    } else {
-            return false;
-    }
-}
-
-async function mention(m,text) {
-    const types = ['type/image','type/video','type/audio','type/sticker','type/gif']
-    const jsonArray = text.match(/({.*})/g);
-    let msg = text.replace(jsonArray,'');
-    let type = 'text',message = { contextInfo:{}};
-    for(const i in types){
-        if(msg.match(types[i])) {
-            type = msg.match(types[i])[0].replace('type/','');
-            break;
-        }
-    }
-    if(jsonArray) message = JSON.parse(jsonArray[0]);
-let URL = MediaUrls(msg)[0];
-if(type!='text' && URL) {
-	msg = msg.replace(URL,'').replace('type/','').replace(type,'').trim();
-	if(type  == 'image') {
-		return await
-		} else if(type  == 'image') {
-		return await console.log(
-		} else if(type  == 'video') {
-		return await
-		} else if(type  == 'audio') {
-		return await
-		} else if(type  == 'sticker') {
-		return await
-		} else if(type  == 'gif') {
-		return await
-		}
-	}
-if(msg.includes('&sender')) msg.replace('&sender','@'+m.number); message.contextInfo.mentionedJid = [m.sender];
-console.log(msg);
-return console.log(message);
-}
-return  mention({jid:"hy"}, a);
+ffmpeg('video.mp4')
+  .setStartTime('00:00:03')
+  .setDuration('10')
+  .output('video_out.mp4')
+  .on('end', function(err) {
+    if(!err) { console.log('conversion Done') }
+  })
+  .on('error', err => console.log('error: ', err))
+  .run()
