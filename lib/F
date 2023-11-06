@@ -17,7 +17,6 @@ inrl({
     onlyGroup: true,
     desc :lang.GROUP.PROMOTE.DESC
 }, async (message, match) => {
-    try {
         let admin = await isAdmin(message);
         let BotAdmin = await isBotAdmin(message);
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
@@ -32,9 +31,6 @@ if (!admin && !message.client.isCreator) return;
         }, {
             quoted: message,
         });
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'demote ?(.*)',
@@ -44,7 +40,6 @@ inrl({
 }, async (message, match) => {
     let admin = await isAdmin(message);
     let BotAdmin = await isBotAdmin(message);
-    try {
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
         if(!ADMIN_SUDO_ACCESS && !message.client.isCreator) return;
 if (!admin && !message.client.isCreator) return;
@@ -57,9 +52,6 @@ if (!admin && !message.client.isCreator) return;
         }, {
             quoted: message,
         });
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'kick ?(.*)',
@@ -72,7 +64,6 @@ inrl({
     let user = message.reply_message.sender || match;
     if(!user) return await message.send(lang.GROUP.KICK.HELP)
     user = user.replace(/[^0-9]/g,"") +"@s.whatsapp.net";
-    try {
         if (match !="all") {
             if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
             if(!ADMIN_SUDO_ACCESS && !message.client.isCreator) return;
@@ -101,9 +92,6 @@ if (!admin && !message.client.isCreator) return;
             });
             return await message.reply('all group Participants will been kicked!')
         }
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'add ?(.*)',
@@ -174,7 +162,6 @@ inrl({
     onlyGroup: true,
     desc : lang.GROUP.GPP.DESC
 }, async (message, match) => {
-    try {
         const BotAdmin = await isBotAdmin(message);
         const admin = await isAdmin(message);
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
@@ -185,9 +172,6 @@ if (!admin && !message.client.isCreator) return;
         let download = await message.client.downloadMediaMessage(_message);
         await message.client.updateProfilePicture(message.jid, download);
         return message.reply(lang.GROUP.GPP.INFO);
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 })
 inrl({
     pattern: 'fullgpp ?(.*)',
@@ -195,7 +179,6 @@ inrl({
     onlyGroup: true,
     desc :lang.GROUP.FULL_GPP.DESC
 }, async (message, match) => {
-    try {
         const BotAdmin = await isBotAdmin(message);
         const admin = await isAdmin(message);
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
@@ -205,9 +188,6 @@ if (!admin && !message.client.isCreator) return;
         let download = await message.quoted.download();
         await message.updateProfilePicture(message.jid, download);
         return message.reply(lang.GROUP.FULL_GPP.INFO);
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'gname ?(.*)',
@@ -215,7 +195,6 @@ inrl({
     onlyGroup: true,
     desc :lang.GROUP.G_NAME.DESC
 }, async (message, match) => {
-    try {
         const BotAdmin = await isBotAdmin(message);
         const admin = await isAdmin(message);
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
@@ -233,9 +212,6 @@ if (!admin && !message.client.isCreator) return;
         }, {
             quoted: message
         })
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'gdesc ?(.*)',
@@ -243,7 +219,6 @@ inrl({
     onlyGroup: true,
     desc : lang.GROUP.G_DESC.DESC
 }, async (message, match) => {
-    try {
         const BotAdmin = await isBotAdmin(message);
         const admin = await isAdmin(message);
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
@@ -261,9 +236,6 @@ if (!admin && !message.client.isCreator) return;
         }, {
             quoted: message
         })
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'mute ?(.*)',
@@ -276,16 +248,12 @@ inrl({
     if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
     if(!ADMIN_SUDO_ACCESS && !message.client.isCreator) return;
 if (!admin && !message.client.isCreator) return;
-    try {
         await message.client.groupSettingUpdate(message.jid, "announcement");
         return await message.client.sendMessage(message.jid, {
             text: lang.GROUP.MUTE.SUCCESS
         }, {
             quoted: message
         });
-    } catch (e) {
-        return message.reply(lang.BASE.FAILD);;
-    }
 });
 inrl({
     pattern: 'unmute ?(.*)',
@@ -298,16 +266,12 @@ inrl({
     if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
     if(!ADMIN_SUDO_ACCESS && !message.client.isCreator) return;
 if (!admin && !message.client.isCreator) return;
-    try {
         await message.client.groupSettingUpdate(message.jid, "not_announcement");
         return await message.client.sendMessage(message.jid, {
             text: lang.GROUP.UNMUTE.SUCCESS
         }, {
             quoted: message
         });
-    } catch (e) {
-        return message.reply(lang.BASE.FAILD);;
-    }
 });
 inrl({
     pattern: 'lock ?(.*)',
@@ -320,16 +284,12 @@ inrl({
     if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
     if(!ADMIN_SUDO_ACCESS && !message.client.isCreator) return;
 if (!admin && !message.client.isCreator) return;
-    try {
         await message.client.groupSettingUpdate(message.jid, "locked");
         return await message.client.sendMessage(message.jid, {
             text: lang.GROUP.LOCK.SUCCESS
         }, {
             quoted: message
         });
-    } catch (e) {
-        return message.reply(lang.BASE.FAILD);;
-    }
 });
 inrl({
     pattern: 'unlock ?(.*)',
@@ -342,16 +302,12 @@ inrl({
     if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
     if(!ADMIN_SUDO_ACCESS && !message.client.isCreator) return;
 if (!admin && !message.client.isCreator) return;
-    try {
         await message.client.groupSettingUpdate(message.jid, "unlocked");
         return await message.client.sendMessage(message.jid, {
             text: lang.GROUP.UNLOCK.SUCCESS
         }, {
             quoted: message
         });
-    } catch (e) {
-        return message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'left ?(.*)',
@@ -360,11 +316,7 @@ inrl({
     desc :lang.GROUP.LEFT.DESC,
     fromMe: true
 }, async (message, match) => {
-    try {
         await message.client.groupLeave(message.jid)
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'invite ?(.*)',
@@ -372,7 +324,6 @@ inrl({
     onlyGroup: true,
     desc :lang.GROUP.INVITE.DESC
 }, async (message, match) => {
-    try {
         const BotAdmin = await isBotAdmin(message);
         const admin = await isAdmin(message);
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
@@ -384,9 +335,6 @@ if (!admin && !message.client.isCreator) return;
         }, {
             quoted: message
         });
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'revoke ?(.*)',
@@ -394,7 +342,6 @@ inrl({
     onlyGroup: true,
     desc : lang.GROUP.REVOKE.DESC
 }, async (message, match) => {
-    try {
         const BotAdmin = await isBotAdmin(message);
         const admin = await isAdmin(message);
         if (!BotAdmin) return await message.reply(lang.GROUP.BOT_ADMIN)
@@ -406,9 +353,6 @@ if (!admin && !message.client.isCreator) return;
         }, {
             quoted: message
         });
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'join ?(.*)',
@@ -416,7 +360,6 @@ inrl({
     fromMe: true,
     desc: lang.GROUP.ACPT.DESC
 }, async (message, match) => {
-    try {
         if (!match || !match.match(/^https:\/\/chat\.whatsapp\.com\/[a-zA-Z0-9]/)) return await message.reply(lang.GROUP.ACPT.NOT_VALID);
         let urlArray = (match).trim().split("/");
         if (!urlArray[2] == 'chat.whatsapp.com') return await message.client.sendMessage(message.jid, {
@@ -430,9 +373,6 @@ inrl({
         }, {
             quoted: message
         });
-    } catch (e) {
-        message.reply(lang.BASE.FAILD);
-    }
 });
 inrl({
     pattern: 'getinfo ?(.*)',
